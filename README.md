@@ -1386,8 +1386,16 @@ dolor o dudas** en rojo.
 
 Estas tres preguntas se resolvieron en la sesión de *Candidate Context Discovery*.
 
-`<Insertar capturas de la sesión de EventStorming en la herramienta indicada, mostrando el estado
-inicial, la línea de tiempo ordenada y los puntos calientes marcados.>`
+
+#Paso2
+![Paso2](assets/Paso2.jpg)
+
+#Paso 3 y 4 
+![Paso3y4](assets/Paso3y4.jpg)
+
+#Paso 5
+![Paso5](assets/Paso5.jpg)
+
 
 ### 4.2.2. Candidate Context Discovery
 
