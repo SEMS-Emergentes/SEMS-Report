@@ -791,14 +791,14 @@ con el As-Is correspondiente para hacer explícitos los cambios que introduce la
 
 **To-Be Scenario Map — User Persona #1: Responsable de operaciones de cadena**
 
-`<Insertar imagen con las filas Phases, Doing, Thinking y Feeling>`
+![To-be1](assets/To-be1.jpg) 
 
 `<Explicación del mapa y comparación con el As-Is: qué fases desaparecen, cuáles se acortan y en
 qué punto del recorrido el usuario pasa de reaccionar a anticipar.>`
 
 **To-Be Scenario Map — User Persona #2: Propietario de establecimiento independiente**
 
-`<Insertar imagen>`
+![To-be2](assets/To-be2.jpg) 
 
 `<Explicación y comparación con el As-Is.>`
 
@@ -1385,9 +1385,10 @@ dolor o dudas** en rojo.
 - ¿La proyección de factura es responsabilidad de Analítica o de Energía?
 
 Estas tres preguntas se resolvieron en la sesión de *Candidate Context Discovery*.
+#Paso 1
+![Paso1](assets/Paso1.jpg)
 
-
-#Paso2
+#Paso 2
 ![Paso2](assets/Paso2.jpg)
 
 #Paso 3 y 4 
@@ -1466,6 +1467,10 @@ negocio más relevantes. A continuación se describen los tres flujos modelados.
 7. *Subscriptions* responde con el límite; si se ha alcanzado, el alta se rechaza.
 8. *Organizations* registra el local y sus zonas.
 
+#Flujo 1 
+![flujo-1](assets/flujo-1.png)
+
+
 **Flujo 2 — Instalación de un medidor y primera lectura**
 
 1. El **supervisor** solicita a *Device Management* el registro de un medidor indicando local y zona.
@@ -1475,6 +1480,10 @@ negocio más relevantes. A continuación se describen los tres flujos modelados.
 5. El **medidor** envía una lectura a *Energy Monitoring*.
 6. *Energy Monitoring* clasifica la lectura por franja horaria, actualiza la demanda máxima del
    periodo y publica `ReadingProcessed`.
+   
+#Flujo 2 
+![flujo-2](assets/flujo-2.png)
+
 
 **Flujo 3 — Del pico de demanda al aviso**
 
@@ -1489,7 +1498,10 @@ negocio más relevantes. A continuación se describen los tres flujos modelados.
 8. *Analytics* solicita a *Energy Monitoring* el cálculo del importe con la tarifa del local.
 9. *Energy Monitoring* devuelve el desglose; *Analytics* lo persiste como proyección del periodo.
 
-`<Insertar los diagramas de Domain Storytelling elaborados para cada uno de los tres flujos.>`
+#Flujo 3
+![flujo-3](assets/flujo-3.png) 
+
+
 
 ### 4.2.4. Bounded Context Canvases
 
