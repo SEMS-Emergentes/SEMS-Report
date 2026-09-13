@@ -165,7 +165,7 @@ capaz de acompañar tanto a un local independiente como a una cadena con decenas
 | Goñe, Abigail | U202318049 | Ingeniería de Software | `<Foto. Párrafo de resumen con los principales conocimientos técnicos y habilidades que aporta al equipo.>` |
 | Gómez Flores, Daniela Araceli | U202311184 | Ingeniería de Software | `<Foto. Párrafo de resumen con los principales conocimientos técnicos y habilidades que aporta al equipo.>` |
 | Solis Santa Cruz, Giancarlo | U202318615 | Ingeniería de Software | `<Foto. Párrafo de resumen con los principales conocimientos técnicos y habilidades que aporta al equipo.>` |
-| Sulca Silva, Melisa Geraldine | U202224602 | Ingeniería de Software | `<Foto. Párrafo de resumen con los principales conocimientos técnicos y habilidades que aporta al equipo.>` |
+| Sulca Silva, Melisa Geraldine | U202224602 | Ingeniería de Software | <img src="https://i.imgur.com/p9GVr4j.png">  <br> Estudio la carrera de Ingeniería de Software y me interesa el desarrollo web. Me motiva aprender nuevos lenguajes de programación. Suelo trabajar bien en equipo, muestro compromiso con el grupo y  aplico perseverancia para superar los obstáculos y alcanzar mis objetivos. |
 
 ## 1.2. Solution Profile
 
