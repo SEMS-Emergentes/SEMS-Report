@@ -798,7 +798,7 @@ influencias, canales digitales y dispositivos, **todos derivados del análisis d
 
 **User Persona — Segmento #1: Responsable de operaciones de cadena**
 
-`<Insertar imagen del User Persona elaborado en UXPressia>`
+<img src="https://i.imgur.com/pduuw0m.png">
 
 `<Párrafo explicativo del arquetipo, indicando de qué hallazgos de las entrevistas proviene cada
 característica.>`
@@ -830,7 +830,9 @@ Matriz de tareas por User Persona, indicando frecuencia e importancia de cada ta
 Elaborados en **UXPressia**, uno por User Persona, con los cuadrantes *Thinks and Feels*, *Sees*,
 *Says and Does*, *Hears*, *Pains* y *Gains*.
 
-`<Insertar imagen del Empathy Map del User Persona #1 y su explicación>`
+<img src="https://i.imgur.com/spHONZ9.png">
+
+
 
 `<Insertar imagen del Empathy Map del User Persona #2 y su explicación>`
 
