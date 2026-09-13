@@ -647,7 +647,7 @@ inicia explicando el propósito de la investigación y solicitando consentimient
 | Distrito | Lince |
 | Cargo / tipo de establecimiento | Administrador de cadena de juguerías |
 | Número de locales a cargo | 3 |
-| URL del video | `<...>` |
+| URL del video | https://acortar.link/rd0LIG |
 | Timing de inicio | 00:00 |
 | Duración | 12:24 |
 | Screenshot | <img src="https://i.imgur.com/fRHpiIj.png">|
@@ -683,8 +683,8 @@ características objetivas y subjetivas.>`
 
 | Campo | Dato |
 | :-- | :-- |
-| Nombres y apellidos | Joaquin Cuentas |
-| Edad | 29 |
+| Nombres y apellidos | `<...>` |
+| Edad | `<...>` |
 | Distrito | `<...>` |
 | Cargo / tipo de establecimiento | `<...>` |
 | Número de locales a cargo | `<...>` |
@@ -708,9 +708,9 @@ características objetivas y subjetivas.>`
 | Distrito | San Miguel |
 | Cargo / tipo de establecimiento | Dueño de lavandería |
 | Número de locales a cargo | 1 |
-| URL del video | `<...>` |
+| URL del video | https://acortar.link/YRmRAy |
 | Timing de inicio | 00:00 |
-| Duración | 10:34 |
+| Duración | 10:32 |
 | Screenshot | <img src="https://i.imgur.com/VgMJ1Zb.png"> |
 
 **Resumen de la entrevista**
