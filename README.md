@@ -165,7 +165,7 @@ capaz de acompañar tanto a un local independiente como a una cadena con decenas
 | Goñe, Abigail | U202318049 | Ingeniería de Software | `<Foto. Párrafo de resumen con los principales conocimientos técnicos y habilidades que aporta al equipo.>` |
 | Gómez Flores, Daniela Araceli | U202311184 | Ingeniería de Software | `<Foto. Párrafo de resumen con los principales conocimientos técnicos y habilidades que aporta al equipo.>` |
 | Solis Santa Cruz, Giancarlo | U202318615 | Ingeniería de Software | `<Foto. Párrafo de resumen con los principales conocimientos técnicos y habilidades que aporta al equipo.>` |
-| Sulca Silva, Melisa Geraldine | U202224602 | Ingeniería de Software | <img src="https://i.imgur.com/p9GVr4j.png">  <br> Estudio la carrera de Ingeniería de Software y me interesa el desarrollo web. Me motiva aprender nuevos lenguajes de programación. Suelo trabajar bien en equipo, muestro compromiso con el grupo y  aplico perseverancia para superar los obstáculos y alcanzar mis objetivos. |
+| Sulca Silva, Melisa Geraldine | U202224602 | Ingeniería de Software | <img src="https://i.imgur.com/p9GVr4j.png" height="200" width="200">  <br> Estudio la carrera de Ingeniería de Software y me interesa el desarrollo web. Me motiva aprender nuevos lenguajes de programación. Suelo trabajar bien en equipo, muestro compromiso con el grupo y  aplico perseverancia para superar los obstáculos y alcanzar mis objetivos. |
 
 ## 1.2. Solution Profile
 
@@ -639,6 +639,108 @@ inicia explicando el propósito de la investigación y solicitando consentimient
 > aquí.
 
 #### Segmento #1 — Entrevista 1
+
+| Campo | Dato |
+| :-- | :-- |
+| Nombres y apellidos | Luis Paredes |
+| Edad | 28 |
+| Distrito | Lince |
+| Cargo / tipo de establecimiento | Administrador de cadena de juguerías |
+| Número de locales a cargo | 3 |
+| URL del video | `<...>` |
+| Timing de inicio | 00:00 |
+| Duración | 12:24 |
+| Screenshot | <img src="https://i.imgur.com/fRHpiIj.png">|
+
+**Resumen de la entrevista**
+
+Luis tiene 28 años y administra tres juguerías en Miraflores, San Isidro y Surco, con locales de entre 50 y 60 m² cada uno. Lleva tres años con el primer local pero el segundo y tercero los abrió hace apenas ocho meses. Los equipos principales son licuadoras industriales, refrigeradoras de fruta, aire acondicionado split y vitrinas frías, todos concentrados en una cocina pequeña por local. Se entera del consumo únicamente cuando llega el recibo físico o cuando la encargada se lo menciona, sin ninguna visibilidad en tiempo real. Cuando el monto sube llama a la encargada y la respuesta habitual es "no sé, todo normal", quedándose sin poder identificar la causa. No entiende bien algunos conceptos del recibo como el cargo por energía reactiva o el cargo fijo mensual, y duda si está en la tarifa correcta para su tipo de negocio.
+
+En el local de Surco estuvo dos meses pagando el doble de lo esperado porque el aire acondicionado heredado del local anterior estaba en mal estado y nadie lo detectó hasta que llegó el recibo. El pico de consumo ocurre entre las 7 y las 10 de la mañana cuando todos los equipos arrancan juntos al abrir, sin ningún protocolo escalonado, y hay un segundo pico al mediodía. El local de Miraflores siempre sale más caro que los otros dos pero no puede determinar si se debe al volumen de ventas, a equipos más viejos o al comportamiento de la encargada. Dijo que necesita ver los tres locales desde un solo lugar en su celular, que las alertas deben identificarle qué equipo o local específico está generando el problema porque si solo dicen "consumo alto" no sabe qué hacer. Mencionó que los cambios de configuración deben manejarse solo desde él, no desde cada encargada, para evitar que cada una lo toque a su criterio. Para convencer a su socio necesita mostrar resultados reales en el recibo en máximo un mes, con números en soles, no proyecciones, y si puede acompañarse de un caso concreto de negocio similar, mucho mejor.
+
+
+#### Segmento #1 — Entrevista 2
+
+| Campo | Dato |
+| :-- | :-- |
+| Nombres y apellidos | `<...>` |
+| Edad | `<...>` |
+| Distrito | `<...>` |
+| Cargo / tipo de establecimiento | `<...>` |
+| Número de locales a cargo | `<...>` |
+| URL del video | `<...>` |
+| Timing de inicio | `<mm:ss>` |
+| Duración | `<mm:ss>` |
+| Screenshot | `<Insertar captura del cuadro de video>` |
+
+**Resumen de la entrevista**
+
+`<Resumen descriptivo de las respuestas del entrevistado a las preguntas realizadas, incluyendo
+características objetivas y subjetivas.>`
+
+
+#### Segmento #1 — Entrevista 3
+
+| Campo | Dato |
+| :-- | :-- |
+| Nombres y apellidos | Joaquin Cuentas |
+| Edad | 29 |
+| Distrito | `<...>` |
+| Cargo / tipo de establecimiento | `<...>` |
+| Número de locales a cargo | `<...>` |
+| URL del video | `<...>` |
+| Timing de inicio | `<mm:ss>` |
+| Duración | `<mm:ss>` |
+| Screenshot | `<Insertar captura del cuadro de video>` |
+
+**Resumen de la entrevista**
+
+`<Resumen descriptivo de las respuestas del entrevistado a las preguntas realizadas, incluyendo
+características objetivas y subjetivas.>`
+
+
+#### Segmento #2 — Entrevista 1
+
+| Campo | Dato |
+| :-- | :-- |
+| Nombres y apellidos | Joaquin Cuentas |
+| Edad | 29 |
+| Distrito | San Miguel |
+| Cargo / tipo de establecimiento | Dueño de lavandería |
+| Número de locales a cargo | 1 |
+| URL del video | `<...>` |
+| Timing de inicio | 00:00 |
+| Duración | 10:34 |
+| Screenshot | <img src="https://i.imgur.com/VgMJ1Zb.png"> |
+
+**Resumen de la entrevista**
+
+Joaquín tiene 29 años y es dueño de una lavandería de 90 m² en Lince que opera hace tres años. El local concentra siete equipos de alto consumo: cuatro lavadoras industriales, tres secadoras industriales, dos planchas a vapor, un aire acondicionado split y un calentador de agua eléctrico. La luz representa entre el 20 y el 25% de sus costos fijos mensuales, pagando cerca de S/ 900 el mes pasado, cifra que considera excesiva para el tamaño del local. Revisa solo el total del recibo porque no entiende el detalle, no sabe qué significa el cargo por energía reactiva ni si está en la tarifa correcta. Cuando el monto varía no tiene forma de saber a qué equipo atribuírselo y termina sin respuesta. Contó que una vez el recibo subió casi S/ 200 de un mes al otro sin poder explicarse el motivo, y que sospecha que fue por más volumen de trabajo pero no tiene cómo confirmarlo.
+
+Cuando arranca dos secadoras y las planchas a vapor al mismo tiempo se le va un interruptor, y el técnico le dijo que está al límite de su potencia contratada, aunque no entiende qué implica eso en el recibo. El pico fuerte es entre las 9 y las 12 del mediodía cuando tiene todo encendido en bloque, sin ningún protocolo de arranque escalonado. Nunca le hicieron una revisión formal de sus equipos ni la distribuidora lo contactó para asesorarlo. Dijo que si una alerta no le dice qué máquina específica está causando el problema, no sabe qué hacer con esa información y no le sirve de nada. Está dispuesto a instalar submedidores si la instalación es segura y hay soporte postventa. Pagaría S/ 70–80 al mes si ve una baja real en el recibo en máximo dos meses, exige verlo en el recibo real y no en proyecciones, y el argumento que más le resonó fue poder anticipar fallas de equipos antes de que ocurran, porque una reparación de secadora industrial le puede costar más de S/ 1,000.
+
+
+#### Segmento #2 — Entrevista 2
+
+| Campo | Dato |
+| :-- | :-- |
+| Nombres y apellidos | `<...>` |
+| Edad | `<...>` |
+| Distrito | `<...>` |
+| Cargo / tipo de establecimiento | `<...>` |
+| Número de locales a cargo | `<...>` |
+| URL del video | `<...>` |
+| Timing de inicio | `<mm:ss>` |
+| Duración | `<mm:ss>` |
+| Screenshot | `<Insertar captura del cuadro de video>` |
+
+**Resumen de la entrevista**
+
+`<Resumen descriptivo de las respuestas del entrevistado a las preguntas realizadas, incluyendo
+características objetivas y subjetivas.>`
+
+
+#### Segmento #3 — Entrevista 3
 
 | Campo | Dato |
 | :-- | :-- |
