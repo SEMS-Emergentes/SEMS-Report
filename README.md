@@ -663,20 +663,19 @@ En el local de Surco estuvo dos meses pagando el doble de lo esperado porque el 
 
 | Campo | Dato |
 | :-- | :-- |
-| Nombres y apellidos | `<...>` |
-| Edad | `<...>` |
-| Distrito | `<...>` |
-| Cargo / tipo de establecimiento | `<...>` |
-| Número de locales a cargo | `<...>` |
-| URL del video | `<...>` |
-| Timing de inicio | `<mm:ss>` |
-| Duración | `<mm:ss>` |
-| Screenshot | `<Insertar captura del cuadro de video>` |
+| Nombres y apellidos | Mariel |
+| Edad | 25 |
+| Distrito | Los Olivos |
+| Cargo / tipo de establecimiento | Administradora de establecimientos |
+| Número de locales a cargo | 6 |
+| URL del video | [https://sl1nk.com/5tpz14d](https://sl1nk.com/5tpz14d) |
+| Timing de inicio | 0:05 |
+| Duración | 11:43 |
+| Screenshot | <img src="https://res.cloudinary.com/df8xwy4xb/image/upload/v1789413907/WhatsApp_Image_2026-09-14_at_2.19.39_PM_nq2i45.jpg">|
 
 **Resumen de la entrevista**
 
-`<Resumen descriptivo de las respuestas del entrevistado a las preguntas realizadas, incluyendo
-características objetivas y subjetivas.>`
+El principal dolor de Mariel es la falta de visibilidad y control oportuno sobre el consumo energético de los diferentes locales. Actualmente se entera del consumo mediante recibos y revisiones mensuales, cuando el gasto ya ocurrió. Cuando aparece un incremento, debe investigar manualmente con los encargados y revisar los equipos para intentar encontrar la causa. Esto es especialmente problemático cuando se producen picos de demanda, porque pueden ocurrir sin que nadie los detecte en el momento. Lo que **busca** es poder supervisar de manera más eficiente el desempeño energético de sus locales, identificar cuáles presentan problemas, conocer qué zonas o equipos generan mayor consumo y actuar antes de que una situación termine convirtiéndose en un sobrecosto. También necesita información que pueda utilizar para comparar locales y tomar decisiones de manera objetiva. Por ello, espera encontrar una solución que le proporcione información confiable y oportuna, con alertas que realmente requieran una acción, indicadores para comparar los locales y datos que le permitan demostrar resultados económicos ante la gerencia. No quiere simplemente otro dashboard con gráficos; necesita información que facilite la toma de decisiones y que pueda demostrar un ahorro real.
 
 
 #### Segmento #1 — Entrevista 3
