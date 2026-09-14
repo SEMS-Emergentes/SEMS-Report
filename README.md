@@ -724,20 +724,19 @@ Cuando arranca dos secadoras y las planchas a vapor al mismo tiempo se le va un 
 
 | Campo | Dato |
 | :-- | :-- |
-| Nombres y apellidos | `<...>` |
-| Edad | `<...>` |
-| Distrito | `<...>` |
-| Cargo / tipo de establecimiento | `<...>` |
-| Número de locales a cargo | `<...>` |
-| URL del video | `<...>` |
-| Timing de inicio | `<mm:ss>` |
-| Duración | `<mm:ss>` |
-| Screenshot | `<Insertar captura del cuadro de video>` |
+| Nombres y apellidos | Kylie Pizarro |
+| Edad | 25 |
+| Distrito | Breña |
+| Cargo / tipo de establecimiento | Comercial |
+| Número de locales a cargo | 1 |
+| URL del video | [https://lix.li/mpStC](https://lix.li/mpStC) |
+| Timing de inicio | 0:15 |
+| Duración | 9:45 |
+| Screenshot | <img src="https://res.cloudinary.com/df8xwy4xb/image/upload/v1789281762/WhatsApp_Image_2026-09-12_at_7.47.07_PM_botz1w.jpg"> |
 
 **Resumen de la entrevista**
 
-`<Resumen descriptivo de las respuestas del entrevistado a las preguntas realizadas, incluyendo
-características objetivas y subjetivas.>`
+Lo que busca es tener mayor control sobre el consumo de su local, identificar qué zonas o equipos están generando mayor gasto y saber cuándo debe actuar para evitar costos innecesarios. Sin embargo, no busca información técnica o complicada; necesita comprender el problema rápidamente y tomar una decisión sin poner en riesgo la operación del negocio. Por ello, espera encontrar una solución sencilla, clara y accesible desde el celular, que le permita conocer dónde se está generando el consumo, recibir una alerta cuando exista una situación que pueda aumentar sus costos y, sobre todo, saber qué acción concreta puede realizar. También espera que cualquier solución demuestre un ahorro real que justifique su costo y que pueda implementarse sin interrumpir el funcionamiento del local.
 
 
 #### Segmento #3 — Entrevista 3
@@ -800,14 +799,9 @@ influencias, canales digitales y dispositivos, **todos derivados del análisis d
 
 <img src="https://i.imgur.com/pduuw0m.png">
 
-`<Párrafo explicativo del arquetipo, indicando de qué hallazgos de las entrevistas proviene cada
-característica.>`
-
 **User Persona — Segmento #2: Propietario de establecimiento independiente**
 
-`<Insertar imagen del User Persona elaborado en UXPressia>`
-
-`<Párrafo explicativo.>`
+<img src="https://res.cloudinary.com/df8xwy4xb/image/upload/v1789408292/Alessandro_G%C3%B3mez_bm6fpe.png">
 
 ### 2.3.2. User Task Matrix
 
@@ -830,11 +824,13 @@ Matriz de tareas por User Persona, indicando frecuencia e importancia de cada ta
 Elaborados en **UXPressia**, uno por User Persona, con los cuadrantes *Thinks and Feels*, *Sees*,
 *Says and Does*, *Hears*, *Pains* y *Gains*.
 
+**Emphaty Map — Segmento #1: Responsable de operaciones de cadena**
+
 <img src="https://i.imgur.com/spHONZ9.png">
 
+**Emphaty Map — Segmento #2: Propietario de establecimiento independiente**
 
-
-`<Insertar imagen del Empathy Map del User Persona #2 y su explicación>`
+<img src="https://res.cloudinary.com/df8xwy4xb/image/upload/v1789408292/Empathy_map_-_Segmento_2_mrzuzr.png">
 
 ### 2.3.4. As-is Scenario Mapping
 
