@@ -694,7 +694,7 @@ El principal dolor de Mariel es la falta de visibilidad y control oportuno sobre
 
 **Resumen de la entrevista**
 
-Gonzalo supervisa 14 locales de conveniencia (120 a 160 m²) en Lima[cite: 3]. En el plano objetivo, la energía eléctrica representa su segundo mayor costo operativo (25% a 30% del gasto mensual por tienda), donde los equipos de frío comercial consumen más del 50% del total[cite: 3]. Identifica como momentos críticos el horario punta (6:00 p.m. a 11:00 p.m.) y los reencendidos descontrolados tras cortes de luz, situaciones que disparan la potencia leída y generan penalidades tarifarias[cite: 3]. Actualmente opera de forma reactiva: analiza anomalías hasta 20 días después mediante facturas de Luz del Sur o Pluz Energía y hojas de cálculo en Excel, careciendo de medición por zonas[cite: 3]. En el plano subjetivo, manifiesta frustración e impotencia al intentar justificar desvíos presupuestarios ante gerencia basándose únicamente en suposiciones[cite: 3]. Para viabilizar una solución IoT ante Finanzas, exige un retorno de inversión menor a un año y una reducción mínima del 10% en potencia calculada con la regulación peruana[cite: 3]. Asimismo, desconfía de sistemas que presenten desconexiones continuas de Wi-Fi o saturación por alertas falsas, priorizando notificaciones inmediatas por WhatsApp o push móvil para él y su técnico[cite: 3].
+Jeanfer supervisa 14 locales de conveniencia (120 a 160 m²) en Lima. En el plano objetivo, la energía eléctrica representa su segundo mayor costo operativo (25% a 30% del gasto mensual por tienda), donde los equipos de frío comercial consumen más del 50% del total. Identifica como momentos críticos el horario punta (6:00 p.m. a 11:00 p.m.) y los reencendidos descontrolados tras cortes de luz, situaciones que disparan la potencia leída y generan penalidades tarifarias. Actualmente opera de forma reactiva: analiza anomalías hasta 20 días después mediante facturas de Luz del Sur o Pluz Energía y hojas de cálculo en Excel, careciendo de medición por zonas. En el plano subjetivo, manifiesta frustración e impotencia al intentar justificar desvíos presupuestarios ante gerencia basándose únicamente en suposiciones. Para viabilizar una solución IoT ante Finanzas, exige un retorno de inversión menor a un año y una reducción mínima del 10% en potencia calculada con la regulación peruana. Asimismo, desconfía de sistemas que presenten desconexiones continuas de Wi-Fi o saturación por alertas falsas, priorizando notificaciones inmediatas por WhatsApp o push móvil para él y su técnico.
 
 
 #### Segmento #2 — Entrevista 1
@@ -741,25 +741,22 @@ Lo que busca es tener mayor control sobre el consumo de su local, identificar qu
 
 | Campo | Dato |
 | :-- | :-- |
-| Nombres y apellidos | `<...>` |
-| Edad | `<...>` |
-| Distrito | `<...>` |
-| Cargo / tipo de establecimiento | `<...>` |
-| Número de locales a cargo | `<...>` |
-| URL del video | `<...>` |
-| Timing de inicio | `<mm:ss>` |
-| Duración | `<mm:ss>` |
-| Screenshot | `<Insertar captura del cuadro de video>` |
+| Nombres y apellidos | Paolo Torres |
+| Edad | 24 años |
+| Distrito | Magdalena |
+| Cargo / tipo de establecimiento | Administrador y socio / Coffee Shop & Minimarket saludable |
+| Número de locales a cargo | 1 local|
+| URL del video | [Entrevista 3](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202318615_upc_edu_pe/IQDHRD7qcmZZT78l2CItCaoxAVeAvWjoH5uISsoVqVLKepo?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=CPxb8r) |
+| Timing de inicio | 00:00 |
+| Duración | 7:16 |
+| Screenshot | <img src="https://i.imgur.com/WjquCg0.png" alt="Captura de la sesión" width="250" /> |
 
 **Resumen de la entrevista**
 
-`<Resumen descriptivo de las respuestas del entrevistado a las preguntas realizadas, incluyendo
-características objetivas y subjetivas.>`
+Paolo es socio y administrador de un minimarket saludable y cafetería de especialidad de 130 m² en Magdalena, con dos años en operación y un equipo de 4 personas sin personal técnico fijo. En el aspecto objetivo, la energía eléctrica representa entre S/ 2,200 y S/ 3,000 mensuales, monto equiparable al costo de alquiler del local. Mantiene equipos conectados 24/7 (vitrinas de lácteos, bebidas y congeladoras) e introduce cargas intermitentes de alta demanda (máquina de café trifásica de dos grupos, molinos, horno eléctrico e iluminación), concentrándose el mayor consumo entre las 5:30 p.m. y el cierre. Opera el negocio íntegramente desde su smartphone mediante herramientas como WhatsApp, apps bancarias, POS Izipay y Google Sheets. En el aspecto subjetivo, considera que el recibo de luz es confuso e incomprensible («un jeroglífico»), admitiendo desconocer los términos de potencia contratada y limitándose a pagar para evitar cortes tras haber perdido tiempo en reclamos presenciales infructuosos por alzas de S/ 600. Muestra temor a apagar equipos sin criterio por miedo a deteriorar inventario perecible. Está dispuesto a invertir entre S/ 50 y S/ 70 mensuales en una solución si le genera un ahorro comprobado de S/ 300 a S/ 400, exigiendo una visualización simple y expresada en soles (tipo app bancaria), notificaciones inmediatas por WhatsApp, y una instalación no invasiva en horarios fuera de atención (máximo 2 horas) para no desconectar los equipos de frío. Consideraría abandonar el servicio si en dos meses no evidencia ahorros o si la aplicación resulta lenta y compleja.
 
 
 ### 2.2.3. Análisis de entrevistas
-
-> **Pendiente de ejecución por el equipo.** Se completa una vez registradas las entrevistas.
 
 El análisis se realiza **por segmento**, identificando con sustento estadístico (porcentajes) las
 características objetivas y subjetivas más comunes, que son las que sostienen la construcción de
@@ -767,24 +764,36 @@ los arquetipos. Cada porcentaje debe poder verificarse contra los resúmenes de 
 
 **Estructura del análisis por segmento**
 
+*SEGMENTO OBJETIVO 1*
+
 | Característica | Hallazgo | Porcentaje | Entrevistas que lo sustentan |
 | :-- | :-- | :-- | :-- |
-| Rango de edad predominante | `<...>` | `<X %>` | `<E1, E2, E4>` |
-| Dispositivo principal de consulta | `<...>` | `<X %>` | `<...>` |
-| Canal preferido para alertas | `<...>` | `<X %>` | `<...>` |
-| Conoce su potencia contratada | `<...>` | `<X %>` | `<...>` |
-| Identifica el cargo por potencia sin ayuda | `<...>` | `<X %>` | `<...>` |
-| Ha tenido un recibo inexplicable | `<...>` | `<X %>` | `<...>` |
-| Puede atribuir consumo a una zona | `<...>` | `<X %>` | `<...>` |
-| Frustración más mencionada | `<...>` | `<X %>` | `<...>` |
-| Disposición a pagar una suscripción | `<...>` | `<X %>` | `<...>` |
+| Rango de edad predominante | 25 a 28 años (adultos jóvenes profesionales) | 100%  | E1, E3 |
+| Dispositivo principal de consulta | Smartphone / Celular (apoyo en laptop para reportes) | 100% | E1, E2, E3 |
+| Canal preferido para alertas | WhatsApp corporativo y notificaciones push móviles | 100% | E1, E2, E3 |
+| Conoce su potencia contratada | No la conoce o carece de control operativo sobre ella (solo E3 conoce el concepto teórico) | 67% | E1, E2 |
+| Identifica el cargo por potencia sin ayuda | No lo identifica / requiere asistencia técnica externa (solo E3 lo lee en el recibo) | 67% | E1, E2 |
+| Ha tenido un recibo inexplicable | Sí, aumentos inesperados de hasta el doble del costo o desvíos de más de S/ 2,400 | 100% | E1, E2, E3 |
+| Puede atribuir consumo a una zona | No puede medir ni atribuir el consumo específico por equipo o zona | 100% | E1, E2, E3 |
+| Frustración más mencionada | Gestión reactiva (enterarse a mes vencido) e imposibilidad de sustentar sobrecostos ante gerencia con datos reales | 100% | E1, E2, E3 |
+| Disposición a pagar una suscripción | Sí, condicionada a demostrar ahorro real/ROI en menos de 1 año (mínimo 10% en potencia) | 100% | E1, E2, E3 |
+
+*SEGMENTO OBJETIVO 2*
+
+| Característica | Hallazgo | Porcentaje | Entrevistas que lo sustentan |
+| :-- | :-- | :-- | :-- |
+| Rango de edad predominante | 24 a 29 años (jóvenes emprendedores y administradores) | 67% (100% con dato explícito) | E1, E3 |
+| Dispositivo principal de consulta | Smartphone / Celular para toda la gestión | 100% | E1, E2, E3 |
+| Canal preferido para alertas | WhatsApp | 100% | E1, E2, E3 |
+| Conoce su potencia contratada | No conoce su potencia contratada ni las penalidades asociadas | 100% | E1, E2, E3 |
+| Identifica el cargo por potencia sin ayuda | No lo identifica (solo leen el importe total y la fecha de vencimiento) | 100% | E1, E2, E3 |
+| Ha tenido un recibo inexplicable | Sí, alzas de S/ 200 a S/ 600 de un mes a otro sin poder identificar la causa | 100% | E1, E2, E3 |
+| Puede atribuir consumo a una zona | No puede atribuir consumo a equipos específicos (temor a apagar máquinas a ciegas) | 100% | E1, E2, E3 |
+| Frustración más mencionada | Recibo incomprensible («jeroglífico» técnico) y falta de claridad sobre qué acción concreta tomar sin afectar la operación | 100% | E1, E2, E3 |
+| Disposición a pagar una suscripción | Sí, en un rango de S/ 50 a S/ 80 mensuales si demuestra ahorro real comprobable en 1 a 2 meses | 100% | E1, E2, E3 |
+
 
 ## 2.3. Needfinding
-
-> Los artefactos de esta sección **derivan de las entrevistas** y deben elaborarse una vez
-> registradas y analizadas. Se incluye aquí la estructura y las herramientas indicadas por el
-> enunciado. Construirlos antes de entrevistar invalidaría el proceso: los arquetipos dejarían de
-> representar a personas reales y pasarían a ser suposiciones del equipo.
 
 ### 2.3.1. User Personas
 
@@ -835,20 +844,19 @@ Elaborados en **LucidChart o Miro**, uno por User Persona, con las filas *Phases
 *Thinking* y *Feeling*, describiendo cómo el usuario afronta hoy la gestión del costo energético
 de su establecimiento **sin** la solución.
 
-`<Insertar imagen del As-is Scenario Map del User Persona #1 y su explicación>`
+**AS-IS MAP — Segmento #1: Responsable de operaciones de cadena**
 
-`<Insertar imagen del As-is Scenario Map del User Persona #2 y su explicación>`
+<img src="https://i.imgur.com/qs0Vgjq.png">
+
+**AS-IS — Segmento #2: Propietario de establecimiento independiente**
+
+<img src="https://i.imgur.com/Cpm4HPU.png">
 
 ## 2.4. Ubiquitous Language
 
 Lenguaje común del dominio, compartido entre el equipo técnico y los expertos del negocio. Los
 términos que se listan a continuación son los que se emplean de forma consistente en los
 artefactos de diseño, en el código fuente y en la interfaz de los productos.
-
-> **Nota sobre el idioma.** Según el enunciado del curso, el idioma por defecto de la interfaz de
-> usuario, de los mensajes y de la documentación de todos los productos de la solución es el
-> **inglés**. Por eso cada término se registra con su denominación en inglés, que es la que aparece
-> en el código y en la API, junto con su equivalente en español empleado en este informe.
 
 | Término (EN) | Término (ES) | Definición |
 | :-- | :-- | :-- |
@@ -890,14 +898,11 @@ con el As-Is correspondiente para hacer explícitos los cambios que introduce la
 
 ![To-be1](assets/To-be1.jpg) 
 
-`<Explicación del mapa y comparación con el As-Is: qué fases desaparecen, cuáles se acortan y en
-qué punto del recorrido el usuario pasa de reaccionar a anticipar.>`
 
 **To-Be Scenario Map — User Persona #2: Propietario de establecimiento independiente**
 
 ![To-be2](assets/To-be2.jpg) 
 
-`<Explicación y comparación con el As-Is.>`
 
 ## 3.2. User Stories
 
