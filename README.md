@@ -164,7 +164,7 @@ capaz de acompañar tanto a un local independiente como a una cadena con decenas
 | Encalada Salazar, Alexis **(Team Leader)** | U20211G491 | Ingeniería de Software | `<Foto. Párrafo de resumen con los principales conocimientos técnicos y habilidades que aporta al equipo.>` |
 | Goñe, Abigail | U202318049 | Ingeniería de Software | `<Foto. Párrafo de resumen con los principales conocimientos técnicos y habilidades que aporta al equipo.>` |
 | Gómez Flores, Daniela Araceli | U202311184 | Ingeniería de Software | `<Foto. Párrafo de resumen con los principales conocimientos técnicos y habilidades que aporta al equipo.>` |
-| Solis Santa Cruz, Giancarlo | U202318615 | Ingeniería de Software | `<Foto. Párrafo de resumen con los principales conocimientos técnicos y habilidades que aporta al equipo.>` |
+| Solis Santa Cruz, Giancarlo | U202318615 | Ingeniería de Software | <img src="https://i.imgur.com/XJ4FjKA.png" height="200" width="200"> Estudiante de Ingeniería de Software cursando el octavo ciclo. Persona proactiva, intuitiva y enfocada en la eficiencia, con un enfoque preventivo frente a los problemas. |
 | Sulca Silva, Melisa Geraldine | U202224602 | Ingeniería de Software | <img src="https://i.imgur.com/p9GVr4j.png" height="200" width="200">  <br> Estudio la carrera de Ingeniería de Software y me interesa el desarrollo web. Me motiva aprender nuevos lenguajes de programación. Suelo trabajar bien en equipo, muestro compromiso con el grupo y  aplico perseverancia para superar los obstáculos y alcanzar mis objetivos. |
 
 ## 1.2. Solution Profile
@@ -682,20 +682,19 @@ El principal dolor de Mariel es la falta de visibilidad y control oportuno sobre
 
 | Campo | Dato |
 | :-- | :-- |
-| Nombres y apellidos | `<...>` |
-| Edad | `<...>` |
-| Distrito | `<...>` |
-| Cargo / tipo de establecimiento | `<...>` |
-| Número de locales a cargo | `<...>` |
-| URL del video | `<...>` |
-| Timing de inicio | `<mm:ss>` |
-| Duración | `<mm:ss>` |
-| Screenshot | `<Insertar captura del cuadro de video>` |
+| Nombres y apellidos | Jeanfer Oshiro  |
+| Edad | 26 años |
+| Distrito | Lima  |
+| Cargo / tipo de establecimiento | Supervisor de Operaciones y Mantenimiento entiendas de conveniencia |
+| Número de locales a cargo | 14 locales|
+| URL del video | [Entrevista 3](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202318615_upc_edu_pe/IQBJfCru_2aPQrXWkaK2bFosASkNYu94g8P10R2t540gJU8?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=SaMynI) |
+| Timing de inicio | 00:03 |
+| Duración | 8:41 |
+| Screenshot | <img src="https://i.imgur.com/lkhcDYE.png" alt="Captura de la sesión" width="250" /> |
 
 **Resumen de la entrevista**
 
-`<Resumen descriptivo de las respuestas del entrevistado a las preguntas realizadas, incluyendo
-características objetivas y subjetivas.>`
+Gonzalo supervisa 14 locales de conveniencia (120 a 160 m²) en Lima[cite: 3]. En el plano objetivo, la energía eléctrica representa su segundo mayor costo operativo (25% a 30% del gasto mensual por tienda), donde los equipos de frío comercial consumen más del 50% del total[cite: 3]. Identifica como momentos críticos el horario punta (6:00 p.m. a 11:00 p.m.) y los reencendidos descontrolados tras cortes de luz, situaciones que disparan la potencia leída y generan penalidades tarifarias[cite: 3]. Actualmente opera de forma reactiva: analiza anomalías hasta 20 días después mediante facturas de Luz del Sur o Pluz Energía y hojas de cálculo en Excel, careciendo de medición por zonas[cite: 3]. En el plano subjetivo, manifiesta frustración e impotencia al intentar justificar desvíos presupuestarios ante gerencia basándose únicamente en suposiciones[cite: 3]. Para viabilizar una solución IoT ante Finanzas, exige un retorno de inversión menor a un año y una reducción mínima del 10% en potencia calculada con la regulación peruana[cite: 3]. Asimismo, desconfía de sistemas que presenten desconexiones continuas de Wi-Fi o saturación por alertas falsas, priorizando notificaciones inmediatas por WhatsApp o push móvil para él y su técnico[cite: 3].
 
 
 #### Segmento #2 — Entrevista 1
@@ -757,7 +756,6 @@ Lo que busca es tener mayor control sobre el consumo de su local, identificar qu
 `<Resumen descriptivo de las respuestas del entrevistado a las preguntas realizadas, incluyendo
 características objetivas y subjetivas.>`
 
-> Repetir esta ficha para cada entrevista: **3 a 5 por segmento**.
 
 ### 2.2.3. Análisis de entrevistas
 
@@ -806,17 +804,17 @@ influencias, canales digitales y dispositivos, **todos derivados del análisis d
 
 Matriz de tareas por User Persona, indicando frecuencia e importancia de cada tarea.
 
-| Tarea | Persona #1 — Frecuencia | Persona #1 — Importancia | Persona #2 — Frecuencia | Persona #2 — Importancia |
+| Tarea | Persona #1 (Valeria) — Frecuencia | Persona #1 (Valeria) — Importancia | Persona #2 (Alessandro) — Frecuencia | Persona #2 (Alessandro) — Importancia |
 | :-- | :-- | :-- | :-- | :-- |
-| Revisar el consumo del día | `<Alta/Media/Baja>` | `<Alta/Media/Baja>` | `<...>` | `<...>` |
-| Revisar el recibo mensual | | | | |
-| Identificar la causa de una variación en el recibo | | | | |
-| Atender un aviso de consumo anómalo | | | | |
-| Comparar el desempeño entre locales | | | | |
-| Configurar umbrales y avisos | | | | |
-| Dar acceso a personal del local | | | | |
-| Registrar un equipo o medidor nuevo | | | | |
-| Descargar un reporte para la gerencia | | | | |
+| Revisar el consumo del día | Alta | Alta | Media | Media |
+| Revisar el recibo mensual | Baja | Alta | Baja | Alta |
+| Identificar la causa de una variación en el recibo | Media | Alta | Media | Alta |
+| Atender un aviso de consumo anómalo | Media | Alta | Media | Alta |
+| Comparar el desempeño entre locales | Media | Alta | Baja | Baja |
+| Configurar umbrales y avisos | Baja | Alta | Baja | Media |
+| Dar acceso a personal del local | Baja | Media | Baja | Baja |
+| Registrar un equipo o medidor nuevo | Baja | Media | Baja | Media |
+| Descargar un reporte para la gerencia | Media | Alta | Baja | Baja |
 
 ### 2.3.3. Empathy Mapping
 
