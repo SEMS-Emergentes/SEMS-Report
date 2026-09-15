@@ -805,6 +805,10 @@ influencias, canales digitales y dispositivos, **todos derivados del análisis d
 
 <img src="https://i.imgur.com/pduuw0m.png">
 
+<br>
+Valeria Fernández representa al segmento de responsables de operaciones y mantenimiento de cadenas de retail, un arquetipo construido a partir de los patrones comunes identificados en las tres entrevistas del segmento. Su perfil como Guardian refleja la necesidad constante de mantener múltiples locales operativos y bajo control, característica que emerge directamente de los casos de Luis que posee 3 locales de juguerías, Mariel que posee 6 establecimientos y Jeanfer que posee 14 tiendas de conveniencia. Los tres gestionan más de un local simultáneamente y todos enfrentan el mismo problema estructural de visibilidad tardía e información fragmentada. La frustración de Valeria por no conocer el estado de los equipos en tiempo real tiene su origen en el relato de Luis, quien se enteraba del consumo anormal solo cuando llegaba el recibo físico (llegando a pagar el doble durante dos meses por un aire acondicionado en mal estado), en la experiencia de Mariel, quien debía investigar manualmente con encargados tras detectar un incremento, y en la situación de Jeanfer, que analizaba anomalías hasta 20 días después a través de facturas y hojas de cálculo. La motivación de Valeria de demostrar resultados y obtener reconocimiento por su gestión recoge la presión compartida que los tres entrevistados sienten ante la gerencia. Por ejemplo, Luis necesitaba mostrar números reales en soles en menos de un mes para convencer a su socio, Mariel buscaba datos para sustentar decisiones ante sus superiores, y Jeanfer exigía un retorno de inversión menor a un año para viabilizar una solución ante Finanzas. Finalmente, la preferencia de Valeria por WhatsApp como canal de alertas urgentes es un rasgo que aparece de manera explícita tanto en Luis como en Jeanfer, consolidándose como una necesidad transversal del segmento.
+<br><br>
+
 **User Persona — Segmento #2: Propietario de establecimiento independiente**
 
 <img src="https://res.cloudinary.com/df8xwy4xb/image/upload/v1789408292/Alessandro_G%C3%B3mez_bm6fpe.png">
@@ -833,6 +837,10 @@ Elaborados en **UXPressia**, uno por User Persona, con los cuadrantes *Thinks an
 **Emphaty Map — Segmento #1: Responsable de operaciones de cadena**
 
 <img src="https://i.imgur.com/spHONZ9.png">
+
+<br>
+El empathy map del segmento 1 muestra a un responsable que piensa y siente presión cuando varias tiendas presentan fallas simultáneas, frustración al no recibir respuestas oportunas de proveedores e incertidumbre por no conocer el estado real de los equipos en sus locales. Lo que ve son solicitudes de mantenimiento llegando al mismo tiempo desde distintas sedes, reportes e historiales dispersos entre correos, mensajes y hojas de cálculo, y reparaciones temporales que se convierten en problemas recurrentes. Lo que oye son presiones cruzadas como, por ejemplo, la gerencia pidiéndole reducir costos, los jefes de tienda exigiendo atención inmediata y los técnicos informando sobre desgaste y necesidades de reemplazo. Lo que hace es priorizar solicitudes según riesgo, coordinar visitas técnicas, comparar cotizaciones y dar seguimiento a reparaciones. Sus dolores principales son la falta de herramientas digitales que simplifiquen el seguimiento y la sensación de que su trabajo solo se hace visible cuando algo falla. Sus ganancias esperadas son conocer el estado actualizado de cada tienda y sus equipos, contar con gastos previsibles y demostrar mejoras mediante resultados verificables.
+<br><br>
 
 **Emphaty Map — Segmento #2: Propietario de establecimiento independiente**
 
