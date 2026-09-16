@@ -1026,15 +1026,13 @@ Se incluyen tres tipos de historia:
 
 ## 3.4. Product Backlog
 
-El orden del Product Backlog lo determina el valor para el negocio. Se sitúan primero las
-historias del Landing Page, por ser el punto de entrada del modelo de negocio y por requerirse
-desde el primer sprint, seguidas de la construcción de la jerarquía de organización, local y zona,
-que es la que habilita todo lo demás. Las historias de control de demanda —el diferencial del
-producto— se priorizan por delante de la analítica avanzada y de los pagos.
+La priorización del Product Backlog está determinada por la entrega de valor estratégico para el modelo de negocio corporativo (B2B). El desarrollo inicia con las historias del Landing Page y la configuración de identidad y accesos seguros, al ser el punto de conversión y entrada del cliente. Inmediatamente después se establece la jerarquía empresarial (registro de organizaciones, locales y zonas), estructura indispensable para modelar correctamente el pliego tarifario comercial. Con esta base sentada, se priorizan las historias del núcleo competitivo del producto: el monitoreo de demanda y las alertas preventivas de exceso, culminando con la analítica predictiva de facturación y la gestión de suscripciones.
 
-**Herramienta:** `<Pivotal Tracker / Jira / Trello>`
-**URL pública del Product Backlog:** `<...>`
-`<Insertar captura del Product Backlog en la herramienta>`
+**Herramienta de Gestión Ágil:** Trello
+
+**URL pública del Product Backlog:** https://trello.com/invite/b/6aaac224d7a3b1afe10b2749/ATTI05ee1a3e87011bfcb2c3615049c53aeeBACF4B19/product-backlog-sems
+
+![](https://i.imgur.com/gFnSRWy.png)
 
 | # Orden | User Story Id | Título | Descripción | Story Points |
 | :-- | :-- | :-- | :-- | :-- |
