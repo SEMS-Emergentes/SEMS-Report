@@ -1843,8 +1843,7 @@ evitar.
 | Payments | Pasarela de pagos (externo) | **Anti-Corruption Layer** | El modelo de la pasarela no penetra en el dominio: el adaptador traduce sus estados a los del contexto. |
 | Energy Monitoring | Proveedor de tarifas (externo) | **Anti-Corruption Layer** | El puerto `EnergyPricingProvider` aísla al dominio de la forma concreta del proveedor. |
 
-`<Insertar el Context Map elaborado en LucidChart / DomoRoboto / ContextMapper, con la notación de
-patrones de DDD (U/D, ACL, CF, C/S, PL/OHS).>`
+![ContextMapping](assets/ContextMap.png)
 
 ## 4.3. Software Architecture
 
