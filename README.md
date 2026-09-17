@@ -1000,29 +1000,37 @@ Se incluyen tres tipos de historia:
 
 ## 3.3. Impact Mapping
 
-> Se elabora en **UXPressia**, a partir de las fichas de los User Personas de la sección 2.3.1.
+El Impact Mapping relaciona los objetivos de negocio de SEMS con los User Personas que pueden hacerlos posibles, los cambios de comportamiento que se espera provocar en ellos y los entregables del producto que los habilitan, trazados hasta las User Stories de la sección 3.2. Se elaboró en **UXPressia** a partir de las fichas de Valeria Fernández (responsable de operaciones de cadena) y Alessandro Gómez (propietario de establecimiento independiente) de la sección 2.3.1, con un mapa por cada Business Goal.
 
-**Business Goals (SMART)**
+**Business Goal 01:** Alcanzar 120 locales activos con suscripción de pago en un plazo de 12 meses desde el lanzamiento.
 
-| ID | Business Goal |
-| :-- | :-- |
-| BG01 | Alcanzar 120 locales activos con suscripción de pago en un plazo de 12 meses desde el lanzamiento. |
-| BG02 | Lograr que el 60% de las alertas de demanda de nivel *warning* vayan seguidas de una reducción de carga dentro de los 30 minutos siguientes, medido durante el segundo trimestre de operación. |
-| BG03 | Alcanzar una tasa de renovación mensual del 85% entre las organizaciones suscritas, medida al sexto mes. |
-| BG04 | Conseguir que 15 organizaciones con más de cinco locales adopten el plan *Enterprise* en los primeros 12 meses. |
+Para crecer en número de locales, Alessandro debe reconocer el problema del cargo por potencia desde el Landing Page y poder registrar su local y su medidor sin apoyo técnico.
 
-**Estructura del Impact Map**
+![](https://i.imgur.com/4IcLlLB.png)
 
-| Goal | Actor | Impact | Deliverable | User Stories |
-| :-- | :-- | :-- | :-- | :-- |
-| BG02 | Responsable de operaciones de cadena | Que reaccione ante el aviso reduciendo carga en lugar de ignorarlo | Alerta de demanda con margen expresado en kW y canal de notificación configurable | US28, US29, US30, US34 |
-| BG02 | Propietario de establecimiento independiente | Que comprenda qué significa el aviso sin formación eléctrica | Mensaje de alerta redactado en términos de margen y de costo, no de magnitudes eléctricas | US29, US30 |
-| BG01 | Propietario de establecimiento independiente | Que registre su local y su medidor sin apoyo técnico | Flujo de alta guiado de organización, local, zona y medidor | US12, US13, US18, US19 |
-| BG01 | Visitante del Landing Page | Que reconozca el problema del cargo por potencia como propio | Sección del Landing Page con ejemplo numérico del impacto de un pico | US02, US03 |
-| BG03 | Responsable de operaciones de cadena | Que use la plataforma de forma sostenida y no solo al inicio | Proyección de factura desglosada y comparación entre locales | US35, US36, US39 |
-| BG04 | Responsable de operaciones de cadena | Que incorpore locales adicionales a la plataforma | Gestión multi-local con permisos por sede y límites por plan | US10, US14, US40, US42 |
+<p>
 
-`<Insertar imagen del Impact Map elaborado en UXPressia>`
+**Business Goal 02:** Lograr que el 60% de las alertas de demanda de nivel *warning* vayan seguidas de una reducción de carga dentro de los 30 minutos siguientes, medido durante el segundo trimestre de operación.
+
+Valeria necesita alertas con margen y un canal configurable para reducir carga a tiempo, mientras que Alessandro necesita que el aviso se entienda en términos de margen y de costo, sin formación eléctrica.
+
+![](https://i.imgur.com/nfXZx9W.png)
+
+<p>
+
+**Business Goal 03:** Alcanzar una tasa de renovación mensual del 85% entre las organizaciones suscritas, medida al sexto mes.
+
+Para que Valeria renueve, la plataforma debe aportarle valor continuo mediante la proyección de factura desglosada y la comparación entre sus locales, de modo que la use de forma sostenida y no solo al inicio.
+
+![](https://i.imgur.com/PpT217a.png)
+
+<p>
+
+**Business Goal 04:** Conseguir que 15 organizaciones con más de cinco locales adopten el plan *Enterprise* en los primeros 12 meses.
+
+Valeria incorporará más locales a la plataforma si puede gestionarlos desde un punto único, delegar accesos por sede y conocer cuándo su plan requiere ampliarse.
+
+![](https://i.imgur.com/o1DAdOb.png)
 
 ## 3.4. Product Backlog
 
