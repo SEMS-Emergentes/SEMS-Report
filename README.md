@@ -1855,13 +1855,13 @@ evitar.
 
 ## 4.3. Software Architecture
 
-Se aplica el **C4 Model**, elaborado en **Structurizr**, para representar la arquitectura en cuatro
-niveles de abstracción crecientes.
+Se aplica el **C4 Model**, elaborado en **Structurizr** mediante DSL, para representar la arquitectura de SEMS en niveles de abstracción crecientes: el ecosistema en el que opera, el sistema como caja negra, sus contenedores y su topología de despliegue.
 
 ### 4.3.1. Software Architecture System Landscape Diagram
 
-Presenta el panorama completo de sistemas en el que SEMS opera, incluyendo los sistemas externos
-con los que interactúa y los actores del negocio.
+Presenta el panorama de la organización y su entorno: los actores del negocio, el sistema desarrollado por Energix y los sistemas externos del ecosistema eléctrico y de servicios, incluyendo aquellos que no interactúan directamente con SEMS.
+
+![System Landscape Diagram](https://imgur.com/UvaqBFB.png)
 
 **Elementos del panorama**
 
@@ -1871,92 +1871,86 @@ con los que interactúa y los actores del negocio.
 | Propietario / administrador de local | Persona | Gestiona un único establecimiento. |
 | Operario de local | Persona | Consulta el estado del local sin modificar la configuración. |
 | **SEMS** | Sistema | Plataforma de gestión energética para establecimientos comerciales. |
-| Pasarela de pagos | Sistema externo | Procesa los cobros de la suscripción y confirma por webhook. |
+| Medidores instalados | Sistema externo | Reportan las lecturas de consumo por local y por zona. |
 | Proveedor de tarifas eléctricas | Sistema externo | Suministra los precios de energía y los cargos por potencia vigentes. |
-| Servicio de correo | Sistema externo | Entrega las notificaciones de alerta. |
-| Medidores instalados en los locales | Sistema externo | Reportan las lecturas de consumo. |
+| OSINERGMIN | Sistema externo | Fija el pliego tarifario y las opciones BT3, BT4, MT2 y MT3. |
+| Pasarela de pagos (Stripe) | Sistema externo | Procesa los cobros de la suscripción y confirma por webhook. |
+| Servicio de correo (SMTP) | Sistema externo | Entrega las notificaciones de alerta y de cuenta. |
+| Google Identity | Sistema externo | Permite el inicio de sesión con OAuth 2.0 / OpenID Connect. |
 
-`<Insertar el System Landscape Diagram elaborado en Structurizr>`
+**Explicación.** El límite *Energix* agrupa el sistema que la startup construye y opera. Fuera de él se sitúa el ecosistema eléctrico: OSINERGMIN fija el pliego tarifario que la distribuidora aplica y del que SEMS obtiene los precios vigentes. SEMS se inserta en ese flujo sin reemplazarlo: consume las lecturas de los medidores y los precios de la distribuidora para anticipar lo que el recibo cobrará. Como Energix opera un único sistema, este panorama coincide en gran parte con el diagrama de contexto; se diferencia en que representa el límite de la organización e incluye actores del ecosistema que no interactúan directamente con SEMS, como OSINERGMIN.
 
 ### 4.3.2. Software Architecture Context Level Diagrams
 
-Muestra a SEMS como una única caja rodeada por sus usuarios y por los sistemas con los que
-interactúa, sin revelar su estructura interna.
+Muestra a SEMS como una única caja rodeada por sus usuarios y por los sistemas con los que interactúa directamente, sin revelar su estructura interna.
 
-`<Insertar el Context Diagram elaborado en Structurizr>`
+![Context Diagram](https://imgur.com/0kFMNmO.png)
 
-**Explicación.** El diagrama sitúa a SEMS en el centro. Los tres tipos de usuario interactúan con
-él a través de sus productos digitales. Hacia afuera, SEMS mantiene cuatro relaciones: recibe
-lecturas de los medidores instalados, consulta las tarifas vigentes al proveedor eléctrico, delega
-el cobro en la pasarela de pagos y despacha las notificaciones a través del servicio de correo. La
-frontera del sistema deja fuera de forma deliberada el hardware de medición: SEMS consume sus
-lecturas pero no lo fabrica ni lo gestiona, lo que preserva la posibilidad de trabajar con
-medidores de distintos proveedores.
+**Explicación.** Los tres tipos de usuario interactúan con SEMS a través de sus productos digitales. Hacia afuera, SEMS mantiene cinco relaciones: recibe lecturas de los medidores instalados (estímulo de QAS01), consulta las tarifas vigentes al proveedor eléctrico (CON10, QAS07), delega el cobro en la pasarela de pagos, que confirma mediante un webhook autenticado por firma (ADD-03, ADD-08), despacha las notificaciones a través del servicio de correo y valida el inicio de sesión con Google Identity, aplicando la táctica *Authenticate Actors*. La frontera deja fuera de forma deliberada el hardware de medición: SEMS consume sus lecturas pero no lo fabrica ni lo gestiona, lo que preserva la posibilidad de trabajar con medidores de distintos proveedores. OSINERGMIN no aparece en este nivel porque SEMS no se comunica con él.
 
 ### 4.3.3. Software Architecture Container Level Diagrams
 
-Muestra los elementos de alto nivel de la arquitectura, las decisiones de tecnología y cómo se
-comunican entre sí.
+Muestra los elementos de alto nivel de la arquitectura, las decisiones de tecnología y cómo se comunican entre sí.
+
+![Container Diagram](https://imgur.com/LAa31xD.png)
 
 | Container | Tecnología | Responsabilidad |
 | :-- | :-- | :-- |
 | **Landing Page** | HTML5, CSS3, JavaScript | Presentar la propuesta de valor y dirigir al registro de la aplicación web. |
 | **Web Application** | Vue 3, JavaScript, PrimeVue (Material Design) | Interfaz de gestión para los tres tipos de usuario. |
 | **Mobile Application** | Kotlin (Android nativo) | Consulta y atención de alertas desde el teléfono. |
-| **SEMS API** | ASP.NET Core 8 / Spring Boot 3 — monolito modular con 8 bounded contexts | Toda la lógica de negocio, expuesta como API RESTful documentada con OpenAPI. |
+| **SEMS API** | Spring Boot 3, Java 21 — monolito modular con 8 bounded contexts | Toda la lógica de negocio, expuesta como API RESTful documentada con OpenAPI (Swagger). |
 | **Base de datos** | PostgreSQL | Persistencia de todos los contextos, con tablas prefijadas por módulo. |
 
 **Comunicaciones**
 
 | Origen | Destino | Protocolo | Descripción |
 | :-- | :-- | :-- | :-- |
+| Visitante | Landing Page | HTTPS | Revisión de la propuesta de valor y los planes. |
 | Landing Page | Web Application | HTTPS | Redirección desde los call-to-action. |
-| Web Application | SEMS API | HTTPS / JSON | Consumo del API RESTful con token de sesión. |
-| Mobile Application | SEMS API | HTTPS / JSON | Consumo del mismo API. |
-| SEMS API | Base de datos | TCP / SQL | Lectura y escritura del estado. |
-| SEMS API | Pasarela de pagos | HTTPS | Creación de cobros. |
-| Pasarela de pagos | SEMS API | HTTPS (webhook) | Confirmación de pago, autenticada por firma del cuerpo. |
-| SEMS API | Servicio de correo | SMTP | Envío de notificaciones de alerta. |
-| SEMS API | Proveedor de tarifas | HTTPS | Consulta de precios vigentes. |
+| Web Application | SEMS API | JSON/HTTPS | Consumo del API RESTful con token de sesión (JWT). |
+| Mobile Application | SEMS API | JSON/HTTPS | Consumo del mismo API. |
+| Web Application | Pasarela de pagos | Stripe.js | Captura de la tarjeta en el componente embebido. |
+| Medidores | SEMS API | JSON/HTTPS | Envío de lecturas de consumo. |
+| SEMS API | Base de datos | JDBC/SQL | Lectura y escritura del estado. |
+| SEMS API | Pasarela de pagos | HTTPS | Creación de cobros y recepción del webhook firmado. |
+| SEMS API | Servicio de correo | SMTP/TLS | Envío de notificaciones de alerta y de cuenta. |
+| SEMS API | Proveedor de tarifas | HTTPS | Consulta de precios vigentes mediante el puerto `EnergyPricingProvider`. |
+| SEMS API | Google Identity | OAuth 2.0 | Verificación del token de Google. |
 
-`<Insertar el Container Diagram elaborado en Structurizr>`
+**Explicación.** La decisión más visible del diagrama es que el backend aparece como un único contenedor y no como ocho. Es la materialización de ADD-01: el volumen del problema (decenas de locales por organización, QAS09) no justifica el costo operativo de una arquitectura distribuida para un equipo reducido y con infraestructura de costo mínimo (CON07, CON08). Eliminar los saltos de red entre la recepción de la lectura y la evaluación de la regla favorece además QAS01. Por la misma razón no existe un message broker: los eventos de dominio viajan por un bus en proceso y se despachan tras confirmar la transacción (ADD-02), aplicando la táctica *Reduce Coupling* sin infraestructura adicional.
 
-**Explicación.** La decisión más visible del diagrama es que el backend aparece como un único
-container y no como ocho. Es la materialización de ADD-01: los bounded contexts identificados en la
-sección 4.2 existen como módulos dentro del proceso, con sus propias capas de dominio, aplicación,
-infraestructura e interfaces, pero comparten despliegue y base de datos. Las tres aplicaciones
-cliente consumen exactamente el mismo API, lo que sostiene QAS08: el cálculo tarifario no se
-replica en ninguna de ellas.
+Las tres aplicaciones cliente consumen exactamente el mismo API, lo que sostiene QAS08: el cálculo tarifario vive en un solo lugar (ADD-04) y no se replica en ningún cliente. La Web Application se comunica con la pasarela solo para capturar la tarjeta, de modo que esos datos nunca atraviesan la SEMS API (CON09). La seguridad se resuelve en el API con las tácticas *Authenticate Actors* (JWT y OAuth 2.0) y *Authorize Actors* (roles y vínculos de acceso por local), bajo una política de denegación por defecto (ADD-03). La base de datos es única, con tablas prefijadas por módulo (ADD-05).
 
 ### 4.3.4. Software Architecture Deployment Diagrams
+
+Muestra cómo se distribuyen los contenedores en la infraestructura de producción y dónde se ubican los sistemas externos.
+
+![Deployment Diagram](https://imgur.com/u9KzbZI.png)
 
 | Nodo de despliegue | Proveedor | Contenido |
 | :-- | :-- | :-- |
 | Hosting estático | GitHub Pages | Landing Page. |
 | Plataforma de despliegue web | Vercel | Web Application (build estático de Vue). |
+| Smartphone | Android | Mobile Application. |
 | Plataforma de contenedores | Render | SEMS API, empaquetada como imagen Docker. |
 | Base de datos gestionada | Supabase (PostgreSQL) | Esquema completo de la solución. |
-| Servicios externos | Stripe, proveedor SMTP | Pagos y notificaciones. |
+| Local comercial | Tablero eléctrico | Medidores instalados. |
+| Servicios externos | Stripe y proveedor SMTP | Pagos y notificaciones. |
 
 **Consideraciones de despliegue**
 
-- El proveedor de contenedores inyecta el puerto de escucha mediante variable de entorno; el
-  servicio debe leerla y no fijar un puerto propio.
-- La sonda de salud del proveedor debe apuntar al endpoint de *liveness*, no al de *readiness*
-  (ADD-07). Apuntarla al segundo provoca reinicios en cadena ante un corte de la base de datos.
-- La conexión a la base de datos gestionada se realiza a través del *session pooler*, no del
-  *transaction pooler*, porque este último no admite sentencias preparadas.
-- Los orígenes autorizados para consumo desde navegador se declaran de forma explícita; una lista
-  vacía o mal formada bloquea la aplicación web con un error de CORS que aparenta ser una caída del
-  backend.
+- El proveedor de contenedores inyecta el puerto de escucha mediante la variable `PORT`; el servicio debe leerla y no fijar un puerto propio. Junto con los orígenes permitidos y las credenciales, se resuelve en tiempo de despliegue (táctica *Defer Binding*).
+- La sonda de salud del proveedor debe apuntar al endpoint de *liveness*, no al de *readiness* (ADD-07). Apuntarla al segundo provoca reinicios en cadena ante un corte de la base de datos. Esta separación aplica la táctica *Detect Fault* y sostiene QAS05 y QAS06.
+- La conexión a la base de datos gestionada se realiza a través del *session pooler*, no del *transaction pooler*, porque este último no admite sentencias preparadas.
+- Los orígenes autorizados para consumo desde navegador se declaran de forma explícita; una lista vacía o mal formada bloquea la aplicación web con un error de CORS que aparenta ser una caída del backend.
+- El proveedor de tarifas se resuelve hoy con un adaptador simulado. Sustituirlo por la integración real solo exige cambiar la clase de infraestructura que implementa `EnergyPricingProvider` (QAS07).
 
-`<Insertar el Deployment Diagram elaborado en Structurizr>`
+**Explicación.** Toda la solución se despliega sobre proveedores de costo cero o mínimo (CON08). Los frontends se sirven como contenido estático o aplicación nativa, y la lógica de negocio queda concentrada en un único contenedor Docker, coherente con ADD-01. El escalado previsto es **vertical**, aumentando los recursos del servicio en Render, y no horizontal por módulo, lo que se acepta porque QAS09 plantea decenas de locales por organización. Si el volumen lo exigiera, el primer paso sería replicar el contenedor del API detrás del balanceador del proveedor, ya que su estado persiste íntegramente en PostgreSQL.
 
 # Conclusiones, Bibliografía y Anexos
 
 ## Conclusiones y recomendaciones
-
-> *Avance correspondiente al primer hito. Se amplía en cada entrega.*
 
 **Sobre el cambio de segmento objetivo**
 
