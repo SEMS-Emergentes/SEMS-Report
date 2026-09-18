@@ -45,8 +45,13 @@
 
 ## Registro de Versiones del Informe
 
-| Versión | Fecha | Autor | Descripción de modificación |
-| :-- | :-- | :-- | :-- |
+| **Versión** | **Fecha**  | **Autor**                              | **Descripción de modificación** |
+| :---------- | :--------- | :------------------------------------- | :------------------------------- |
+| AV1         | 20/09/2026 | Encalada Salazar, Alexis               | Se encargó de la creación y organización del reporte, incorporando puntos esenciales para su desarrollo. Además, realizó los Event Storming y colaboró en la elaboración de las historias de usuario. |
+| AV1         | 20/09/2026 | Goñe Araccata, Esther Abigail          | Se encargó del orden y organización del reporte, así como de la elaboración del Impact Mapping para ambos user persona. Además, realizó el diseño de los diagramas C4. |
+| AV1         | 20/09/2026 | Gómez Flores, Daniela Araceli          | Se encargó del orden y organización del reporte y de la realización de las entrevistas correspondientes al primer y segundo segmento. Además, colaboró en la elaboración del user persona y empathy map del segundo segmento. |
+| AV1         | 20/09/2026 | Solis Santa Cruz, Giancarlo Rafael     | Colaboró en la realización de las entrevistas de ambos segmentos. Asimismo, desarrolló el User Task Matrix y los As-Is Scenario Maps, contribuyendo al análisis de las actividades y necesidades de los usuarios. |
+| AV1         | 20/09/2026 | Sulca Silva, Melisa Geraldine          | Brindó apoyo en la realización de las entrevistas y se encargó de elaborar el user persona y empathy map correspondientes al primer segmento, contribuyendo al análisis del perfil y las necesidades de los usuarios. |
 
 ---
 
@@ -119,6 +124,11 @@
 El curso 1ASI0728 contribuye al logro de la **Competencia ABET 3 — Trabajo Multidisciplinario**:
 *capacidad de comunicarse efectivamente con un rango de audiencias*.
 
+| **Criterio específico** | **Acciones realizadas** | **Conclusiones** |
+| :--- | :--- | :--- |
+| **Comunica oralmente sus ideas y/o resultados con objetividad a público de diferentes especialidades y niveles jerárquicos, en el marco del desarrollo de un proyecto en ingeniería.** | **Encalada Salazar, Alexis**  <br>**AV1**  <br>Participó en la coordinación y presentación de las ideas obtenidas durante la elaboración de los Event Storming y las historias de usuario.  <br><br>**Goñe Araccata, Esther Abigail**  <br>**AV1**  <br>Participó en la comunicación y organización de los resultados obtenidos mediante el Impact Mapping de ambos user persona y en la definición de los diagramas C4.  <br><br>**Gómez Flores, Daniela Araceli**  <br>**AV1**  <br>Participó en la realización de las entrevistas correspondientes al primer y segundo segmento, comunicando las preguntas y recopilando las respuestas de los usuarios de manera objetiva.  <br><br>**Solis Santa Cruz, Giancarlo Rafael**  <br>**AV1**  <br>Participó en las entrevistas de ambos segmentos y comunicó los hallazgos obtenidos para la elaboración del User Task Matrix y los As-Is Scenario Maps.  <br><br>**Sulca Silva, Melisa Geraldine**  <br>**AV1**  <br>Participó en las entrevistas y comunicó los resultados obtenidos para la elaboración del user persona y empathy map del primer segmento. | **AV1:** Durante este avance se logró comunicar y contrastar las ideas y resultados obtenidos a partir del análisis de los usuarios, las entrevistas y las diferentes herramientas de modelado utilizadas. El trabajo colaborativo permitió comprender mejor las necesidades, problemas, tareas y comportamientos de los segmentos identificados, aprendiendo a expresar los hallazgos de manera objetiva y considerando las perspectivas de los diferentes participantes del proyecto. |
+| **Comunica en forma escrita ideas y/o resultados con objetividad a público de diferentes especialidades y niveles jerárquicos, en el marco del desarrollo de un proyecto en ingeniería.** | **Encalada Salazar, Alexis**  <br>**AV1**  <br>Se encargó de la creación y organización del reporte, incorporando puntos esenciales para documentar el avance. Además, realizó los Event Storming y colaboró en la elaboración de las historias de usuario.  <br><br>**Goñe Araccata, Esther Abigail**  <br>**AV1**  <br>Se encargó del orden y organización del reporte, realizó el Impact Mapping de ambos user persona y desarrolló el diseño de los diagramas C4.  <br><br>**Gómez Flores, Daniela Araceli**  <br>**AV1**  <br>Contribuyó en el orden y organización del reporte. Además, realizó y documentó las entrevistas de ambos segmentos y colaboró en la elaboración del user persona y empathy map del segundo segmento.  <br><br>**Solis Santa Cruz, Giancarlo Rafael**  <br>**AV1**  <br>Apoyó en las entrevistas y documentó los resultados obtenidos mediante el User Task Matrix y los As-Is Scenario Maps, representando las actividades y necesidades identificadas.  <br><br>**Sulca Silva, Melisa Geraldine**  <br>**AV1**  <br>Apoyó en la realización y documentación de las entrevistas y elaboró el user persona y empathy map correspondientes al primer segmento. | **AV1:** Durante este avance se logró consolidar y organizar por escrito la información obtenida durante la investigación y el análisis de los usuarios. La elaboración del reporte, las entrevistas, user personas, empathy maps, Impact Mapping, User Task Matrix, As-Is Scenario Maps, Event Storming, historias de usuario y diagramas C4 permitió estructurar los resultados de forma clara y comprensible. Asimismo, se aprendió la importancia de documentar objetivamente los hallazgos para mantener una base común que facilite el desarrollo de las siguientes etapas del proyecto. |
+
 
 # Capítulo I: Introducción
 
@@ -155,14 +165,14 @@ capaz de acompañar tanto a un local independiente como a una cadena con decenas
 
 **Logo de la Startup**
 
-`<Insertar imagen del logo de Energix>`
+<img width="120" height="120" alt="image" src="https://github.com/user-attachments/assets/602d94b3-1bde-405d-90bb-ba29efc9f7e7" /><div align="center">
 
 ### 1.1.2. Perfiles de integrantes del equipo
 
 | Integrante | Código | Carrera | Perfil |
 | :-- | :-- | :-- | :-- |
 | Encalada Salazar, Alexis **(Team Leader)** | U20211G491 | Ingeniería de Software | <img src="https://i.imgur.com/dCNE1N0.jpeg" alt="Encalada Salazar, Alexis" width="120"><br>Mi nombre es Alexis Encalada Salazar, tengo 22 años y actualmente curso el quinto ciclo de la carrera de Ingeniería de Software en la Universidad Peruana de Ciencias Aplicadas. Me considero una persona responsable y perseverante, capaz de desempeñarme eficientemente tanto en trabajos individuales como en equipo. Dentro del desarrollo del proyecto, aportaré mis conocimientos en los lenguajes de programación C++ y Python, así como habilidades en edición de video, con el objetivo de contribuir al cumplimiento de las metas del equipo. |
-| Goñe, Abigail | U202318049 | Ingeniería de Software | <img src="https://i.imgur.com/GByNzjm.png" alt="Goñe, Abigail" width="120"><br>Mi nombre es Abigail Goñe, tengo 20 años y actualmente me encuentro en el séptimo ciclo de la carrera de Ingeniería de Software. Soy una persona responsable, amigable y me gusta poder ayudar a los demás en todo lo que pueda. |
+| Goñe Araccata, Esther Abigail | U202318049 | Ingeniería de Software | <img src="https://i.imgur.com/GByNzjm.png" alt="Goñe, Abigail" width="120"><br>Mi nombre es Abigail Goñe, tengo 20 años y actualmente me encuentro en el séptimo ciclo de la carrera de Ingeniería de Software. Soy una persona responsable, amigable y me gusta poder ayudar a los demás en todo lo que pueda. |
 | Gómez Flores, Daniela Araceli | U202311184 | Ingeniería de Software | <img src="https://res.cloudinary.com/df8xwy4xb/image/upload/v1776792340/yo_uzhre7.jpg" alt="gomez Flores, Daniela Araceli" width="120"><br>Soy Daniela Gómez Flores, estudiante de Ingeniería de Software en la UPC, actualmente cursando el 8vo ciclo. Me gusta trabajar de manera organizada, aprender cosas nuevas y mantener un buen equilibrio en mis actividades. |
 | Solis Santa Cruz, Giancarlo | U202318615 | Ingeniería de Software | <img src="https://i.imgur.com/XJ4FjKA.png" alt="Solis Santa Cruz, Giancarlo" width="120"><br>Estudiante de Ingeniería de Software cursando el octavo ciclo. Persona proactiva, intuitiva y enfocada en la eficiencia, con un enfoque preventivo frente a los problemas. |
 | Sulca Silva, Melisa Geraldine | U202224602 | Ingeniería de Software | <img src="https://i.imgur.com/p9GVr4j.png" alt="Sulca Silva, Melisa Geraldine" width="120"><br>Estudio la carrera de Ingeniería de Software y me interesa el desarrollo web. Me motiva aprender nuevos lenguajes de programación. Suelo trabajar bien en equipo, muestro compromiso con el grupo y aplico perseverancia para superar los obstáculos y alcanzar mis objetivos. |
