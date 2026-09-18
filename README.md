@@ -369,11 +369,6 @@ suministro en categoría tarifaria con cargo por potencia.
 
 #### 1.2.2.4. Lean UX Canvas
 
-`<Insertar imagen del Lean UX Canvas elaborado por el equipo, con los ocho cuadrantes:
-1. Business Problem · 2. Business Outcomes · 3. Users · 4. User Outcomes & Benefits ·
-5. Solutions · 6. Hypotheses · 7. What's the most important thing we need to learn first? ·
-8. What's the least amount of work we need to do to learn the next most important thing?>`
-
 | Cuadrante | Contenido |
 | :-- | :-- |
 | 1. Business Problem | Los establecimientos comerciales pagan un sobrecosto eléctrico que no pueden anticipar, porque el recibo mensual agregado llega cuando el cargo por potencia del periodo ya está fijado. |
@@ -628,16 +623,6 @@ inicia explicando el propósito de la investigación y solicitando consentimient
 
 ### 2.2.2. Registro de entrevistas
 
-> **Pendiente de ejecución por el equipo.** Esta sección se completa con las entrevistas reales.
-> Por cada entrevista se debe registrar: nombres y apellidos, edad, distrito, cargo, un screenshot
-> del cuadro de video, el URL del video subido a Microsoft Stream con el *timing* de inicio y la
-> duración, y un resumen descriptivo de las principales respuestas.
->
-> **El resumen debe incluir todas las características objetivas y subjetivas** (personalidad,
-> marcas e influencias, tecnología, canales de interacción, navegador y dispositivos), porque cada
-> característica de los arquetipos de la sección 2.3 debe poder rastrearse hasta un dato recogido
-> aquí.
-
 #### Segmento #1 — Entrevista 1
 
 | Campo | Dato |
@@ -813,6 +798,10 @@ Valeria Fernández representa al segmento de responsables de operaciones y mante
 
 <img src="https://res.cloudinary.com/df8xwy4xb/image/upload/v1789408292/Alessandro_G%C3%B3mez_bm6fpe.png">
 
+<br>
+Alessandro Gómez representa al segmento de propietarios y administradores de establecimientos independientes, un arquetipo construido a partir de los patrones comunes identificados en las entrevistas del segmento. Su perfil Rational refleja la necesidad de controlar los gastos del negocio y tomar decisiones que tengan un beneficio económico comprobable. Alessandro está directamente involucrado en la operación diaria de un establecimiento de aproximadamente 600 m², donde supervisa ventas, gastos, proveedores y mantenimiento, por lo que el consumo eléctrico representa una preocupación importante dentro de sus costos fijos. Su principal frustración surge al no poder explicar con facilidad los incrementos del recibo: compara los montos mensuales, consulta al personal y revisa los equipos, pero cuando no encuentra una causa termina pagando sin conocer realmente qué ocurrió. Esta situación también se relaciona con su dificultad para comprender conceptos como la potencia contratada y con los informes técnicos que, aunque pueden ofrecer recomendaciones, no le indican de manera sencilla cuánto puede ahorrar ni qué acción debería realizar. La motivación de Alessandro está centrada en reducir el gasto sin afectar la operación, identificar qué equipos o zonas consumen más y obtener información que pueda consultar rápidamente desde el celular. Por ello, espera encontrar una solución sencilla que no requiera conocimientos especializados, que le indique cuándo existe un consumo fuera de lo normal y, principalmente, que transforme los datos en acciones concretas. Finalmente, su decisión de adoptar una herramienta está condicionada por la demostración de un ahorro real que justifique la inversión, una instalación que no interrumpa el negocio y una experiencia suficientemente simple como para incorporarla a su rutina diaria.
+<br><br>
+
 ### 2.3.2. User Task Matrix
 
 Matriz de tareas por User Persona, indicando frecuencia e importancia de cada tarea.
@@ -845,6 +834,10 @@ El empathy map del segmento 1 muestra a un responsable que piensa y siente presi
 **Emphaty Map — Segmento #2: Propietario de establecimiento independiente**
 
 <img src="https://res.cloudinary.com/df8xwy4xb/image/upload/v1789408292/Empathy_map_-_Segmento_2_mrzuzr.png">
+
+<br>
+El empathy map del segmento 2 muestra a un propietario o administrador que siente preocupación e incertidumbre cuando su recibo aumenta sin una explicación clara, además de frustración frente a información eléctrica demasiado técnica. Lo que ve son recibos mensuales, variaciones de costos, equipos de refrigeración funcionando continuamente y diferentes áreas del establecimiento que consumen energía, pero sin poder determinar con precisión cuál genera mayor gasto. Lo que oye son explicaciones del personal, recomendaciones de técnicos y propuestas de auditorías que no siempre logra interpretar o convertir en acciones concretas. Lo que hace es revisar principalmente el monto del recibo, compararlo con el mes anterior, preguntar al personal sobre cambios en la operación y recurrir a técnicos cuando el problema resulta más complejo. Sus dolores principales son no saber qué origina las variaciones, no comprender completamente la potencia contratada, tener poco tiempo para analizar información y desconfiar de soluciones que no demuestren ahorro. Sus ganancias esperadas son reducir el recibo, conocer qué equipos o zonas consumen más, recibir advertencias oportunas y saber exactamente qué hacer para evitar gastos innecesarios. En consecuencia, busca una herramienta sencilla, rápida y accesible desde el celular que le permita entender su consumo, actuar oportunamente y comprobar que las acciones realizadas realmente generan ahorro.
+<br><br>
 
 ### 2.3.4. As-is Scenario Mapping
 
@@ -1442,9 +1435,6 @@ concretas que los materializan.
 
 ### 4.2.1. EventStorming
 
-> **Herramienta:** LucidChart / Miro / DomoRoboto.
-> Sesión realizada por el equipo con una duración de entre 1 y 2 horas.
-
 El equipo llevó a cabo una sesión de EventStorming para obtener una primera aproximación al
 dominio. Se partió de la notación habitual: **eventos de dominio** en naranja, expresados en
 pasado; **comandos** en azul; **actores** en amarillo; **sistemas externos** en rosa; y **puntos de
@@ -1501,16 +1491,16 @@ dolor o dudas** en rojo.
 - ¿La proyección de factura es responsabilidad de Analítica o de Energía?
 
 Estas tres preguntas se resolvieron en la sesión de *Candidate Context Discovery*.
-#Paso 1
+**Paso 1**
 ![Paso1](assets/Paso1.jpg)
 
-#Paso 2
+**Paso 2**
 ![Paso2](assets/Paso2.jpg)
 
-#Paso 3 y 4 
+**Paso 3 y 4** 
 ![Paso3y4](assets/Paso3y4.jpg)
 
-#Paso 5
+**Paso 5**
 ![Paso5](assets/Paso5.jpg)
 
 
@@ -1562,8 +1552,6 @@ notificar, proyectar y cobrar— y se agruparon los pasos que comparten lenguaje
 | 7 | **Subscriptions** | Genérico | Planes, límites y suscripción de la organización. |
 | 8 | **Payments** | Genérico | Métodos de pago, cobros, comprobantes y conciliación con la pasarela. |
 
-`<Insertar capturas de los cambios progresivos del EventStorm hasta llegar a esta descomposición.>`
-
 ### 4.2.3. Domain Message Flows Modeling
 
 Se aplicó **Domain Storytelling** para visualizar cómo colaboran los contextos en los casos de
@@ -1583,7 +1571,7 @@ negocio más relevantes. A continuación se describen los tres flujos modelados.
 7. *Subscriptions* responde con el límite; si se ha alcanzado, el alta se rechaza.
 8. *Organizations* registra el local y sus zonas.
 
-#Flujo 1 
+**Flujo 1** 
 ![flujo-1](assets/flujo-1.png)
 
 
@@ -1597,7 +1585,7 @@ negocio más relevantes. A continuación se describen los tres flujos modelados.
 6. *Energy Monitoring* clasifica la lectura por franja horaria, actualiza la demanda máxima del
    periodo y publica `ReadingProcessed`.
    
-#Flujo 2 
+**Flujo 2** 
 ![flujo-2](assets/flujo-2.png)
 
 
@@ -1614,7 +1602,7 @@ negocio más relevantes. A continuación se describen los tres flujos modelados.
 8. *Analytics* solicita a *Energy Monitoring* el cálculo del importe con la tarifa del local.
 9. *Energy Monitoring* devuelve el desglose; *Analytics* lo persiste como proyección del periodo.
 
-#Flujo 3
+**Flujo 3**
 ![flujo-3](assets/flujo-3.png) 
 
 
@@ -2034,6 +2022,3 @@ Ver [Student Outcome](00-student-outcome.md).
 | Modelo de Structurizr | `<...>` |
 
 **Anexo D. Bounded Context Canvases complementarios**
-
-`<Canvases de Identity & Access Management, Device Management, Analytics, Subscriptions y Payments,
-siguiendo la estructura empleada en la sección 4.2.4.>`
