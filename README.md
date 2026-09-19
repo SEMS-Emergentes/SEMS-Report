@@ -2005,17 +2005,14 @@ alguien escribiera.
 
 ## Anexos
 
-**Anexo A. Estructura para la sección Objetivo del Estudiante (Student Outcome)**
 
-Ver [Student Outcome](00-student-outcome.md).
-
-**Anexo B. Videos de Exposiciones**
+**Anexo A. Videos de Exposiciones**
 
 | Entrega | URL del video | Duración |
 | :-- | :-- | :-- |
 | Primer Hito | `<URL privado de Microsoft Stream>` | `<mm:ss>` |
 
-**Anexo C. Enlaces de los productos y repositorios**
+**Anexo B. Enlaces de los productos y repositorios**
 
 | Artefacto | URL |
 | :-- | :-- |
@@ -2026,9 +2023,5 @@ Ver [Student Outcome](00-student-outcome.md).
 | Landing Page desplegado | <https://sems-emergentes.github.io/SEMS-Landing-Page/> |
 | Web Application desplegada | <https://sems-web-application.vercel.app> |
 | Documentación OpenAPI del backend | <https://sems-backend-kgnm.onrender.com/swagger-ui.html> |
-| Product Backlog | `<...>` |
-| Proyecto de UXPressia | `<...>` |
-| Diagramas en LucidChart / Miro | `<...>` |
-| Modelo de Structurizr | `<...>` |
 
-**Anexo D. Bounded Context Canvases complementarios**
+
