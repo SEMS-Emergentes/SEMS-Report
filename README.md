@@ -2010,7 +2010,7 @@ alguien escribiera.
 
 | Entrega | URL del video | Duración |
 | :-- | :-- | :-- |
-| Primer Hito | `<URL privado de Microsoft Stream>` | `<mm:ss>` |
+| Primer Hito | <https://upcedupe-my.sharepoint.com/:v:/g/personal/u20211g491_upc_edu_pe/IQDbU0RFA9H-QbkGfbfblYkVAa5583zaljIfZBcBkXGH-5c?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=2c9JBJ> | 9:18|
 
 **Anexo B. Enlaces de los productos y repositorios**
 
