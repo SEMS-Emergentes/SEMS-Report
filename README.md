@@ -2088,7 +2088,7 @@ El tono de voz en SEMS se caracteriza por ser **directo, orientativo y técnico-
 *   Las alertas son redactadas en segunda persona, y priorizan soluciones: *"Estás a un 5% de superar tu potencia contratada en el Local San Isidro. Se recomienda apagar equipos de alto consumo temporales."*
 *   Se presentan cifras precisas en moneda local (Soles) en lugar de solo kWh, para conectar el consumo con el impacto directo en el presupuesto.
 
-### 6.1.2. Web Style Guidelines
+### 6.1.2. Web, Mobile & Devices Style Guidelines.
 
 La implementación web de SEMS comprende dos experiencias unificadas por el diseño:
 
