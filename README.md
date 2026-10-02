@@ -45,13 +45,33 @@
 
 ## Registro de Versiones del Informe
 
-| **Versión** | **Fecha**  | **Autor**                              | **Descripción de modificación** |
-| :---------- | :--------- | :------------------------------------- | :------------------------------- |
-| AV1         | 20/09/2026 | Encalada Salazar, Alexis               | Se encargó de la creación y organización del reporte, incorporando puntos esenciales para su desarrollo. Además, realizó los Event Storming y colaboró en la elaboración de las historias de usuario. |
-| AV1         | 20/09/2026 | Goñe Araccata, Esther Abigail          | Se encargó del orden y organización del reporte, así como de la elaboración del Impact Mapping para ambos user persona. Además, realizó el diseño de los diagramas C4. |
-| AV1         | 20/09/2026 | Gómez Flores, Daniela Araceli          | Se encargó del orden y organización del reporte y de la realización de las entrevistas correspondientes al primer y segundo segmento. Además, colaboró en la elaboración del user persona y empathy map del segundo segmento. |
-| AV1         | 20/09/2026 | Solis Santa Cruz, Giancarlo Rafael     | Colaboró en la realización de las entrevistas de ambos segmentos. Asimismo, desarrolló el User Task Matrix y los As-Is Scenario Maps, contribuyendo al análisis de las actividades y necesidades de los usuarios. |
-| AV1         | 20/09/2026 | Sulca Silva, Melisa Geraldine          | Brindó apoyo en la realización de las entrevistas y se encargó de elaborar el user persona y empathy map correspondientes al primer segmento, contribuyendo al análisis del perfil y las necesidades de los usuarios. |
+| **Versión** | **Fecha** | **Autor** | **Descripción de modificación** |
+| :-- | :-- | :-- | :-- |
+| 1.0 (AV1) | 30/08/2026 | Encalada Salazar, Alexis | Desarrollo de<br>La estructura inicial del informe. |
+| 1.1 (AV1) | 11/09/2026 | Encalada Salazar, Alexis | Desarrollo de<br>Capítulo I: Introducción<br>Secciones iniciales. |
+| 1.2 (AV1) | 11/09/2026 | Goñe Araccata, Esther Abigail | Integración de<br>La portada institucional<br>Los datos generales del informe. |
+| 1.3 (AV1) | 12/09/2026 | Encalada Salazar, Alexis | Desarrollo de<br>Capítulo III: Requirements Specification<br>Capítulo IV: Strategic-Level Software Design<br>Conclusiones<br>Bibliografía<br>Anexos. |
+| 1.4 (AV1) | 13/09/2026 | Goñe Araccata, Esther Abigail | Desarrollo de<br>Sección 2.2.2. Registro de entrevistas<br>Primeros insumos de investigación de usuarios. |
+| 1.5 (AV1) | 13/09/2026 | Goñe Araccata, Esther Abigail | Revisión de<br>Sección 2.2.2. Registro de entrevistas<br>Resultados documentales. |
+| 1.6 (AV1) | 13/09/2026 | Goñe Araccata, Esther Abigail | Integración de<br>Sección 2.3.1. User Personas<br>Sección 2.3.3. Empathy Mapping. |
+| 1.7 (AV1) | 14/09/2026 | Gómez Flores, Daniela Araceli | Revisión de<br>Sección 2.2.2. Registro de entrevistas<br>Recursos gráficos de la sección 2.3.1. User Personas. |
+| 1.8 (AV1) | 14/09/2026 | Gómez Flores, Daniela Araceli | Revisión de<br>Sección 2.2.2. Registro de entrevistas<br>Registro correspondiente a Mariel. |
+| 1.9 (AV1) | 14/09/2026 | Solis Santa Cruz, Giancarlo Rafael | Desarrollo de<br>Sección 2.3.2. User Task Matrix<br>Sección 2.2.2. Registro de entrevistas. |
+| 1.10 (AV1) | 14/09/2026 | Solis Santa Cruz, Giancarlo Rafael | Desarrollo de<br>Sección 2.3.4. As-is Scenario Mapping<br>Sección 2.2.3. Análisis de entrevistas. |
+| 1.11 (AV1) | 15/09/2026 | Sulca Silva, Melisa Geraldine | Revisión de<br>Sección 2.3.1. User Personas<br>Sección 2.3.3. Empathy Mapping. |
+| 1.12 (AV1) | 16/09/2026 | Goñe Araccata, Esther Abigail | Integración de<br>Sección 3.4. Product Backlog<br>Revisión de la sección 1.1.1. Descripción de la Startup. |
+| 1.13 (AV1) | 16/09/2026 | Goñe Araccata, Esther Abigail | Revisión de<br>Capítulo I: Introducción<br>Capítulo II: Requirements Elicitation & Analysis<br>Capítulo III: Requirements Specification. |
+| 1.14 (AV1) | 16/09/2026 | Encalada Salazar, Alexis | Integración de<br>Diagrama de Context Mapping<br>Sección 4.2.5. Context Mapping. |
+| 1.15 (AV1) | 16/09/2026 | Gómez Flores, Daniela Araceli | Revisión de<br>Sección 1.1.2. Perfiles de integrantes del equipo. |
+| 1.16 (AV1) | 16/09/2026 | Goñe Araccata, Esther Abigail | Desarrollo de<br>Sección 3.3. Impact Mapping. |
+| 1.17 (AV1) | 17/09/2026 | Goñe Araccata, Esther Abigail | Desarrollo de<br>Sección 4.3. Software Architecture<br>Diagramas C4. |
+| 1.18 (AV1) | 17/09/2026 | Gómez Flores, Daniela Araceli | Revisión de<br>Sección 2.3.1. User Personas<br>Sección 2.3.3. Empathy Mapping. |
+| 1.19 (AV1) | 17/09/2026 | Gómez Flores, Daniela Araceli | Revisión de<br>Registro de Versiones del Informe<br>Sección 1.1.2. Perfiles de integrantes del equipo. |
+| 1.20 (AV1) | 19/09/2026 | Encalada Salazar, Alexis | Revisión de<br>Conclusiones<br>Bibliografía<br>Anexos<br>Reorganización de las secciones del informe. |
+| 1.21 (AV1) | 19/09/2026 | Encalada Salazar, Alexis | Revisión de<br>Anexo A. Videos de Exposiciones. |
+| 1.22 (TB1) | 01/10/2026 | Goñe Araccata, Esther Abigail | Integración de<br>Capítulo V: Tactical-Level Software Design<br>Capítulo VI: Solution UX Design |
+| 1.23 (TB1) | 01/10/2026 | Goñe Araccata, Esther Abigail | Desarrollo de<br>Sección 6.2.2. Labeling Systems. |
+| 1.24 (TB1) | 01/10/2026 | Goñe Araccata, Esther Abigail | Desarrollo de<br>Sección 6.2.3. Searching Systems. |
 
 ---
 
