@@ -1992,6 +1992,33 @@ Muestra cómo se distribuyen los contenedores en la infraestructura de producci�
 
 ### 6.2.2. Labeling Systems
 
+El sistema de etiquetado de SEMS utiliza una nomenclatura única para representar las entidades,
+mediciones y conceptos energéticos que aparecen en la interfaz. La denominación en inglés es la
+forma canónica y se mantiene sin variaciones en las pantallas, el código y la API, mientras que
+el español latinoamericano funciona como equivalente de referencia para la documentación y la
+comunicación con los usuarios. Esta uniformidad facilita la comprensión de la información,
+reduce ambigüedades entre módulos y evita que una misma realidad del negocio sea presentada con
+nombres diferentes.
+
+| Concepto | Etiqueta (en-US) | Etiqueta (es-419) | Nunca se usa |
+| :-- | :-- | :-- | :-- |
+| Organization | Organization | Organización | Empresa, cuenta |
+| Site | Site | Local | Sucursal, tienda, hogar |
+| Zone | Zone | Zona | Área, sección |
+| Meter | Meter | Medidor | Sensor, dispositivo |
+| Peak hours | Peak hours | Hora punta | Horario caro |
+| Contracted power | Contracted power | Potencia contratada | Límite |
+| Maximum demand | Maximum demand | Demanda máxima | Pico |
+| Power charge | Power charge | Cargo por potencia | Cargo fijo |
+
+La columna **Nunca se usa** define términos que deben excluirse de la interfaz, la documentación
+funcional y los mensajes del sistema. `hogar` y `sensor` pertenecen a una conceptualización
+residencial y no describen adecuadamente la operación de un establecimiento comercial. Los demás
+términos se descartan porque pueden confundirse con límites administrativos, espacios físicos o
+conceptos que no reflejan con precisión el cálculo energético. Cuando una etiqueta requiera mayor
+contexto, se conserva el término canónico y se agrega una breve explicación, sin reemplazarlo por
+sinónimos.
+
 ### 6.2.3. Searching Systems
 
 ### 6.2.4. SEO Tags and Meta Tags
