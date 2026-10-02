@@ -2021,6 +2021,23 @@ sinónimos.
 
 ### 6.2.3. Searching Systems
 
+El *Landing Page* no incorpora un buscador: es una página única y la navegación por anclas cubre
+el recorrido completo de la información. La aplicación web tampoco utiliza un buscador global;
+implementa búsqueda y filtrado contextual dentro de cada vista, de acuerdo con la tarea que el
+usuario está realizando.
+
+| Vista | Filtros disponibles | Criterio de presentación |
+| :-- | :-- | :-- |
+| **Meters** | Por local, zona y estado de conexión. | Los medidores dados de baja no aparecen en los listados operativos. |
+| **Alerts** | Por severidad y estado de la alerta. | Las alertas no leídas o pendientes aparecen primero. |
+| **Readings** | Por rango de fechas y medidor. | Las lecturas más recientes aparecen primero, con fecha y hora visibles. |
+| **Analytics** | Por periodo y local. | Se permite comparar el consumo, la demanda y el costo proyectado entre locales. |
+
+Los filtros se pueden combinar, limpiar individualmente y conservar mientras el usuario navega
+dentro de la vista. Cuando no existen resultados, el sistema muestra los criterios aplicados y
+ofrece una acción para restablecerlos. La búsqueda se limita al contexto actual para evitar
+resultados ambiguos entre organizaciones, locales, zonas y medidores.
+
 ### 6.2.4. SEO Tags and Meta Tags
 
 ### 6.2.5. Navigation Systems
