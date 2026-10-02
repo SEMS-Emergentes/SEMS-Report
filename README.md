@@ -2088,6 +2088,47 @@ El tono de voz en SEMS se caracteriza por ser **directo, orientativo y técnico-
 *   Las alertas son redactadas en segunda persona, y priorizan soluciones: *"Estás a un 5% de superar tu potencia contratada en el Local San Isidro. Se recomienda apagar equipos de alto consumo temporales."*
 *   Se presentan cifras precisas en moneda local (Soles) en lugar de solo kWh, para conectar el consumo con el impacto directo en el presupuesto.
 
+### 6.1.2. Web Style Guidelines
+
+La implementación web de SEMS comprende dos experiencias unificadas por el diseño:
+
+**Landing Page.** Construido para maximizar conversiones, presenta una jerarquía vertical enfocada en la propuesta de valor. La navegación es intuitiva, anclada en un header superior con *Call to Actions* primarios. Utiliza un archivo CSS modular sin dependencias externas pesadas, inyectando las variables de Material 3 en la capa `:root`. Para interacciones visuales, aplica la técnica de *state layers* de MD3: transparencias al 8% y 12% del color nativo durante los eventos `:hover` y `:focus`, respectivamente, en lugar de repintar completamente los botones.
+
+**Web Application (Dashboard).** Desarrollada empleando componentes altamente estructurados basados en librerías que implementan MD3 de manera estricta (como PrimeVue en su variante Material).
+La navegación se confina a un panel lateral fijo (*Sidebar*) oscuro para aislar la acción de navegación del lienzo de datos. Las grillas de datos (*DataTables*) y tarjetas interactivas de consumo habitan un contenedor central con fondo claro (Surface), asegurando máximo contraste visual para los gráficos predictivos e histogramas generados por Chart.js. 
+
+Ambas plataformas respetan las preferencias nativas del navegador, aplicando los esquemas *Light Mode* o *Dark Mode* de manera fluida y leyendo la configuración local del sistema del usuario para evitar destellos blancos (*FOUC*).
+
+### 6.1.3. Mobile Style Guidelines
+
+El ecosistema nativo de SEMS traslada los tokens fundamentales de diseño de la web —la paleta semántica, la tipografía Roboto y la escala de espacios— hacia plataformas táctiles (iOS y Android), adaptándolos para coincidir con los patrones ergonómicos e interactivos de cada sistema operativo.
+
+#### 6.1.3.1. iOS Mobile Style Guidelines
+
+La versión para dispositivos Apple interpreta la identidad visual de SEMS bajo las reglas del **Human Interface Guidelines (HIG)**.
+
+La navegación principal abandona las barras laterales y adopta un **Bottom Tab Bar** nativo con efecto de desenfoque translúcido (*blur*). A diferencia del diseño Material puro, el Tab Bar de iOS no emplea "píldoras" de fondo para los ítems seleccionados; en su lugar, el ícono cambia a su variante sólida (*filled*) teñida de Primary Blue, mientras que los elementos inactivos se mantienen en la variante contorneada gris. 
+
+Asimismo, las pantallas secundarias y de filtros emplean ventanas modales arrastrables (*Sheets*) emergentes desde el borde inferior, y el encabezado superior mantiene la navegación clásica de iPhone (Botón `< Atrás` alineado a la izquierda con el título de la vista centrado).
+
+*Figura 19 (iOS Mobile Style Guidelines)*
+<img src="assets/19-ios_styles.png" alt="iOS Mobile Style Guidelines" style="width: 100vw;">
+
+> **Nota.** Patrones de adaptación visual de SEMS para la plataforma iOS.
+
+#### 6.1.3.2. Android Mobile Style Guidelines
+
+La versión de Android mantiene la cohesión pura con **Material Design 3**, optimizando los componentes de la web para el uso con una sola mano y gestos táctiles.
+
+El sistema de navegación inferior, o **Bottom Navigation**, implementa el característico diseño MD3 donde el ícono activo es contenido dentro de una píldora (*pill*) del color `Primary Container`, elevando la visibilidad del estado actual. 
+
+Acciones rápidas como la creación de nuevos locales o el reporte de incidencias se delegan a un **Floating Action Button (FAB)**, el cual utiliza la escala de radio 16px. El encabezado, o **Top App Bar**, integra menú hamburguesa, búsqueda e información contextual alineada a la izquierda sobre un fondo Surface sólido, completando la familiaridad requerida por usuarios de Android.
+
+*Figura 20 (Android Mobile Style Guidelines)*
+<img src="assets/20-android_styles.png" alt="Android Mobile Style Guidelines" style="width: 100vw;">
+
+> **Nota.** Implementación de los lineamientos de Material Design 3 en la app Android de SEMS.
+
 ### 6.2.2. Labeling Systems
 
 El sistema de etiquetado de SEMS utiliza una nomenclatura única para representar las entidades,
