@@ -2010,6 +2010,84 @@ Muestra cómo se distribuyen los contenedores en la infraestructura de producci�
 
 ### 6.1.1. General Style Guidelines
 
+La identidad visual de SEMS está diseñada para reflejar tecnología de vanguardia, precisión analítica y sostenibilidad, atributos esenciales en un sistema de gestión de eficiencia energética.
+
+El diseño prioriza un enfoque *data-driven*, manteniendo una interfaz limpia (minimalista) que evite la sobrecarga cognitiva. Las tablas de consumo, gráficos predictivos y alertas requieren jerarquías claras, por lo que se minimizan los elementos decorativos innecesarios. El uso de patrones visuales consistentes permite al usuario, desde el administrador de un solo local hasta el coordinador de toda una cadena, identificar rápidamente variaciones en su consumo y tomar acciones preventivas.
+
+#### Branding
+
+La marca se apoya en una distinción clara: **Energix** es la startup desarrolladora, mientras que **SEMS** es el nombre del producto de software. En todos los artefactos digitales (Landing Page y Apps), el nombre visible predominante es SEMS, dejando a Energix como respaldo corporativo visible en pies de página y documentación legal.
+
+El logotipo de SEMS se fundamenta en un símbolo de **rayo sobre un cuadrado de esquinas redondeadas**, representando la energía controlada y acotada dentro de un sistema inteligente. Este símbolo se adapta de manera escalable: funciona a 32 px como *favicon* del navegador y a 36 px en la barra superior de la aplicación web, manteniendo siempre su legibilidad.
+
+La identidad visual se distancia de enfoques genéricos y se alinea con una imagen tecnológica B2B. Al gestionar datos financieros y consumo industrial, la estética debe proyectar estabilidad y seguridad para corporaciones y negocios independientes por igual.
+
+#### 6.1.1.1. Typography
+
+La tipografía de SEMS ha sido definida con el objetivo de asegurar la legibilidad absoluta de cifras y métricas, componentes centrales de un dashboard energético.
+
+Se emplea la familia tipográfica **Roboto**, la fuente nativa de Material Design, en toda la plataforma. Al ser una tipografía sans-serif de gran legibilidad numérica y excelente escalabilidad en pantallas densas, facilita la asimilación de grandes volúmenes de datos operativos. Se define adicionalmente una pila de reserva (`"Segoe UI", system-ui, -apple-system, sans-serif`) para garantizar la estabilidad visual si la fuente web falla.
+
+La jerarquía tipográfica sigue la escala estándar del sistema Material 3:
+
+*   **Display (Hero):** `clamp(2.25rem, 1.4rem + 3.2vw, 3.5rem)`, peso Bold (700). Utilizada para los titulares de gran impacto en el Landing Page.
+*   **Headline (Sección):** `clamp(1.75rem, 1.2rem + 2vw, 2.5rem)`, peso Bold (700). Para separar grandes bloques de contenido.
+*   **Title (Tarjeta):** `1.25rem`, peso Medium (500) o SemiBold (600). Para los títulos de widgets y módulos de datos.
+*   **Body (Texto corrido):** `1rem` con interlineado de `1.55`, peso Regular (400).
+*   **Label (Etiqueta):** `0.8125rem`, peso Medium (500). Fundamental para micro-interacciones, badges de estado y ejes de gráficos.
+
+*Figura 16 (Sistema tipográfico de SEMS)*
+<img src="assets/16-typography.png" alt="Sistema tipográfico de SEMS" style="width: 100vw;">
+
+> **Nota.** Sistema tipográfico utilizado en la identidad visual de SEMS.
+
+#### 6.1.1.2. Colors
+
+La paleta de colores de SEMS abandona el enfoque estático clásico y adopta los **color roles** dinámicos de Material Design 3. Esta decisión garantiza un contraste perfecto (relación fondo/texto) y facilita la implementación automatizada de modos claro y oscuro.
+
+El color principal es el **Primary Blue (#0B57D0)**, que inspira tecnología, control y seguridad corporativa. Su contenedor respectivo, el **Primary Container (#D9E2FF)**, se usa para realzar elementos activos o fondos de tarjetas importantes.
+
+Para la gestión energética, SEMS implementa colores semánticos con significados inmutables en toda la interfaz:
+*   **Tertiary (Success Green - #146C2E):** Reservado estrictamente para escenarios favorables, como ahorros conseguidos, reducción de consumo o metas logradas.
+*   **Error (Danger Red - #B3261E):** Utilizado exclusivamente para alertar sobre la superación de la demanda máxima contratada, fallas en medidores o posibles penalizaciones económicas.
+
+La plataforma respeta el criterio WCAG 2.1 nivel AA: cada rol de color incluye su variante `on-*` (ej. texto blanco `#FFFFFF` sobre Primary Blue `#0B57D0`) asegurando ratios de contraste superiores al mínimo de 4.5:1.
+
+*Figura 17 (Paleta de colores de SEMS)*
+<img src="assets/17-colors.png" alt="Paleta de colores de SEMS" style="width: 100vw;">
+
+> **Nota.** Sistema de color basado en Material Design 3 utilizado en SEMS.
+
+#### 6.1.1.3. Iconography
+
+La iconografía de SEMS utiliza la biblioteca oficial **Material Symbols** de Google. Sigue un estilo simple, lineal (variante *Outlined*) y sumamente consistente, facilitando el escaneo rápido de funciones dentro del sistema.
+
+Las características técnicas de la iconografía son:
+*   **Estilo:** Lineal (Outline), con variante rellenada (Fill) únicamente para indicar estados activos (ej. menús seleccionados).
+*   **Tamaño Base:** 24 x 24 píxeles para íconos estándar de acción.
+*   **Color Base:** `On-Surface (#1a1c1e)` para inactivos, y `Primary Blue (#0b57d0)` para los elementos enfocados.
+
+Se ha diseñado un conjunto primario de representaciones para acciones repetitivas, como *Dashboard*, *Medidores*, *Reportes*, *Alertas* y *Configuración*, reduciendo la dependencia exclusiva de texto y acelerando la navegación.
+
+*Figura 18 (Sistema de iconografía de SEMS)*
+<img src="assets/18-iconography.png" alt="Sistema de iconografía de SEMS" style="width: 100vw;">
+
+> **Nota.** Sistema de iconografía empleado en la interfaz de SEMS.
+
+#### 6.1.1.4. Spacing and Movement
+
+**Espaciado.** El sistema se estructura en una rejilla (grid) con incrementos de 4 px. Esta unidad atómica permite separaciones lógicas: 4 px u 8 px para agrupaciones atadas lógicamente (ícono y etiqueta), 16 px para márgenes internos de tarjetas (paddings) y 24 px o 32 px para la separación entre bloques principales. Adicionalmente, las formas (shape scale) utilizan esquinas redondeadas siguiendo los tokens MD3: 4 px en campos pequeños, 12-16 px en contenedores de datos, y radios completos (píldoras) en botones interactivos.
+
+**Movimiento.** Se aplican transiciones fluidas mediante la curva estándar `cubic-bezier(0.2, 0, 0, 1)`. Las duraciones se limitan a 150 ms para micro-interacciones (hover de botones), 300 ms para expansión de modales/acordeones y 500 ms para transiciones largas de página. Toda animación obedece a las preferencias del sistema (`prefers-reduced-motion`) desactivándose cuando sea necesario por accesibilidad.
+
+#### 6.1.1.5. Tone of Communication
+
+El tono de voz en SEMS se caracteriza por ser **directo, orientativo y técnico-comercial**. Debido a que el producto traduce datos de ingeniería eléctrica a decisiones financieras, el vocabulario se purga de tecnicismos inaccesibles en las interfaces cliente.
+
+*   Se utilizan términos como "Consumo Actual", "Pico Diario" y "Penalidad" en lugar de vocabulario abstracto como "Factor de demanda" o "Demanda coincidente".
+*   Las alertas son redactadas en segunda persona, y priorizan soluciones: *"Estás a un 5% de superar tu potencia contratada en el Local San Isidro. Se recomienda apagar equipos de alto consumo temporales."*
+*   Se presentan cifras precisas en moneda local (Soles) en lugar de solo kWh, para conectar el consumo con el impacto directo en el presupuesto.
+
 ### 6.2.2. Labeling Systems
 
 El sistema de etiquetado de SEMS utiliza una nomenclatura única para representar las entidades,
