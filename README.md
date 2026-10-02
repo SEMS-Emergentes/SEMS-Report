@@ -116,6 +116,24 @@
     - [4.3.2. Software Architecture Context Level Diagrams](chapters/04-strategic-design.md#432-software-architecture-context-level-diagrams)
     - [4.3.3. Software Architecture Container Level Diagrams](chapters/04-strategic-design.md#433-software-architecture-container-level-diagrams)
     - [4.3.4. Software Architecture Deployment Diagrams](chapters/04-strategic-design.md#434-software-architecture-deployment-diagrams)
+- [Capítulo V: Tactical-Level Software Design](README.md#capítulo-v-tactical-level-software-design)
+  - [5.1. Tactical-Level Domain-Driven Design](README.md#51-tactical-level-domain-driven-design)
+  - [5.2. Tactical-Level Attribute-Driven Design](README.md#52-tactical-level-attribute-driven-design)
+- [Capítulo VI: Solution UX Design](README.md#capítulo-vi-solution-ux-design)
+  - [6.1. Style Guidelines](README.md#61-style-guidelines)
+    - [6.1.1. General Style Guidelines](README.md#611-general-style-guidelines)
+    - [6.1.2. Web, Mobile & Devices Style Guidelines](README.md#612-web-mobile--devices-style-guidelines)
+  - [6.2. Information Architecture](README.md#62-information-architecture)
+    - [6.2.2. Labeling Systems](README.md#622-labeling-systems)
+    - [6.2.3. Searching Systems](README.md#623-searching-systems)
+    - [6.2.4. SEO Tags and Meta Tags](README.md#624-seo-tags-and-meta-tags)
+    - [6.2.5. Navigation Systems](README.md#625-navigation-systems)
+  - [6.3. Landing Page UI Design](README.md#63-landing-page-ui-design)
+    - [6.3.1. Landing Page Wireframe](README.md#631-landing-page-wireframe)
+    - [6.3.2. Landing Page Mock-up](README.md#632-landing-page-mock-up)
+  - [6.4. Applications UX/UI Design](README.md#64-applications-uxui-design)
+    - [6.4.1. Applications Wireframes](README.md#641-applications-wireframes)
+    - [6.4.2. Applications Wireflow Diagrams](README.md#642-applications-wireflow-diagrams)
 - [Conclusiones, Bibliografía y Anexos](chapters/99-conclusiones.md)
 
 
@@ -1945,6 +1963,52 @@ Muestra cómo se distribuyen los contenedores en la infraestructura de producci�
 - El proveedor de tarifas se resuelve hoy con un adaptador simulado. Sustituirlo por la integración real solo exige cambiar la clase de infraestructura que implementa `EnergyPricingProvider` (QAS07).
 
 **Explicación.** Toda la solución se despliega sobre proveedores de costo cero o mínimo (CON08). Los frontends se sirven como contenido estático o aplicación nativa, y la lógica de negocio queda concentrada en un único contenedor Docker, coherente con ADD-01. El escalado previsto es **vertical**, aumentando los recursos del servicio en Render, y no horizontal por módulo, lo que se acepta porque QAS09 plantea decenas de locales por organización. Si el volumen lo exigiera, el primer paso sería replicar el contenedor del API detrás del balanceador del proveedor, ya que su estado persiste íntegramente en PostgreSQL.
+
+# Capítulo V: Tactical-Level Software Design
+
+## 5.1. Tactical-Level Domain-Driven Design
+
+### 5.1.1. Bounded contexts y módulos
+
+### 5.1.2. Agregados, entidades y objetos de valor
+
+### 5.1.3. Casos de uso y servicios de dominio
+
+### 5.1.4. Repositorios, eventos y puertos
+
+### 5.1.5. Reglas de consistencia y transacciones
+
+## 5.2. Tactical-Level Attribute-Driven Design
+
+### 5.2.1. Estructura interna de cada módulo
+
+### 5.2.2. Escenarios de validación
+
+# Capítulo VI: Solution UX Design
+
+## 6.1. Style Guidelines
+
+### 6.1.1. General Style Guidelines
+
+### 6.2.2. Labeling Systems
+
+### 6.2.3. Searching Systems
+
+### 6.2.4. SEO Tags and Meta Tags
+
+### 6.2.5. Navigation Systems
+
+## 6.3. Landing Page UI Design
+
+### 6.3.1. Landing Page Wireframe
+
+### 6.3.2. Landing Page Mock-up
+
+## 6.4. Applications UX/UI Design
+
+### 6.4.1. Applications Wireframes
+
+### 6.4.2. Applications Wireflow Diagrams
 
 # Conclusiones, Bibliografía y Anexos
 
