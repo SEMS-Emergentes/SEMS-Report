@@ -2659,6 +2659,189 @@ Diagrama de base de datos (PostgreSQL) con tablas, columnas, tipos y restriccion
 
 Las tablas usan el prefijo `iam_`. Es el único contexto con claves foráneas físicas, en la tabla intermedia `iam_user_roles` (relación muchos a muchos entre usuarios y roles). De los tokens de refresco y de un solo uso se guarda solo el hash, con índice único.
 
+
+
+## 5.7. Bounded Context: Subscriptions
+
+Contexto **genérico** que define los planes, sus límites y la suscripción vigente.
+
+### 5.7.1. Domain Layer
+
+`SubscriptionPlan` compone sus `PlanFeature`, entre ellas el identificador de precio de Stripe (`stripePriceId()`). `Subscription` gestiona su estado y cambio de plan, y `SubscriptionManager` es un servicio de dominio que impide cancelar o cambiar de plan desde un estado final (`SubscriptionStatus.isFinal()`).
+
+| Clase | Categoría | Propósito | Atributos | Métodos |
+| :-- | :-- | :-- | :-- | :-- |
+| `PlanFeature` | Entity | Característica o límite de un plan (incluye el identificador de precio de Stripe). | `+ STRIPE_PRICE_ID: String`<br>`- featureId: UUID`<br>`- planId: UUID`<br>`- featureCode: String`<br>`- featureName: String`<br>`- featureValue: String`<br>`- createdAt: Instant` | `+ create(planId: UUID, code: String, name: String, value: String): PlanFeature` *(static)* |
+| `Subscription` | Entity | Suscripción vigente con su plan, estado, fechas y referencia a Stripe. | `- subscriptionId: UUID`<br>`- userId: String`<br>`- planId: UUID`<br>`- status: SubscriptionStatus`<br>`- startDate: Instant`<br>`- endDate: Instant`<br>`- stripeSubscriptionId: String`<br>`- createdAt: Instant` | `+ start(userId: String, planId: UUID, stripeSubscriptionId: String): Subscription` *(static)*<br>`+ cancel()`<br>`+ changePlan(newPlanId: UUID)`<br>`+ updateStatus(next: SubscriptionStatus)`<br>`+ linkToStripe(stripeSubscriptionId: String)` |
+| `SubscriptionPlan` | Entity | Plan de suscripción (Starter, Business, Enterprise) con precio, periodo y características. | `- planId: UUID`<br>`- name: String`<br>`- description: String`<br>`- price: double`<br>`- currency: String`<br>`- billingPeriod: String`<br>`- active: boolean`<br>`- createdAt: Instant`<br>`- planFeatures: List<PlanFeature>` | `+ create(name: String, description: String, price: double, currency: String, billingPeriod: String): SubscriptionPlan` *(static)*<br>`+ stripePriceId(): String` |
+| `SubscriptionStatus` | Enumeration | Estado de la suscripción; CANCELLED y EXPIRED son finales. | Valores: `ACTIVE`, `INACTIVE`, `CANCELLED`, `PENDING_RENEWAL`, `EXPIRED` | `+ of(value: String): SubscriptionStatus` *(static)*<br>`+ isFinal(): boolean` |
+| `PlanRepository` | Repository | Puerto de persistencia (interfaz) de Plan; su implementación vive en Infrastructure. | — | `+ save(plan: SubscriptionPlan): SubscriptionPlan`<br>`+ findById(planId: UUID): Optional<SubscriptionPlan>`<br>`+ findByName(name: String): Optional<SubscriptionPlan>`<br>`+ findAllActive(): List<SubscriptionPlan>`<br>`+ count(): long` |
+| `SubscriptionRepository` | Repository | Puerto de persistencia (interfaz) de Subscription; su implementación vive en Infrastructure. | — | `+ save(subscription: Subscription): Subscription`<br>`+ findById(subscriptionId: UUID): Optional<Subscription>`<br>`+ findByUserId(userId: String): List<Subscription>`<br>`+ findByStripeSubscriptionId(stripeSubscriptionId: String): Optional<Subscription>` |
+| `SubscriptionManager` | Domain Service | Servicio de dominio que impide cancelar o cambiar de plan desde un estado final. | — | `+ ensureCanCancel(status: SubscriptionStatus)`<br>`+ ensureCanChangePlan(status: SubscriptionStatus)` |
+
+### 5.7.2. Interface Layer
+
+`SubscriptionController` expone planes (US40) y suscripciones (US41) bajo `/api/v1`.
+
+| Controller | Verbo | Endpoint | Acción | User Story |
+| :-- | :-- | :-- | :-- | :-- |
+| `SubscriptionController` | `GET` | `/api/v1/subscription-plans` | Lists the available plans | US40 |
+| `SubscriptionController` | `GET` | `/api/v1/subscription-plans/{planId}` | Gets a plan by its identifier | US40 |
+| `SubscriptionController` | `GET` | `/api/v1/subscriptions/users/{userId}` | A user's subscriptions | US41 |
+| `SubscriptionController` | `GET` | `/api/v1/subscriptions/{subscriptionId}` | Gets a subscription by its identifier | US41 |
+| `SubscriptionController` | `POST` | `/api/v1/subscriptions` | Creates a subscription | US41 |
+| `SubscriptionController` | `PATCH` | `/api/v1/subscriptions/{subscriptionId}/cancel` | Cancels a subscription | US41 |
+| `SubscriptionController` | `PATCH` | `/api/v1/subscriptions/{subscriptionId}/change-plan` | Changes the plan of a subscription | US41 |
+
+Recursos de request/response: `CreateSubscriptionRequest`, `ChangePlanRequest`, `PlanFeatureResource`, `PlanResource`, `SubscriptionResource`.
+
+### 5.7.3. Application Layer
+
+`SubscriptionService` orquesta alta, cancelación, cambio de plan y actualización de estado desde Stripe, y publica `SubscriptionChanged` en cada cambio.
+
+| Clase | Tipo | Responsabilidad | Operaciones (métodos públicos) |
+| :-- | :-- | :-- | :-- |
+| `SubscriptionService` | Application Service | Lista planes, crea, cancela y cambia de plan una suscripción (validando con SubscriptionManager), sincroniza el estado desde Stripe y publica SubscriptionChanged. | `activePlans()`, `planById()`, `subscriptionById()`, `subscriptionsByUser()`, `create()`, `cancel()`, `changePlan()`, `updateStatusFromStripe()` |
+
+### 5.7.4. Infrastructure Layer
+
+`PlanSeeder` carga los planes Starter, Business y Enterprise al arrancar, leyendo los identificadores de precio de Stripe desde la configuración (*Defer Binding*). Los adaptadores JPA están agrupados en `SubscriptionAdapters`.
+
+| Clase | Paquete | Responsabilidad |
+| :-- | :-- | :-- |
+| `SubscriptionAdapters` | `subscriptions.infrastructure.persistence.jpa.adapters` | Agrupa los adaptadores JPA `PlanAdapter`, `SubscriptionAdapter`, que implementan los repositorios del dominio. |
+| `SubscriptionJpaEntities` | `subscriptions.infrastructure.persistence.jpa.entities` | Agrupa las entidades JPA de las tablas `sb_subscription_plans`, `sb_plan_features`, `sb_subscriptions`. |
+| `FeatureJpa` | `subscriptions.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+| `PlanJpa` | `subscriptions.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+| `SubscriptionJpa` | `subscriptions.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+| `PlanSeeder` | `subscriptions.infrastructure.seed` | ApplicationRunner que carga los planes Starter, Business y Enterprise con sus características e identificadores de precio de Stripe. |
+
+### 5.7.5. Bounded Context Software Architecture Component Level Diagrams
+
+Diagrama de componentes del container **SEMS API** acotado al bounded context Subscriptions. Se elaboró en Structurizr DSL (`src/sems-components.dsl`, vista `bc-subscriptions`). Los colores distinguen la capa de cada componente: Interface (azul oscuro), Application (azul), Domain (verde), Infrastructure (gris) y el bus compartido (ocre).
+
+![Component Diagram — Subscriptions](assets/chapter-5/component-subscriptions.png)
+
+El diagrama muestra un contexto pequeño y autocontenido. Su única salida es el evento `SubscriptionChanged`, y el semillero de planes es parte de su infraestructura.
+
+### 5.7.6. Bounded Context Software Architecture Code Level Diagrams
+
+Esta sección presenta el detalle de implementación del bounded context Subscriptions: el diagrama de clases de su Domain Layer y el diseño de su base de datos.
+
+#### 5.7.6.1. Bounded Context Domain Layer Class Diagrams
+
+Diagrama de clases UML del Domain Layer con atributos, métodos y su visibilidad (`+` public, `-` private), métodos estáticos subrayados, estereotipos DDD y relaciones con nombre, dirección y multiplicidad. Los getters los genera Lombok (`@Getter`) y se omiten del diagrama, al igual que los métodos `rehydrate(...)` usados solo por los mappers de persistencia.
+
+![Domain Layer Class Diagram — Subscriptions](assets/chapter-5/class-subscriptions.png)
+
+El diagrama muestra la composición plan–características y la referencia por identificador de la suscripción a su plan.
+
+#### 5.7.6.2. Bounded Context Database Design Diagram
+
+Diagrama de base de datos (PostgreSQL) con tablas, columnas, tipos y restricciones. Las relaciones entre tablas del mismo contexto se marcan como **FK lógica**: el agregado garantiza la integridad y la tabla guarda el identificador. Las referencias a otros contextos se guardan como identificadores sin clave foránea, para no acoplar los esquemas entre módulos (ADD-05). Las columnas de enums tienen un `CHECK` con los valores permitidos.
+
+![Database Diagram — Subscriptions](assets/chapter-5/database-subscriptions.png)
+
+Las tablas usan el prefijo `sb_`. El nombre del plan es único (`uk_sb_plan_name`) y la suscripción referencia su plan por `plan_id`.
+
+## 5.8. Bounded Context: Payments
+
+Contexto **genérico** de métodos de pago, cobros, comprobantes y conciliación con la pasarela. Aplica ADD-08: los datos de tarjeta nunca atraviesan la solución.
+
+### 5.8.1. Domain Layer
+
+`Payment` concentra la máquina de estados del cobro. `Money` valida el importe y lo convierte a unidades menores para la pasarela. `PaymentMethod` guarda solo datos no sensibles (marca, últimos 4 dígitos, vencimiento e identificador de Stripe), conforme a CON09. `PaymentWebhookEvent` permite procesar cada evento de Stripe una sola vez. El puerto `PaymentProvider` y el servicio de dominio `PaymentStatusMapper` aíslan al dominio del modelo de Stripe (ACL).
+
+| Clase | Categoría | Propósito | Atributos | Métodos |
+| :-- | :-- | :-- | :-- | :-- |
+| `Invoice` | Entity | Comprobante emitido para un pago confirmado. | `- DAY: DateTimeFormatter`<br>`- invoiceId: UUID`<br>`- paymentId: UUID`<br>`- invoiceNumber: String`<br>`- issuedAt: Instant`<br>`- totalAmount: double`<br>`- pdfUrl: String` | `+ issueFor(paymentId: UUID, totalAmount: double, pdfUrl: String): Invoice` *(static)* |
+| `Payment` | Entity | Cobro de una suscripción con su máquina de estados (PENDING → PROCESSING → PROCESSED / FAILED / CANCELLED). | `- paymentId: UUID`<br>`- subscriptionId: UUID`<br>`- userId: UUID`<br>`- paymentMethodId: UUID`<br>`- amount: double`<br>`- currency: String`<br>`- status: PaymentStatus`<br>`- paymentMethod: String`<br>`- stripePaymentIntentId: String`<br>`- paidAt: Instant`<br>`- createdAt: Instant` | `+ create(subscriptionId: UUID, userId: UUID, paymentMethodId: UUID, amount: double, currency: String, paymentMethod: String): Payment` *(static)*<br>`+ markProcessing(stripePaymentIntentId: String)`<br>`+ markProcessed(stripePaymentIntentId: String)`<br>`+ markFailed(stripePaymentIntentId: String)`<br>`+ markCancelled(stripePaymentIntentId: String)`<br>`+ isPaid(): boolean` |
+| `PaymentMethod` | Entity | Método de pago guardado: solo marca, últimos 4 dígitos, vencimiento e id de Stripe; nunca el número de tarjeta (CON09). | `- paymentMethodId: UUID`<br>`- userId: UUID`<br>`- type: String`<br>`- brand: String`<br>`- last4: String`<br>`- expMonth: int`<br>`- expYear: int`<br>`- stripePaymentMethodId: String`<br>`- defaultMethod: boolean`<br>`- createdAt: Instant` | `+ create(userId: UUID, type: String, brand: String, last4: String, expMonth: int, expYear: int, stripePaymentMethodId: String, isDefault: boolean): PaymentMethod` *(static)*<br>`+ markDefault()`<br>`+ removeDefault()` |
+| `PaymentWebhookEvent` | Entity | Evento de webhook recibido; su providerEventId único garantiza idempotencia. | `+ PROVIDER_STRIPE: String`<br>`- eventId: UUID`<br>`- provider: String`<br>`- providerEventId: String`<br>`- eventType: String`<br>`- payload: String`<br>`- processed: boolean`<br>`- receivedAt: Instant`<br>`- processedAt: Instant` | `+ received(provider: String, providerEventId: String, eventType: String, payload: String): PaymentWebhookEvent` *(static)*<br>`+ markProcessed()` |
+| `Money` | Value Object | Importe con moneda; valida que no sea negativo y lo convierte a unidades menores. | `- amount: double`<br>`- currency: String` | `+ toMinorUnits(): long` |
+| `PaymentStatus` | Enumeration | Estado del pago. | Valores: `PENDING`, `PROCESSING`, `PROCESSED`, `FAILED`, `CANCELLED` | `+ of(value: String): PaymentStatus` *(static)* |
+| `PaymentRepository` | Repository | Puerto de persistencia (interfaz) de Payment; su implementación vive en Infrastructure. | — | `+ save(payment: Payment): Payment`<br>`+ findById(paymentId: UUID): Optional<Payment>`<br>`+ findByUserId(userId: UUID): List<Payment>`<br>`+ findBySubscriptionId(subscriptionId: UUID): List<Payment>`<br>`+ findByStripePaymentIntentId(stripePaymentIntentId: String): Optional<Payment>` |
+| `PaymentMethodRepository` | Repository | Puerto de persistencia (interfaz) de PaymentMethod; su implementación vive en Infrastructure. | — | `+ save(method: PaymentMethod): PaymentMethod`<br>`+ findById(paymentMethodId: UUID): Optional<PaymentMethod>`<br>`+ findByUserId(userId: UUID): List<PaymentMethod>`<br>`+ findDefaultByUserId(userId: UUID): Optional<PaymentMethod>`<br>`+ deleteById(paymentMethodId: UUID)` |
+| `InvoiceRepository` | Repository | Puerto de persistencia (interfaz) de Invoice; su implementación vive en Infrastructure. | — | `+ save(invoice: Invoice): Invoice`<br>`+ findById(invoiceId: UUID): Optional<Invoice>`<br>`+ findByPaymentId(paymentId: UUID): Optional<Invoice>` |
+| `WebhookEventRepository` | Repository | Puerto de persistencia (interfaz) de WebhookEvent; su implementación vive en Infrastructure. | — | `+ save(event: PaymentWebhookEvent): PaymentWebhookEvent`<br>`+ findByProviderEventId(providerEventId: String): Optional<PaymentWebhookEvent>` |
+| `PaymentProvider` | Port | Puerto de salida hacia la pasarela de pagos (ACL). | — | `+ getPaymentMethodDetails(stripePaymentMethodId: String): PaymentMethodDetails`<br>`+ createPaymentIntent(request: CreatePaymentIntentRequest): PaymentIntentResult`<br>`+ confirmPaymentIntent(paymentIntentId: String): PaymentIntentResult`<br>`+ createCheckoutSession(request: CreateCheckoutSessionRequest): CheckoutSessionResult`<br>`+ parseWebhookEvent(payload: String, signature: String): ProviderWebhookEvent` |
+| `PaymentStatusMapper` | Domain Service | Servicio de dominio que traduce estados de Stripe a PaymentStatus. | — | `+ fromStripe(status: String): PaymentStatus` |
+
+### 5.8.2. Interface Layer
+
+`StripeWebhookController` es público pero autenticado por firma (TS08); un webhook sin firma válida se rechaza. Los demás controladores requieren sesión.
+
+| Controller | Verbo | Endpoint | Acción | User Story |
+| :-- | :-- | :-- | :-- | :-- |
+| `InvoiceController` | `GET` | `/api/v1/invoices/{invoiceId}` | Gets an invoice by its identifier | US44 |
+| `InvoiceController` | `GET` | `/api/v1/invoices/payment/{paymentId}` | Invoice associated with a payment | US44 |
+| `PaymentController` | `POST` | `/api/v1/payments/process` | Charges a saved card | US41 |
+| `PaymentController` | `POST` | `/api/v1/payments/checkout-session` | Creates a Stripe Checkout session | US41 |
+| `PaymentController` | `GET` | `/api/v1/payments/user/{userId}` | A user's payments | US44 |
+| `PaymentController` | `GET` | `/api/v1/payments/subscription/{subscriptionId}` | Payments of a subscription | US44 |
+| `PaymentController` | `GET` | `/api/v1/payments/{paymentId}` | Gets a payment by its identifier | US44 |
+| `PaymentMethodController` | `POST` | `/api/v1/payment-methods` | Saves a payment method | US43 |
+| `PaymentMethodController` | `GET` | `/api/v1/payment-methods/user/{userId}` | A user's payment methods | US43 |
+| `PaymentMethodController` | `PUT` | `/api/v1/payment-methods/{paymentMethodId}/default` | Marks a payment method as the default one | US43 |
+| `PaymentMethodController` | `DELETE` | `/api/v1/payment-methods/{paymentMethodId}` | Deletes a payment method | US43 |
+| `StripeWebhookController` | `POST` | `/api/v1/webhooks/stripe` | Receives a Stripe event | TS08 |
+
+Recursos de request/response: `ProcessPaymentRequest`, `RegisterPaymentMethodRequest`, `CreateCheckoutRequest`, `PaymentResponse`, `InvoiceResponse`, `ProcessPaymentResponse`, `PaymentMethodResponse`, `CheckoutSessionResponse`.
+
+### 5.8.3. Application Layer
+
+`WebhookCommandService.handleStripe(...)` verifica la firma, descarta eventos ya recibidos (idempotencia por `providerEventId`), actualiza el estado del pago y emite el comprobante cuando el pago queda confirmado. `PaymentCommandService` procesa cobros y sesiones de Checkout y publica `PaymentProcessed`, que Demand & Alerting usa para notificar por correo.
+
+| Clase | Tipo | Responsabilidad | Operaciones (métodos públicos) |
+| :-- | :-- | :-- | :-- |
+| `PaymentCommandService` | Command Service | Procesa un cobro con método guardado, crea sesiones de Stripe Checkout, registra el pago de un Checkout y publica PaymentProcessed. | `process()`, `createCheckoutSession()`, `recordCheckoutPayment()` |
+| `PaymentMethodCommandService` | Command Service | Registra un método de pago con los datos no sensibles obtenidos de Stripe, lo marca por defecto o lo elimina. | `register()`, `setDefault()`, `delete()` |
+| `PaymentQueryService` | Query Service | Consultas de pagos, métodos de pago y comprobantes. | `paymentById()`, `paymentsByUser()`, `paymentsBySubscription()`, `methodsByUser()`, `invoiceById()`, `invoiceByPayment()` |
+| `WebhookCommandService` | Command Service | Procesa el webhook de Stripe de forma idempotente y actualiza el pago y su comprobante. | `handleStripe()` |
+
+### 5.8.4. Infrastructure Layer
+
+`StripePaymentAdapter` implementa `PaymentProvider` con `stripe-java` y lee claves y secreto del webhook desde variables de entorno. Los adaptadores JPA están agrupados en `PaymentAdapters`.
+
+| Clase | Paquete | Responsabilidad |
+| :-- | :-- | :-- |
+| `PaymentAdapters` | `payments.infrastructure.persistence.jpa.adapters` | Agrupa los adaptadores JPA `PaymentAdapter`, `PaymentMethodAdapter`, `InvoiceAdapter`, `WebhookEventAdapter`, que implementan los repositorios del dominio. |
+| `PaymentJpaEntities` | `payments.infrastructure.persistence.jpa.entities` | Agrupa las entidades JPA de las tablas `pm_payments`, `pm_payment_methods`, `pm_invoices`, `pm_webhook_events`. |
+| `InvoiceJpa` | `payments.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+| `PaymentJpa` | `payments.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+| `PaymentMethodJpa` | `payments.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+| `WebhookEventJpa` | `payments.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+| `StripePaymentAdapter` | `payments.infrastructure.stripe` | ACL hacia Stripe: implementa PaymentProvider con stripe-java (PaymentIntent, Checkout, verificación de firma del webhook). |
+
+### 5.8.5. Bounded Context Software Architecture Component Level Diagrams
+
+Diagrama de componentes del container **SEMS API** acotado al bounded context Payments. Se elaboró en Structurizr DSL (`src/sems-components.dsl`, vista `bc-payments`). Los colores distinguen la capa de cada componente: Interface (azul oscuro), Application (azul), Domain (verde), Infrastructure (gris) y el bus compartido (ocre).
+
+![Component Diagram — Payments](assets/chapter-5/component-payments.png)
+
+El diagrama muestra las dos entradas del contexto (la aplicación web y el webhook de Stripe) y que toda comunicación con la pasarela pasa por `StripePaymentAdapter`.
+
+### 5.8.6. Bounded Context Software Architecture Code Level Diagrams
+
+Esta sección presenta el detalle de implementación del bounded context Payments: el diagrama de clases de su Domain Layer y el diseño de su base de datos.
+
+#### 5.8.6.1. Bounded Context Domain Layer Class Diagrams
+
+Diagrama de clases UML del Domain Layer con atributos, métodos y su visibilidad (`+` public, `-` private), métodos estáticos subrayados, estereotipos DDD y relaciones con nombre, dirección y multiplicidad. Los getters los genera Lombok (`@Getter`) y se omiten del diagrama, al igual que los métodos `rehydrate(...)` usados solo por los mappers de persistencia.
+
+![Domain Layer Class Diagram — Payments](assets/chapter-5/class-payments.png)
+
+El diagrama muestra el pago con su estado, el método de pago que usa y el comprobante que se emite al confirmarse.
+
+#### 5.8.6.2. Bounded Context Database Design Diagram
+
+Diagrama de base de datos (PostgreSQL) con tablas, columnas, tipos y restricciones. Las relaciones entre tablas del mismo contexto se marcan como **FK lógica**: el agregado garantiza la integridad y la tabla guarda el identificador. Las referencias a otros contextos se guardan como identificadores sin clave foránea, para no acoplar los esquemas entre módulos (ADD-05). Las columnas de enums tienen un `CHECK` con los valores permitidos.
+
+![Database Diagram — Payments](assets/chapter-5/database-payments.png)
+
+Las tablas usan el prefijo `pm_`. `pm_webhook_events` tiene la restricción única `uk_pm_webhook_provider_event` sobre `provider_event_id`, que respalda la idempotencia del webhook a nivel de base de datos.
+
+
 # Capítulo VI: Solution UX Design
 
 ## 6.1. Style Guidelines
