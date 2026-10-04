@@ -2250,7 +2250,45 @@ La propuesta visual y funcional responde directamente a estándares de usabilida
 (Wireframe de menús modales)
 <img src="assets/wireframemenumodales.png" alt="Landing Page Mock-up" style="width: 100vw;">
 
-#### 6.4.1.2 Mobile Applications Wireflow Diagrams 
+
+#### 6.4.1.2 Web Applications Wireframes
+En esta sección se presentan los wireframes de fidelidad media para la aplicación web de SEMS
+La propuesta visual y funcional responde directamente a estándares de usabilidad web, estructuración de datos y accesibilidad.
+
+<img src="assets/WireLogin.png" alt="Landing Page Mock-up" style="width: 100vw;">
+
+<img src="assets/WireCreate.png" alt="Landing Page Mock-up" style="width: 100vw;">
+
+<img src="assets/WireRestore.png" alt="Landing Page Mock-up" style="width: 100vw;">
+
+<img src="assets/WireChange.png" alt="Landing Page Mock-up" style="width: 100vw;">
+
+<img src="assets/WireVerify.png" alt="Landing Page Mock-up" style="width: 100vw;">
+
+<img src="assets/WireDashboard.png" alt="Landing Page Mock-up" style="width: 100vw;">
+
+<img src="assets/WireDevices.png" alt="Landing Page Mock-up" style="width: 100vw;">
+
+<img src="assets/WireMonitor.png" alt="Landing Page Mock-up" style="width: 100vw;">
+
+<img src="assets/WireAnalytics.png" alt="Landing Page Mock-up" style="width: 100vw;">
+
+<img src="assets/WireAlerts.png" alt="Landing Page Mock-up" style="width: 100vw;">
+
+<img src="assets/WreReports.png" alt="Landing Page Mock-up" style="width: 100vw;">
+
+<img src="assets/WireSubs.png" alt="Landing Page Mock-up" style="width: 100vw;">
+
+<img src="assets/WireLocals.png" alt="Landing Page Mock-up" style="width: 100vw;">
+
+<img src="assets/WireConfig.png" alt="Landing Page Mock-up" style="width: 100vw;">
+
+<img src="assets/WireNotFound.png" alt="Landing Page Mock-up" style="width: 100vw;">
+
+####
+### 6.4.2. Applications Wireflow Diagrams
+
+#### 6.4.2.1 Mobile Applications Wireflow Diagrams 
 **Segmento 1: Responsable de Operaciones de Cadena**
 
 
@@ -2336,7 +2374,20 @@ Nota: Diagrama de Wireflow de implementación de sugerencias de IA
 Descripción del flujo: El usuario ingresa a "Analíticas" y revisa la sección "Recomendaciones de IA". Identifica una sugerencia útil (ej. "Apaga el Aire Acondicionado a las 3 AM" que promete un ahorro de S/ 35.50). Selecciona aplicar recomendación, y la IA ajusta automáticamente el cronograma del enchufe inteligente. El estado de la recomendación cambia a "Aplicada", reflejando un impacto positivo en la proyección de su factura mensual.
 
 Nota: Diagrama de Wireflow de resolución de alertas
-### 6.4.2. Applications Wireflow Diagrams
+
+#### 6.4.2.2 Mobile Applications Wireflow Diagrams 
+
+<img src="assets/Wireflow1.png" alt="Landing Page Mock-up" style="width: 100vw;">
+
+<img src="assets/Wireflow2.png" alt="Landing Page Mock-up" style="width: 100vw;">
+
+<img src="assets/Wireflow3.png" alt="Landing Page Mock-up" style="width: 100vw;">
+
+<img src="assets/Wireflow4.png" alt="Landing Page Mock-up" style="width: 100vw;">
+
+<img src="assets/Wireflow5.png" alt="Landing Page Mock-up" style="width: 100vw;">
+
+
 # Conclusiones, Bibliografía y Anexos
 
 ## Conclusiones y recomendaciones
