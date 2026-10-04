@@ -1985,24 +1985,357 @@ Muestra cómo se distribuyen los contenedores en la infraestructura de producci�
 **Explicación.** Toda la solución se despliega sobre proveedores de costo cero o mínimo (CON08). Los frontends se sirven como contenido estático o aplicación nativa, y la lógica de negocio queda concentrada en un único contenedor Docker, coherente con ADD-01. El escalado previsto es **vertical**, aumentando los recursos del servicio en Render, y no horizontal por módulo, lo que se acepta porque QAS09 plantea decenas de locales por organización. Si el volumen lo exigiera, el primer paso sería replicar el contenedor del API detrás del balanceador del proveedor, ya que su estado persiste íntegramente en PostgreSQL.
 
 # Capítulo V: Tactical-Level Software Design
+En este capítulo se pasa del diseño estratégico del Capítulo IV al diseño táctico de cada bounded context. La SEMS API es un **monolito modular** (ADD-01) en Spring Boot 3.3 y Java 21, con un paquete por bounded context bajo `com.sems`. Dentro de cada paquete se respetan cuatro capas:
 
-## 5.1. Tactical-Level Domain-Driven Design
+- **domain**: aggregates, entities, value objects, puertos (repositorios y servicios de dominio), sin dependencias de Spring Web ni de JPA.
+- **application**: servicios de comandos y consultas y manejadores de eventos que orquestan los casos de uso sin contener las reglas del dominio.
+- **interfaces**: controladores REST documentados con OpenAPI, recursos de request/response y fachadas ACL para otros contextos.
+- **infrastructure**: adaptadores que implementan los puertos del dominio (JPA, proveedores externos, correo, pasarela de pagos).
 
-### 5.1.1. Bounded contexts y módulos
+Los elementos transversales viven en el paquete `com.sems.shared`, que no constituye un bounded context:
 
-### 5.1.2. Agregados, entidades y objetos de valor
+| Clase | Propósito |
+| :-- | :-- |
+| `DomainEventBus` | Bus de eventos en proceso sobre `ApplicationEventPublisher`. Los consumidores usan `@TransactionalEventListener`, de modo que solo se ejecutan si la transacción que originó el evento se confirmó (ADD-02). |
+| `DomainEvents` | Catálogo de eventos de dominio como records inmutables: `UserRegistered`, `UserLoggedIn`, `RoleAssigned`, `VerificationRequested`, `PasswordResetRequested`, `DeviceRegistered`, `DeviceLinked`, `DeviceUnlinked`, `DeviceStatusUpdated`, `ReadingProcessed`, `AlertTriggered`, `PaymentProcessed` y `SubscriptionChanged`. |
+| `AppException` | Excepción de aplicación con código (`VALIDATION`, `NOT_FOUND`, `CONFLICT`, `UNAUTHORIZED`, `INTERNAL`) que las reglas del dominio lanzan al violarse una invariante. |
+| `SharedExceptionHandler` | `@RestControllerAdvice` que traduce `AppException` y los errores de validación a respuestas HTTP con un `ErrorResponse` uniforme. |
+| `OpenApiConfiguration` | Configuración de la especificación OpenAPI y del esquema de seguridad Bearer (TS06). |
 
-### 5.1.3. Casos de uso y servicios de dominio
+Los bounded contexts se presentan en orden de importancia estratégica: primero los dos contextos núcleo, luego los de soporte y al final los genéricos. Para cada uno se documentan sus cuatro capas, su diagrama de componentes (C4 nivel 3, elaborado en Structurizr) y sus diagramas de nivel de código (clases del Domain Layer y diseño de base de datos).
 
-### 5.1.4. Repositorios, eventos y puertos
+## 5.1. Bounded Context: Energy Monitoring
 
-### 5.1.5. Reglas de consistencia y transacciones
+Contexto **núcleo** que convierte las lecturas de los medidores en información económica: consumo por franja, tarifa comercial vigente y desglose de la factura estimada. Materializa ADD-04: el cálculo tarifario vive solo aquí y los demás contextos lo consumen por puertos.
 
-## 5.2. Tactical-Level Attribute-Driven Design
+### 5.1.1. Domain Layer
 
-### 5.2.1. Estructura interna de cada módulo
+El núcleo del modelo son los value objects `CommercialTariff` y `BillBreakdown`. `CommercialTariff.calcular(...)` combina la energía en punta y fuera de punta, el cargo por potencia sobre la demanda máxima (con recargo por la parte que excede la potencia contratada), el cargo fijo y el IGV, redondeando al céntimo con `HALF_UP`, lo que sostiene QAS02. `HorarioPunta` implementa la regla del pliego en hora local de Perú, con la exclusión de domingos como opción y no como regla general. `EnergyMeter` y `EnergyReading` están en el paquete `entities`, pero cada una tiene repositorio propio, por lo que funcionan como raíces de agregado independientes. Cada entidad expone una factory (`register`, `record`, `create`, `raise`) y un `rehydrate(...)` usado solo por los mappers de persistencia.
 
-### 5.2.2. Escenarios de validación
+| Clase | Categoría | Propósito | Atributos | Métodos |
+| :-- | :-- | :-- | :-- | :-- |
+| `ConsumptionAlert` | Entity | Alerta de consumo propia del contexto de energía, con valor umbral, valor real y estados de lectura y resolución. | `- id: UUID`<br>`- userId: String`<br>`- deviceId: String`<br>`- meterId: String`<br>`- alertType: AlertType`<br>`- severity: AlertSeverity`<br>`- thresholdValue: double`<br>`- actualValue: double`<br>`- message: String`<br>`- read: boolean`<br>`- resolved: boolean`<br>`- createdAt: Instant`<br>`- resolvedAt: Instant` | `+ raise(userId: String, deviceId: String, meterId: String, alertType: AlertType, severity: AlertSeverity, thresholdValue: double, actualValue: double, message: String): ConsumptionAlert` *(static)*<br>`+ markAsRead()`<br>`+ resolve()`<br>`+ excessPercentage(): double` |
+| `DeviceConsumption` | Entity | Resumen de consumo de un dispositivo en un periodo (kWh, potencia pico y media, costo estimado). | `+ DEFAULT_TARIFF: double`<br>`- id: UUID`<br>`- userId: String`<br>`- deviceId: String`<br>`- deviceName: String`<br>`- meterId: String`<br>`- totalKwh: double`<br>`- costEstimateSoles: double`<br>`- periodStart: Instant`<br>`- periodEnd: Instant`<br>`- peakPowerWatts: double`<br>`- averagePowerWatts: double`<br>`- readingCount: int`<br>`- createdAt: Instant`<br>`- updatedAt: Instant` | `+ create(userId: String, deviceId: String, deviceName: String, meterId: String, totalKwh: double, costEstimateSoles: double, periodStart: Instant, periodEnd: Instant, peakPowerWatts: double, averagePowerWatts: double, readingCount: int): DeviceConsumption` *(static)*<br>`+ costPerKwh(tariff: double): double`<br>`+ isHighConsumer(thresholdKwh: double): boolean` |
+| `EnergyMeter` | Aggregate Root | Medidor de energía instalado; conserva su estado operativo y su última señal de vida. Tiene repositorio propio, por lo que actúa como raíz de su agregado. | `- id: UUID`<br>`- userId: String`<br>`- meterSerial: String`<br>`- model: String`<br>`- brand: String`<br>`- location: String`<br>`- status: MeterStatus`<br>`- firmwareVersion: String`<br>`- maxPowerWatts: double`<br>`- registeredAt: Instant`<br>`- lastSeenAt: Instant`<br>`- updatedAt: Instant` | `+ register(userId: String, meterSerial: String, model: String, brand: String, location: String, firmwareVersion: String, maxPowerWatts: Double): EnergyMeter` *(static)*<br>`+ isActive(): boolean`<br>`+ updateLastSeen()`<br>`+ deactivate()` |
+| `EnergyReading` | Aggregate Root | Lectura de consumo reportada por un medidor en un instante. Es inmutable y actúa como raíz de agregado de cada medición. | `- id: UUID`<br>`- userId: String`<br>`- meterId: String`<br>`- deviceId: String`<br>`- measurement: PowerReading`<br>`- timestamp: Instant`<br>`- readingType: String`<br>`- phase: String`<br>`- createdAt: Instant` | `+ record(userId: String, meterId: String, deviceId: String, measurement: PowerReading, timestamp: Instant, readingType: String, phase: String): EnergyReading` *(static)*<br>`+ isHighConsumption(thresholdWatts: double): boolean`<br>`+ isHighConsumption(): boolean`<br>`+ toKwhRate(): double` |
+| `AlertSeverity` | Enumeration | Severidad de una alerta de consumo. | Valores: `LOW`, `MEDIUM`, `HIGH`, `CRITICAL` | `+ of(value: String): AlertSeverity` *(static)* |
+| `AlertType` | Enumeration | Tipo de alerta de consumo. | Valores: `HIGH_CONSUMPTION`, `ANOMALY_DETECTED`, `DEVICE_ALWAYS_ON`, `THRESHOLD_EXCEEDED`, `UNUSUAL_PATTERN` | `+ of(value: String): AlertType` *(static)* |
+| `BillBreakdown` | Value Object | Desglose inmutable de la factura estimada: energía, potencia, cargo fijo, subtotal, IGV, total y exceso de potencia. | `- kwhPunta: BigDecimal`<br>`- kwhFueraDePunta: BigDecimal`<br>`- demandaMaximaKw: BigDecimal`<br>`- potenciaContratadaKw: BigDecimal`<br>`- excesoDePotenciaKw: BigDecimal`<br>`- costoEnergia: BigDecimal`<br>`- costoPotencia: BigDecimal`<br>`- cargoFijo: BigDecimal`<br>`- subtotal: BigDecimal`<br>`- igv: BigDecimal`<br>`- total: BigDecimal`<br>`- currency: String` | `+ pesoDeLaPotencia(): BigDecimal`<br>`+ hayExcesoDePotencia(): boolean` |
+| `CommercialTariff` | Value Object | Tarifa comercial vigente de una categoría: precios por franja, cargo por potencia, recargo por exceso, cargo fijo e IGV. Encapsula todo el cálculo de la factura (QAS02). | `- provider: String`<br>`- tariffCategory: String`<br>`- currency: String`<br>`- energiaPuntaPorKwh: BigDecimal`<br>`- energiaFueraDePuntaPorKwh: BigDecimal`<br>`- potenciaPorKwMes: BigDecimal`<br>`- excesoDePotenciaPorKwMes: BigDecimal`<br>`- cargoFijoMensual: BigDecimal`<br>`- igv: BigDecimal`<br>`- timestamp: Instant` | `+ costoDeEnergia(kwhPunta: BigDecimal, kwhFueraDePunta: BigDecimal): BigDecimal`<br>`+ costoDePotencia(demandaMaximaKw: BigDecimal, potenciaContratadaKw: BigDecimal): BigDecimal`<br>`+ calcular(kwhPunta: BigDecimal, kwhFueraDePunta: BigDecimal, demandaMaximaKw: BigDecimal, potenciaContratadaKw: BigDecimal): BillBreakdown` |
+| `EnergyPrice` | Value Object | Precio plano de la energía entregado por el proveedor (usado para BT5B). | `- provider: String`<br>`- pricePerKwh: double`<br>`- currency: String`<br>`- timestamp: Instant` | — |
+| `FranjaHoraria` | Enumeration | Franja tarifaria de un instante: PUNTA o FUERA_DE_PUNTA. | Valores: `PUNTA`, `FUERA_DE_PUNTA` | — |
+| `HorarioPunta` | Value Object | Regla del pliego que clasifica un instante en hora punta (18:00–23:00, hora de Perú UTC−5), con exclusión opcional de domingos. | `+ HORA_INICIO: int`<br>`+ HORA_FIN: int`<br>`- PERU: ZoneOffset` | `+ franjaDe(instante: Instant): FranjaHoraria` *(static)*<br>`+ franjaDe(instante: Instant, excluyeDomingos: boolean): FranjaHoraria` *(static)*<br>`+ esHoraPunta(instante: Instant): boolean` *(static)*<br>`+ esHoraPunta(instante: Instant, excluyeDomingos: boolean): boolean` *(static)*<br>`+ aHoraLocal(instante: Instant): LocalDateTime` *(static)* |
+| `MeterStatus` | Enumeration | Estado operativo de un medidor. | Valores: `ACTIVE`, `INACTIVE`, `MAINTENANCE`, `ERROR` | `+ of(value: String): MeterStatus` *(static)* |
+| `PowerReading` | Value Object | Magnitudes eléctricas de una lectura (W, V, A, Hz, kWh). Rechaza valores negativos en su construcción. | `- powerWatts: double`<br>`- voltage: double`<br>`- current: double`<br>`- frequency: double`<br>`- energyKwh: double` | `+ apparentPowerVa(): double`<br>`+ powerFactor(): double` |
+| `ConsumptionAlertRepository` | Repository | Puerto de persistencia (interfaz) de ConsumptionAlert; su implementación vive en Infrastructure. | — | `+ save(alert: ConsumptionAlert): ConsumptionAlert`<br>`+ findById(id: UUID): Optional<ConsumptionAlert>`<br>`+ findByUserId(userId: String): List<ConsumptionAlert>`<br>`+ findUnreadByUserId(userId: String): List<ConsumptionAlert>` |
+| `DeviceConsumptionRepository` | Repository | Puerto de persistencia (interfaz) de DeviceConsumption; su implementación vive en Infrastructure. | — | `+ save(consumption: DeviceConsumption): DeviceConsumption`<br>`+ findById(id: UUID): Optional<DeviceConsumption>`<br>`+ findByUserId(userId: String): List<DeviceConsumption>`<br>`+ findByDeviceId(deviceId: String): List<DeviceConsumption>`<br>`+ findTopByUserId(userId: String, limit: int): List<DeviceConsumption>` |
+| `EnergyMeterRepository` | Repository | Puerto de persistencia (interfaz) de EnergyMeter; su implementación vive en Infrastructure. | — | `+ save(meter: EnergyMeter): EnergyMeter`<br>`+ findById(id: UUID): Optional<EnergyMeter>`<br>`+ findBySerial(meterSerial: String): Optional<EnergyMeter>`<br>`+ findByUserId(userId: String): List<EnergyMeter>` |
+| `EnergyReadingRepository` | Repository | Puerto de persistencia (interfaz) de EnergyReading; su implementación vive en Infrastructure. | — | `+ save(reading: EnergyReading): EnergyReading`<br>`+ findById(id: UUID): Optional<EnergyReading>`<br>`+ findByUserId(userId: String, limit: int): List<EnergyReading>`<br>`+ findByDeviceId(deviceId: String, limit: int, skip: int): List<EnergyReading>`<br>`+ findByRange(userId: String, from: Instant, to: Instant): List<EnergyReading>`<br>`+ findLatestByMeter(meterId: String): Optional<EnergyReading>`<br>`+ findLatestByDevice(deviceId: String): Optional<EnergyReading>` |
+| `EnergyPricingProvider` | Port | Puerto de salida hacia el proveedor de tarifas. Aísla al dominio de la forma concreta del proveedor (ACL, QAS07). | — | `+ currentPrice(): EnergyPrice`<br>`+ currentTariff(tariffCategory: String): CommercialTariff` |
+
+### 5.1.2. Interface Layer
+
+La capa de interfaz expone cinco controladores REST bajo `/api/v1`, todos documentados con OpenAPI (`@Tag`, `@Operation`). Los cuerpos de request y response son records con `@JsonNaming(SnakeCase)` agrupados en `EnergyResources`. El endpoint `POST /api/v1/energy/bill-estimate` es la implementación de TS04 y el único punto donde los clientes obtienen importes (QAS08).
+
+| Controller | Verbo | Endpoint | Acción | User Story |
+| :-- | :-- | :-- | :-- | :-- |
+| `ConsumptionAlertController` | `GET` | `/api/v1/consumption-alerts/user/{userId}` | Alerts for a user | US33 |
+| `ConsumptionAlertController` | `GET` | `/api/v1/consumption-alerts/user/{userId}/unread` | Unread alerts for a user | US33 |
+| `ConsumptionAlertController` | `GET` | `/api/v1/consumption-alerts/{alertId}` | Gets an alert by its identifier | US33 |
+| `ConsumptionAlertController` | `PATCH` | `/api/v1/consumption-alerts/{alertId}/read` | Marks an alert as read | US33 |
+| `ConsumptionAlertController` | `PATCH` | `/api/v1/consumption-alerts/{alertId}/resolve` | Marks an alert as resolved | US33 |
+| `DeviceConsumptionController` | `GET` | `/api/v1/device-consumptions/user/{userId}` | A user's consumption summaries | US26 |
+| `DeviceConsumptionController` | `GET` | `/api/v1/device-consumptions/user/{userId}/top` | A user's highest-consuming devices | US26 |
+| `DeviceConsumptionController` | `GET` | `/api/v1/device-consumptions/{consumptionId}` | Gets a summary by its identifier | US26 |
+| `EnergyMeterController` | `POST` | `/api/v1/energy-meters` | Registers a new meter | US19 |
+| `EnergyMeterController` | `GET` | `/api/v1/energy-meters/user/{userId}` | Lists a user's meters | US20 |
+| `EnergyMeterController` | `PATCH` | `/api/v1/energy-meters/{meterId}/deactivate` | Deactivates a meter | US23 |
+| `EnergyMeterController` | `GET` | `/api/v1/energy-meters/{meterId}` | Gets a meter by its identifier | US20 |
+| `EnergyPricingController` | `GET` | `/api/v1/energy/pricing/current` | Current electricity tariff | US27 |
+| `EnergyPricingController` | `GET` | `/api/v1/energy/tariffs/{tariffCategory}` | Current commercial tariff for a category of the schedule | US27 |
+| `EnergyPricingController` | `POST` | `/api/v1/energy/bill-estimate` | Estimates a site's monthly bill | US35, US36, TS04 |
+| `EnergyPricingController` | `GET` | `/api/v1/energy/devices/{deviceId}/consumption/current` | Current consumption of a device | US24 |
+| `EnergyPricingController` | `GET` | `/api/v1/energy/devices/{deviceId}/consumption/history` | Consumption history of a device | US25 |
+| `EnergyReadingController` | `POST` | `/api/v1/energy-readings` | Records a new reading | US24 |
+| `EnergyReadingController` | `GET` | `/api/v1/energy-readings/user/{userId}` | A user's readings, newest first | US25 |
+| `EnergyReadingController` | `GET` | `/api/v1/energy-readings/device/{deviceId}` | Readings from a device | US25 |
+| `EnergyReadingController` | `GET` | `/api/v1/energy-readings/range` | A user's readings within a date range | US25 |
+| `EnergyReadingController` | `GET` | `/api/v1/energy-readings/meter/{meterId}/latest` | Latest reading from a meter | US24 |
+| `EnergyReadingController` | `GET` | `/api/v1/energy-readings/{readingId}` | Gets a reading by its identifier | US25 |
+
+Recursos de request/response: `RegisterMeterRequest`, `CreateReadingRequest`, `MeterResponse`, `ReadingResponse`, `ConsumptionResponse`, `AlertResponse`, `PricingResponse`, `TariffResponse`, `EstimateBillRequest`, `BillEstimateResponse`.
+
+### 5.1.3. Application Layer
+
+`EnergyCommandService` actúa como command handler: cada método público atiende un comando (registrar medidor, registrar lectura, calcular factura) y abre la transacción. Tras registrar una lectura publica `ReadingProcessed` en el `DomainEventBus`, que se despacha después del commit (ADD-02). `EnergyQueryService` concentra las consultas en transacciones de solo lectura.
+
+| Clase | Tipo | Responsabilidad | Operaciones (métodos públicos) |
+| :-- | :-- | :-- | :-- |
+| `EnergyCommandService` | Command Service | Command handler del contexto: registra medidores y lecturas, levanta y resuelve alertas de consumo, resuelve la tarifa y calcula la factura. Publica ReadingProcessed y AlertTriggered. | `registerMeter()`, `deactivateMeter()`, `recordReading()`, `raiseAlert()`, `markAlertRead()`, `resolveAlert()`, `currentTariff()`, `estimateBill()`, `currentPrice()` |
+| `EnergyQueryService` | Query Service | Consultas de medidores, lecturas (por usuario, dispositivo, rango, última), consumos y alertas. | `meterById()`, `metersByUser()`, `readingById()`, `readingsByUser()`, `readingsByDevice()`, `readingsByRange()`, `latestByMeter()`, `latestByDevice()`, `consumptionById()`, `consumptionsByUser()`, `topConsumersByUser()`, `alertById()`, `alertsByUser()`, `unreadAlertsByUser()` |
+
+### 5.1.4. Infrastructure Layer
+
+Los adaptadores de repositorio están agrupados como clases estáticas en `EnergyRepositoryAdapters` y traducen con `EnergyMapper`. `MockPlusEnergiaAdapter` implementa `EnergyPricingProvider` con importes referenciales por categoría; sustituirlo por un proveedor real solo requiere cambiar esta clase (QAS07).
+
+| Clase | Paquete | Responsabilidad |
+| :-- | :-- | :-- |
+| `MockPlusEnergiaAdapter` | `energy.infrastructure.external.pricing` | Implementa EnergyPricingProvider con importes referenciales por categoría tarifaria; punto único de sustitución por el proveedor real (QAS07). |
+| `EnergyMapper` | `energy.infrastructure.persistence.jpa.adapters` | Traduce entre el modelo de dominio y las entidades JPA (toDomain / toEntity). |
+| `EnergyRepositoryAdapters` | `energy.infrastructure.persistence.jpa.adapters` | Agrupa los adaptadores JPA `MeterAdapter`, `ReadingAdapter`, `ConsumptionAdapter`, `AlertAdapter`, que implementan los repositorios del dominio. |
+| `ConsumptionAlertJpaEntity` | `energy.infrastructure.persistence.jpa.entities` | Entidad JPA de la tabla `em_consumption_alerts`. |
+| `DeviceConsumptionJpaEntity` | `energy.infrastructure.persistence.jpa.entities` | Entidad JPA de la tabla `em_device_consumptions`. |
+| `EnergyMeterJpaEntity` | `energy.infrastructure.persistence.jpa.entities` | Entidad JPA de la tabla `em_energy_meters`. |
+| `EnergyReadingJpaEntity` | `energy.infrastructure.persistence.jpa.entities` | Entidad JPA de la tabla `em_energy_readings`. |
+| `ConsumptionAlertJpaRepository` | `energy.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+| `DeviceConsumptionJpaRepository` | `energy.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+| `EnergyMeterJpaRepository` | `energy.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+| `EnergyReadingJpaRepository` | `energy.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+
+### 5.1.5. Bounded Context Software Architecture Component Level Diagrams
+
+Diagrama de componentes del container **SEMS API** acotado al bounded context Energy Monitoring. Se elaboró en Structurizr DSL (`src/sems-components.dsl`, vista `bc-energy`). Los colores distinguen la capa de cada componente: Interface (azul oscuro), Application (azul), Domain (verde), Infrastructure (gris) y el bus compartido (ocre).
+
+![Component Diagram — Energy Monitoring](assets/chapter-5/component-energy.png)
+
+El diagrama muestra cómo los medidores y las aplicaciones cliente entran por controladores distintos, pero todo cálculo pasa por `EnergyCommandService` y el modelo de dominio. Hacia fuera, el contexto depende del proveedor de tarifas solo a través de `MockPlusEnergiaAdapter`. Hacia otros contextos expone dos salidas: el evento `ReadingProcessed`, que consume `ConsumptionEventHandler` de Demand & Alerting, y el puerto `EnergyPricingProvider`, que usa `EnergyBillCalculator` de Analytics.
+
+### 5.1.6. Bounded Context Software Architecture Code Level Diagrams
+
+Esta sección presenta el detalle de implementación del bounded context Energy Monitoring: el diagrama de clases de su Domain Layer y el diseño de su base de datos.
+
+#### 5.1.6.1. Bounded Context Domain Layer Class Diagrams
+
+Diagrama de clases UML del Domain Layer con atributos, métodos y su visibilidad (`+` public, `-` private), métodos estáticos subrayados, estereotipos DDD y relaciones con nombre, dirección y multiplicidad. Los getters los genera Lombok (`@Getter`) y se omiten del diagrama, al igual que los métodos `rehydrate(...)` usados solo por los mappers de persistencia.
+
+![Domain Layer Class Diagram — Energy Monitoring](assets/chapter-5/class-energy.png)
+
+El diagrama destaca `CommercialTariff` como el objeto que crea `BillBreakdown`, y la relación de composición entre `EnergyReading` y `PowerReading`. Las referencias entre lecturas, consumos, alertas y medidor son por identificador (`meterId`), no por referencia de objeto, para no cargar agregados completos.
+
+#### 5.1.6.2. Bounded Context Database Design Diagram
+
+Diagrama de base de datos (PostgreSQL) con tablas, columnas, tipos y restricciones. Las relaciones entre tablas del mismo contexto se marcan como **FK lógica**: el agregado garantiza la integridad y la tabla guarda el identificador. Las referencias a otros contextos se guardan como identificadores sin clave foránea, para no acoplar los esquemas entre módulos (ADD-05). Las columnas de enums tienen un `CHECK` con los valores permitidos.
+
+![Database Diagram — Energy Monitoring](assets/chapter-5/database-energy.png)
+
+Las cuatro tablas usan el prefijo `em_` (ADD-05). `em_energy_readings` tiene índices compuestos por usuario, dispositivo y medidor junto con `timestamp`, porque las consultas de histórico (US25) siempre filtran por rango de tiempo. `meter_serial` es único. Las referencias a usuarios y dispositivos de otros contextos se guardan como identificadores sin clave foránea física.
+
+
+## 5.2. Bounded Context: Demand & Alerting
+
+Contexto **núcleo** que vigila la demanda y el consumo contra las reglas configuradas y avisa mientras todavía se puede evitar el recargo. Su razón de cambio es la política comercial del cliente, distinta de la del pliego tarifario, por eso está separado de Energy Monitoring.
+
+### 5.2.1. Domain Layer
+
+`DemandRule` concentra la regla de negocio central del producto: `umbralDeAvisoKw()` calcula el umbral a partir del porcentaje de aviso (85% por defecto), `evaluar(demandaKw)` devuelve `OK`, `WARNING` o `EXCEEDED` (una demanda igual a la contratada es aviso, no exceso, y una regla inactiva nunca avisa) y `margenKw(...)` da los kW restantes, que el mensaje de la alerta muestra al usuario (US29, US30, QAS10). `AlertThreshold.isBreachedBy(valor)` delega en `Operator.test(...)` para los umbrales por dispositivo (US32). Los repositorios de alertas, umbrales, reglas de inactividad, preferencias y logs se declaran como interfaces anidadas en `AlertRepositories`; `DemandRuleRepository` está en archivo propio.
+
+| Clase | Categoría | Propósito | Atributos | Métodos |
+| :-- | :-- | :-- | :-- | :-- |
+| `Alert` | Entity | Alerta generada para un usuario, con tipo, severidad, mensaje y estado (active / resolved). | `+ STATUS_ACTIVE: String`<br>`+ STATUS_RESOLVED: String`<br>`- alertId: UUID`<br>`- userId: UUID`<br>`- deviceId: UUID`<br>`- thresholdId: UUID`<br>`- inactivityRuleId: UUID`<br>`- alertType: String`<br>`- title: String`<br>`- message: String`<br>`- severity: String`<br>`- status: String`<br>`- triggeredAt: Instant`<br>`- resolvedAt: Instant` | `+ raise(userId: UUID, deviceId: UUID, thresholdId: UUID, inactivityRuleId: UUID, alertType: String, title: String, message: String, severity: String, status: String, triggeredAt: Instant): Alert` *(static)*<br>`+ updateStatus(newStatus: String, resolvedAt: Instant)` |
+| `AlertThreshold` | Entity | Umbral de consumo definido para un dispositivo con un operador de comparación. | `- thresholdId: UUID`<br>`- userId: UUID`<br>`- deviceId: UUID`<br>`- thresholdName: String`<br>`- metric: String`<br>`- operator: Operator`<br>`- thresholdValue: double`<br>`- active: boolean`<br>`- createdAt: Instant`<br>`- updatedAt: Instant` | `+ create(userId: UUID, deviceId: UUID, name: String, metric: String, operator: Operator, value: double, active: Boolean): AlertThreshold` *(static)*<br>`+ isBreachedBy(value: double): boolean`<br>`+ deactivate()` |
+| `DemandRule` | Entity | Regla de vigilancia de demanda de un local: potencia contratada y porcentaje de aviso (85% por defecto). Clasifica una demanda medida en OK, WARNING o EXCEEDED y calcula el margen restante. | `- demandRuleId: UUID`<br>`- siteId: UUID`<br>`- userId: UUID`<br>`- ruleName: String`<br>`- contractedPowerKw: double`<br>`- warningPercent: double`<br>`- active: boolean`<br>`- createdAt: Instant`<br>`- updatedAt: Instant` | `+ create(siteId: UUID, userId: UUID, ruleName: String, contractedPowerKw: double, warningPercent: Double, active: Boolean): DemandRule` *(static)*<br>`+ umbralDeAvisoKw(): double`<br>`+ evaluar(demandaKw: double): DemandLevel`<br>`+ margenKw(demandaKw: double): double`<br>`+ updateDetails(ruleName: String, contractedPowerKw: double, warningPercent: double)`<br>`+ deactivate()` |
+| `InactivityRule` | Entity | Regla que detecta un dispositivo sin actividad por más de N minutos. | `- inactivityRuleId: UUID`<br>`- userId: UUID`<br>`- deviceId: UUID`<br>`- ruleName: String`<br>`- maxInactiveMinutes: int`<br>`- active: boolean`<br>`- createdAt: Instant`<br>`- updatedAt: Instant` | `+ create(userId: UUID, deviceId: UUID, ruleName: String, maxInactiveMinutes: int, active: boolean): InactivityRule` *(static)*<br>`+ isInactive(lastActive: Instant, now: Instant): boolean` |
+| `NotificationLog` | Entity | Registro del intento de envío de una notificación (enviada o fallida, con el error). | `+ STATUS_SENT: String`<br>`+ STATUS_FAILED: String`<br>`- notificationId: UUID`<br>`- alertId: UUID`<br>`- channel: String`<br>`- recipient: String`<br>`- status: String`<br>`- sentAt: Instant`<br>`- errorMessage: String`<br>`- createdAt: Instant` | `+ sent(alertId: UUID, channel: String, recipient: String): NotificationLog` *(static)*<br>`+ failed(alertId: UUID, channel: String, recipient: String, errorMessage: String): NotificationLog` *(static)* |
+| `NotificationPreference` | Entity | Preferencia de notificación de un usuario por canal: habilitado, severidad mínima y horario de silencio. | `+ CHANNEL_EMAIL: String`<br>`- preferenceId: UUID`<br>`- userId: UUID`<br>`- channel: String`<br>`- enabled: boolean`<br>`- minSeverity: String`<br>`- quietHoursStart: Instant`<br>`- quietHoursEnd: Instant`<br>`- createdAt: Instant`<br>`- updatedAt: Instant` | `+ create(userId: UUID, channel: String, enabled: boolean, minSeverity: String, quietStart: Instant, quietEnd: Instant): NotificationPreference` *(static)* |
+| `DemandLevel` | Enumeration | Resultado de evaluar una demanda contra una regla. | Valores: `OK`, `WARNING`, `EXCEEDED` | — |
+| `Operator` | Enumeration | Operador de comparación de un umbral; sabe evaluarse con test(valor, umbral). | Valores: `GREATER_THAN`, `GREATER_THAN_OR_EQUAL`, `LESS_THAN`, `LESS_THAN_OR_EQUAL`, `EQUAL` | `+ of(value: String): Operator` *(static)*<br>`+ test(value: double, threshold: double): boolean` |
+| `AlertRepository` | Repository | Puerto de persistencia (interfaz) de Alert; su implementación vive en Infrastructure. | — | `+ save(alert: Alert): Alert`<br>`+ findById(alertId: UUID): Optional<Alert>`<br>`+ findAll(): List<Alert>`<br>`+ findByUserId(userId: UUID): List<Alert>` |
+| `ThresholdRepository` | Repository | Puerto de persistencia (interfaz) de Threshold; su implementación vive en Infrastructure. | — | `+ save(threshold: AlertThreshold): AlertThreshold`<br>`+ findById(thresholdId: UUID): Optional<AlertThreshold>`<br>`+ findByUserId(userId: UUID): List<AlertThreshold>`<br>`+ findActiveByDeviceId(deviceId: UUID): List<AlertThreshold>`<br>`+ countByUserId(userId: UUID): long` |
+| `InactivityRuleRepository` | Repository | Puerto de persistencia (interfaz) de InactivityRule; su implementación vive en Infrastructure. | — | `+ save(rule: InactivityRule): InactivityRule`<br>`+ findByUserId(userId: UUID): List<InactivityRule>`<br>`+ findAllActive(): List<InactivityRule>` |
+| `NotificationPreferenceRepository` | Repository | Puerto de persistencia (interfaz) de NotificationPreference; su implementación vive en Infrastructure. | — | `+ save(preference: NotificationPreference): NotificationPreference`<br>`+ findByUserId(userId: UUID): List<NotificationPreference>`<br>`+ findByUserIdAndChannel(userId: UUID, channel: String): Optional<NotificationPreference>` |
+| `NotificationLogRepository` | Repository | Puerto de persistencia (interfaz) de NotificationLog; su implementación vive en Infrastructure. | — | `+ save(log: NotificationLog): NotificationLog`<br>`+ findByAlertId(alertId: UUID): List<NotificationLog>` |
+| `DemandRuleRepository` | Repository | Puerto de persistencia (interfaz) de DemandRule; su implementación vive en Infrastructure. | — | `+ save(rule: DemandRule): DemandRule`<br>`+ findById(demandRuleId: UUID): Optional<DemandRule>`<br>`+ findActiveBySiteId(siteId: UUID): List<DemandRule>`<br>`+ findByUserId(userId: UUID): List<DemandRule>` |
+| `EmailSender` | Port | Puerto de salida para el envío de correos. | — | `+ send(to: String, subject: String, body: String)` |
+
+### 5.2.2. Interface Layer
+
+`AlertController` agrupa los endpoints del contexto bajo `/api/v1`. `POST /api/v1/sites/{siteId}/demand-evaluations` implementa TS05: recibe la demanda medida y devuelve las alertas generadas, o una lista vacía si no se incumple ninguna regla (US31).
+
+| Controller | Verbo | Endpoint | Acción | User Story |
+| :-- | :-- | :-- | :-- | :-- |
+| `AlertController` | `POST` | `/api/v1/alerts` | Creates an alert | US32 |
+| `AlertController` | `GET` | `/api/v1/alerts` | Lists every alert | US33 |
+| `AlertController` | `GET` | `/api/v1/alerts/{id}` | Gets an alert by its identifier | US33 |
+| `AlertController` | `PATCH` | `/api/v1/alerts/{id}/status` | Changes the status of an alert | US33 |
+| `AlertController` | `GET` | `/api/v1/users/{userId}/alerts` | Alerts for a user | US33 |
+| `AlertController` | `POST` | `/api/v1/thresholds` | Creates a consumption threshold | US32 |
+| `AlertController` | `GET` | `/api/v1/users/{userId}/thresholds` | A user's thresholds | US32 |
+| `AlertController` | `POST` | `/api/v1/inactivity-rules` | Creates an inactivity rule | US32 |
+| `AlertController` | `GET` | `/api/v1/users/{userId}/inactivity-rules` | A user's inactivity rules | US32 |
+| `AlertController` | `POST` | `/api/v1/notification-preferences` | Saves a notification preference | US34 |
+| `AlertController` | `GET` | `/api/v1/users/{userId}/notification-preferences` | A user's notification preferences | US34 |
+| `AlertController` | `POST` | `/api/v1/demand-rules` | Creates a demand-watch rule for a site | US28 |
+| `AlertController` | `GET` | `/api/v1/sites/{siteId}/demand-rules` | Active demand rules for a site | US28 |
+| `AlertController` | `POST` | `/api/v1/sites/{siteId}/demand-evaluations` | Evaluates a measured demand and raises the corresponding alerts | US29, US30, US31, TS05 |
+
+Recursos de request/response: `CreateAlertRequest`, `UpdateAlertStatusRequest`, `CreateThresholdRequest`, `CreateInactivityRuleRequest`, `CreatePreferenceRequest`, `CreateDemandRuleRequest`, `EvaluateDemandRequest`, `DemandRuleResponse`, `AlertResponse`, `ThresholdResponse`, `InactivityRuleResponse`, `PreferenceResponse`.
+
+### 5.2.3. Application Layer
+
+`AlertCommandService.evaluateDemand(...)` recorre las reglas activas del local, genera una alerta por cada regla incumplida (no una por local) y publica `AlertTriggered`. Hay dos event handlers asíncronos con `@TransactionalEventListener`: `ConsumptionEventHandler` reacciona a `ReadingProcessed` evaluando los umbrales del dispositivo, y `NotificationEventHandler` reacciona a `AlertTriggered`, `UserRegistered`, `VerificationRequested`, `PasswordResetRequested` y `PaymentProcessed`. Al ejecutarse después del commit, una caída del servidor de correo no revierte la alerta (QAS01). `NotificationService` reintenta el envío hasta 3 veces con `@Retryable` y registra el resultado en `NotificationLog`.
+
+| Clase | Tipo | Responsabilidad | Operaciones (métodos públicos) |
+| :-- | :-- | :-- | :-- |
+| `AlertCommandService` | Command Service | Crea reglas de demanda, umbrales, reglas de inactividad y preferencias; evalúa la demanda de un local y genera alertas. | `createDemandRule()`, `demandRulesBySite()`, `evaluateDemand()`, `createAlert()`, `updateStatus()`, `createThreshold()`, `createInactivityRule()`, `createPreference()` |
+| `AlertQueryService` | Query Service | Consultas de alertas, umbrales, reglas y preferencias por usuario. | `allAlerts()`, `alertById()`, `alertsByUser()`, `thresholdsByUser()`, `rulesByUser()`, `preferencesByUser()` |
+| `ConsumptionEventHandler` | Event Handler | Reacciona a ReadingProcessed (asíncrono, tras el commit) y genera una alerta por cada umbral activo del dispositivo que la lectura incumple. | `onReadingProcessed()` |
+| `NotificationEventHandler` | Event Handler | Reacciona a AlertTriggered, UserRegistered, VerificationRequested, PasswordResetRequested y PaymentProcessed; resuelve el destinatario vía IamAcl y solicita el envío. | `onUserRegistered()`, `onVerificationRequested()`, `onPasswordResetRequested()`, `onPaymentProcessed()`, `onAlertTriggered()` |
+| `NotificationService` | Application Service | Envía el correo con hasta 3 reintentos (@Retryable) y registra un NotificationLog enviado o fallido (@Recover). | `recoverFromFailedEmail()` |
+
+### 5.2.4. Infrastructure Layer
+
+`SmtpEmailSender` implementa el puerto `EmailSender` sobre `JavaMailSender`. Los adaptadores JPA están agrupados en `AlertAdapters` y las entidades JPA en `AlertJpaEntities`; `DemandRuleRepositoryAdapter` y `DemandRuleJpaEntity` están en archivos propios.
+
+| Clase | Paquete | Responsabilidad |
+| :-- | :-- | :-- |
+| `SmtpEmailSender` | `alerts.infrastructure.notifications` | Implementa EmailSender sobre JavaMailSender (SMTP con STARTTLS); se desactiva con MAIL_ENABLED=false. |
+| `AlertAdapters` | `alerts.infrastructure.persistence.jpa.adapters` | Agrupa los adaptadores JPA `AlertAdapter`, `ThresholdAdapter`, `InactivityRuleAdapter`, `PreferenceAdapter`, `NotificationLogAdapter`, que implementan los repositorios del dominio. |
+| `DemandRuleRepositoryAdapter` | `alerts.infrastructure.persistence.jpa.adapters` | Implementa DemandRuleRepository del dominio sobre Spring Data JPA. |
+| `AlertJpaEntities` | `alerts.infrastructure.persistence.jpa.entities` | Agrupa las entidades JPA de las tablas `al_alerts`, `al_thresholds`, `al_inactivity_rules`, `al_notification_preferences`, `al_notification_logs`. |
+| `DemandRuleJpaEntity` | `alerts.infrastructure.persistence.jpa.entities` | Entidad JPA de la tabla `al_demand_rules`. |
+| `AlertJpa` | `alerts.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+| `DemandRuleJpa` | `alerts.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+| `InactivityRuleJpa` | `alerts.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+| `NotificationLogJpa` | `alerts.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+| `PreferenceJpa` | `alerts.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+| `ThresholdJpa` | `alerts.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+
+### 5.2.5. Bounded Context Software Architecture Component Level Diagrams
+
+Diagrama de componentes del container **SEMS API** acotado al bounded context Demand & Alerting. Se elaboró en Structurizr DSL (`src/sems-components.dsl`, vista `bc-alerts`). Los colores distinguen la capa de cada componente: Interface (azul oscuro), Application (azul), Domain (verde), Infrastructure (gris) y el bus compartido (ocre).
+
+![Component Diagram — Demand & Alerting](assets/chapter-5/component-alerts.png)
+
+El diagrama muestra las dos entradas del contexto. La síncrona viene de las aplicaciones a través de `AlertController`. La asíncrona viene del `DomainEventBus` hacia los event handlers. El correo del destinatario se obtiene de IAM mediante la fachada `IamAcl`, sin acceder a sus tablas, y el envío sale por `SmtpEmailSender`.
+
+### 5.2.6. Bounded Context Software Architecture Code Level Diagrams
+
+Esta sección presenta el detalle de implementación del bounded context Demand & Alerting: el diagrama de clases de su Domain Layer y el diseño de su base de datos.
+
+#### 5.2.6.1. Bounded Context Domain Layer Class Diagrams
+
+Diagrama de clases UML del Domain Layer con atributos, métodos y su visibilidad (`+` public, `-` private), métodos estáticos subrayados, estereotipos DDD y relaciones con nombre, dirección y multiplicidad. Los getters los genera Lombok (`@Getter`) y se omiten del diagrama, al igual que los métodos `rehydrate(...)` usados solo por los mappers de persistencia.
+
+![Domain Layer Class Diagram — Demand & Alerting](assets/chapter-5/class-alerts.png)
+
+El diagrama muestra que una `Alert` puede originarse en un umbral o en una regla de inactividad (ambas referencias son opcionales) y que cada envío deja un `NotificationLog`. `DemandRule` no guarda alertas: produce un `DemandLevel` que el servicio de aplicación traduce en alertas.
+
+#### 5.2.6.2. Bounded Context Database Design Diagram
+
+Diagrama de base de datos (PostgreSQL) con tablas, columnas, tipos y restricciones. Las relaciones entre tablas del mismo contexto se marcan como **FK lógica**: el agregado garantiza la integridad y la tabla guarda el identificador. Las referencias a otros contextos se guardan como identificadores sin clave foránea, para no acoplar los esquemas entre módulos (ADD-05). Las columnas de enums tienen un `CHECK` con los valores permitidos.
+
+![Database Diagram — Demand & Alerting](assets/chapter-5/database-alerts.png)
+
+Las tablas usan el prefijo `al_`. `al_demand_rules` está indexada por `site_id` porque la evaluación siempre busca las reglas activas de un local. `al_notification_preferences` tiene la restricción única `uk_al_pref_user_channel`, de modo que hay una sola preferencia por usuario y canal.
+
+
+## 5.3. Bounded Context: Organizations
+
+Contexto **de soporte** que representa la estructura del negocio del cliente (organización, locales y zonas) y decide quién accede a qué mediante vínculos con alcance. Sin él, ningún otro contexto tiene a qué referirse.
+
+### 5.3.1. Domain Layer
+
+`Organization` y `Site` son agregados distintos a propósito: una cadena puede tener decenas de locales y cargarlos todos para modificar uno sería un desperdicio, así que se relacionan por `organizationId`. `Zone` es entidad del agregado `Site`. `Membership` está en el paquete `entities` pero tiene repositorio propio y se gestiona de forma independiente, por lo que funciona como raíz de su agregado. Las invariantes del contexto viven en el dominio: RUC de 11 dígitos (US12), potencia contratada mayor que cero (US13), alcance del vínculo según el papel (US10) y deducción de `operatesOffHours` según el tipo de zona (US18).
+
+| Clase | Categoría | Propósito | Atributos | Métodos |
+| :-- | :-- | :-- | :-- | :-- |
+| `Organization` | Aggregate Root | Raíz de agregado de la empresa cliente, identificada por su RUC de 11 dígitos. Agrupa locales y vínculos de acceso por identificador. | `- organizationId: UUID`<br>`- legalName: String`<br>`- tradeName: String`<br>`- taxId: String`<br>`- businessType: BusinessType`<br>`- status: OrgStatus`<br>`- createdAt: Instant`<br>`- updatedAt: Instant` | `+ register(legalName: String, tradeName: String, taxId: String, businessType: BusinessType): Organization` *(static)*<br>`+ updateDetails(legalName: String, tradeName: String, businessType: BusinessType)`<br>`+ suspend()`<br>`+ reactivate()`<br>`+ archive()`<br>`+ isActive(): boolean` |
+| `Site` | Aggregate Root | Raíz de agregado del local: suministro con potencia contratada, categoría tarifaria y exclusión de domingos. Es la unidad sobre la que se calcula la factura. | `- siteId: UUID`<br>`- organizationId: UUID`<br>`- siteCode: String`<br>`- name: String`<br>`- address: String`<br>`- district: String`<br>`- floorAreaM2: BigDecimal`<br>`- contractedPowerKw: BigDecimal`<br>`- tariffCategory: TariffCategory`<br>`- excludesSundaysFromPeak: boolean`<br>`- status: OrgStatus`<br>`- createdAt: Instant`<br>`- updatedAt: Instant` | `+ register(organizationId: UUID, siteCode: String, name: String, address: String, district: String, floorAreaM2: BigDecimal, contractedPowerKw: BigDecimal, tariffCategory: TariffCategory, excludesSundaysFromPeak: boolean): Site` *(static)*<br>`+ updateDetails(name: String, address: String, district: String, floorAreaM2: BigDecimal, contractedPowerKw: BigDecimal, tariffCategory: TariffCategory, excludesSundaysFromPeak: boolean)`<br>`- validarMedidas(floorAreaM2: BigDecimal, contractedPowerKw: BigDecimal)` *(static)*<br>`+ archive()`<br>`+ isActive(): boolean`<br>`+ excesoDePotencia(demandaMaximaKw: BigDecimal): BigDecimal` |
+| `Membership` | Aggregate Root | Vínculo de acceso persona–organización con papel y alcance (siteId nulo = toda la organización). Hace cumplir que un ORG_ADMIN no se limite a un local y que un SUPERVISOR sí tenga uno. | `- membershipId: UUID`<br>`- organizationId: UUID`<br>`- userId: UUID`<br>`- role: MembershipRole`<br>`- siteId: UUID`<br>`- status: OrgStatus`<br>`- createdAt: Instant`<br>`- updatedAt: Instant` | `+ grant(organizationId: UUID, userId: UUID, role: MembershipRole, siteId: UUID): Membership` *(static)*<br>`- validarAlcance(role: MembershipRole, siteId: UUID)` *(static)*<br>`+ changeRole(role: MembershipRole, siteId: UUID)`<br>`+ revoke()`<br>`+ isActive(): boolean`<br>`+ alcanzaAlLocal(siteId: UUID): boolean`<br>`+ puedeModificar(): boolean`<br>`+ puedeAdministrarLaOrganizacion(): boolean` |
+| `Zone` | Entity | Entidad del agregado Site: subdivisión funcional del local. Deduce si opera fuera de horario a partir de su tipo. | `- zoneId: UUID`<br>`- siteId: UUID`<br>`- name: String`<br>`- zoneType: ZoneType`<br>`- operatesOffHours: boolean`<br>`- status: OrgStatus`<br>`- createdAt: Instant` | `+ register(siteId: UUID, name: String, zoneType: ZoneType, operatesOffHours: Boolean): Zone` *(static)*<br>`+ updateDetails(name: String, zoneType: ZoneType, operatesOffHours: boolean)`<br>`+ archive()`<br>`+ isActive(): boolean` |
+| `BusinessType` | Enumeration | Tipo de negocio del establecimiento. | Valores: `SUPERMARKET`, `CONVENIENCE_STORE`, `DEPARTMENT_STORE`, `RESTAURANT`, `WAREHOUSE`, `OTHER` | `+ of(value: String): BusinessType` *(static)* |
+| `MembershipRole` | Enumeration | Papel dentro de la organización: ORG_ADMIN, SUPERVISOR, OPERATOR. | Valores: `ORG_ADMIN`, `SUPERVISOR`, `OPERATOR` | `+ of(value: String): MembershipRole` *(static)* |
+| `OrgStatus` | Enumeration | Estado de organización, local, zona o vínculo. | Valores: `ACTIVE`, `SUSPENDED`, `ARCHIVED` | `+ of(value: String): OrgStatus` *(static)* |
+| `TariffCategory` | Enumeration | Categoría tarifaria del pliego; sabe si cobra por potencia (todas menos BT5B). | Valores: `BT5B`, `BT3`, `BT4`, `MT2`, `MT3` | `+ of(value: String): TariffCategory` *(static)*<br>`+ cobraPorPotencia(): boolean` |
+| `ZoneType` | Enumeration | Tipo de zona; sabe si funciona fuera de horario (COLD_STORAGE, HVAC). | Valores: `SALES_FLOOR`, `COLD_STORAGE`, `WAREHOUSE`, `KITCHEN`, `OFFICES`, `HVAC`, `PARKING`, `OTHER` | `+ of(value: String): ZoneType` *(static)*<br>`+ funcionaFueraDeHorario(): boolean` |
+| `MembershipRepository` | Repository | Puerto de persistencia (interfaz) de Membership; su implementación vive en Infrastructure. | — | `+ save(membership: Membership): Membership`<br>`+ findById(membershipId: UUID): Optional<Membership>`<br>`+ findByOrganizationId(organizationId: UUID): List<Membership>`<br>`+ findByUserId(userId: UUID): List<Membership>`<br>`+ findByOrganizationAndUser(organizationId: UUID, userId: UUID): Optional<Membership>` |
+| `OrganizationRepository` | Repository | Puerto de persistencia (interfaz) de Organization; su implementación vive en Infrastructure. | — | `+ save(organization: Organization): Organization`<br>`+ findById(organizationId: UUID): Optional<Organization>`<br>`+ findByTaxId(taxId: String): Optional<Organization>`<br>`+ existsByTaxId(taxId: String): boolean`<br>`+ findAll(): List<Organization>` |
+| `SiteRepository` | Repository | Puerto de persistencia (interfaz) de Site; su implementación vive en Infrastructure. | — | `+ save(site: Site): Site`<br>`+ findById(siteId: UUID): Optional<Site>`<br>`+ findByOrganizationId(organizationId: UUID): List<Site>`<br>`+ existsBySiteCode(organizationId: UUID, siteCode: String): boolean` |
+| `ZoneRepository` | Repository | Puerto de persistencia (interfaz) de Zone; su implementación vive en Infrastructure. | — | `+ save(zone: Zone): Zone`<br>`+ findById(zoneId: UUID): Optional<Zone>`<br>`+ findBySiteId(siteId: UUID): List<Zone>` |
+
+### 5.3.2. Interface Layer
+
+`OrganizationController` expone toda la jerarquía bajo `/api/v1`. Los identificadores llegan como texto y se validan con `parseId(...)`, que responde 400 si no son UUID (TS03, escenario 3).
+
+| Controller | Verbo | Endpoint | Acción | User Story |
+| :-- | :-- | :-- | :-- | :-- |
+| `OrganizationController` | `POST` | `/api/v1/organizations` | Registers a chain and makes its creator the administrator | US12, TS03 |
+| `OrganizationController` | `GET` | `/api/v1/users/{userId}/organizations` | Organizations a person belongs to, with their role | US17 |
+| `OrganizationController` | `GET` | `/api/v1/organizations/{organizationId}` | Gets an organization | TS03 |
+| `OrganizationController` | `PUT` | `/api/v1/organizations/{organizationId}` | Updates the organization details | TS03 |
+| `OrganizationController` | `POST` | `/api/v1/organizations/{organizationId}/sites` | Registers a site in the organization | US13 |
+| `OrganizationController` | `GET` | `/api/v1/organizations/{organizationId}/sites` | Active sites of the organization | US14 |
+| `OrganizationController` | `GET` | `/api/v1/organizations/{organizationId}/members` | People with access to the organization | US10 |
+| `OrganizationController` | `POST` | `/api/v1/organizations/{organizationId}/members` | Grants access to a person, or changes their existing access | US10 |
+| `OrganizationController` | `DELETE` | `/api/v1/organizations/{organizationId}/members/{membershipId}` | Revokes a person's access | US11 |
+| `OrganizationController` | `GET` | `/api/v1/sites/{siteId}` | Gets a site | US14 |
+| `OrganizationController` | `PUT` | `/api/v1/sites/{siteId}` | Updates a site | US15 |
+| `OrganizationController` | `DELETE` | `/api/v1/sites/{siteId}` | Archives a site | US16 |
+| `OrganizationController` | `GET` | `/api/v1/sites/{siteId}/zones` | Active zones of the site | US18 |
+| `OrganizationController` | `POST` | `/api/v1/sites/{siteId}/zones` | Creates a zone within the site | US18 |
+| `OrganizationController` | `PUT` | `/api/v1/zones/{zoneId}` | Updates a zone | US18 |
+| `OrganizationController` | `DELETE` | `/api/v1/zones/{zoneId}` | Archives a zone | US18 |
+
+Recursos de request/response: `CreateOrganizationRequest`, `UpdateOrganizationRequest`, `CreateSiteRequest`, `UpdateSiteRequest`, `CreateZoneRequest`, `UpdateZoneRequest`, `GrantMembershipRequest`, `OrganizationResource`, `SiteResource`, `ZoneResource`, `MembershipResource`, `MyOrganizationResource`.
+
+### 5.3.3. Application Layer
+
+`OrganizationCommandService.register(...)` crea la organización y, en la misma transacción, concede al solicitante el vínculo `ORG_ADMIN`; una organización sin administrador no podría gestionarse. `revokeMembership(...)` rechaza revocar al último administrador (US11). `grantMembership(...)` actualiza el vínculo si la persona ya tiene uno, porque existe un único vínculo por organización y usuario.
+
+| Clase | Tipo | Responsabilidad | Operaciones (métodos públicos) |
+| :-- | :-- | :-- | :-- |
+| `OrganizationCommandService` | Command Service | Registra la organización junto con el vínculo ORG_ADMIN de su creador; gestiona locales, zonas y vínculos; impide dejar la organización sin administradores. | `register()`, `update()`, `registerSite()`, `updateSite()`, `archiveSite()`, `registerZone()`, `updateZone()`, `archiveZone()`, `grantMembership()`, `revokeMembership()` |
+| `OrganizationQueryService` | Query Service | Consultas de organización, locales y zonas vigentes, vínculos y organizaciones de un usuario. | `get()`, `listSites()`, `getSite()`, `listZones()`, `listMemberships()`, `listMine()` |
+
+### 5.3.4. Infrastructure Layer
+
+Cada repositorio tiene su adaptador (`OrganizationRepositoryAdapter`, `SiteRepositoryAdapter`, `ZoneRepositoryAdapter`, `MembershipRepositoryAdapter`) sobre Spring Data JPA, con la traducción centralizada en `OrganizationMapper`.
+
+| Clase | Paquete | Responsabilidad |
+| :-- | :-- | :-- |
+| `MembershipRepositoryAdapter` | `organizations.infrastructure.persistence.jpa.adapters` | Implementa MembershipRepository del dominio sobre Spring Data JPA. |
+| `OrganizationMapper` | `organizations.infrastructure.persistence.jpa.adapters` | Traduce entre el modelo de dominio y las entidades JPA (toDomain / toEntity). |
+| `OrganizationRepositoryAdapter` | `organizations.infrastructure.persistence.jpa.adapters` | Implementa OrganizationRepository del dominio sobre Spring Data JPA. |
+| `SiteRepositoryAdapter` | `organizations.infrastructure.persistence.jpa.adapters` | Implementa SiteRepository del dominio sobre Spring Data JPA. |
+| `ZoneRepositoryAdapter` | `organizations.infrastructure.persistence.jpa.adapters` | Implementa ZoneRepository del dominio sobre Spring Data JPA. |
+| `MembershipJpaEntity` | `organizations.infrastructure.persistence.jpa.entities` | Entidad JPA de la tabla `og_memberships`. |
+| `OrganizationJpaEntity` | `organizations.infrastructure.persistence.jpa.entities` | Entidad JPA de la tabla `og_organizations`. |
+| `SiteJpaEntity` | `organizations.infrastructure.persistence.jpa.entities` | Entidad JPA de la tabla `og_sites`. |
+| `ZoneJpaEntity` | `organizations.infrastructure.persistence.jpa.entities` | Entidad JPA de la tabla `og_zones`. |
+| `MembershipJpa` | `organizations.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+| `OrganizationJpa` | `organizations.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+| `SiteJpa` | `organizations.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+| `ZoneJpa` | `organizations.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+
+### 5.3.5. Bounded Context Software Architecture Component Level Diagrams
+
+Diagrama de componentes del container **SEMS API** acotado al bounded context Organizations. Se elaboró en Structurizr DSL (`src/sems-components.dsl`, vista `bc-organizations`). Los colores distinguen la capa de cada componente: Interface (azul oscuro), Application (azul), Domain (verde), Infrastructure (gris) y el bus compartido (ocre).
+
+![Component Diagram — Organizations](assets/chapter-5/component-organizations.png)
+
+El diagrama muestra el flujo clásico controlador → servicio → dominio → repositorio. También muestra el único consumidor externo del contexto: `OrganizationsSiteDirectory`, la ACL de Device Management, que consulta los repositorios de locales y zonas para responder solo las dos preguntas de su puerto.
+
+### 5.3.6. Bounded Context Software Architecture Code Level Diagrams
+
+Esta sección presenta el detalle de implementación del bounded context Organizations: el diagrama de clases de su Domain Layer y el diseño de su base de datos.
+
+#### 5.3.6.1. Bounded Context Domain Layer Class Diagrams
+
+Diagrama de clases UML del Domain Layer con atributos, métodos y su visibilidad (`+` public, `-` private), métodos estáticos subrayados, estereotipos DDD y relaciones con nombre, dirección y multiplicidad. Los getters los genera Lombok (`@Getter`) y se omiten del diagrama, al igual que los métodos `rehydrate(...)` usados solo por los mappers de persistencia.
+
+![Domain Layer Class Diagram — Organizations](assets/chapter-5/class-organizations.png)
+
+El diagrama refleja los dos agregados y su relación por identificador, la composición `Site`–`Zone` y el doble alcance de `Membership` (organización y, opcionalmente, un local).
+
+#### 5.3.6.2. Bounded Context Database Design Diagram
+
+Diagrama de base de datos (PostgreSQL) con tablas, columnas, tipos y restricciones. Las relaciones entre tablas del mismo contexto se marcan como **FK lógica**: el agregado garantiza la integridad y la tabla guarda el identificador. Las referencias a otros contextos se guardan como identificadores sin clave foránea, para no acoplar los esquemas entre módulos (ADD-05). Las columnas de enums tienen un `CHECK` con los valores permitidos.
+
+![Database Diagram — Organizations](assets/chapter-5/database-organizations.png)
+
+Las tablas usan el prefijo `og_`. Las restricciones de unicidad del dominio están respaldadas por índices únicos: `tax_id` en organizaciones, `(organization_id, site_code)` en locales (el código es único dentro de la organización, no globalmente) y `(organization_id, user_id)` en vínculos.
+
+
 
 # Capítulo VI: Solution UX Design
 
