@@ -1268,8 +1268,26 @@ negocio**. Se atienden primero los de impacto alto y valor alto.
 
 ### 4.1.4. Architectural Design Decisions
 
-Cada decisión se registra con las alternativas evaluadas, el criterio de elección y las
-consecuencias asumidas.
+Las decisiones de diseño se tomaron siguiendo los Stages del **Quality Attribute Workshop (QAW)** y se organizaron en tres iteraciones de ADD. A continuación se resume lo realizado en cada Stage del QAW y, después, cada iteración con sus drivers, las tácticas y patrones evaluados, los criterios de decisión y su **Candidate Pattern Evaluation Matrix**.
+
+**Stages del Quality Attribute Workshop**
+
+| Stage | Qué hizo el equipo | Resultado |
+| :-- | :-- | :-- |
+| 1. QAW Presentation and Introductions | El Team Leader presentó el objetivo del taller, los pasos a seguir y los roles: facilitador, registro y participantes. | Equipo alineado en el método y en los criterios de prioridad (importancia para el negocio e impacto en la complejidad técnica). |
+| 2. Business/Mission Presentation | Se repasó el modelo de negocio de Energix, los segmentos objetivo, los Business Goals del Impact Map y la restricción de entregar una solución desplegada en el ciclo. | Tres exigencias de negocio: oportunidad del aviso, cálculo tarifario verificable y aislamiento entre organizaciones (sección 4.1.1). |
+| 3. Architectural Plan Presentation | Se presentó la arquitectura de partida: la versión anterior del sistema con microservicios y mensajería distribuida, y los containers previstos (Landing Page, Web App, Mobile App, API, base de datos). | Identificación del costo operativo de la versión anterior como principal riesgo. |
+| 4. Identification of Architectural Drivers | Se seleccionaron las historias con impacto arquitectónico (4.1.2.1) y las restricciones del enunciado y del contexto (4.1.2.3). | Lista inicial de drivers funcionales y restricciones. |
+| 5. Scenario Brainstorming | Cada integrante propuso escenarios de atributos de calidad en el formato fuente–estímulo–artefacto–entorno–respuesta–medida. | 17 escenarios propuestos. |
+| 6. Scenario Consolidation | Se fusionaron los escenarios equivalentes (por ejemplo, tres propuestas de latencia de alerta) y se descartaron los que no aplicaban al alcance. | 10 escenarios consolidados (QAS01–QAS10). |
+| 7. Scenario Prioritization | Cada integrante distribuyó votos según importancia para el negocio; luego se estimó el impacto en la complejidad técnica. | Architectural Drivers Backlog priorizado (4.1.3). |
+| 8. Scenario Refinement | Los escenarios de mayor prioridad se detallaron con estímulo, respuesta, medida y tácticas. | Quality Attribute Scenario Refinements (4.1.5). |
+
+Con el backlog priorizado, el diseño avanzó en tres iteraciones: primero la estructura general del sistema, luego la funcionalidad primaria y la seguridad, y por último la disponibilidad y la operación del despliegue.
+
+**Iteración 1 — Estructura general del sistema**
+
+*Objetivo:* definir la estructura de alto nivel de la SEMS API, la comunicación entre módulos y la estrategia de persistencia. *Drivers considerados:* CON07, CON08, QAS01, QAS02 y QAS09. *Tácticas evaluadas:* reducir el acoplamiento (*Reduce Coupling*), aumentar la cohesión semántica (*Increase Semantic Coherence*), reducir la sobrecarga de comunicación y limitar la complejidad. *Criterio de decisión:* entre alternativas que satisfacen el driver, se elige la de menor costo operativo para un equipo reducido, siempre que preserve las fronteras del dominio.
 
 ---
 
@@ -1300,6 +1318,7 @@ entre contextos se mantienen por disciplina de diseño —módulos con dominio, 
 infraestructura e interfaces propias— y no por separación física, lo que exige vigilarlas en
 revisión de código.
 
+
 ---
 
 **ADD-02 — Comunicación entre contextos mediante bus de eventos en proceso**
@@ -1323,6 +1342,43 @@ síncrona; los consumidores costosos deben tratarse fuera del camino de la petic
 no sobreviven a la caída del proceso, lo que se acepta dado que ninguno de ellos es la fuente de
 verdad: el estado siempre está persistido.
 
+
+---
+
+**ADD-05 — Persistencia relacional única con separación por prefijo de tabla**
+
+*Drivers atendidos:* CON08, ADD-01, QAS02.
+
+*Alternativas evaluadas.* (a) Una base de datos por bounded context. (b) Base relacional única con
+prefijo de tabla por módulo. (c) Base documental para las series de consumo.
+
+*Decisión.* Una base PostgreSQL única, con las tablas de cada módulo prefijadas (`iam_`, `og_`,
+`dm_`, `em_`, `an_`, `al_`, `pm_`, `sb_`).
+
+*Justificación.* La alternativa (a) impide la consistencia transaccional que ADD-01 aprovecha y
+multiplica el costo, contra CON08. La (c) se evaluó para las lecturas de consumo, pero el volumen
+previsto no lo justifica y habría introducido un segundo motor que operar. El prefijo mantiene
+visible a qué módulo pertenece cada tabla y permite separarlas más adelante si el volumen lo exige.
+
+*Consecuencias.* Nada impide técnicamente que un módulo consulte tablas de otro, de modo que la
+frontera depende de la disciplina del equipo. Se mitiga exigiendo que todo acceso pase por los
+repositorios declarados en el dominio de cada módulo.
+
+
+**Candidate Pattern Evaluation Matrix — Iteración 1**
+
+| Driver ID | Título de Driver | Pattern 1 | Pro | Con | Pattern 2 | Pro | Con | Pattern 3 | Pro | Con |
+| :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
+| CON07 / CON08 | Equipo reducido e infraestructura de costo mínimo | Microservicios | Escalado y despliegue independiente por contexto. | Costo de operación, observabilidad y consistencia eventual inasumibles para el equipo. | **Monolito modular (elegido)** | Un despliegue, un proceso que operar y fronteras por módulo. | El escalado es del proceso completo; las fronteras dependen de la disciplina del equipo. | Monolito por capas | Simplicidad máxima de arranque. | Disuelve las fronteras del dominio y acopla los contextos. |
+| QAS01 | Latencia entre lectura y alerta | Llamadas directas entre servicios de aplicación | Sin infraestructura adicional; respuesta inmediata. | Acoplamiento bidireccional; el fallo del consumidor hace fallar al emisor. | **Bus de eventos en proceso tras el commit (elegido)** | Desacopla emisor y consumidor sin saltos de red; no notifica hechos no persistidos. | Los eventos no sobreviven a la caída del proceso. | Broker externo (Kafka / RabbitMQ) | Entrega garantizada y reprocesamiento. | Agrega saltos de red y un servicio que operar, contra CON08. |
+| CON08 / QAS02 | Estrategia de persistencia | Base de datos por bounded context | Aislamiento físico total entre módulos. | Impide transacciones locales y multiplica el costo. | **PostgreSQL único con prefijo por módulo (elegido)** | Consistencia transaccional y un solo motor; las tablas pueden separarse después. | Nada impide técnicamente consultas entre módulos. | Base documental para las lecturas | Flexibilidad para series de consumo. | El volumen no lo justifica e introduce un segundo motor. |
+
+---
+
+**Iteración 2 — Funcionalidad primaria y seguridad**
+
+*Objetivo:* asegurar que la funcionalidad núcleo (cálculo tarifario y avisos de demanda) sea correcta y esté aislada, y que el acceso al API sea seguro por construcción. *Drivers considerados:* QAS02, QAS03, QAS04, QAS07, QAS08, CON09 y US29 / US30. *Tácticas evaluadas:* *Authenticate Actors*, *Authorize Actors*, *Limit Exposure*, *Encapsulate*, *Use an Intermediary* y *Restrict Dependencies*. *Criterio de decisión:* se prefiere la alternativa cuyo fallo sea visible de inmediato (falla en la primera prueba) frente a la que falla de forma silenciosa.
+
 ---
 
 **ADD-03 — Política de autorización con denegación por defecto**
@@ -1330,7 +1386,7 @@ verdad: el estado siempre está persistido.
 *Drivers atendidos:* QAS04, QAS03.
 
 *Alternativas evaluadas.* (a) Marcar cada controlador que requiere autenticación. (b) Exigir
-autenticación en toda la aplicación y marcar explícitamente las excepciones públicas.
+autenticación en toda la aplicación y marcar explícitamente las excepciones públicas. (c) Delegar la autenticación en un API Gateway externo.
 
 *Decisión.* Política de respaldo que exige sesión en todo endpoint, con excepciones declaradas de
 forma explícita (autenticación, webhook de la pasarela, salud y métricas).
@@ -1339,11 +1395,12 @@ forma explícita (autenticación, webhook de la pasarela, salud y métricas).
 marcar un endpoint en la alternativa (a), queda abierto y nadie se entera. Si se olvida declarar
 una excepción en la (b), el endpoint responde 401 y el error aparece en la primera prueba. Dado que
 QAS04 exige que no haya excepciones por descuido, solo la segunda opción lo satisface por
-construcción.
+construcción. La alternativa (c) se descartó porque agrega un container que operar, contra CON07 y CON08.
 
 *Consecuencias.* Cada endpoint público debe declararse de forma consciente, lo que obliga a
 justificar su exposición. El webhook de pagos, en particular, se autentica por la firma del cuerpo
 y no por sesión, lo que queda documentado en el propio código.
+
 
 ---
 
@@ -1367,26 +1424,40 @@ unidireccional: Analítica conoce a Energía, nunca al revés.
 propio registro de resultado— a cambio de que su dominio no dependa de conceptos de Energía como
 hora punta o IGV.
 
+
 ---
 
-**ADD-05 — Persistencia relacional única con separación por prefijo de tabla**
+**ADD-08 — Delegación del tratamiento de datos de tarjeta en la pasarela**
 
-*Drivers atendidos:* CON08, ADD-01, QAS02.
+*Drivers atendidos:* CON09.
 
-*Alternativas evaluadas.* (a) Una base de datos por bounded context. (b) Base relacional única con
-prefijo de tabla por módulo. (c) Base documental para las series de consumo.
+*Alternativas evaluadas.* (a) Formulario propio con tokenización en el backend. (b) Componente embebido de la pasarela. (c) Página de pago hospedada por la pasarela (Checkout).
 
-*Decisión.* Una base PostgreSQL única, con las tablas de cada módulo prefijadas (`iam_`, `og_`,
-`dm_`, `em_`, `an_`, `al_`, `pm_`, `sb_`).
+*Decisión.* La captura de los datos de tarjeta se realiza íntegramente dentro del componente
+embebido de la pasarela; la solución solo recibe y almacena identificadores de método de pago.
 
-*Justificación.* La alternativa (a) impide la consistencia transaccional que ADD-01 aprovecha y
-multiplica el costo, contra CON08. La (c) se evaluó para las lecturas de consumo, pero el volumen
-previsto no lo justifica y habría introducido un segundo motor que operar. El prefijo mantiene
-visible a qué módulo pertenece cada tabla y permite separarlas más adelante si el volumen lo exige.
+*Justificación.* Es la única alternativa compatible con CON09 sin asumir el alcance de
+cumplimiento PCI DSS, inviable para el equipo. La alternativa (a) haría que los datos de tarjeta atraviesen la SEMS API; la (c) se usa como complemento para la contratación del plan, porque saca al usuario de la aplicación.
 
-*Consecuencias.* Nada impide técnicamente que un módulo consulte tablas de otro, de modo que la
-frontera depende de la disciplina del equipo. Se mitiga exigiendo que todo acceso pase por los
-repositorios declarados en el dominio de cada módulo.
+*Consecuencias.* La experiencia de pago queda parcialmente condicionada por la pasarela. La
+confirmación del pago llega por webhook, que debe ser público y autenticado por firma, lo que
+motiva la excepción declarada en ADD-03.
+
+
+**Candidate Pattern Evaluation Matrix — Iteración 2**
+
+| Driver ID | Título de Driver | Pattern 1 | Pro | Con | Pattern 2 | Pro | Con | Pattern 3 | Pro | Con |
+| :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
+| QAS04 / QAS03 | Autenticación por defecto y aislamiento entre organizaciones | Anotar cada endpoint protegido | Control explícito por endpoint. | Un endpoint olvidado queda abierto sin que nadie lo note. | **Denegación por defecto con excepciones declaradas (elegido)** | Un descuido produce 401 visible en la primera prueba. | Cada endpoint público debe declararse de forma consciente. | API Gateway que autentica antes del backend | Centraliza la seguridad fuera del código. | Agrega un container que operar, contra CON07 y CON08. |
+| QAS02 / QAS08 | Corrección y unicidad del cálculo tarifario | Calcular en cada cliente | Respuesta sin llamada al backend. | Dos clientes pueden mostrar importes distintos sin síntoma visible. | Calcular en Analytics | Cerca de donde se usa la proyección. | Aleja la regla de su dueño natural. | **Calcular en Energy tras un puerto (elegido)** | Una sola implementación cubierta por pruebas; dependencia unidireccional. | Pequeña duplicación de tipos en la frontera. |
+| QAS07 | Sustitución del proveedor de tarifas | Llamar al proveedor desde el servicio de aplicación | Implementación directa. | El cambio de proveedor obliga a tocar la aplicación. | **Puerto `EnergyPricingProvider` con adaptador (elegido)** | El cambio se localiza en una sola clase de infraestructura. | Requiere mantener un adaptador simulado mientras no haya proveedor real. | Tabla de tarifas cargada manualmente | Sin dependencia externa. | Desactualización del pliego sin aviso. |
+| CON09 | No almacenar datos de tarjeta | Formulario propio con tokenización en el backend | Control total de la experiencia. | Los datos de tarjeta atraviesan la solución: alcance PCI DSS. | **Componente embebido de la pasarela (elegido)** | Los datos nunca tocan la SEMS API; solo se guardan identificadores. | La experiencia queda condicionada por la pasarela. | Página de pago hospedada por la pasarela (Checkout) | Cumplimiento delegado por completo. | Saca al usuario de la aplicación; se usa como complemento para la contratación. |
+
+---
+
+**Iteración 3 — Disponibilidad y operación del despliegue**
+
+*Objetivo:* garantizar que el servicio desplegado distinga fallos propios de fallos de sus dependencias y que el esquema de datos evolucione de forma trazable. *Drivers considerados:* QAS05 y QAS06. *Tácticas evaluadas:* *Detect Fault* (heartbeat / health check), *Recover from Faults* y *Defer Binding*. *Criterio de decisión:* se descarta toda alternativa que falle de forma silenciosa o que provoque reinicios que no corrigen la causa.
 
 ---
 
@@ -1395,7 +1466,7 @@ repositorios declarados en el dominio de cada módulo.
 *Drivers atendidos:* QAS05, QAS06.
 
 *Alternativas evaluadas.* (a) Creación automática del esquema al arrancar. (b) Migraciones
-versionadas con registro de las aplicadas.
+versionadas con registro de las aplicadas. (c) Scripts SQL aplicados manualmente.
 
 *Decisión.* Migraciones versionadas.
 
@@ -1403,10 +1474,11 @@ versionadas con registro de las aplicadas.
 mecanismos de creación automática se abstienen cuando la base contiene cualquier tabla, y las bases
 gestionadas de los proveedores incorporan esquemas propios. El resultado es un arranque
 aparentemente correcto seguido de fallos en cada consulta. Las migraciones llevan su propio
-registro y no dependen de lo que haya alrededor.
+registro y no dependen de lo que haya alrededor. La alternativa (c) se descartó porque no deja registro de qué se aplicó en cada entorno.
 
 *Consecuencias.* Cada cambio de modelo exige generar y revisar una migración, lo que añade un paso
 al desarrollo pero deja trazabilidad del esquema.
+
 
 ---
 
@@ -1415,35 +1487,25 @@ al desarrollo pero deja trazabilidad del esquema.
 *Drivers atendidos:* QAS05, QAS06.
 
 *Alternativas evaluadas.* (a) Un único endpoint de salud que comprueba todas las dependencias.
-(b) Endpoints separados de *liveness* y *readiness*.
+(b) Endpoints separados de *liveness* y *readiness*. (c) Sonda TCP del proveedor, sin endpoint propio.
 
 *Decisión.* Endpoints separados.
 
 *Justificación.* El proveedor de hosting reinicia el contenedor cuando el endpoint de salud falla.
 Si ese endpoint comprueba la base de datos, un corte externo provoca reinicios en cadena que no
 corrigen nada, porque el fallo no está en el proceso. La separación permite que el proveedor
-vigile la vida del proceso y que el equipo diagnostique las dependencias por otro camino.
+vigile la vida del proceso y que el equipo diagnostique las dependencias por otro camino. La alternativa (c) se descartó porque no detecta un proceso bloqueado ni informa el estado de las dependencias.
 
 *Consecuencias.* Requiere configurar en el proveedor la ruta correcta; si se apunta a la
 equivocada, el problema reaparece. Queda documentado en el capítulo de despliegue.
 
----
 
-**ADD-08 — Delegación del tratamiento de datos de tarjeta en la pasarela**
+**Candidate Pattern Evaluation Matrix — Iteración 3**
 
-*Drivers atendidos:* CON09.
-
-*Decisión.* La captura de los datos de tarjeta se realiza íntegramente dentro del componente
-embebido de la pasarela; la solución solo recibe y almacena identificadores de método de pago.
-
-*Justificación.* Es la única alternativa compatible con CON09 sin asumir el alcance de
-cumplimiento PCI DSS, inviable para el equipo.
-
-*Consecuencias.* La experiencia de pago queda parcialmente condicionada por la pasarela. La
-confirmación del pago llega por webhook, que debe ser público y autenticado por firma, lo que
-motiva la excepción declarada en ADD-03.
-
----
+| Driver ID | Título de Driver | Pattern 1 | Pro | Con | Pattern 2 | Pro | Con | Pattern 3 | Pro | Con |
+| :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
+| QAS05 / QAS06 | Evolución del esquema de base de datos | Creación automática del esquema al arrancar | Cero configuración. | Falla de forma silenciosa si la base contiene otras tablas. | **Migraciones versionadas (elegido)** | Registro propio de lo aplicado y trazabilidad del esquema. | Cada cambio de modelo exige generar y revisar una migración. | Scripts SQL aplicados manualmente | Control total del DDL. | Sin registro de qué se aplicó en cada entorno. |
+| QAS05 / QAS06 | Detección de fallos y recuperación | Un único endpoint de salud que comprueba dependencias | Una sola sonda que configurar. | Un corte de la base provoca reinicios en cadena que no corrigen nada. | **Sondas separadas de liveness y readiness (elegido)** | El proveedor vigila el proceso; el equipo diagnostica las dependencias aparte. | Hay que configurar en el proveedor la ruta correcta. | Sonda TCP del proveedor sin endpoint propio | Ninguna implementación. | No detecta un proceso bloqueado ni el estado de las dependencias. |
 
 ### 4.1.5. Quality Attribute Scenario Refinements
 
