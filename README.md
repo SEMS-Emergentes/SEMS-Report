@@ -2129,6 +2129,8 @@ Acciones rápidas como la creación de nuevos locales o el reporte de incidencia
 
 > **Nota.** Implementación de los lineamientos de Material Design 3 en la app Android de SEMS.
 
+## 6.2. Information Architecture
+
 ### 6.2.2. Labeling Systems
 
 El sistema de etiquetado de SEMS utiliza una nomenclatura única para representar las entidades,
@@ -2184,6 +2186,25 @@ resultados ambiguos entre organizaciones, locales, zonas y medidores.
 ## 6.3. Landing Page UI Design
 
 ### 6.3.1. Landing Page Wireframe
+
+*Figura 21 (Landing Page Wireframe)*
+<img src="https://i.imgur.com/C66A4Wp.png" alt="Landing Page Wireframe" style="width: 100vw;">
+
+Estructura de bloques, de arriba abajo:
+
+1. Barra superior con marca, navegación, idioma, tema y llamado a la acción.
+2. *Hero* a dos columnas: propuesta de valor a la izquierda, vista previa del panel a la derecha.
+3. Franja de cuatro cifras con su fuente citada.
+4. Problema, en tres tarjetas.
+5. Funcionamiento, en cuatro pasos numerados.
+6. Características, en seis tarjetas.
+7. Segmentos objetivo, en dos tarjetas con llamado a la acción propio.
+8. Planes, en tres columnas con el plan intermedio destacado.
+9. Preguntas frecuentes, en acordeón.
+10. Llamado a la acción final.
+11. Pie con navegación, enlaces legales y datos de contacto.
+
+En navegador móvil las columnas colapsan a una sola y la navegación pasa al menú desplegable.
 
 ### 6.3.2. Landing Page Mock-up
 
