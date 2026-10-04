@@ -852,19 +852,31 @@ Alessandro Gómez representa al segmento de propietarios y administradores de es
 
 ### 2.3.2. User Task Matrix
 
-Matriz de tareas por User Persona, indicando frecuencia e importancia de cada tarea.
+La matriz recoge las tareas que cada User Persona realiza **hoy**, sin SEMS, para controlar el gasto eléctrico de sus locales. Se consideran los dos segmentos objetivo: Valeria Fernández (Segmento #1, responsable de operaciones de una cadena) y Alessandro Gómez (Segmento #2, propietario de un establecimiento independiente). Las tareas se obtuvieron de los resúmenes de entrevistas (sección 2.2.2), de su análisis (2.2.3) y de los cuadrantes *Says and Does* de los Empathy Maps; no son funcionalidades del producto, sino actividades que existen con o sin una solución de software.
 
-| Tarea | Persona #1 (Valeria) — Frecuencia | Persona #1 (Valeria) — Importancia | Persona #2 (Alessandro) — Frecuencia | Persona #2 (Alessandro) — Importancia |
-| :-- | :-- | :-- | :-- | :-- |
-| Revisar el consumo del día | Alta | Alta | Media | Media |
-| Revisar el recibo mensual | Baja | Alta | Baja | Alta |
-| Identificar la causa de una variación en el recibo | Media | Alta | Media | Alta |
-| Atender un aviso de consumo anómalo | Media | Alta | Media | Alta |
-| Comparar el desempeño entre locales | Media | Alta | Baja | Baja |
-| Configurar umbrales y avisos | Baja | Alta | Baja | Media |
-| Dar acceso a personal del local | Baja | Media | Baja | Baja |
-| Registrar un equipo o medidor nuevo | Baja | Media | Baja | Media |
-| Descargar un reporte para la gerencia | Media | Alta | Baja | Baja |
+Escala utilizada. **Frecuencia:** Alta (diaria o varias veces por semana), Media (semanal o quincenal), Baja (mensual o menos). **Importancia:** Alta (su resultado impacta directamente en el costo o en la continuidad de la operación), Media (apoya la gestión pero puede postergarse), Baja (aporta poco al control del gasto). *No aplica* indica que la tarea no existe para esa persona.
+
+| # | Tarea | Valeria (Segmento #1) — Frecuencia | Valeria (Segmento #1) — Importancia | Alessandro (Segmento #2) — Frecuencia | Alessandro (Segmento #2) — Importancia |
+| :-- | :-- | :-- | :-- | :-- | :-- |
+| T01 | Revisar el monto y la fecha de vencimiento del recibo de luz | Media | Alta | Baja | Alta |
+| T02 | Comparar el recibo con el del mes anterior | Baja | Alta | Baja | Alta |
+| T03 | Comparar los recibos y el gasto entre locales | Baja | Alta | No aplica | No aplica |
+| T04 | Consolidar los recibos y el gasto en hojas de cálculo | Media | Media | Baja | Baja |
+| T05 | Preguntar a encargados o al personal qué cambió en la operación | Alta | Media | Media | Media |
+| T06 | Recorrer el local para revisar equipos encendidos o con fallas | Baja | Media | Alta | Media |
+| T07 | Encender y apagar equipos según el horario de atención | Baja | Media | Alta | Alta |
+| T08 | Llamar al técnico o al proveedor de mantenimiento | Media | Alta | Baja | Alta |
+| T09 | Priorizar solicitudes de mantenimiento que llegan de varios locales | Alta | Alta | No aplica | No aplica |
+| T10 | Cotizar la reparación o el reemplazo de un equipo | Media | Alta | Baja | Media |
+| T11 | Reportar el gasto energético a la gerencia o al socio | Baja | Alta | Baja | Baja |
+| T12 | Consultar a la distribuidora sobre la potencia contratada o un cobro | Baja | Media | Baja | Media |
+| T13 | Pagar el recibo de luz | Baja | Media | Baja | Alta |
+
+**Tareas de mayor frecuencia e importancia.** Para Valeria, las tareas que combinan frecuencia e importancia altas son **priorizar solicitudes de mantenimiento entre locales (T09)** y, con frecuencia media, **revisar los recibos (T01)**, **llamar al técnico (T08)** y **cotizar reparaciones (T10)**. La revisión de recibos es de frecuencia media porque, al gestionar entre 3 y 14 locales, recibe un recibo distinto en fechas diferentes a lo largo del mes, como relataron Mariel y Jeanfer. Para Alessandro, la tarea de mayor frecuencia e importancia es **encender y apagar los equipos según el horario (T07)**, que hace a diario y de la que depende tanto la operación como el pico de demanda al arrancar los equipos de frío. Le siguen **recorrer el local (T06)**, de alta frecuencia, y las tareas mensuales de alta importancia: **revisar el recibo (T01)**, **compararlo con el mes anterior (T02)**, **llamar al técnico (T08)** y **pagarlo (T13)**.
+
+**Diferencias entre las personas.** Valeria trabaja *a distancia y por agregación*: no recorre los locales, sino que depende de lo que le reportan los encargados (T05 en alta frecuencia), consolida información en hojas de cálculo (T04) y debe sustentar el gasto ante la gerencia (T11 de importancia alta), lo que coincide con la frustración de "no poder sustentar sobrecostos con datos reales" identificada en el 100% de las entrevistas del Segmento #1. Las tareas T03 y T09 solo existen para ella, porque gestiona varios locales. Alessandro, en cambio, trabaja *en sitio y por observación directa*: recorre su único local (T06) y controla los equipos él mismo (T07). Para él, reportar a terceros tiene poca importancia (T11), mientras que pagar el recibo sí la tiene (T13), porque sale directamente de la caja del negocio.
+
+**Coincidencias.** Ambos revisan el recibo solo una vez al mes y lo comparan con el mes anterior (T01, T02), de modo que se enteran del problema cuando ya está facturado. Ambos recurren al técnico cuando no encuentran la causa (T08, importancia alta), y ninguno consulta con regularidad a la distribuidora por la potencia contratada (T12, frecuencia baja), lo que es coherente con que el 67% del Segmento #1 y el 100% del Segmento #2 no conocen su potencia contratada. Estas coincidencias son las que la solución busca transformar: pasar de una revisión mensual y reactiva a una vigilancia continua que avise antes del recargo.
 
 ### 2.3.3. Empathy Mapping
 
