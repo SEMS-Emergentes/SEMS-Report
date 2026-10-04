@@ -2213,10 +2213,130 @@ En navegador móvil las columnas colapsan a una sola y la navegación pasa al me
 
 ## 6.4. Applications UX/UI Design
 
+En esta sección se presenta la propuesta de diseño UX/UI de la aplicación móvil y de la aplicación web de SEMS, describiendo la estructura visual, los elementos de interfaz y los patrones de interacción que orientan la experiencia del usuario tanto para coordinadores de cadenas como para propietarios independientes.
+
+El diseño está enfocado en facilitar el monitoreo de energía y la gestión de alertas, priorizando una interacción clara, rápida y consistente. Asimismo, se mantiene la coherencia con los Style Guidelines y la Information Architecture establecidos.
+
 ### 6.4.1. Applications Wireframes
 
-### 6.4.2. Applications Wireflow Diagrams
+#### 6.4.1.1 Mobile Applications Wireframes
+En esta sección se presentan los wireframes de fidelidad media para la aplicación móvil de SEMS
+La propuesta visual y funcional responde directamente a estándares de usabilidad móvil, estructuración de datos y accesibilidad.
 
+(Wireframe de Inicio de Sesión)
+<img src="assets/wireframeiniciosesion.png" alt="Landing Page Mock-up" style="width: 100vw;">
+
+(Wireframe de Recuperación y Registro)
+<img src="assets/wireframerecuperacion.png" alt="Landing Page Mock-up" style="width: 100vw;">
+
+(Wireframe del Dashboard y Mis Dispositivos)
+<img src="assets/wireframedashboarddispositivos.png" alt="Landing Page Mock-up" style="width: 100vw;">
+
+(Wireframe de Monitoreo y Escaneo de Medidores)
+<img src="assets/wireframemonitoreomedidores.png" alt="Landing Page Mock-up" style="width: 100vw;">
+
+(Wireframe de Analíticas y Recomendaciones)
+<img src="assets/wireframeanaliticasrecomendaciones.png" alt="Landing Page Mock-up" style="width: 100vw;">
+
+(Wireframe de Reportes, Suscripción y Organización)
+<img src="assets/wireframereportessuscripcion.png" alt="Landing Page Mock-up" style="width: 100vw;">
+
+(Wireframe de Configuración y Perfil)
+<img src="assets/wireframeconfiguracionperfil.png" alt="Landing Page Mock-up" style="width: 100vw;">
+
+(Wireframe de Detalle de Consumos)
+<img src="assets/wireframedetalleconsumos.png" alt="Landing Page Mock-up" style="width: 100vw;">
+
+(Wireframe de menús modales)
+<img src="assets/wireframemenumodales.png" alt="Landing Page Mock-up" style="width: 100vw;">
+
+#### 6.4.1.2 Mobile Applications Wireflow Diagrams 
+**Segmento 1: Responsable de Operaciones de Cadena**
+
+
+
+- User Goal: Como coordinador de cadena, quiero registrar un nuevo medidor inteligente escaneándolo con la cámara, para asignar en qué área del local está instalado y comenzar a monitorearlo.
+Task Flow:
+<img src="assets/taskflowmobile.png" alt="Landing Page Mock-up" style="width: 100vw;">
+Nota: Diagrama de Task Flow para vincular nuevos medidores
+Wireflow::
+<img src="assets/wireflowmobile.png" alt="Landing Page Mock-up" style="width: 100vw;">
+Nota: Diagrama de Wireflow para el registro de nuevos dispositivos
+
+Descripción del flujo: El usuario ingresa a la sección de "Mis Dispositivos" desde el menú lateral, selecciona la opción para agregar un nuevo equipo ("Vincular Dispositivo") y utiliza la cámara para escanear el código QR del medidor inteligente. Una vez detectado, asigna el tipo de dispositivo y la zona. Al confirmar, el dispositivo queda activo y vinculado a su red para comenzar la transmisión de datos.
+
+
+
+- User Goal: Como coordinador de cadena, quiero atender una alerta de exceso de consumo en hora punta, para reconocerla a tiempo y evitar cargos extras en la facturación eléctrica.
+Task Flow:
+<img src="assets/taskflowmobile2.png" alt="Landing Page Mock-up" style="width: 100vw;">
+Nota: Diagrama de Task Flow para atención de alertas de consumo
+Wireflow:
+<img src="assets/wireflowmobile2.png" alt="Landing Page Mock-up" style="width: 100vw;">
+Nota: Diagrama de Wireflow de resolución de alertas
+
+Descripción del flujo: Desde el dashboard, el usuario visualiza notificaciones pendientes y navega a la vista de "Alertas". Allí filtra las activas, selecciona una alerta crítica de sobreconsumo (Cargo por Potencia), lee los detalles del incidente y presiona "Reconocer". Posteriormente, tras coordinar la reducción de carga, marca la alerta como "Resuelta", manteniendo un historial limpio.
+
+
+
+- User Goal: Como coordinador de cadena, quiero configurar el costo por kWh y la meta global de consumo, para que el sistema me notifique si estoy por exceder el presupuesto del mes.
+Task Flow:
+<img src="assets/taskflowmobile3.png" alt="Landing Page Mock-up" style="width: 100vw;">
+Nota: Diagrama de Task Flow para configuración de tarifas y metas
+Wireflow:
+<img src="assets/wireflowmobile3.png" alt="Landing Page Mock-up" style="width: 100vw;">
+Nota: Diagrama de Wireflow de actualización de metas y tarifas
+
+Descripción del flujo: El usuario ingresa a "Mi Organización", donde visualiza los parámetros actuales de la sede. Modifica el campo de "Meta global (kWh/mes)" y luego actualiza el "Costo por kWh" en la sección de tarifa energética. Guarda ambos valores, los cuales recalcularán inmediatamente las proyecciones y costos estimados en todo el sistema.
+
+
+
+- User Goal: Como coordinador de cadena, quiero generar un reporte energético mensual descargable, para presentarlo a gerencia y justificar los gastos de electricidad.
+Task Flow:
+<img src="assets/taskflowmobile4.png" alt="Landing Page Mock-up" style="width: 100vw;">
+Nota: Diagrama de Task Flow para generación de reportes
+Wireflow:
+<img src="assets/wireflowmobile4.png" alt="Landing Page Mock-up" style="width: 100vw;">
+Nota: Diagrama de Wireflow de exportación de reportes PDF
+
+Descripción del flujo: El usuario se dirige a la sección de "Reportes PDF". Selecciona el rango de tiempo deseado (por ejemplo, "Mes Pasado") a través del menú desplegable y presiona "Descargar PDF". El sistema procesa la información de todos los dispositivos y genera un documento con las métricas consolidadas, listo para ser guardado o compartido.
+
+**Segmento 2: Propietario de Establecimiento Independiente**
+
+
+- User Goal: Como dueño de local, quiero iniciar sesión de forma segura y poder recuperar mi cuenta si olvido la contraseña, para no perder el acceso a los datos de mi negocio.
+Task Flow:
+<img src="assets/taskflowmobile5.png" alt="Landing Page Mock-up" style="width: 100vw;">
+Nota: Diagrama de Task Flow de inicio de sesión y recuperación
+Wireflow:
+<img src="assets/wireflowmobile5.png" alt="Landing Page Mock-up" style="width: 100vw;">
+Nota: Diagrama de Wireflow de autenticación de usuario
+
+Descripción del flujo: El propietario abre la app e intenta iniciar sesión, pero al fallar las credenciales selecciona "¿Olvidaste tu contraseña?".Ingresa su correo electrónico y el sistema le envía un enlace de recuperación. Tras restablecer sus credenciales, accede exitosamente al Dashboard.
+
+
+- User Goal: Como dueño de local, quiero revisar el resumen rápido de mi consumo actual, para saber de un vistazo cuánto he gastado hasta el momento en el mes.
+<img src="assets/taskflowmobile6.png" alt="Landing Page Mock-up" style="width: 100vw;">
+Nota: Diagrama de Task Flow de revisión de consumo diario
+Wireflow:
+<img src="assets/wireflowmobile6.png" alt="Landing Page Mock-up" style="width: 100vw;">
+Nota: Diagrama de Wireflow de consulta rápida de resumen
+
+Descripción del flujo: Al iniciar sesión, el usuario aterriza directamente en el Dashboard Principal. Allí visualiza su consumo actual en soles (S/) y kilovatios-hora (kWh), además de un gráfico de barras con la tendencia de los últimos 14 días. Para más detalle, entra a "Monitoreo de Energía" donde ve un desglose simplificado por dispositivo activo.
+
+
+- User Goal: Como dueño de local, quiero aplicar sugerencias automáticas de la IA, para reducir mi factura de luz sin tener que analizar gráficos complejos.
+Task FLOW:
+<img src="assets/taskflowmobile7.png" alt="Landing Page Mock-up" style="width: 100vw;">
+Nota: Diagrama de Task Flow para aplicación de recomendaciones de ahorro
+Wireflow:
+<img src="assets/wireflowmobile7.png" alt="Landing Page Mock-up" style="width: 100vw;">
+Nota: Diagrama de Wireflow de implementación de sugerencias de IA
+
+Descripción del flujo: El usuario ingresa a "Analíticas" y revisa la sección "Recomendaciones de IA". Identifica una sugerencia útil (ej. "Apaga el Aire Acondicionado a las 3 AM" que promete un ahorro de S/ 35.50). Selecciona aplicar recomendación, y la IA ajusta automáticamente el cronograma del enchufe inteligente. El estado de la recomendación cambia a "Aplicada", reflejando un impacto positivo en la proyección de su factura mensual.
+
+Nota: Diagrama de Wireflow de resolución de alertas
+### 6.4.2. Applications Wireflow Diagrams
 # Conclusiones, Bibliografía y Anexos
 
 ## Conclusiones y recomendaciones
