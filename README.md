@@ -2336,6 +2336,328 @@ Diagrama de base de datos (PostgreSQL) con tablas, columnas, tipos y restriccion
 Las tablas usan el prefijo `og_`. Las restricciones de unicidad del dominio están respaldadas por índices únicos: `tax_id` en organizaciones, `(organization_id, site_code)` en locales (el código es único dentro de la organización, no globalmente) y `(organization_id, user_id)` en vínculos.
 
 
+## 5.4. Bounded Context: Device Management
+
+Contexto **de soporte** que gestiona los medidores físicos: su ubicación en local y zona, su estado, su configuración, sus eventos y su vínculo con quien los opera.
+
+### 5.4.1. Domain Layer
+
+`Device` es la raíz de agregado. Sus transiciones de estado las decide `DeviceStatus.canTransitionTo(...)`: `REMOVED` es terminal, de modo que un dispositivo dado de baja no se reactiva. La baja es lógica (`remove()`), lo que conserva el histórico y libera el cupo del plan (US23). `ensureCanBeBound()` y `ensureCanUpdateConfiguration()` impiden operar sobre un dispositivo retirado. El puerto `SiteDirectory` es la ACL hacia Organizations definida en el context map.
+
+| Clase | Categoría | Propósito | Atributos | Métodos |
+| :-- | :-- | :-- | :-- | :-- |
+| `Device` | Aggregate Root | Raíz de agregado del medidor físico: código externo único, local, zona opcional, protocolo y estado con transiciones controladas. | `- deviceId: UUID`<br>`- externalDeviceCode: String`<br>`- userId: UUID`<br>`- siteId: UUID`<br>`- zoneId: UUID`<br>`- deviceName: String`<br>`- deviceType: String`<br>`- brand: String`<br>`- model: String`<br>`- connectionProtocol: ConnectionProtocol`<br>`- status: DeviceStatus`<br>`- registeredAt: Instant`<br>`- updatedAt: Instant` | `+ register(externalCode: String, userId: UUID, siteId: UUID, zoneId: UUID, name: String, deviceType: String, brand: String, model: String, protocol: ConnectionProtocol): Device` *(static)*<br>`+ updateDetails(name: String, deviceType: String, brand: String, model: String, protocol: ConnectionProtocol, zoneId: UUID)`<br>`+ changeStatus(next: DeviceStatus)`<br>`+ remove()`<br>`+ ensureCanBeBound()`<br>`+ ensureCanUpdateConfiguration()`<br>`+ isRemoved(): boolean` |
+| `DeviceBinding` | Entity | Vínculo entre un dispositivo y la persona que lo opera; solo puede existir un vínculo activo por dispositivo. | `- bindingId: UUID`<br>`- deviceId: UUID`<br>`- userId: UUID`<br>`- siteId: UUID`<br>`- bindingStatus: BindingStatus`<br>`- linkedAt: Instant`<br>`- unlinkedAt: Instant`<br>`- updatedAt: Instant` | `+ create(deviceId: UUID, userId: UUID, siteId: UUID): DeviceBinding` *(static)*<br>`+ unlink()` |
+| `DeviceConfiguration` | Entity | Par clave–valor de configuración de un dispositivo (único por dispositivo y clave). | `- configurationId: UUID`<br>`- deviceId: UUID`<br>`- configKey: String`<br>`- configValue: String`<br>`- updatedAt: Instant` | `+ create(deviceId: UUID, key: String, value: String): DeviceConfiguration` *(static)*<br>`+ update(value: String)` |
+| `DeviceEvent` | Entity | Evento operativo registrado para un dispositivo; valida el tipo contra una lista permitida. | `- ALLOWED_TYPES: Set<String>`<br>`- eventId: UUID`<br>`- deviceId: UUID`<br>`- eventType: String`<br>`- description: String`<br>`- occurredAt: Instant` | `+ create(deviceId: UUID, eventType: String, description: String, occurredAt: Instant): DeviceEvent` *(static)* |
+| `BindingStatus` | Enumeration | Estado del vínculo. | Valores: `LINKED`, `UNLINKED`, `PENDING` | `+ of(value: String): BindingStatus` *(static)* |
+| `ConnectionProtocol` | Enumeration | Protocolo de conexión del medidor. | Valores: `WIFI`, `BLUETOOTH` | `+ of(value: String): ConnectionProtocol` *(static)* |
+| `DeviceStatus` | Enumeration | Estado del dispositivo; REMOVED es terminal (canTransitionTo). | Valores: `ACTIVE`, `INACTIVE`, `DISCONNECTED`, `REMOVED` | `+ of(value: String): DeviceStatus` *(static)*<br>`+ canTransitionTo(next: DeviceStatus): boolean` |
+| `DeviceBindingRepository` | Repository | Puerto de persistencia (interfaz) de DeviceBinding; su implementación vive en Infrastructure. | — | `+ save(binding: DeviceBinding): DeviceBinding`<br>`+ findById(bindingId: UUID): Optional<DeviceBinding>`<br>`+ findByDeviceId(deviceId: UUID): List<DeviceBinding>`<br>`+ findByUserId(userId: UUID): List<DeviceBinding>`<br>`+ findActiveByDeviceId(deviceId: UUID): Optional<DeviceBinding>` |
+| `DeviceConfigurationRepository` | Repository | Puerto de persistencia (interfaz) de DeviceConfiguration; su implementación vive en Infrastructure. | — | `+ save(configuration: DeviceConfiguration): DeviceConfiguration`<br>`+ findById(configurationId: UUID): Optional<DeviceConfiguration>`<br>`+ findByDeviceId(deviceId: UUID): List<DeviceConfiguration>`<br>`+ findByDeviceIdAndKey(deviceId: UUID, configKey: String): Optional<DeviceConfiguration>` |
+| `DeviceEventRepository` | Repository | Puerto de persistencia (interfaz) de DeviceEvent; su implementación vive en Infrastructure. | — | `+ save(event: DeviceEvent): DeviceEvent`<br>`+ findByDeviceId(deviceId: UUID): List<DeviceEvent>` |
+| `DeviceRepository` | Repository | Puerto de persistencia (interfaz) de Device; su implementación vive en Infrastructure. | — | `+ save(device: Device): Device`<br>`+ findById(deviceId: UUID): Optional<Device>`<br>`+ findByExternalCode(externalDeviceCode: String): Optional<Device>`<br>`+ findAll(): List<Device>`<br>`+ findByUserId(userId: UUID): List<Device>`<br>`+ findBySiteId(siteId: UUID): List<Device>`<br>`+ findByZoneId(zoneId: UUID): List<Device>`<br>`+ existsByExternalCode(externalDeviceCode: String): boolean` |
+| `SiteDirectory` | Port | Puerto de salida (ACL) que responde solo dos preguntas a Organizations: si un local está vigente y si una zona le pertenece. | — | `+ siteIsActive(siteId: UUID): boolean`<br>`+ zoneBelongsToSite(zoneId: UUID, siteId: UUID): boolean` |
+
+### 5.4.2. Interface Layer
+
+Cuatro controladores comparten el prefijo `/api/v1/device-management`. Los listados por local y por zona excluyen los dispositivos con estado `REMOVED` (US20, US21).
+
+| Controller | Verbo | Endpoint | Acción | User Story |
+| :-- | :-- | :-- | :-- | :-- |
+| `DeviceBindingController` | `POST` | `/api/v1/device-management/devices/{deviceId}/bindings` | Links a device to a user | US10 |
+| `DeviceBindingController` | `GET` | `/api/v1/device-management/devices/{deviceId}/bindings` | Lists the bindings of a device | US20 |
+| `DeviceBindingController` | `GET` | `/api/v1/device-management/users/{userId}/bindings` | Lists the bindings of a user | US20 |
+| `DeviceBindingController` | `PATCH` | `/api/v1/device-management/bindings/{bindingId}/unlink` | Unlinks a device | US22 |
+| `DeviceConfigurationController` | `POST` | `/api/v1/device-management/devices/{deviceId}/configurations` | Creates or updates a device setting | US19 |
+| `DeviceConfigurationController` | `GET` | `/api/v1/device-management/devices/{deviceId}/configurations` | Lists the settings of a device | US20 |
+| `DeviceConfigurationController` | `PUT` | `/api/v1/device-management/configurations/{configurationId}` | Updates the value of a setting | US19 |
+| `DeviceController` | `POST` | `/api/v1/device-management/devices` | Registers a new device | US19 |
+| `DeviceController` | `GET` | `/api/v1/device-management/devices` | Lists every device | US20 |
+| `DeviceController` | `GET` | `/api/v1/device-management/devices/{deviceId}` | Gets a device by its identifier | US20 |
+| `DeviceController` | `GET` | `/api/v1/device-management/users/{userId}/devices` | Lists a user's devices | US20 |
+| `DeviceController` | `PUT` | `/api/v1/device-management/devices/{deviceId}` | Updates the editable details of a device | US22 |
+| `DeviceController` | `GET` | `/api/v1/device-management/sites/{siteId}/devices` | Devices installed at a site | US20 |
+| `DeviceController` | `GET` | `/api/v1/device-management/zones/{zoneId}/devices` | Devices in a specific zone | US21 |
+| `DeviceController` | `PATCH` | `/api/v1/device-management/devices/{deviceId}/status` | Changes the status of a device | US23 |
+| `DeviceController` | `DELETE` | `/api/v1/device-management/devices/{deviceId}` | Deletes a device (soft delete) | US23 |
+| `DeviceEventController` | `POST` | `/api/v1/device-management/devices/{deviceId}/events` | Records a device event | US19 |
+| `DeviceEventController` | `GET` | `/api/v1/device-management/devices/{deviceId}/events` | Lists a device's events, newest first | US20 |
+
+Recursos de request/response: `CreateDeviceRequest`, `UpdateDeviceRequest`, `UpdateDeviceStatusRequest`, `CreateBindingRequest`, `CreateConfigurationRequest`, `UpdateConfigurationRequest`, `CreateEventRequest`, `DeviceResource`, `DeviceBindingResource`, `DeviceConfigurationResource`, `DeviceEventResource`.
+
+### 5.4.3. Application Layer
+
+`DeviceCommandService.register(...)` valida la unicidad del código externo y, a través de `SiteDirectory`, que el local esté vigente y que la zona le pertenezca antes de crear el agregado (US19). `update(...)` aplica la misma validación al trasladar un medidor de zona (US22). `bind(...)` rechaza un segundo vínculo activo. Los cambios relevantes se publican como `DeviceRegistered`, `DeviceStatusUpdated`, `DeviceLinked` y `DeviceUnlinked`.
+
+| Clase | Tipo | Responsabilidad | Operaciones (métodos públicos) |
+| :-- | :-- | :-- | :-- |
+| `DeviceCommandService` | Command Service | Registra dispositivos validando código, local y zona mediante SiteDirectory; cambia estado, da de baja, vincula, configura y registra eventos; publica eventos de dispositivo. | `register()`, `update()`, `changeStatus()`, `remove()`, `bind()`, `unbind()`, `upsertConfiguration()`, `updateConfiguration()`, `recordEvent()` |
+| `DeviceQueryService` | Query Service | Consultas de dispositivos (por usuario, local, zona), vínculos, configuraciones y eventos. | `allDevices()`, `deviceById()`, `devicesByUser()`, `devicesBySite()`, `devicesByZone()`, `bindingsByDevice()`, `bindingsByUser()`, `configurationsByDevice()`, `eventsByDevice()` |
+
+### 5.4.4. Infrastructure Layer
+
+`OrganizationsSiteDirectory` implementa `SiteDirectory` consultando `SiteRepository` y `ZoneRepository` de Organizations, sin exponer a Device Management sus conceptos (tarifas, vínculos, organizaciones). Los repositorios se implementan con adaptadores JPA y `DeviceMapper`.
+
+| Clase | Paquete | Responsabilidad |
+| :-- | :-- | :-- |
+| `OrganizationsSiteDirectory` | `devices.infrastructure` | ACL hacia Organizations: implementa SiteDirectory consultando SiteRepository y ZoneRepository. |
+| `DeviceBindingRepositoryAdapter` | `devices.infrastructure.persistence.jpa.adapters` | Implementa DeviceBindingRepository del dominio sobre Spring Data JPA. |
+| `DeviceConfigurationRepositoryAdapter` | `devices.infrastructure.persistence.jpa.adapters` | Implementa DeviceConfigurationRepository del dominio sobre Spring Data JPA. |
+| `DeviceEventRepositoryAdapter` | `devices.infrastructure.persistence.jpa.adapters` | Implementa DeviceEventRepository del dominio sobre Spring Data JPA. |
+| `DeviceMapper` | `devices.infrastructure.persistence.jpa.adapters` | Traduce entre el modelo de dominio y las entidades JPA (toDomain / toEntity). |
+| `DeviceRepositoryAdapter` | `devices.infrastructure.persistence.jpa.adapters` | Implementa DeviceRepository del dominio sobre Spring Data JPA. |
+| `DeviceBindingJpaEntity` | `devices.infrastructure.persistence.jpa.entities` | Entidad JPA de la tabla `dm_device_bindings`. |
+| `DeviceConfigurationJpaEntity` | `devices.infrastructure.persistence.jpa.entities` | Entidad JPA de la tabla `dm_device_configurations`. |
+| `DeviceEventJpaEntity` | `devices.infrastructure.persistence.jpa.entities` | Entidad JPA de la tabla `dm_device_events`. |
+| `DeviceJpaEntity` | `devices.infrastructure.persistence.jpa.entities` | Entidad JPA de la tabla `dm_devices`. |
+| `DeviceBindingJpaRepository` | `devices.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+| `DeviceConfigurationJpaRepository` | `devices.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+| `DeviceEventJpaRepository` | `devices.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+| `DeviceJpaRepository` | `devices.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+
+### 5.4.5. Bounded Context Software Architecture Component Level Diagrams
+
+Diagrama de componentes del container **SEMS API** acotado al bounded context Device Management. Se elaboró en Structurizr DSL (`src/sems-components.dsl`, vista `bc-devices`). Los colores distinguen la capa de cada componente: Interface (azul oscuro), Application (azul), Domain (verde), Infrastructure (gris) y el bus compartido (ocre).
+
+![Component Diagram — Device Management](assets/chapter-5/component-devices.png)
+
+El diagrama hace visible la relación Customer/Supplier con ACL del context map: `DeviceCommandService` solo conoce el puerto `SiteDirectory`, y la dependencia física hacia Organizations queda encapsulada en `OrganizationsSiteDirectory`.
+
+### 5.4.6. Bounded Context Software Architecture Code Level Diagrams
+
+Esta sección presenta el detalle de implementación del bounded context Device Management: el diagrama de clases de su Domain Layer y el diseño de su base de datos.
+
+#### 5.4.6.1. Bounded Context Domain Layer Class Diagrams
+
+Diagrama de clases UML del Domain Layer con atributos, métodos y su visibilidad (`+` public, `-` private), métodos estáticos subrayados, estereotipos DDD y relaciones con nombre, dirección y multiplicidad. Los getters los genera Lombok (`@Getter`) y se omiten del diagrama, al igual que los métodos `rehydrate(...)` usados solo por los mappers de persistencia.
+
+![Domain Layer Class Diagram — Device Management](assets/chapter-5/class-devices.png)
+
+El diagrama muestra el agregado `Device` con sus entidades asociadas por `deviceId` y el puerto `SiteDirectory` como interfaz del dominio.
+
+#### 5.4.6.2. Bounded Context Database Design Diagram
+
+Diagrama de base de datos (PostgreSQL) con tablas, columnas, tipos y restricciones. Las relaciones entre tablas del mismo contexto se marcan como **FK lógica**: el agregado garantiza la integridad y la tabla guarda el identificador. Las referencias a otros contextos se guardan como identificadores sin clave foránea, para no acoplar los esquemas entre módulos (ADD-05). Las columnas de enums tienen un `CHECK` con los valores permitidos.
+
+![Database Diagram — Device Management](assets/chapter-5/database-devices.png)
+
+Las tablas usan el prefijo `dm_`. `external_device_code` es único (US19, escenario 3) y `(device_id, config_key)` también (`uk_dm_config_device_key`). `site_id` y `zone_id` referencian a Organizations como identificadores lógicos.
+
+## 5.5. Bounded Context: Analytics
+
+Contexto **de soporte** responsable de la proyección de factura del periodo, las recomendaciones de ahorro, las anomalías y la comparación de consumo.
+
+### 5.5.1. Domain Layer
+
+Las entidades registran resultados analíticos con un ciclo de vida simple (`apply()`, `resolve()`). La pieza clave es el puerto `BillCalculator`: Analytics decide qué periodo y qué consumo previsto proyectar, pero delega el importe. El resultado vuelve como `EstimatedBill`, un tipo propio del contexto, de modo que el dominio no depende de conceptos de Energy como hora punta o IGV (ADD-04). Los repositorios se declaran como interfaces anidadas en `AnalyticsRepositories`.
+
+| Clase | Categoría | Propósito | Atributos | Métodos |
+| :-- | :-- | :-- | :-- | :-- |
+| `Anomaly` | Entity | Consumo atípico detectado: kWh real vs esperado y porcentaje de desviación; estados open / resolved. | `+ STATUS_OPEN: String`<br>`+ STATUS_RESOLVED: String`<br>`- id: UUID`<br>`- userId: String`<br>`- deviceId: String`<br>`- anomalyType: String`<br>`- description: String`<br>`- severity: String`<br>`- status: String`<br>`- actualKwh: double`<br>`- expectedKwh: double`<br>`- deviationPercentage: double`<br>`- detectedAt: Instant`<br>`- resolvedAt: Instant`<br>`- createdAt: Instant` | `+ detect(userId: String, deviceId: String, type: String, description: String, severity: String, actualKwh: double, expectedKwh: double): Anomaly` *(static)*<br>`+ resolve()` |
+| `BillPrediction` | Entity | Proyección de factura de un periodo, opcionalmente por local, con kWh por franja, demanda máxima prevista y costos de energía y potencia. | `- id: UUID`<br>`- userId: String`<br>`- predictionYear: int`<br>`- predictionMonth: int`<br>`- periodStart: Instant`<br>`- periodEnd: Instant`<br>`- estimatedKwh: double`<br>`- estimatedAmount: double`<br>`- currency: String`<br>`- tariffUsed: double`<br>`- errorMarginPercentage: double`<br>`- siteId: String`<br>`- estimatedKwhPeak: double`<br>`- estimatedKwhOffPeak: double`<br>`- estimatedMaxDemandKw: double`<br>`- energyCost: double`<br>`- powerCost: double`<br>`- generatedAt: Instant`<br>`- createdAt: Instant` | `+ create(userId: String, year: int, month: int, periodStart: Instant, periodEnd: Instant, estimatedKwh: double, estimatedAmount: double, currency: String, tariffUsed: double, errorMargin: double): BillPrediction` *(static)*<br>`+ create(userId: String, year: int, month: int, periodStart: Instant, periodEnd: Instant, estimatedKwh: double, estimatedAmount: double, currency: String, tariffUsed: double, errorMargin: double, siteId: String, kwhPeak: double, kwhOffPeak: double, maxDemandKw: double, energyCost: double, powerCost: double): BillPrediction` *(static)* |
+| `ConsumptionRanking` | Entity | Ranking de consumo por dispositivo para un periodo. | `- id: UUID`<br>`- userId: String`<br>`- periodType: String`<br>`- periodStart: Instant`<br>`- periodEnd: Instant`<br>`- rankings: List<RankingItem>`<br>`- generatedAt: Instant`<br>`- createdAt: Instant` | `+ create(userId: String, periodType: String, periodStart: Instant, periodEnd: Instant, rankings: List<RankingItem>): ConsumptionRanking` *(static)* |
+| `DeviceIdentificationResult` | Entity | Resultado de identificar el tipo de equipo detrás de un consumo, con su nivel de confianza. | `- id: UUID`<br>`- userId: String`<br>`- deviceId: String`<br>`- predictedDeviceType: String`<br>`- confidenceScore: double`<br>`- status: String`<br>`- analyzedAt: Instant`<br>`- createdAt: Instant` | `+ create(userId: String, deviceId: String, predictedType: String, confidence: double, status: String): DeviceIdentificationResult` *(static)* |
+| `Recommendation` | Entity | Recomendación de ahorro con ahorro estimado en kWh y en soles; estados pending / applied. | `+ STATUS_PENDING: String`<br>`+ STATUS_APPLIED: String`<br>`- id: UUID`<br>`- userId: String`<br>`- deviceId: String`<br>`- recommendationType: String`<br>`- title: String`<br>`- description: String`<br>`- estimatedSavingKwh: double`<br>`- estimatedSavingAmount: double`<br>`- currency: String`<br>`- status: String`<br>`- generatedAt: Instant`<br>`- appliedAt: Instant`<br>`- createdAt: Instant` | `+ create(userId: String, deviceId: String, type: String, title: String, description: String, savingKwh: double, savingAmount: double, currency: String): Recommendation` *(static)*<br>`+ apply()` |
+| `RankingItem` | Value Object | Posición de un dispositivo dentro del ranking. | `- rank: int`<br>`- deviceId: String`<br>`- deviceName: String`<br>`- totalKwh: double`<br>`- estimatedAmount: double`<br>`- percentageOfTotal: double`<br>`- currency: String` | — |
+| `BillPredictionRepository` | Repository | Puerto de persistencia (interfaz) de BillPrediction; su implementación vive en Infrastructure. | — | `+ save(prediction: BillPrediction): BillPrediction`<br>`+ findByUserId(userId: String): List<BillPrediction>` |
+| `RecommendationRepository` | Repository | Puerto de persistencia (interfaz) de Recommendation; su implementación vive en Infrastructure. | — | `+ save(recommendation: Recommendation): Recommendation`<br>`+ findById(id: UUID): Optional<Recommendation>`<br>`+ findByUserId(userId: String): List<Recommendation>` |
+| `AnomalyRepository` | Repository | Puerto de persistencia (interfaz) de Anomaly; su implementación vive en Infrastructure. | — | `+ save(anomaly: Anomaly): Anomaly`<br>`+ findById(id: UUID): Optional<Anomaly>`<br>`+ findByUserId(userId: String): List<Anomaly>` |
+| `DeviceIdentificationRepository` | Repository | Puerto de persistencia (interfaz) de DeviceIdentification; su implementación vive en Infrastructure. | — | `+ save(result: DeviceIdentificationResult): DeviceIdentificationResult`<br>`+ findByUserId(userId: String): List<DeviceIdentificationResult>` |
+| `ConsumptionRankingRepository` | Repository | Puerto de persistencia (interfaz) de ConsumptionRanking; su implementación vive en Infrastructure. | — | `+ save(ranking: ConsumptionRanking): ConsumptionRanking`<br>`+ findByUserId(userId: String): List<ConsumptionRanking>` |
+| `BillCalculator` | Port | Puerto propio de Analytics para convertir consumo previsto en importe; devuelve EstimatedBill, de modo que el dominio no conoce hora punta ni IGV (ADD-04). | — | `+ estimate(tariffCategory: String, kwhPeak: double, kwhOffPeak: double, maxDemandKw: double, contractedPowerKw: double): EstimatedBill` |
+| `EstimatedBill` | Value Object | Resultado del cálculo expresado en términos de Analytics. | `- energyCost: double`<br>`- powerCost: double`<br>`- fixedCharge: double`<br>`- total: double`<br>`- currency: String`<br>`- tariffUsed: double` | — |
+
+### 5.5.2. Interface Layer
+
+`AnalyticsController` expone los recursos bajo `/api/v1/analytics`. `POST /bill-predictions/forecast` implementa la proyección por local con tarifa comercial (US35).
+
+| Controller | Verbo | Endpoint | Acción | User Story |
+| :-- | :-- | :-- | :-- | :-- |
+| `AnalyticsController` | `GET` | `/api/v1/analytics/bill-predictions/user/{userId}` | A user's bill forecasts | US35 |
+| `AnalyticsController` | `POST` | `/api/v1/analytics/bill-predictions` | Records a bill forecast | US35 |
+| `AnalyticsController` | `POST` | `/api/v1/analytics/bill-predictions/forecast` | Forecasts a site's bill using the commercial tariff | US35 |
+| `AnalyticsController` | `GET` | `/api/v1/analytics/recommendations/user/{userId}` | A user's saving recommendations | US37 |
+| `AnalyticsController` | `POST` | `/api/v1/analytics/recommendations` | Records a recommendation | US37 |
+| `AnalyticsController` | `PATCH` | `/api/v1/analytics/recommendations/{recommendationId}/apply` | Marks a recommendation as applied | US37 |
+| `AnalyticsController` | `GET` | `/api/v1/analytics/anomalies/user/{userId}` | Anomalies detected for a user | US38 |
+| `AnalyticsController` | `POST` | `/api/v1/analytics/anomalies` | Records an anomaly | US38 |
+| `AnalyticsController` | `PATCH` | `/api/v1/analytics/anomalies/{anomalyId}/resolve` | Marks an anomaly as resolved | US38 |
+| `AnalyticsController` | `GET` | `/api/v1/analytics/device-identifications/user/{userId}` | Appliance identifications for a user | US38 |
+| `AnalyticsController` | `POST` | `/api/v1/analytics/device-identifications` | Records an appliance identification | US38 |
+| `AnalyticsController` | `GET` | `/api/v1/analytics/consumption-rankings/user/{userId}` | A user's consumption rankings | US39 |
+| `AnalyticsController` | `POST` | `/api/v1/analytics/consumption-rankings` | Records a consumption ranking | US39 |
+
+Recursos de request/response: `CreatePredictionRequest`, `CreateRecommendationRequest`, `CreateAnomalyRequest`, `CreateIdentificationRequest`, `RankingItemResource`, `CreateRankingRequest`, `BillPredictionResponse`, `ForecastSiteBillRequest`, `RecommendationResponse`, `AnomalyResponse`, `DeviceIdentificationResponse`, `ConsumptionRankingResponse`.
+
+### 5.5.3. Application Layer
+
+`AnalyticsService.forecastSiteBill(...)` obtiene el importe mediante `BillCalculator` y persiste la proyección con el desglose de energía y potencia. El resto de operaciones registran y consultan recomendaciones, anomalías, identificaciones y rankings.
+
+| Clase | Tipo | Responsabilidad | Operaciones (métodos públicos) |
+| :-- | :-- | :-- | :-- |
+| `AnalyticsService` | Application Service | Proyecta la factura de un local a través de BillCalculator y registra o consulta proyecciones, recomendaciones, anomalías, identificaciones y rankings. | `createPrediction()`, `forecastSiteBill()`, `predictionsByUser()`, `createRecommendation()`, `recommendationsByUser()`, `applyRecommendation()`, `createAnomaly()`, `anomaliesByUser()`, `resolveAnomaly()`, `createIdentification()`, `identificationsByUser()`, `createRanking()`, `rankingsByUser()` |
+
+### 5.5.4. Infrastructure Layer
+
+`EnergyBillCalculator` implementa `BillCalculator` usando el `EnergyPricingProvider` de Energy y traduce `BillBreakdown` a `EstimatedBill`; es la ACL descrita en el context map. Los adaptadores JPA están agrupados en `AnalyticsAdapters`.
+
+| Clase | Paquete | Responsabilidad |
+| :-- | :-- | :-- |
+| `AnalyticsAdapters` | `analytics.infrastructure.persistence.jpa.adapters` | Agrupa los adaptadores JPA `BillPredictionAdapter`, `RecommendationAdapter`, `AnomalyAdapter`, `DeviceIdentificationAdapter`, `ConsumptionRankingAdapter`, que implementan los repositorios del dominio. |
+| `AnalyticsJpaEntities` | `analytics.infrastructure.persistence.jpa.entities` | Agrupa las entidades JPA de las tablas `an_bill_predictions`, `an_recommendations`, `an_anomalies`, `an_device_identifications`, `an_consumption_rankings`. |
+| `AnomalyJpa` | `analytics.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+| `BillPredictionJpa` | `analytics.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+| `ConsumptionRankingJpa` | `analytics.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+| `DeviceIdentificationJpa` | `analytics.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+| `RecommendationJpa` | `analytics.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+| `EnergyBillCalculator` | `analytics.infrastructure.pricing` | ACL hacia Energy: implementa BillCalculator usando EnergyPricingProvider y traduce BillBreakdown a EstimatedBill. |
+
+### 5.5.5. Bounded Context Software Architecture Component Level Diagrams
+
+Diagrama de componentes del container **SEMS API** acotado al bounded context Analytics. Se elaboró en Structurizr DSL (`src/sems-components.dsl`, vista `bc-analytics`). Los colores distinguen la capa de cada componente: Interface (azul oscuro), Application (azul), Domain (verde), Infrastructure (gris) y el bus compartido (ocre).
+
+![Component Diagram — Analytics](assets/chapter-5/component-analytics.png)
+
+El diagrama muestra la única dependencia del contexto hacia otro: `AnalyticsService` → `BillCalculator` → `EnergyBillCalculator` → `EnergyPricingProvider`. La dirección es unidireccional: Analytics conoce a Energy, nunca al revés.
+
+### 5.5.6. Bounded Context Software Architecture Code Level Diagrams
+
+Esta sección presenta el detalle de implementación del bounded context Analytics: el diagrama de clases de su Domain Layer y el diseño de su base de datos.
+
+#### 5.5.6.1. Bounded Context Domain Layer Class Diagrams
+
+Diagrama de clases UML del Domain Layer con atributos, métodos y su visibilidad (`+` public, `-` private), métodos estáticos subrayados, estereotipos DDD y relaciones con nombre, dirección y multiplicidad. Los getters los genera Lombok (`@Getter`) y se omiten del diagrama, al igual que los métodos `rehydrate(...)` usados solo por los mappers de persistencia.
+
+![Domain Layer Class Diagram — Analytics](assets/chapter-5/class-analytics.png)
+
+Las entidades son independientes entre sí. La única composición es la de `ConsumptionRanking` con sus `RankingItem`, y el puerto `BillCalculator` declara su propio record de resultado.
+
+#### 5.5.6.2. Bounded Context Database Design Diagram
+
+Diagrama de base de datos (PostgreSQL) con tablas, columnas, tipos y restricciones. Las relaciones entre tablas del mismo contexto se marcan como **FK lógica**: el agregado garantiza la integridad y la tabla guarda el identificador. Las referencias a otros contextos se guardan como identificadores sin clave foránea, para no acoplar los esquemas entre módulos (ADD-05). Las columnas de enums tienen un `CHECK` con los valores permitidos.
+
+![Database Diagram — Analytics](assets/chapter-5/database-analytics.png)
+
+Las tablas usan el prefijo `an_` y están indexadas por `user_id`. `an_consumption_rankings` guarda los ítems del ranking serializados en `rankings_json`, porque siempre se leen y escriben juntos con su ranking.
+
+## 5.6. Bounded Context: Identity & Access Management
+
+Contexto **genérico** de cuentas, credenciales, sesiones y roles de plataforma. Es upstream *Conformist* de todos los demás: el resto acepta su modelo de usuario (el `userId` del JWT) sin traducirlo.
+
+### 5.6.1. Domain Layer
+
+El dominio define `UserAggregate` con el value object `EmailAddress` (validado al construirse) y los roles `RoleName`. Las operaciones se modelan como commands (`RegisterUserCommand`, `LoginCommand`, `AssignRoleCommand`) y queries. Los puertos `PasswordHashingService` y `TokenService` aíslan al dominio de BCrypt y JWT.
+
+| Clase | Categoría | Propósito | Atributos | Métodos |
+| :-- | :-- | :-- | :-- | :-- |
+| `UserAggregate` | Aggregate Root | Raíz de agregado del usuario: correo, hash de contraseña y roles de plataforma. | `- userId: UUID`<br>`- emailAddress: EmailAddress`<br>`- passwordHash: String`<br>`- roles: Set<RoleName>`<br>`- createdAt: Instant`<br>`- updatedAt: Instant` | `+ assignRole(roleName: RoleName)` |
+| `AssignRoleCommand` | Command | Comando de asignación de rol. | `- userId: UUID`<br>`- role: String` | — |
+| `LoginCommand` | Command | Comando de inicio de sesión. | `- emailAddress: String`<br>`- password: String` | — |
+| `RegisterUserCommand` | Command | Comando de registro de cuenta. | `- emailAddress: String`<br>`- password: String`<br>`- role: String` | — |
+| `Role` | Value Object | Rol de plataforma persistido. | `- roleId: UUID`<br>`- name: RoleName` | — |
+| `ConflictException` | Exception | Conflicto de unicidad (p. ej. correo ya registrado). | — | — |
+| `NotFoundException` | Exception | Recurso inexistente. | — | — |
+| `UnauthorizedException` | Exception | Credenciales inválidas. | — | — |
+| `GetUserByEmailQuery` | Query | Consulta de usuario por correo. | `- emailAddress: String` | — |
+| `GetUserByIdQuery` | Query | Consulta de usuario por id. | `- userId: UUID` | — |
+| `EmailAddress` | Value Object | Correo validado por patrón en su construcción. | `- value: String`<br>`- EMAIL_PATTERN: Pattern` | — |
+| `RoleName` | Enumeration | Roles de plataforma: ADMIN, STAFF. | Valores: `ADMIN`, `STAFF` | `+ from(raw: String): RoleName` *(static)* |
+| `PasswordHashingService` | Port | Puerto para generar y verificar hashes de contraseña. | — | `+ hash(rawPassword: String): String`<br>`+ matches(rawPassword: String, hashedPassword: String): boolean` |
+| `TokenService` | Port | Puerto para emitir y leer tokens de sesión. | — | `+ generateToken(userAggregate: UserAggregate): String`<br>`+ extractUserId(token: String): String`<br>`+ isTokenValid(token: String): boolean` |
+
+### 5.6.2. Interface Layer
+
+`AuthenticationController` (`/api/v1/auth/**`) es público por diseño. El resto queda protegido por la política de denegación por defecto de `SecurityConfiguration` (ADD-03, QAS04), y una petición sin token recibe 401 por el `HttpStatusEntryPoint`. `JwtAuthenticationFilter` valida el token de cada petición. `IamAcl` es la fachada de solo lectura que usa Demand & Alerting para obtener el correo de un destinatario. `CommandMapper` traduce los requests a commands.
+
+| Controller | Verbo | Endpoint | Acción | User Story |
+| :-- | :-- | :-- | :-- | :-- |
+| `AuthenticationController` | `POST` | `/api/v1/auth/refresh` | Renews the session with a refresh token | TS01 |
+| `AuthenticationController` | `POST` | `/api/v1/auth/logout` | Revokes the refresh token | US09 |
+| `AuthenticationController` | `POST` | `/api/v1/auth/verify` | Verifies the account with a single-use token | US06 |
+| `AuthenticationController` | `POST` | `/api/v1/auth/forgot-password` | Requests a password reset (same answer whether the account exists or not) | US08 |
+| `AuthenticationController` | `POST` | `/api/v1/auth/reset-password` | Sets a new password with a single-use token | US08 |
+| `AuthenticationController` | `POST` | `/api/v1/auth/register` | Registers an account and issues a session | US06 |
+| `AuthenticationController` | `POST` | `/api/v1/auth/login` | Signs in with email and password | US07, TS01 |
+| `AuthenticationController` | `POST` | `/api/v1/auth/google` | Signs in with a Google id_token | US07 |
+| `AuthenticationController` | `GET` | `/api/v1/auth/google/callback` | OAuth 2.0 callback: exchanges the authorization code | US07 |
+| `AuthenticationController` | `GET` | `/api/v1/auth/google/url` | Returns the Google authorization URL | US07 |
+| `HealthController` | `GET` | `/health` | Liveness probe of the process | TS07 |
+| `RoleController` | `POST` | `/api/v1/users/{userId}/roles` | Assigns a platform role (ADMIN) | TS02 |
+| `UserController` | `GET` | `/api/v1/users/me` | Profile of the authenticated user | US17 |
+| `UserController` | `GET` | `/api/v1/users` | Lists every user (ADMIN) | TS02 |
+
+Recursos de request/response: `AssignRoleRequest`, `RefreshRequest`, `LogoutRequest`, `VerifyRequest`, `ForgotPasswordRequest`, `ResetPasswordRequest`, `GoogleLoginRequest`, `LoginRequest`, `LoginResponse`, `RegisterRequest`, `UserResource`.
+
+### 5.6.3. Application Layer
+
+`AuthenticationCommandService` atiende registro (US06), login (US07, TS01) y login con Google. `AccountRecoveryService` atiende refresh, logout (US09), verificación y restablecimiento de contraseña (US08); este último responde igual exista o no la cuenta. `AuthTokenService` emite refresh tokens y tokens de un solo uso, de los que guarda solo el hash SHA-256. Los eventos se publican mediante el puerto `IamEventPublisher`.
+
+| Clase | Tipo | Responsabilidad | Operaciones (métodos públicos) |
+| :-- | :-- | :-- | :-- |
+| `AccountRecoveryService` | Command Service | Refresh de sesión, logout, verificación de cuenta, olvido y restablecimiento de contraseña. | `refresh()`, `logout()`, `requestVerification()`, `verifyAccount()`, `forgotPassword()`, `resetPassword()` |
+| `AuthTokenService` | Application Service | Emite y consume refresh tokens y tokens de un solo uso (verificación 24 h, restablecimiento 1 h), guardando solo su hash SHA-256. | `issueRefreshToken()`, `consumeRefreshToken()`, `revoke()`, `issueVerificationToken()`, `issuePasswordResetToken()`, `consumeSingleUse()` |
+| `AuthenticationCommandService` | Command Service | Registro, login con credenciales y login con Google (id_token o authorization code); emite JWT y refresh token y publica UserRegistered y UserLoggedIn. | `register()`, `login()`, `loginWithGoogle()`, `loginWithGoogleAuthorizationCode()` |
+| `UserRoleCommandService` | Command Service | Asigna roles de plataforma y publica RoleAssigned. | `assignRole()` |
+| `IamInternalEventHandler` | Event Handler | Punto reservado para reaccionar a eventos internos de IAM; hoy no tiene manejadores. | — |
+| `IamEventPublisher` | Outbound Port | Puerto de salida para publicar los eventos de IAM; lo implementa InProcessIamEventPublisher. | `publishUserRegistered()`, `publishUserLoggedIn()`, `publishRoleAssigned()`, `publishVerificationRequested()`, `publishPasswordResetRequested()` |
+| `UserQueryService` | Query Service | Consulta de usuarios con sus roles. | `getById()`, `getAll()` |
+
+### 5.6.4. Infrastructure Layer
+
+`JwtService` (JJWT), `BCryptHashingService`, `GoogleTokenVerifier` / `GoogleOAuthClient` e `InProcessIamEventPublisher` implementan los puertos del contexto. La persistencia usa entidades y repositorios Spring Data JPA en `persistence/jpa/repositories`.
+
+| Clase | Paquete | Responsabilidad |
+| :-- | :-- | :-- |
+| `RoleDataInitializer` | `iam.infrastructure.authorization.sfs.configuration` | Siembra los roles de plataforma al arrancar. |
+| `SecurityConfiguration` | `iam.infrastructure.authorization.sfs.configuration` | Cadena de filtros de Spring Security: sesión stateless, CORS explícito, endpoints públicos declarados y denegación por defecto (ADD-03). |
+| `AuthenticatedUserDetails` | `iam.infrastructure.authorization.sfs.model` | Principal de Spring Security con userId, correo y authorities. |
+| `JwtAuthenticationFilter` | `iam.infrastructure.authorization.sfs.pipeline` | Filtro que valida el Bearer JWT y establece el principal autenticado. |
+| `SecurityUserFactory` | `iam.infrastructure.authorization.sfs.services` | Construye el principal a partir de los claims del token. |
+| `BCryptHashingService` | `iam.infrastructure.hashing.bcrypt.services` | Implementa PasswordHashingService con BCrypt. |
+| `InProcessIamEventPublisher` | `iam.infrastructure.messaging.inprocess` | Implementa IamEventPublisher publicando en el DomainEventBus. |
+| `GoogleOAuthClient` | `iam.infrastructure.oauth.google` | Canjea el authorization code de Google por un id_token. |
+| `GoogleTokenVerifier` | `iam.infrastructure.oauth.google` | Verifica el id_token de Google y extrae sus claims. |
+| `RefreshTokenJpaEntity` | `iam.infrastructure.persistence.jpa.repositories` | Entidad JPA de la tabla `iam_refresh_tokens`. |
+| `RefreshTokenRepository` | `iam.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+| `RoleJpaEntity` | `iam.infrastructure.persistence.jpa.repositories` | Entidad JPA de la tabla `iam_roles`. |
+| `RoleRepository` | `iam.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+| `UserAuthTokenJpaEntity` | `iam.infrastructure.persistence.jpa.repositories` | Entidad JPA de la tabla `iam_user_auth_tokens`. |
+| `UserAuthTokenRepository` | `iam.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+| `UserJpaEntity` | `iam.infrastructure.persistence.jpa.repositories` | Entidad JPA de la tabla `iam_users`. |
+| `UserRepository` | `iam.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+| `UserRoleId` | `iam.infrastructure.persistence.jpa.repositories` | Clave primaria compuesta embebida. |
+| `UserRoleJpaEntity` | `iam.infrastructure.persistence.jpa.repositories` | Entidad JPA de la tabla `iam_user_roles`. |
+| `UserRoleRepository` | `iam.infrastructure.persistence.jpa.repositories` | Repositorio Spring Data JPA (consultas derivadas por nombre). |
+| `JwtService` | `iam.infrastructure.tokens.jwt.services` | Implementa TokenService: firma, valida y lee JWT (JJWT, HMAC). |
+
+### 5.6.5. Bounded Context Software Architecture Component Level Diagrams
+
+Diagrama de componentes del container **SEMS API** acotado al bounded context Identity & Access Management. Se elaboró en Structurizr DSL (`src/sems-components.dsl`, vista `bc-iam`). Los colores distinguen la capa de cada componente: Interface (azul oscuro), Application (azul), Domain (verde), Infrastructure (gris) y el bus compartido (ocre).
+
+![Component Diagram — Identity & Access Management](assets/chapter-5/component-iam.png)
+
+El diagrama muestra la cadena de seguridad que precede a todo el API y los servicios de autenticación con sus adaptadores. IAM produce eventos (`UserRegistered`, `VerificationRequested`, `PasswordResetRequested`) que el `DomainEventBus` entrega al contexto de notificaciones, sin que IAM conozca el envío de correos.
+
+### 5.6.6. Bounded Context Software Architecture Code Level Diagrams
+
+Esta sección presenta el detalle de implementación del bounded context Identity & Access Management: el diagrama de clases de su Domain Layer y el diseño de su base de datos.
+
+#### 5.6.6.1. Bounded Context Domain Layer Class Diagrams
+
+Diagrama de clases UML del Domain Layer con atributos, métodos y su visibilidad (`+` public, `-` private), métodos estáticos subrayados, estereotipos DDD y relaciones con nombre, dirección y multiplicidad. Los getters los genera Lombok (`@Getter`) y se omiten del diagrama, al igual que los métodos `rehydrate(...)` usados solo por los mappers de persistencia.
+
+![Domain Layer Class Diagram — Identity & Access Management](assets/chapter-5/class-iam.png)
+
+El diagrama muestra el agregado de usuario, sus value objects, los commands y queries, y los puertos que la infraestructura implementa.
+
+#### 5.6.6.2. Bounded Context Database Design Diagram
+
+Diagrama de base de datos (PostgreSQL) con tablas, columnas, tipos y restricciones. Las relaciones entre tablas del mismo contexto se marcan como **FK lógica**: el agregado garantiza la integridad y la tabla guarda el identificador. Las referencias a otros contextos se guardan como identificadores sin clave foránea, para no acoplar los esquemas entre módulos (ADD-05). Las columnas de enums tienen un `CHECK` con los valores permitidos.
+
+![Database Diagram — Identity & Access Management](assets/chapter-5/database-iam.png)
+
+Las tablas usan el prefijo `iam_`. Es el único contexto con claves foráneas físicas, en la tabla intermedia `iam_user_roles` (relación muchos a muchos entre usuarios y roles). De los tokens de refresco y de un solo uso se guarda solo el hash, con índice único.
 
 # Capítulo VI: Solution UX Design
 
