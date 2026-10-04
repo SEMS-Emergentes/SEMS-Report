@@ -2208,6 +2208,9 @@ En navegador móvil las columnas colapsan a una sola y la navegación pasa al me
 
 ### 6.3.2. Landing Page Mock-up
 
+*Figura 22 (Landing Page Mock-up)*
+<img src="https://i.imgur.com/4RaLo1w.png" alt="Landing Page Mock-up" style="width: 100vw;">
+
 ## 6.4. Applications UX/UI Design
 
 ### 6.4.1. Applications Wireframes
