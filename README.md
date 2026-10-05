@@ -1627,38 +1627,36 @@ Estas tres preguntas se resolvieron en la sesión de *Candidate Context Discover
 
 ### 4.2.2. Candidate Context Discovery
 
-A partir del EventStorm ordenado, el equipo aplicó las tres técnicas sugeridas para identificar los
-*bounded contexts*.
+A partir del EventStorm ordenado (Paso 3 y 4 del EventStorming), el equipo realizó una sesión de Candidate Context Discovery de aproximadamente dos horas en la que aplicó, en este orden, las tres técnicas sugeridas. Cada técnica dejó un cambio visible sobre el EventStorm, que se registra a continuación.
 
-**Start-with-value.** Se identificó como núcleo del dominio la secuencia
-`ReadingProcessed → MaximumDemandUpdated → DemandWarningRaised → ContractedPowerExceeded`, por ser
-la que sostiene la propuesta de valor: es el único punto donde el sistema puede evitarle dinero al
-cliente antes de que lo gaste. Todo lo demás —identidad, suscripciones, pagos— es soporte.
+**Paso 1 — Start-with-simple.** La línea de tiempo se descompuso en siete pasos secuenciales del negocio (constituir la organización, contratar el servicio, configurar el local, instalar medidores, medir, evaluar y avisar, y proyectar), agrupando en cada uno los eventos que comparten lenguaje y reglas. Los tres puntos calientes quedaron ubicados sobre los pasos donde aparecen.
 
-**Look-for-pivotal-events.** Se marcaron como eventos pivote los que representan un cambio de
-estado del negocio y separan responsabilidades:
+![Candidate Context Discovery — Paso 1](assets/CandidateContext-Paso1.png)
+
+**Paso 2 — Look-for-pivotal-events.** Se marcaron como eventos pivote los que representan un cambio de estado del negocio y separan responsabilidades:
 
 - `SiteRegistered` separa la configuración del negocio de la operación de medición.
 - `ReadingProcessed` separa la medición de la evaluación.
 - `ContractedPowerExceeded` separa la evaluación de la notificación.
 - `SubscriptionChanged` separa la operación del cobro.
 
-**Start-with-simple.** La línea de tiempo se descompuso en pasos secuenciales —constituir la
-organización, configurar el local, instalar y asociar medidores, recibir lecturas, evaluar,
-notificar, proyectar y cobrar— y se agruparon los pasos que comparten lenguaje y reglas.
+![Candidate Context Discovery — Paso 2](assets/CandidateContext-Paso2.png)
 
-**Resolución de los puntos calientes**
+**Paso 3 — Start-with-value.** Se identificó como núcleo del dominio la secuencia `ReadingProcessed → MaximumDemandUpdated → DemandWarningRaised → ContractedPowerExceeded`, porque es el único punto donde el sistema puede evitarle dinero al cliente antes de que lo gaste. Todo lo demás (identidad, organización, suscripciones, pagos y proyección) se atenuó como soporte o genérico.
 
-- *¿A quién pertenece la demanda máxima?* A **Energía**, que la deriva de las lecturas. **Alertas**
-  no la calcula: recibe un valor de demanda y lo evalúa contra las reglas del local. Separar el
-  cálculo de la vigilancia permite que la regla cambie sin tocar la medición.
-- *¿Quién comprueba el límite de locales del plan?* **Suscripciones** conoce el plan y sus límites;
-  **Organizaciones** conoce cuántos locales existen. La comprobación se resuelve consultando el
-  límite desde Organizaciones en el momento del alta, lo que mantiene la regla del plan en su
-  contexto dueño.
-- *¿Dónde vive la proyección de factura?* El **cálculo** pertenece a Energía, dueña de la tarifa. La
-  **proyección** —qué periodo, qué consumo previsto, qué se guarda como histórico— pertenece a
-  Analítica. Esta separación es la que materializa ADD-04.
+![Candidate Context Discovery — Paso 3](assets/CandidateContext-Paso3.png)
+
+**Paso 4 — Primer borrador de contextos y resolución de puntos calientes.** Con las tres técnicas aplicadas se dibujó un primer borrador de fronteras, en el que la medición y la evaluación formaban un solo contexto (*Energy & Demand*) y suscripciones y pagos otro (*Subscriptions & Payments*). Al discutir los puntos calientes, el borrador cambió:
+
+- *¿A quién pertenece la demanda máxima?* A **Energía**, que la deriva de las lecturas. **Alertas** no la calcula: recibe un valor de demanda y lo evalúa contra las reglas del local. Como Energía cambia con el pliego tarifario y Alertas con la política comercial del cliente, el borrador *Energy & Demand* se dividió en **Energy Monitoring** y **Demand & Alerting**.
+- *¿Quién comprueba el límite de locales del plan?* **Subscriptions** conoce el plan y sus límites; **Organizations** conoce cuántos locales existen. La comprobación se resuelve consultando el límite desde Organizations en el momento del alta, lo que mantiene la regla del plan en su contexto dueño. Además, como el cobro tiene su propio modelo (pasarela, webhooks, comprobantes), *Subscriptions & Payments* se separó en dos contextos.
+- *¿Dónde vive la proyección de factura?* El **cálculo** pertenece a Energía, dueña de la tarifa. La **proyección** (qué periodo, qué consumo previsto, qué se guarda como histórico) pertenece a Analytics. Esta separación es la que materializa ADD-04.
+
+![Candidate Context Discovery — Paso 4](assets/CandidateContext-Paso4.png)
+
+**Paso 5 — Resultado final.** Tras resolver los puntos calientes, el EventStorm quedó dividido en ocho bounded contexts candidatos, con el núcleo del dominio resaltado y los eventos pivote marcados.
+
+![Candidate Context Discovery — Paso 5 (resultado)](assets/Paso5.jpg)
 
 **Bounded contexts candidatos**
 
@@ -1730,9 +1728,7 @@ negocio más relevantes. A continuación se describen los tres flujos modelados.
 
 ### 4.2.4. Bounded Context Canvases
 
-Se elaboran los canvases por orden de importancia estratégica. Se presentan los dos contextos
-núcleo y el contexto de soporte que sostiene la jerarquía del negocio; el resto sigue la misma
-estructura.
+El equipo elaboró un Bounded Context Canvas por cada uno de los ocho bounded contexts candidatos, seleccionándolos por orden de importancia estratégica: primero los dos contextos núcleo (Energy Monitoring y Demand & Alerting), luego los de soporte (Organizations, Device Management y Analytics) y al final los genéricos (Identity & Access Management, Subscriptions y Payments). Cada canvas se construyó de forma iterativa siguiendo los pasos de **Context Overview Definition**, **Business Rules Distillation & Ubiquitous Language Capture**, **Capability Analysis**, **Capability Layering** (cuando aplica), **Dependencies Capture** y **Design Critique**.
 
 ---
 
