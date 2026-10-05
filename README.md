@@ -1916,10 +1916,274 @@ Se evaluó separar los vínculos de acceso hacia *Identity & Access Management*.
 el alcance de un vínculo se expresa en términos de esta estructura —una organización, un local— y
 llevarlo a IAM obligaría a que IAM conociera conceptos que no le pertenecen.
 
+
+#### Canvas 4 — Device Management (Supporting)
+
+**Context Overview**
+
+| Campo | Contenido |
+| :-- | :-- |
+| Nombre | Device Management |
+| Propósito | Mantener el inventario de medidores físicos de cada local: dónde están instalados, en qué estado se encuentran, cómo se configuran y quién los opera. |
+| Clasificación estratégica | **Supporting Domain.** No diferencia al producto, pero sin medidores ubicados correctamente el consumo no puede atribuirse a un local ni a una zona. |
+| Modelo de negocio | Compliance — garantiza que cada lectura tenga un origen válido. |
+| Evolución | Custom Built, con potencial de reemplazarse por la plataforma de gestión del fabricante de medidores. |
+
+**Ubiquitous Language**
+
+`Device`, `External Device Code`, `Device Status`, `Connection Protocol`, `Device Binding`, `Device Configuration`, `Device Event`, `Site`, `Zone`.
+
+**Business Rules**
+
+- El código externo de un medidor es único en toda la plataforma.
+- Un medidor se registra siempre en un local vigente; si se indica zona, esta debe pertenecer a ese local.
+- Un medidor solo se traslada a otra zona del mismo local.
+- La baja de un medidor es lógica y definitiva: un medidor dado de baja no se reactiva, deja de ocupar cupo del plan y conserva sus lecturas históricas.
+- Un medidor tiene como máximo un vínculo activo con la persona que lo opera.
+- Cada clave de configuración es única por medidor.
+
+**Inbound Communication**
+
+| Origen | Mensaje | Tipo |
+| :-- | :-- | :-- |
+| Aplicación web | Alta, traslado, cambio de estado y baja de medidores | Comando |
+| Aplicación web | Vínculo y configuración de medidores | Comando |
+| Medidores instalados | Evento operativo del equipo | Comando |
+| Aplicación web y móvil | Medidores por local y por zona | Consulta |
+
+**Outbound Communication**
+
+| Destino | Mensaje | Tipo |
+| :-- | :-- | :-- |
+| Organizations | ¿El local está vigente? ¿La zona pertenece al local? | Consulta (puerto `SiteDirectory`) |
+| Todos los contextos | `DeviceRegistered`, `DeviceStatusUpdated`, `DeviceLinked`, `DeviceUnlinked` | Evento |
+
+**Capabilities**
+
+Registrar medidores · Validar su ubicación · Trasladar medidores entre zonas · Gestionar su estado · Vincular medidores con operadores · Configurar parámetros · Registrar eventos operativos.
+
+**Dependencies**
+
+*Organizations*, a través del puerto `SiteDirectory`, que expone solo las dos preguntas que este contexto necesita (Anti-Corruption Layer). *Subscriptions*, de forma indirecta, para el límite de medidores por local del plan.
+
+**Design Critique**
+
+Se evaluó fusionar este contexto con Energy Monitoring, porque ambos hablan de "medidores". Se descartó: aquí el medidor es un **activo físico** con ubicación y ciclo de vida, mientras que en Energy Monitoring es la **fuente de lecturas**. También se discutió duplicar la comprobación de vigencia del local para eliminar la dependencia hacia Organizations; se prefirió el puerto reducido para mantener una sola fuente de verdad.
+
 ---
 
-> Los canvases de *Identity & Access Management*, *Device Management*, *Analytics*, *Subscriptions*
-> y *Payments* siguen la misma estructura y se incluyen en el anexo correspondiente.
+#### Canvas 5 — Analytics (Supporting)
+
+**Context Overview**
+
+| Campo | Contenido |
+| :-- | :-- |
+| Nombre | Analytics |
+| Propósito | Convertir el histórico de consumo en información para decidir: proyección de la factura del periodo, recomendaciones de ahorro, anomalías y comparación entre locales. |
+| Clasificación estratégica | **Supporting Domain.** Aporta valor recurrente (Business Goal 03, renovación), pero depende del cálculo que vive en el núcleo. |
+| Modelo de negocio | Engagement — sostiene el uso continuo de la plataforma después del primer mes. |
+| Evolución | Custom Built; candidato a incorporar modelos predictivos más adelante. |
+
+**Ubiquitous Language**
+
+`Bill Forecast`, `Forecast Period`, `Estimated Bill`, `Recommendation`, `Estimated Saving`, `Anomaly`, `Deviation`, `Consumption Ranking`, `Device Identification`.
+
+**Business Rules**
+
+- La proyección de factura no calcula importes: los obtiene de Energy Monitoring y guarda el resultado como histórico del periodo.
+- Una proyección por local registra por separado el consumo en punta, fuera de punta, la demanda máxima prevista, el costo de energía y el costo de potencia.
+- Una recomendación indica siempre su ahorro estimado en kWh y en soles; pasa de *pending* a *applied* una sola vez.
+- Una anomalía registra el consumo real, el esperado y el porcentaje de desviación; pasa de *open* a *resolved*.
+- La comparación entre locales requiere al menos dos locales con datos.
+
+**Inbound Communication**
+
+| Origen | Mensaje | Tipo |
+| :-- | :-- | :-- |
+| Aplicación web y móvil | Solicitud de proyección de factura de un local | Comando |
+| Aplicación web y móvil | Consulta de recomendaciones, anomalías y rankings | Consulta |
+| Aplicación web | Aplicación de una recomendación / resolución de una anomalía | Comando |
+
+**Outbound Communication**
+
+| Destino | Mensaje | Tipo |
+| :-- | :-- | :-- |
+| Energy Monitoring | Solicitud de cálculo de importe | Consulta (puerto `BillCalculator`) |
+| Aplicación web y móvil | Proyección, recomendaciones, anomalías y rankings | Respuesta |
+
+**Capabilities**
+
+Proyectar la factura del periodo · Registrar recomendaciones con ahorro estimado · Registrar y resolver anomalías · Elaborar rankings de consumo · Comparar locales.
+
+**Dependencies**
+
+*Energy Monitoring*, a través del puerto `BillCalculator`, cuyo adaptador traduce `BillBreakdown` a un resultado propio de Analytics (Anti-Corruption Layer). La dependencia es unidireccional: Energy Monitoring no conoce a Analytics.
+
+**Design Critique**
+
+Se discutió mover el cálculo de la factura a este contexto, porque es donde se presenta al usuario. Se descartó para no alejar la regla tarifaria de su dueño (QAS02, QAS08). Se aceptó una pequeña duplicación de tipos en la frontera a cambio de que el dominio de Analytics no dependa de conceptos como hora punta o IGV.
+
+---
+
+#### Canvas 6 — Identity & Access Management (Generic)
+
+**Context Overview**
+
+| Campo | Contenido |
+| :-- | :-- |
+| Nombre | Identity & Access Management |
+| Propósito | Gestionar las cuentas de las personas, sus credenciales, sus sesiones y sus roles de plataforma. |
+| Clasificación estratégica | **Generic Subdomain.** Es necesario en cualquier producto y no diferencia a SEMS. |
+| Modelo de negocio | Compliance — protege el acceso a la información de los clientes. |
+| Evolución | Commodity; se apoya en estándares (JWT, OAuth 2.0 con Google) y podría sustituirse por un proveedor de identidad. |
+
+**Ubiquitous Language**
+
+`User`, `Email Address`, `Credential`, `Session Token`, `Refresh Token`, `Platform Role`, `Account Verification`, `Password Reset`.
+
+**Business Rules**
+
+- El correo identifica a la cuenta y no se repite.
+- Ante credenciales inválidas, el sistema no revela si el correo existe.
+- La solicitud de restablecimiento responde igual exista o no la cuenta.
+- Los tokens de verificación (24 h) y de restablecimiento (1 h) son de un solo uso; solo se almacena su hash.
+- Cerrar sesión revoca el token de refresco.
+- Los roles de plataforma (ADMIN, STAFF) son distintos de los papeles dentro de una organización, que pertenecen a Organizations.
+
+**Inbound Communication**
+
+| Origen | Mensaje | Tipo |
+| :-- | :-- | :-- |
+| Aplicación web y móvil | Registro, inicio de sesión, inicio con Google, renovación y cierre de sesión | Comando |
+| Aplicación web | Verificación de cuenta y restablecimiento de contraseña | Comando |
+| Demand & Alerting | Correo de un usuario | Consulta (fachada `IamAcl`) |
+
+**Outbound Communication**
+
+| Destino | Mensaje | Tipo |
+| :-- | :-- | :-- |
+| Demand & Alerting (notificaciones) | `UserRegistered`, `VerificationRequested`, `PasswordResetRequested` | Evento |
+| Todos los contextos | Identidad del usuario en el token de sesión | Conformist |
+| Google Identity | Verificación del token de Google | Consulta externa |
+
+**Capabilities**
+
+Registrar cuentas · Autenticar con credenciales o con Google · Emitir y renovar sesiones · Revocar sesiones · Verificar cuentas · Restablecer contraseñas · Asignar roles de plataforma.
+
+**Dependencies**
+
+*Google Identity*, como proveedor externo de autenticación. No depende de ningún otro bounded context; todos los demás dependen de él como *Conformist*.
+
+**Design Critique**
+
+Se evaluó ubicar aquí los vínculos de acceso por organización y local. Se descartó porque su alcance se expresa en términos de Organizations, y llevarlos a IAM obligaría a que IAM conociera conceptos que no le pertenecen. También se decidió que IAM no envíe correos: publica eventos y el envío lo hace el contexto de notificaciones.
+
+---
+
+#### Canvas 7 — Subscriptions (Generic)
+
+**Context Overview**
+
+| Campo | Contenido |
+| :-- | :-- |
+| Nombre | Subscriptions |
+| Propósito | Definir los planes de servicio con sus límites y gestionar la suscripción vigente de cada cliente. |
+| Clasificación estratégica | **Generic Subdomain.** El modelo de planes y suscripciones es común a cualquier SaaS. |
+| Modelo de negocio | Revenue — determina los ingresos recurrentes (Business Goals 01 y 04). |
+| Evolución | Product; podría reemplazarse por el módulo de suscripciones de la pasarela. |
+
+**Ubiquitous Language**
+
+`Subscription Plan`, `Plan Feature`, `Site Limit`, `Meter Limit`, `Subscription`, `Subscription Status`, `Billing Period`, `Plan Change`.
+
+**Business Rules**
+
+- Los planes vigentes son Starter, Business y Enterprise, y cada uno define su límite de locales y de medidores por local.
+- El nombre de un plan es único.
+- Una suscripción cancelada o vencida es un estado final: no se cancela de nuevo ni cambia de plan.
+- Todo cambio de plan o de estado se comunica a los demás contextos.
+- El límite de locales lo decide este contexto; Organizations solo lo consulta.
+
+**Inbound Communication**
+
+| Origen | Mensaje | Tipo |
+| :-- | :-- | :-- |
+| Aplicación web | Consulta de planes; alta, cancelación y cambio de plan | Comando / Consulta |
+| Organizations | Límite de locales del plan vigente | Consulta |
+| Payments | Confirmación del cobro que activa o renueva la suscripción | Evento / Comando |
+
+**Outbound Communication**
+
+| Destino | Mensaje | Tipo |
+| :-- | :-- | :-- |
+| Todos los contextos | `SubscriptionChanged` | Evento |
+| Organizations | Límite de locales | Respuesta |
+
+**Capabilities**
+
+Publicar planes y sus características · Contratar un plan · Cambiar de plan · Cancelar la suscripción · Sincronizar su estado con la pasarela · Responder los límites del plan.
+
+**Dependencies**
+
+*Payments*, que confirma los cobros que habilitan la suscripción (Customer/Supplier). La pasarela de pagos solo se conoce de forma indirecta a través de Payments.
+
+**Design Critique**
+
+Se evaluó un único contexto *Subscriptions & Payments*. Se separó porque el cobro tiene su propio modelo (métodos de pago, webhooks, comprobantes, idempotencia) y cambia con la pasarela, mientras que los planes cambian con la estrategia comercial.
+
+---
+
+#### Canvas 8 — Payments (Generic)
+
+**Context Overview**
+
+| Campo | Contenido |
+| :-- | :-- |
+| Nombre | Payments |
+| Propósito | Registrar los métodos de pago, procesar los cobros de la suscripción, emitir comprobantes y conciliar los estados con la pasarela. |
+| Clasificación estratégica | **Generic Subdomain.** Se delega en una pasarela externa. |
+| Modelo de negocio | Revenue / Compliance — materializa el ingreso cumpliendo CON09. |
+| Evolución | Commodity; la pasarela es intercambiable detrás del puerto `PaymentProvider`. |
+
+**Ubiquitous Language**
+
+`Payment`, `Payment Status`, `Payment Method`, `Invoice`, `Webhook Event`, `Checkout Session`, `Money`.
+
+**Business Rules**
+
+- La solución nunca almacena ni procesa números de tarjeta; solo marca, últimos cuatro dígitos, vencimiento e identificador de la pasarela.
+- Un pago avanza de *pending* a *processing* y termina en *processed*, *failed* o *cancelled*.
+- Solo un pago *processed* genera comprobante, y como máximo uno.
+- Cada evento de la pasarela se procesa una sola vez (idempotencia por identificador de evento).
+- El webhook solo se acepta con una firma válida de la pasarela.
+- Un importe no puede ser negativo.
+
+**Inbound Communication**
+
+| Origen | Mensaje | Tipo |
+| :-- | :-- | :-- |
+| Aplicación web | Registro de método de pago, cobro y sesión de Checkout | Comando |
+| Pasarela de pagos (Stripe) | Evento firmado de pago o de Checkout | Evento (webhook) |
+| Aplicación web | Consulta de pagos y comprobantes | Consulta |
+
+**Outbound Communication**
+
+| Destino | Mensaje | Tipo |
+| :-- | :-- | :-- |
+| Pasarela de pagos (Stripe) | Creación de PaymentIntent y de sesión de Checkout | Comando externo |
+| Subscriptions / notificaciones | `PaymentProcessed` | Evento |
+
+**Capabilities**
+
+Registrar métodos de pago · Procesar cobros · Crear sesiones de Checkout · Conciliar estados por webhook · Emitir comprobantes · Consultar el historial de pagos.
+
+**Dependencies**
+
+*Pasarela de pagos (Stripe)*, aislada mediante el puerto `PaymentProvider` y el traductor de estados `PaymentStatusMapper` (Anti-Corruption Layer). *Subscriptions*, como consumidor de la confirmación de los cobros.
+
+**Design Critique**
+
+Se discutió si el estado del pago debía tomarse directamente del modelo de la pasarela. Se descartó para que el dominio no dependa de los nombres de estado de Stripe: el traductor permite cambiar de pasarela sin modificar el contexto. También se decidió persistir cada evento recibido antes de procesarlo, para que un reenvío de la pasarela no duplique el cobro ni el comprobante.
 
 ### 4.2.5. Context Mapping
 
