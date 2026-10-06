@@ -3352,7 +3352,167 @@ resultados ambiguos entre organizaciones, locales, zonas y medidores.
 
 ### 6.2.4. SEO Tags and Meta Tags
 
+Los valores de esta sección constituyen una **propuesta de configuración** para las páginas y vistas documentadas en el proyecto. Se diferencia la Landing Page, destinada a presentar la solución y captar usuarios, de la aplicación web, destinada a gestionar información de organizaciones y locales.
+
+### Landing Page
+
+La Landing Page está desarrollada con HTML5, CSS3 y JavaScript y presenta su contenido en una sola página. Por ello, las secciones de funcionamiento, características, públicos objetivo, planes y preguntas frecuentes compartirán los metadatos del documento principal. No se les asignarán títulos y descripciones como si fueran páginas independientes.
+
+El inglés es el idioma predeterminado establecido en los requisitos del proyecto. La versión en español corresponde a la alternativa de idioma contemplada en el README y visible en la captura proporcionada. Los valores se adaptarán al idioma seleccionado.
+
+| Página / idioma | Title | Meta Description | Keywords | Author |
+| :-- | :-- | :-- | :-- | :-- |
+| Landing Page — inglés | SEMS — Energy and Demand Management for Businesses | Monitor energy use by site and zone, estimate your electricity bill, and receive alerts as demand approaches your contracted power with SEMS. | SEMS, Energix, commercial energy management, electricity demand, contracted power, peak hours, energy meters, retail, Peru | Energix |
+| Landing Page — español | SEMS — Gestión de energía y demanda para negocios | Monitorea el consumo por local y zona, estima tu factura eléctrica y recibe alertas al acercarte a la potencia contratada con SEMS. | SEMS, Energix, gestión energética comercial, demanda eléctrica, potencia contratada, hora punta, medidores de energía, retail, Perú | Energix |
+
+El **Title** identifica la marca y el ámbito comercial del producto. La **Meta Description** sintetiza beneficios respaldados por el proyecto, sin prometer porcentajes de ahorro ni resultados garantizados. Las **Keywords** reúnen los conceptos del dominio y el público objetivo, mientras que **Author** identifica a Energix como la startup desarrolladora.
+
+### Web Application
+
+La aplicación web, desarrollada con Vue 3 y PrimeVue, comprende vistas de autenticación, monitoreo, analítica y gestión. Cada vista principal tendrá un título específico para que el usuario reconozca su ubicación también desde la pestaña del navegador. Las descripciones corresponderán a la finalidad de cada vista, sin incorporar nombres reales de organizaciones, lecturas, importes ni otros datos particulares de una cuenta.
+
+Se proponen los siguientes valores en inglés, de acuerdo con el idioma predeterminado del producto. Los nombres en español de la primera columna permiten identificar las vistas dentro del informe; no representan rutas URL adicionales.
+
+| Página / vista | Title | Meta Description | Keywords | Author |
+| :-- | :-- | :-- | :-- | :-- |
+| Inicio de sesión | Sign In — SEMS | Sign in to SEMS to access the energy consumption, demand alerts, and estimated electricity costs of your authorized sites. | SEMS, sign in, energy management, site access | Energix |
+| Registro | Create Account — SEMS | Create your SEMS account to start managing energy consumption and electricity demand in your commercial establishment. | SEMS, create account, commercial energy management | Energix |
+| Recuperación de contraseña | Password Recovery — SEMS | Request a password reset link to recover access to your SEMS account and your authorized sites. | SEMS, password recovery, account access | Energix |
+| Restablecimiento de contraseña | Reset Password — SEMS | Set a new password using your recovery link to regain access to your SEMS account. | SEMS, reset password, account recovery | Energix |
+| Verificación de cuenta | Account Verification — SEMS | Verify your SEMS account using the verification process associated with your registered email address. | SEMS, account verification, email verification | Energix |
+| Panel principal | Dashboard — SEMS | Review your energy consumption, estimated electricity costs, and pending alerts from the SEMS dashboard. | SEMS, dashboard, energy consumption, bill estimate, demand alerts | Energix |
+| Medidores | Meters — SEMS | Review and manage the energy meters assigned to your sites and zones, including their connection status. | SEMS, energy meters, sites, zones, connection status | Energix |
+| Monitoreo y lecturas | Energy Monitoring — SEMS | Explore current and historical meter readings and energy consumption by zone to understand how your site uses electricity. | SEMS, energy monitoring, meter readings, consumption history, zones | Energix |
+| Analítica | Analytics — SEMS | Review bill estimates, consumption patterns, savings recommendations, and energy comparisons between your sites. | SEMS, energy analytics, bill estimate, savings recommendations, site comparison | Energix |
+| Alertas | Alerts — SEMS | Review demand and consumption alerts, identify the affected site, and track the status of incidents requiring attention. | SEMS, demand alerts, consumption alerts, contracted power, alert status | Energix |
+| Reportes | Energy Reports — SEMS | Select a reporting period and download a PDF report with energy metrics for your management review. | SEMS, energy reports, PDF reports, energy metrics | Energix |
+| Suscripción | Subscription — SEMS | Review your SEMS subscription and compare Starter, Business, and Enterprise plans and their site and meter limits. | SEMS, subscription, Starter, Business, Enterprise, site limits | Energix |
+| Organización y locales | Organization and Sites — SEMS | Manage your organization, sites, zones, and site supply settings according to your assigned permissions. | SEMS, organization, sites, zones, tariff category, contracted power | Energix |
+| Configuración y perfil | Settings and Profile — SEMS | Review your SEMS profile and configure notification preferences for your energy management experience. | SEMS, settings, profile, notification preferences | Energix |
+
+En Vue, estos valores se actualizarán al cambiar de vista, de modo que el título del documento no permanezca asociado únicamente al Dashboard. Las pantallas de detalle conservarán la referencia a su módulo principal; por ejemplo, el detalle de una alerta mantendrá su relación con **Alerts**.
+
+### Metadatos complementarios
+
+Además de los cuatro elementos mínimos, se propone la siguiente configuración para identificar el documento, adaptar su visualización y definir su presentación al compartir la Landing Page.
+
+| Elemento | Landing Page | Web Application |
+| :-- | :-- | :-- |
+| Codificación | `<meta charset="UTF-8">` | `<meta charset="UTF-8">` |
+| Viewport | `<meta name="viewport" content="width=device-width, initial-scale=1.0">` | `<meta name="viewport" content="width=device-width, initial-scale=1.0">` |
+| Idioma del documento | `lang="en"` por defecto; `lang="es"` en español. | `lang="en"` para la experiencia predeterminada. |
+| Robots | `<meta name="robots" content="index, follow">` | Se propone `<meta name="robots" content="noindex">` en autenticación y vistas de gestión, concentrando la presencia pública en la Landing Page. |
+| Author | `<meta name="author" content="Energix">` | `<meta name="author" content="Energix">` |
+
+La decisión de indexación diferencia el contenido promocional público de la experiencia de trabajo. La autenticación y los permisos por organización y local seguirán siendo los mecanismos que controlen el acceso a la información de la aplicación.
+
+Para la Landing Page se asignarán también los siguientes valores Open Graph:
+
+| Etiqueta | Valor propuesto |
+| :-- | :-- |
+| `og:site_name` | SEMS |
+| `og:title` | SEMS — Energy and Demand Management for Businesses |
+| `og:description` | Monitor energy use by site and zone, estimate your electricity bill, and receive alerts as demand approaches your contracted power with SEMS. |
+| `og:type` | website |
+| `og:url` | https://sems-emergentes.github.io/SEMS-Landing-Page/ |
+
+Los valores de `og:title` y `og:description` se adaptarán a la versión en español utilizando los textos de la tabla de la Landing Page. La URL corresponde al despliegue documentado en el README. No se define `og:image`, porque los materiales no identifican una imagen específica destinada a la vista previa al compartir.
+
+
 ### 6.2.5. Navigation Systems
+
+La navegación de SEMS se organiza alrededor de dos necesidades: comprender la propuesta de gestión energética antes de adoptar el servicio y acceder a información operativa para tomar decisiones sobre el consumo y la demanda de un establecimiento. Los responsables de cadenas necesitan alternar entre locales, comparar su desempeño y obtener evidencia para gerencia. Los propietarios independientes necesitan revisar rápidamente el costo estimado, identificar dónde se concentra el consumo y atender avisos comprensibles desde el teléfono.
+
+Las siguientes decisiones describen la navegación propuesta a partir de las secciones de la Landing Page, las vistas y los flujos documentados en el README. La distribución de accesos rápidos y los mecanismos de orientación se especifican como criterios de diseño para esas funcionalidades.
+
+### Navegación de la Landing Page
+
+La Landing Page utiliza una estructura vertical de página única. El visitante puede recorrerla mediante desplazamiento o acceder directamente a los bloques de su interés desde los enlaces del encabezado. Los enlaces funcionan como anclas dentro del mismo documento, de acuerdo con la historia US04 y con el sistema de búsqueda definido en el informe.
+
+| Elemento | Acción de navegación | Finalidad para el visitante |
+| :-- | :-- | :-- |
+| Logotipo SEMS | Regresar al inicio y a la sección Hero. | Recuperar la propuesta de valor y el acceso principal al registro. |
+| **Cómo funciona** | Desplazarse al bloque de cuatro pasos: registrar la organización y los locales, conectar medidores, vigilar la demanda y actuar durante el periodo. | Comprender cómo se utiliza SEMS antes de crear una cuenta. |
+| **Características** | Acceder a las tarjetas de monitoreo, avisos de demanda, hora punta, desglose por zona, proyección de factura y comparación entre locales. | Evaluar si la solución responde al problema energético del negocio. |
+| **Para quién es** | Acceder a los bloques de cadenas de retail y establecimientos independientes. | Reconocer el caso de uso correspondiente a su escala de operación. |
+| **Planes** | Acceder a las opciones Starter, Business y Enterprise. | Comparar las prestaciones y los límites de locales y medidores. |
+| **Preguntas** | Acceder al acordeón de preguntas frecuentes. | Resolver dudas sobre medidores, demanda, operación y datos. |
+| Selector de idioma | Cambiar el idioma del contenido conservando la elección durante el recorrido. | Comprender la información en el idioma disponible que prefiera. |
+| Selector de tema | Cambiar la presentación visual entre los modos claro y oscuro. | Adecuar la lectura a sus preferencias de visualización. |
+| **Empezar gratis / Crear mi cuenta gratis** | Dirigirse a la vista de registro de la aplicación web. | Iniciar la adopción del servicio después de evaluar sus beneficios. |
+| **Iniciar sesión** | Dirigirse a la vista de acceso de la aplicación web. | Permitir que un usuario registrado llegue a su experiencia de trabajo. |
+
+La sección Hero presenta primero el problema y el beneficio principal. A continuación, el visitante encuentra las cifras de contexto, la explicación del problema, el funcionamiento, las características, los segmentos, los planes y las preguntas frecuentes. Este orden permite entender por qué un exceso de demanda afecta el gasto, conocer cómo SEMS aporta visibilidad y decidir si conviene registrarse.
+
+Los llamados a la acción se distribuyen en el Hero, los bloques de segmentos, los planes y el cierre de la página. En el caso de los planes, se contempla la redirección al registro con la opción seleccionada, conforme a US03. El bloque de cadenas destaca la posibilidad de comenzar con un local antes de extender el uso; el de establecimientos independientes facilita el inicio de una experiencia centrada en su único negocio.
+
+En pantallas pequeñas, la navegación superior se presenta mediante un menú desplegable y los bloques pasan a una sola columna. El pie de página repite accesos al contenido del producto y presenta los enlaces empresariales y legales visibles en el diseño. Las preguntas frecuentes se expanden dentro de la página, evitando abandonar el recorrido para resolver una duda.
+
+### Navegación de la Web Application
+
+La aplicación web utiliza un panel lateral como navegación global y un área central para la vista seleccionada. Tras iniciar sesión, el usuario accede al **Dashboard**, desde donde consulta el resumen energético y las alertas pendientes. Las opciones se organizarán por tareas de consulta y gestión, manteniendo las denominaciones del sistema de etiquetado.
+
+| Módulo | Recorrido y acciones principales | Objetivo del usuario |
+| :-- | :-- | :-- |
+| **Dashboard** | Revisar el resumen y acceder a las vistas de monitoreo o alertas para ampliar la información. | Identificar rápidamente el estado energético y los asuntos que requieren atención. |
+| **Organization / Sites** | Consultar la organización, seleccionar un local y acceder a sus zonas y datos de suministro; realizar cambios según los permisos asignados. | Mantener el contexto de trabajo y la estructura sobre la que se atribuye el consumo. |
+| **Meters** | Revisar los medidores por local y zona, consultar su estado y abrir las acciones de registro o gestión autorizadas. | Verificar la cobertura de medición y su ubicación dentro del negocio. |
+| **Energy Monitoring / Readings** | Consultar el consumo actual, elegir un medidor y un rango de fechas y revisar el histórico o el desglose por zona. | Investigar una variación y localizar dónde se concentra el consumo. |
+| **Alerts** | Filtrar por severidad y estado, abrir el detalle de una alerta y registrar su atención o resolución. | Comprender el incidente y actuar con información del local afectado. |
+| **Analytics** | Seleccionar el periodo y el local, revisar la factura estimada y las recomendaciones y consultar la comparación entre locales. | Relacionar el consumo con el costo y evaluar oportunidades de mejora. |
+| **Reports** | Seleccionar el periodo del reporte y ejecutar la descarga en PDF. | Obtener evidencia energética para la revisión de gestión. |
+| **Subscription** | Consultar el plan vigente y sus límites y acceder a las acciones de contratación, cambio y pago autorizadas. | Adecuar el servicio al número de locales y medidores de la organización. |
+| **Settings / Profile** | Revisar el perfil, configurar preferencias de notificación y acceder al cierre de sesión. | Mantener una experiencia acorde con sus necesidades y proteger el acceso en equipos compartidos. |
+
+La navegación contextual seguirá la jerarquía **Organization → Site → Zone → Meter**. La organización y el local activos se mostrarán en las vistas de trabajo para que un cambio de sede no se confunda con una variación de los datos. Si el usuario pertenece a varias organizaciones, podrá consultar sus vínculos y cambiar de contexto conforme a US17. Si administra una cadena, podrá elegir entre los locales autorizados; si trabaja en un único establecimiento, su recorrido se centrará en ese local.
+
+Los permisos complementan la organización de los accesos. El administrador gestiona la organización, los vínculos de acceso y la suscripción; el supervisor trabaja dentro del alcance de su local y el operario consulta la información que le corresponde. Pertenecer al segmento de cadenas o de establecimientos independientes no concede por sí mismo permisos administrativos: las opciones y acciones disponibles dependerán del papel y del alcance asignados.
+
+Los recorridos principales serán los siguientes:
+
+1. **Configuración inicial:** registro o inicio de sesión → organización → registro del local y datos de suministro → zonas → registro y asignación de medidores → consulta del monitoreo. Este recorrido respeta la dependencia entre ubicación, medición y cálculo energético.
+2. **Atención de una alerta:** Dashboard → Alerts → filtros de severidad y estado → detalle del incidente → reconocimiento, cuando corresponda al flujo diseñado → resolución tras atender la situación → retorno al listado o al monitoreo del local.
+3. **Revisión de una cadena:** Dashboard → selección del local o consulta comparativa en Analytics → revisión del consumo, la demanda y el costo proyectado → Reports → selección del periodo y descarga del PDF. La comparación se utilizará cuando existan al menos dos locales con datos.
+4. **Revisión de un establecimiento independiente:** Dashboard → consulta del costo estimado → Energy Monitoring para revisar el consumo por zona → Analytics para consultar recomendaciones. El usuario podrá marcar una recomendación como aplicada después de realizar la acción correspondiente.
+
+La búsqueda será contextual, conforme a la sección 6.2.3: no se incorporará un buscador global. Los filtros de medidores, alertas, lecturas y analítica ayudarán a precisar la consulta sin mezclar información de otros locales u organizaciones.
+
+### Navegación de la Mobile Application
+
+La aplicación Android prioriza consultas breves y atención de alertas durante la operación del negocio. Conserva los conceptos de organización, local, zona y medidor de la experiencia web, adaptándolos a una pantalla táctil. Después de autenticarse, el usuario accede al Dashboard para revisar el resumen del consumo y continuar hacia la información que necesite.
+
+A partir de los lineamientos de Android y de los flujos móviles documentados, se propone combinar una navegación inferior para tareas frecuentes con un menú lateral para las opciones complementarias. La siguiente distribución corresponde a una decisión de diseño sobre vistas existentes:
+
+| Elemento de navegación | Destinos propuestos | Función dentro del recorrido |
+| :-- | :-- | :-- |
+| Navegación inferior | Dashboard, Energy Monitoring, Alerts y Analytics. | Facilitar el cambio entre el resumen, el monitoreo, los incidentes y el análisis. |
+| Menú lateral | Meters, Organization, Reports, Subscription, Settings y Profile. | Acceder a tareas de configuración y gestión utilizadas con menor frecuencia. |
+| Barra superior | Título de la vista, apertura del menú y retorno desde pantallas secundarias. | Identificar la ubicación actual y recuperar el nivel anterior. |
+| Acciones contextuales | Vincular medidor, reconocer o resolver una alerta y descargar un reporte. | Ejecutar la tarea vinculada a la pantalla abierta. |
+
+Los accesos del menú se mostrarán según los permisos de la cuenta. El local seleccionado permanecerá identificado en las pantallas de consulta, especialmente para los responsables de cadenas que alternan entre sedes.
+
+**Vinculación de un medidor.** El usuario abre Meters desde el menú lateral, selecciona la acción de vinculación y utiliza la cámara para escanear el código QR. Luego revisa la información detectada, indica el local y la zona correspondientes y confirma el registro. El retorno al listado permite verificar el resultado y continuar hacia el monitoreo. Este recorrido utiliza la capacidad de escaneo contemplada en el wireflow móvil.
+
+**Atención de alertas.** Desde las notificaciones pendientes del Dashboard, el usuario entra a Alerts, filtra las activas y abre el detalle. Consulta el local afectado, la severidad y el margen respecto de la potencia contratada; registra el reconocimiento y, después de atender el incidente, marca la alerta como resuelta. La navegación conduce al contexto necesario para decidir, sin exigir una exploración previa de todos los gráficos.
+
+**Consulta del propietario independiente.** El usuario revisa el resumen del Dashboard y pasa a Energy Monitoring cuando necesita ampliar el desglose. Desde Analytics consulta las recomendaciones y su ahorro estimado. Este recorrido prioriza información comprensible sobre su local y reduce la cantidad de pasos necesarios para relacionar una variación del consumo con una posible acción.
+
+**Consulta y reporte del responsable de cadena.** El usuario selecciona el local autorizado, revisa su situación y cambia de sede cuando necesita contrastar información. Para obtener un documento, abre Reports desde el menú, selecciona el periodo y ejecuta la descarga del PDF, siguiendo el flujo documentado en el proyecto.
+
+### Orientación y continuidad del recorrido
+
+Para evitar que los usuarios pierdan su ubicación, se proponen los siguientes criterios comunes:
+
+- **Ubicación visible:** destacar la opción activa del menú y mostrar el título de cada vista. En pantallas de detalle, conservar la referencia al módulo de origen y ofrecer retorno al listado.
+- **Contexto explícito:** identificar la organización, el local y, cuando corresponda, la zona o el medidor consultados. Esto es esencial para evitar decisiones sobre una sede equivocada.
+- **Terminología consistente:** mantener las etiquetas Organization, Site, Zone y Meter y sus equivalentes documentados, sin alternar denominaciones para una misma entidad.
+- **Continuidad de consulta:** conservar los filtros mientras el usuario navega dentro de una vista y permitir limpiarlos o restablecerlos cuando no haya resultados.
+- **Respuesta de las acciones:** informar si el registro, la actualización, la resolución o la descarga se completaron. Los errores de validación indicarán qué dato debe corregirse para continuar.
+- **Estados sin información:** explicar cuándo no existen locales, medidores o lecturas, en lugar de presentar una pantalla vacía que pueda interpretarse como un fallo de navegación. Las acciones de configuración se ofrecerán únicamente a quien tenga autorización.
+- **Recuperación de acceso:** permitir llegar a la recuperación de contraseña desde el inicio de sesión y volver al acceso después del restablecimiento.
+
+La Landing Page guía una decisión de adopción mediante contenido y llamados al registro. La aplicación web organiza el trabajo por módulos y contexto empresarial, mientras que la aplicación móvil acerca las consultas frecuentes y la atención de incidentes a la operación diaria. Esta diferenciación responde a los objetivos de ambos segmentos, manteniendo una estructura conceptual común entre los productos de SEMS.
 
 ## 6.3. Landing Page UI Design
 
