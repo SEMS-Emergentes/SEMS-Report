@@ -3706,17 +3706,132 @@ Descripción del flujo: El usuario ingresa a "Analíticas" y revisa la sección 
 
 Nota: Diagrama de Wireflow de resolución de alertas
 
-#### 6.4.2.2 Mobile Applications Wireflow Diagrams 
+#### 6.4.2.2 Web Applications Wireflow Diagrams
 
-<img src="assets/Wireflow1.png" alt="Landing Page Mock-up" style="width: 100vw;">
+**Segmento 1: Responsable de Operaciones de Cadena**
 
-<img src="assets/Wireflow2.png" alt="Landing Page Mock-up" style="width: 100vw;">
+**User Persona:** Valeria Fernández
 
-<img src="assets/Wireflow3.png" alt="Landing Page Mock-up" style="width: 100vw;">
+- User Goal: Como responsable de operaciones de una cadena, quiero registrar un nuevo local con su potencia contratada y vincular sus medidores, para empezar a monitorear su demanda en tiempo real.
 
-<img src="assets/Wireflow4.png" alt="Landing Page Mock-up" style="width: 100vw;">
+Wireflow:
+<img src="assets/Wireflow2.png" alt="Wireflow de alta de local y vinculación de medidores" style="width: 100vw;">
+Nota: Diagrama de Wireflow para dar de alta un local y vincular medidores
 
-<img src="assets/Wireflow5.png" alt="Landing Page Mock-up" style="width: 100vw;">
+Descripción del flujo: Desde el panel Resumen, el usuario ingresa a "Mis locales" y completa el perfil del local: nombre, tipo de establecimiento, área, potencia contratada, categoría tarifaria y distrito. Al guardar el perfil, pasa a "Dispositivos", donde escanea el código QR del medidor o lo registra de forma manual. Una vez vinculado, el local aparece en "Monitoreo" con su consumo en tiempo real.
+
+Flujos alternativos: si el plan contratado no admite otro local, el sistema muestra el UpgradeGate e invita a mejorar de plan. Si el identificador del medidor no es válido, se muestra un error y el usuario vuelve a escanear (ver User Flow 3).
+
+- User Goal: Como responsable de operaciones de una cadena, quiero atender una alerta de demanda e identificar la zona que la provoca, para reducir la carga antes de que el pico quede fijado en la facturación del mes.
+
+Wireflow:
+<img src="assets/Wireflow3.png" alt="Wireflow de atención de una alerta de demanda" style="width: 100vw;">
+Nota: Diagrama de Wireflow para atender una alerta de demanda
+
+Descripción del flujo: El usuario abre la bandeja de "Alertas" y selecciona la alerta activa. En "Monitoreo" compara el pico con la potencia contratada. En "Analítica" revisa el ranking de consumo para identificar la zona responsable y aplicar la recomendación. Finalmente, en "Reportes" genera el PDF del periodo para documentar el incidente. Este recorrido sostiene el Business Goal BG02.
+
+Flujos alternativos: si la demanda supera el umbral pero no la potencia contratada, se genera una alerta warning con el margen restante en kW. Si la carga no se reduce dentro de los 30 minutos, el pico queda fijado en el cargo del mes (ver User Flow 2).
+
+**Segmento 2: Propietario de Establecimiento Independiente**
+
+**User Persona:** Alessandro Gómez
+
+- User Goal: Como dueño de un local independiente, quiero crear mi cuenta gratis y entrar al panel, para empezar a medir el consumo de mi local sin registrar una tarjeta.
+
+Wireflow:
+<img src="assets/Wireflow1.png" alt="Wireflow de alta de cuenta y primer acceso" style="width: 100vw;">
+Nota: Diagrama de Wireflow de alta de cuenta y primer acceso
+
+Descripción del flujo: El usuario llega desde el llamado a la acción de la Landing Page a "Crear cuenta gratis", completa nombre, correo y contraseña y envía el formulario. Abre el enlace que recibe por correo y la pantalla "Verificación de la cuenta" confirma la activación. Luego inicia sesión y el sistema lo lleva al panel Resumen. Mientras no tenga sesión, el guard del router bloquea cualquier ruta privada.
+
+Flujos alternativos: si las credenciales son incorrectas, se muestra un error y el usuario vuelve a intentarlo (ver User Flow 1).
+
+- User Goal: Como dueño de un local independiente, quiero mejorar mi plan cuando necesito una función bloqueada, para acceder a la proyección de factura y a las recomendaciones de ahorro.
+
+Wireflow:
+<img src="assets/Wireflow4.png" alt="Wireflow de mejora de plan y pago" style="width: 100vw;">
+Nota: Diagrama de Wireflow de mejora de plan y pago
+
+Descripción del flujo: Desde el Resumen, el usuario abre "Analítica", que aparece bloqueada por su plan. El UpgradeGate lo lleva a "Suscripción y pagos", donde compara los planes Starter, Business y Enterprise y elige uno. El pago se realiza en la página del proveedor de pagos y SEMS nunca recibe los datos de la tarjeta. Con el pago confirmado, el usuario vuelve a "Analítica", ya desbloqueada.
+
+Flujos alternativos: si no elige un plan de pago, continúa en su plan actual. Si el pago es rechazado, puede volver a intentarlo (ver User Flow 4).
+
+- User Goal: Como dueño de un local independiente, quiero recuperar mi contraseña cuando la olvido, para no perder el acceso a los datos de mi negocio.
+
+Wireflow:
+<img src="assets/Wireflow5.png" alt="Wireflow de recuperación de contraseña" style="width: 100vw;">
+Nota: Diagrama de Wireflow de recuperación de contraseña
+
+Descripción del flujo: En "Iniciar sesión", el usuario selecciona "¿Olvidaste tu contraseña?", ingresa su correo y recibe un enlace de recuperación. Desde ese enlace define una nueva contraseña en "Cambiar contraseña" y vuelve a iniciar sesión con ella.
+
+Flujos alternativos: si el enlace caducó o ya no es válido, el sistema lo devuelve al inicio para solicitar uno nuevo.
+
+### 6.4.3. Applications Mock-ups
+
+#### 6.4.3.2 Web Applications Mock-ups
+En esta sección se presentan los mock-ups de alta fidelidad de la aplicación web de SEMS, construidos a partir de los wireframes y aplicando los Style Guidelines definidos (tipografía, colores, iconografía y espaciado).
+
+(Mock-up de Inicio de Sesión)
+<img src="assets/MockLogin.png" alt="Mock-up de Inicio de Sesión" style="width: 100vw;">
+
+(Mock-up de Creación de Cuenta)
+<img src="assets/MockCreate.png" alt="Mock-up de Creación de Cuenta" style="width: 100vw;">
+
+(Mock-up de Recuperación de Contraseña)
+<img src="assets/MockRestore.png" alt="Mock-up de Recuperación de Contraseña" style="width: 100vw;">
+
+(Mock-up de Cambio de Contraseña)
+<img src="assets/MockChange.png" alt="Mock-up de Cambio de Contraseña" style="width: 100vw;">
+
+(Mock-up de Verificación de Cuenta)
+<img src="assets/MockVerify.png" alt="Mock-up de Verificación de Cuenta" style="width: 100vw;">
+
+(Mock-up del Panel de Resumen)
+<img src="assets/MockDashboard.png" alt="Mock-up del Panel de Resumen" style="width: 100vw;">
+
+(Mock-up de Dispositivos)
+<img src="assets/MockDevices.png" alt="Mock-up de Dispositivos" style="width: 100vw;">
+
+(Mock-up de Monitoreo)
+<img src="assets/MockMonitor.png" alt="Mock-up de Monitoreo" style="width: 100vw;">
+
+(Mock-up de Analítica)
+<img src="assets/MockAnalytics.png" alt="Mock-up de Analítica" style="width: 100vw;">
+
+(Mock-up de Alertas)
+<img src="assets/MockAlerts.png" alt="Mock-up de Alertas" style="width: 100vw;">
+
+(Mock-up de Reportes)
+<img src="assets/MockReports.png" alt="Mock-up de Reportes" style="width: 100vw;">
+
+(Mock-up de Suscripción y Pagos)
+<img src="assets/MockSubs.png" alt="Mock-up de Suscripción y Pagos" style="width: 100vw;">
+
+(Mock-up de Mis Locales)
+<img src="assets/MockLocals.png" alt="Mock-up de Mis Locales" style="width: 100vw;">
+
+(Mock-up de Configuración)
+<img src="assets/MockConfig.png" alt="Mock-up de Configuración" style="width: 100vw;">
+
+(Mock-up de Página No Encontrada (404))
+<img src="assets/MockNotFound.png" alt="Mock-up de Página No Encontrada (404)" style="width: 100vw;">
+
+### 6.4.4. Applications User Flow Diagrams
+
+#### 6.4.4.2 Web Applications User Flow Diagrams
+En esta sección se presentan los diagramas de flujo de usuario de la aplicación web de SEMS, que muestran los caminos, decisiones y resultados de las tareas principales del producto.
+
+(User Flow 1: Autenticación y acceso)
+<img src="assets/UserFlow1.png" alt="User Flow 1: Autenticación y acceso" style="width: 100vw;">
+
+(User Flow 2: Ciclo de la alerta de demanda)
+<img src="assets/UserFlow2.png" alt="User Flow 2: Ciclo de la alerta de demanda" style="width: 100vw;">
+
+(User Flow 3: Alta de local y vinculación de medidores)
+<img src="assets/UserFlow3.png" alt="User Flow 3: Alta de local y vinculación de medidores" style="width: 100vw;">
+
+(User Flow 4: Suscripción y pago)
+<img src="assets/UserFlow4.png" alt="User Flow 4: Suscripción y pago" style="width: 100vw;">
 
 
 # Conclusiones, Bibliografía y Anexos
