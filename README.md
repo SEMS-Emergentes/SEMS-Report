@@ -3,7 +3,7 @@
 # UNIVERSIDAD PERUANA DE CIENCIAS APLICADAS
 
 <p align="center">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/UPC_logo_transparente.png"></img>
+    <img src="assets/upc-logo.png"></img>
 </p>
 
 **FACULTAD DE INGENIERÍA**
@@ -209,11 +209,11 @@ capaz de acompañar tanto a un local independiente como a una cadena con decenas
 
 | Integrante | Código | Carrera | Perfil |
 | :-- | :-- | :-- | :-- |
-| Encalada Salazar, Alexis **(Team Leader)** | U20211G491 | Ingeniería de Software | <img src="https://i.imgur.com/dCNE1N0.jpeg" alt="Encalada Salazar, Alexis" width="120"><br>Mi nombre es Alexis Encalada Salazar, tengo 22 años y actualmente curso el quinto ciclo de la carrera de Ingeniería de Software en la Universidad Peruana de Ciencias Aplicadas. Me considero una persona responsable y perseverante, capaz de desempeñarme eficientemente tanto en trabajos individuales como en equipo. Dentro del desarrollo del proyecto, aportaré mis conocimientos en los lenguajes de programación C++ y Python, así como habilidades en edición de video, con el objetivo de contribuir al cumplimiento de las metas del equipo. |
-| Goñe Araccata, Esther Abigail | U202318049 | Ingeniería de Software | <img src="https://i.imgur.com/GByNzjm.png" alt="Goñe, Abigail" width="120"><br>Mi nombre es Abigail Goñe, tengo 20 años y actualmente me encuentro en el séptimo ciclo de la carrera de Ingeniería de Software. Soy una persona responsable, amigable y me gusta poder ayudar a los demás en todo lo que pueda. |
-| Gómez Flores, Daniela Araceli | U202311184 | Ingeniería de Software | <img src="https://res.cloudinary.com/df8xwy4xb/image/upload/v1776792340/yo_uzhre7.jpg" alt="gomez Flores, Daniela Araceli" width="120"><br>Soy Daniela Gómez Flores, estudiante de Ingeniería de Software en la UPC, actualmente cursando el 8vo ciclo. Me gusta trabajar de manera organizada, aprender cosas nuevas y mantener un buen equilibrio en mis actividades. |
-| Solis Santa Cruz, Giancarlo | U202318615 | Ingeniería de Software | <img src="https://i.imgur.com/XJ4FjKA.png" alt="Solis Santa Cruz, Giancarlo" width="120"><br>Estudiante de Ingeniería de Software cursando el octavo ciclo. Persona proactiva, intuitiva y enfocada en la eficiencia, con un enfoque preventivo frente a los problemas. |
-| Sulca Silva, Melisa Geraldine | U202224602 | Ingeniería de Software | <img src="https://i.imgur.com/p9GVr4j.png" alt="Sulca Silva, Melisa Geraldine" width="120"><br>Estudio la carrera de Ingeniería de Software y me interesa el desarrollo web. Me motiva aprender nuevos lenguajes de programación. Suelo trabajar bien en equipo, muestro compromiso con el grupo y aplico perseverancia para superar los obstáculos y alcanzar mis objetivos. |
+| Encalada Salazar, Alexis **(Team Leader)** | U20211G491 | Ingeniería de Software | <img src="assets/equipo/encalada-alexis.jpeg" alt="Encalada Salazar, Alexis" width="120"><br>Mi nombre es Alexis Encalada Salazar, tengo 22 años y actualmente curso el quinto ciclo de la carrera de Ingeniería de Software en la Universidad Peruana de Ciencias Aplicadas. Me considero una persona responsable y perseverante, capaz de desempeñarme eficientemente tanto en trabajos individuales como en equipo. Dentro del desarrollo del proyecto, aportaré mis conocimientos en los lenguajes de programación C++ y Python, así como habilidades en edición de video, con el objetivo de contribuir al cumplimiento de las metas del equipo. |
+| Goñe Araccata, Esther Abigail | U202318049 | Ingeniería de Software | <img src="assets/equipo/gone-abigail.png" alt="Goñe, Abigail" width="120"><br>Mi nombre es Abigail Goñe, tengo 20 años y actualmente me encuentro en el séptimo ciclo de la carrera de Ingeniería de Software. Soy una persona responsable, amigable y me gusta poder ayudar a los demás en todo lo que pueda. |
+| Gómez Flores, Daniela Araceli | U202311184 | Ingeniería de Software | <img src="assets/equipo/gomez-daniela.jpg" alt="gomez Flores, Daniela Araceli" width="120"><br>Soy Daniela Gómez Flores, estudiante de Ingeniería de Software en la UPC, actualmente cursando el 8vo ciclo. Me gusta trabajar de manera organizada, aprender cosas nuevas y mantener un buen equilibrio en mis actividades. |
+| Solis Santa Cruz, Giancarlo | U202318615 | Ingeniería de Software | <img src="assets/equipo/solis-giancarlo.png" alt="Solis Santa Cruz, Giancarlo" width="120"><br>Estudiante de Ingeniería de Software cursando el octavo ciclo. Persona proactiva, intuitiva y enfocada en la eficiencia, con un enfoque preventivo frente a los problemas. |
+| Sulca Silva, Melisa Geraldine | U202224602 | Ingeniería de Software | <img src="assets/equipo/sulca-melisa.png" alt="Sulca Silva, Melisa Geraldine" width="120"><br>Estudio la carrera de Ingeniería de Software y me interesa el desarrollo web. Me motiva aprender nuevos lenguajes de programación. Suelo trabajar bien en equipo, muestro compromiso con el grupo y aplico perseverancia para superar los obstáculos y alcanzar mis objetivos. |
 
 ## 1.2. Solution Profile
 
@@ -683,7 +683,7 @@ inicia explicando el propósito de la investigación y solicitando consentimient
 | URL del video | https://acortar.link/rd0LIG |
 | Timing de inicio | 00:00 |
 | Duración | 12:24 |
-| Screenshot | <img src="https://i.imgur.com/fRHpiIj.png">|
+| Screenshot | <img src="assets/entrevistas/segmento1-entrevista1.png">|
 
 **Resumen de la entrevista**
 
@@ -704,7 +704,7 @@ En el local de Surco estuvo dos meses pagando el doble de lo esperado porque el 
 | URL del video | [https://sl1nk.com/5tpz14d](https://sl1nk.com/5tpz14d) |
 | Timing de inicio | 0:05 |
 | Duración | 11:43 |
-| Screenshot | <img src="https://res.cloudinary.com/df8xwy4xb/image/upload/v1789413907/WhatsApp_Image_2026-09-14_at_2.19.39_PM_nq2i45.jpg">|
+| Screenshot | <img src="assets/entrevistas/segmento1-entrevista2.jpg">|
 
 **Resumen de la entrevista**
 
@@ -723,7 +723,7 @@ El principal dolor de Mariel es la falta de visibilidad y control oportuno sobre
 | URL del video | [Entrevista 3](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202318615_upc_edu_pe/IQBJfCru_2aPQrXWkaK2bFosASkNYu94g8P10R2t540gJU8?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=SaMynI) |
 | Timing de inicio | 00:03 |
 | Duración | 8:41 |
-| Screenshot | <img src="https://i.imgur.com/lkhcDYE.png" alt="Captura de la sesión" width="250" /> |
+| Screenshot | <img src="assets/entrevistas/segmento1-entrevista3.png" alt="Captura de la sesión" width="250" /> |
 
 **Resumen de la entrevista**
 
@@ -742,7 +742,7 @@ Jeanfer supervisa 14 locales de conveniencia (120 a 160 m²) en Lima. En el plan
 | URL del video | https://acortar.link/YRmRAy |
 | Timing de inicio | 00:00 |
 | Duración | 10:32 |
-| Screenshot | <img src="https://i.imgur.com/VgMJ1Zb.png"> |
+| Screenshot | <img src="assets/entrevistas/segmento2-entrevista1.png"> |
 
 **Resumen de la entrevista**
 
@@ -763,14 +763,14 @@ Cuando arranca dos secadoras y las planchas a vapor al mismo tiempo se le va un 
 | URL del video | [https://lix.li/mpStC](https://lix.li/mpStC) |
 | Timing de inicio | 0:15 |
 | Duración | 9:45 |
-| Screenshot | <img src="https://res.cloudinary.com/df8xwy4xb/image/upload/v1789281762/WhatsApp_Image_2026-09-12_at_7.47.07_PM_botz1w.jpg"> |
+| Screenshot | <img src="assets/entrevistas/segmento2-entrevista2.jpg"> |
 
 **Resumen de la entrevista**
 
 Lo que busca es tener mayor control sobre el consumo de su local, identificar qué zonas o equipos están generando mayor gasto y saber cuándo debe actuar para evitar costos innecesarios. Sin embargo, no busca información técnica o complicada; necesita comprender el problema rápidamente y tomar una decisión sin poner en riesgo la operación del negocio. Por ello, espera encontrar una solución sencilla, clara y accesible desde el celular, que le permita conocer dónde se está generando el consumo, recibir una alerta cuando exista una situación que pueda aumentar sus costos y, sobre todo, saber qué acción concreta puede realizar. También espera que cualquier solución demuestre un ahorro real que justifique su costo y que pueda implementarse sin interrumpir el funcionamiento del local.
 
 
-#### Segmento #3 — Entrevista 3
+#### Segmento #2 — Entrevista 3
 
 | Campo | Dato |
 | :-- | :-- |
@@ -782,7 +782,7 @@ Lo que busca es tener mayor control sobre el consumo de su local, identificar qu
 | URL del video | [Entrevista 3](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202318615_upc_edu_pe/IQDHRD7qcmZZT78l2CItCaoxAVeAvWjoH5uISsoVqVLKepo?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=CPxb8r) |
 | Timing de inicio | 00:00 |
 | Duración | 7:16 |
-| Screenshot | <img src="https://i.imgur.com/WjquCg0.png" alt="Captura de la sesión" width="250" /> |
+| Screenshot | <img src="assets/entrevistas/segmento2-entrevista3.png" alt="Captura de la sesión" width="250" /> |
 
 **Resumen de la entrevista**
 
@@ -836,7 +836,7 @@ influencias, canales digitales y dispositivos, **todos derivados del análisis d
 
 **User Persona — Segmento #1: Responsable de operaciones de cadena**
 
-<img src="https://i.imgur.com/pduuw0m.png">
+<img src="assets/needfinding/user-persona-segmento1.png">
 
 <br>
 Valeria Fernández representa al segmento de responsables de operaciones y mantenimiento de cadenas de retail, un arquetipo construido a partir de los patrones comunes identificados en las tres entrevistas del segmento. Su perfil como Guardian refleja la necesidad constante de mantener múltiples locales operativos y bajo control, característica que emerge directamente de los casos de Luis que posee 3 locales de juguerías, Mariel que posee 6 establecimientos y Jeanfer que posee 14 tiendas de conveniencia. Los tres gestionan más de un local simultáneamente y todos enfrentan el mismo problema estructural de visibilidad tardía e información fragmentada. La frustración de Valeria por no conocer el estado de los equipos en tiempo real tiene su origen en el relato de Luis, quien se enteraba del consumo anormal solo cuando llegaba el recibo físico (llegando a pagar el doble durante dos meses por un aire acondicionado en mal estado), en la experiencia de Mariel, quien debía investigar manualmente con encargados tras detectar un incremento, y en la situación de Jeanfer, que analizaba anomalías hasta 20 días después a través de facturas y hojas de cálculo. La motivación de Valeria de demostrar resultados y obtener reconocimiento por su gestión recoge la presión compartida que los tres entrevistados sienten ante la gerencia. Por ejemplo, Luis necesitaba mostrar números reales en soles en menos de un mes para convencer a su socio, Mariel buscaba datos para sustentar decisiones ante sus superiores, y Jeanfer exigía un retorno de inversión menor a un año para viabilizar una solución ante Finanzas. Finalmente, la preferencia de Valeria por WhatsApp como canal de alertas urgentes es un rasgo que aparece de manera explícita tanto en Luis como en Jeanfer, consolidándose como una necesidad transversal del segmento.
@@ -844,7 +844,7 @@ Valeria Fernández representa al segmento de responsables de operaciones y mante
 
 **User Persona — Segmento #2: Propietario de establecimiento independiente**
 
-<img src="https://res.cloudinary.com/df8xwy4xb/image/upload/v1789408292/Alessandro_G%C3%B3mez_bm6fpe.png">
+<img src="assets/needfinding/user-persona-segmento2.png">
 
 <br>
 Alessandro Gómez representa al segmento de propietarios y administradores de establecimientos independientes, un arquetipo construido a partir de los patrones comunes identificados en las entrevistas del segmento. Su perfil Rational refleja la necesidad de controlar los gastos del negocio y tomar decisiones que tengan un beneficio económico comprobable. Alessandro está directamente involucrado en la operación diaria de un establecimiento de aproximadamente 600 m², donde supervisa ventas, gastos, proveedores y mantenimiento, por lo que el consumo eléctrico representa una preocupación importante dentro de sus costos fijos. Su principal frustración surge al no poder explicar con facilidad los incrementos del recibo: compara los montos mensuales, consulta al personal y revisa los equipos, pero cuando no encuentra una causa termina pagando sin conocer realmente qué ocurrió. Esta situación también se relaciona con su dificultad para comprender conceptos como la potencia contratada y con los informes técnicos que, aunque pueden ofrecer recomendaciones, no le indican de manera sencilla cuánto puede ahorrar ni qué acción debería realizar. La motivación de Alessandro está centrada en reducir el gasto sin afectar la operación, identificar qué equipos o zonas consumen más y obtener información que pueda consultar rápidamente desde el celular. Por ello, espera encontrar una solución sencilla que no requiera conocimientos especializados, que le indique cuándo existe un consumo fuera de lo normal y, principalmente, que transforme los datos en acciones concretas. Finalmente, su decisión de adoptar una herramienta está condicionada por la demostración de un ahorro real que justifique la inversión, una instalación que no interrumpa el negocio y una experiencia suficientemente simple como para incorporarla a su rutina diaria.
@@ -885,7 +885,7 @@ Elaborados en **UXPressia**, uno por User Persona, con los cuadrantes *Thinks an
 
 **Emphaty Map — Segmento #1: Responsable de operaciones de cadena**
 
-<img src="https://i.imgur.com/spHONZ9.png">
+<img src="assets/needfinding/empathy-map-segmento1.png">
 
 <br>
 El empathy map del segmento 1 muestra a un responsable que piensa y siente presión cuando varias tiendas presentan fallas simultáneas, frustración al no recibir respuestas oportunas de proveedores e incertidumbre por no conocer el estado real de los equipos en sus locales. Lo que ve son solicitudes de mantenimiento llegando al mismo tiempo desde distintas sedes, reportes e historiales dispersos entre correos, mensajes y hojas de cálculo, y reparaciones temporales que se convierten en problemas recurrentes. Lo que oye son presiones cruzadas como, por ejemplo, la gerencia pidiéndole reducir costos, los jefes de tienda exigiendo atención inmediata y los técnicos informando sobre desgaste y necesidades de reemplazo. Lo que hace es priorizar solicitudes según riesgo, coordinar visitas técnicas, comparar cotizaciones y dar seguimiento a reparaciones. Sus dolores principales son la falta de herramientas digitales que simplifiquen el seguimiento y la sensación de que su trabajo solo se hace visible cuando algo falla. Sus ganancias esperadas son conocer el estado actualizado de cada tienda y sus equipos, contar con gastos previsibles y demostrar mejoras mediante resultados verificables.
@@ -893,7 +893,7 @@ El empathy map del segmento 1 muestra a un responsable que piensa y siente presi
 
 **Emphaty Map — Segmento #2: Propietario de establecimiento independiente**
 
-<img src="https://res.cloudinary.com/df8xwy4xb/image/upload/v1789408292/Empathy_map_-_Segmento_2_mrzuzr.png">
+<img src="assets/needfinding/empathy-map-segmento2.png">
 
 <br>
 El empathy map del segmento 2 muestra a un propietario o administrador que siente preocupación e incertidumbre cuando su recibo aumenta sin una explicación clara, además de frustración frente a información eléctrica demasiado técnica. Lo que ve son recibos mensuales, variaciones de costos, equipos de refrigeración funcionando continuamente y diferentes áreas del establecimiento que consumen energía, pero sin poder determinar con precisión cuál genera mayor gasto. Lo que oye son explicaciones del personal, recomendaciones de técnicos y propuestas de auditorías que no siempre logra interpretar o convertir en acciones concretas. Lo que hace es revisar principalmente el monto del recibo, compararlo con el mes anterior, preguntar al personal sobre cambios en la operación y recurrir a técnicos cuando el problema resulta más complejo. Sus dolores principales son no saber qué origina las variaciones, no comprender completamente la potencia contratada, tener poco tiempo para analizar información y desconfiar de soluciones que no demuestren ahorro. Sus ganancias esperadas son reducir el recibo, conocer qué equipos o zonas consumen más, recibir advertencias oportunas y saber exactamente qué hacer para evitar gastos innecesarios. En consecuencia, busca una herramienta sencilla, rápida y accesible desde el celular que le permita entender su consumo, actuar oportunamente y comprobar que las acciones realizadas realmente generan ahorro.
@@ -907,11 +907,11 @@ de su establecimiento **sin** la solución.
 
 **AS-IS MAP — Segmento #1: Responsable de operaciones de cadena**
 
-<img src="https://i.imgur.com/qs0Vgjq.png">
+<img src="assets/needfinding/as-is-segmento1.png">
 
 **AS-IS — Segmento #2: Propietario de establecimiento independiente**
 
-<img src="https://i.imgur.com/Cpm4HPU.png">
+<img src="assets/needfinding/as-is-segmento2.png">
 
 ## 2.4. Ubiquitous Language
 
@@ -1058,7 +1058,7 @@ El Impact Mapping relaciona los objetivos de negocio de SEMS con los User Person
 
 Para crecer en número de locales, Alessandro debe reconocer el problema del cargo por potencia desde el Landing Page y poder registrar su local y su medidor sin apoyo técnico.
 
-![](https://i.imgur.com/4IcLlLB.png)
+![](assets/impact-mapping/business-goal-01.png)
 
 <p>
 
@@ -1066,7 +1066,7 @@ Para crecer en número de locales, Alessandro debe reconocer el problema del car
 
 Valeria necesita alertas con margen y un canal configurable para reducir carga a tiempo, mientras que Alessandro necesita que el aviso se entienda en términos de margen y de costo, sin formación eléctrica.
 
-![](https://i.imgur.com/nfXZx9W.png)
+![](assets/impact-mapping/business-goal-02.png)
 
 <p>
 
@@ -1074,7 +1074,7 @@ Valeria necesita alertas con margen y un canal configurable para reducir carga a
 
 Para que Valeria renueve, la plataforma debe aportarle valor continuo mediante la proyección de factura desglosada y la comparación entre sus locales, de modo que la use de forma sostenida y no solo al inicio.
 
-![](https://i.imgur.com/PpT217a.png)
+![](assets/impact-mapping/business-goal-03.png)
 
 <p>
 
@@ -1082,7 +1082,7 @@ Para que Valeria renueve, la plataforma debe aportarle valor continuo mediante l
 
 Valeria incorporará más locales a la plataforma si puede gestionarlos desde un punto único, delegar accesos por sede y conocer cuándo su plan requiere ampliarse.
 
-![](https://i.imgur.com/o1DAdOb.png)
+![](assets/impact-mapping/business-goal-04.png)
 
 ## 3.4. Product Backlog
 
@@ -1092,7 +1092,7 @@ La priorización del Product Backlog está determinada por la entrega de valor e
 
 **URL pública del Product Backlog:** https://trello.com/invite/b/6aaac224d7a3b1afe10b2749/ATTI05ee1a3e87011bfcb2c3615049c53aeeBACF4B19/product-backlog-sems
 
-![](https://i.imgur.com/gFnSRWy.png)
+![](assets/product-backlog.png)
 
 | # Orden | User Story Id | Título | Descripción | Story Points |
 | :-- | :-- | :-- | :-- | :-- |
@@ -2230,7 +2230,7 @@ Se aplica el **C4 Model**, elaborado en **Structurizr** mediante DSL, para repre
 
 Presenta el panorama de la organización y su entorno: los actores del negocio, el sistema desarrollado por Energix y los sistemas externos del ecosistema eléctrico y de servicios, incluyendo aquellos que no interactúan directamente con SEMS.
 
-![System Landscape Diagram](https://imgur.com/UvaqBFB.png)
+![System Landscape Diagram](assets/c4/system-landscape.png)
 
 **Elementos del panorama**
 
@@ -2253,7 +2253,7 @@ Presenta el panorama de la organización y su entorno: los actores del negocio, 
 
 Muestra a SEMS como una única caja rodeada por sus usuarios y por los sistemas con los que interactúa directamente, sin revelar su estructura interna.
 
-![Context Diagram](https://imgur.com/0kFMNmO.png)
+![Context Diagram](assets/c4/context.png)
 
 **Explicación.** Los tres tipos de usuario interactúan con SEMS a través de sus productos digitales. Hacia afuera, SEMS mantiene cinco relaciones: recibe lecturas de los medidores instalados (estímulo de QAS01), consulta las tarifas vigentes al proveedor eléctrico (CON10, QAS07), delega el cobro en la pasarela de pagos, que confirma mediante un webhook autenticado por firma (ADD-03, ADD-08), despacha las notificaciones a través del servicio de correo y valida el inicio de sesión con Google Identity, aplicando la táctica *Authenticate Actors*. La frontera deja fuera de forma deliberada el hardware de medición: SEMS consume sus lecturas pero no lo fabrica ni lo gestiona, lo que preserva la posibilidad de trabajar con medidores de distintos proveedores. OSINERGMIN no aparece en este nivel porque SEMS no se comunica con él.
 
@@ -2261,7 +2261,7 @@ Muestra a SEMS como una única caja rodeada por sus usuarios y por los sistemas 
 
 Muestra los elementos de alto nivel de la arquitectura, las decisiones de tecnología y cómo se comunican entre sí.
 
-![Container Diagram](https://imgur.com/LAa31xD.png)
+![Container Diagram](assets/c4/container.png)
 
 | Container | Tecnología | Responsabilidad |
 | :-- | :-- | :-- |
@@ -2295,7 +2295,7 @@ Las tres aplicaciones cliente consumen exactamente el mismo API, lo que sostiene
 
 Muestra cómo se distribuyen los contenedores en la infraestructura de producción y dónde se ubican los sistemas externos.
 
-![Deployment Diagram](https://imgur.com/u9KzbZI.png)
+![Deployment Diagram](assets/c4/deployment.png)
 
 | Nodo de despliegue | Proveedor | Contenido |
 | :-- | :-- | :-- |
@@ -3519,7 +3519,7 @@ La Landing Page guía una decisión de adopción mediante contenido y llamados a
 ### 6.3.1. Landing Page Wireframe
 
 *Figura 21 (Landing Page Wireframe)*
-<img src="https://i.imgur.com/C66A4Wp.png" alt="Landing Page Wireframe" style="width: 100vw;">
+<img src="assets/landing-wireframe.png" alt="Landing Page Wireframe" style="width: 100vw;">
 
 Estructura de bloques, de arriba abajo:
 
@@ -3540,7 +3540,7 @@ En navegador móvil las columnas colapsan a una sola y la navegación pasa al me
 ### 6.3.2. Landing Page Mock-up
 
 *Figura 22 (Landing Page Mock-up)*
-<img src="https://i.imgur.com/4RaLo1w.png" alt="Landing Page Mock-up" style="width: 100vw;">
+<img src="assets/landing-mockup.png" alt="Landing Page Mock-up" style="width: 100vw;">
 
 ## 6.4. Applications UX/UI Design
 
