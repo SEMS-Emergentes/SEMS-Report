@@ -3833,6 +3833,152 @@ En esta sección se presentan los diagramas de flujo de usuario de la aplicació
 (User Flow 4: Suscripción y pago)
 <img src="assets/UserFlow4.png" alt="User Flow 4: Suscripción y pago" style="width: 100vw;">
 
+## 7.3. Validation Interviews
+
+En esta sección se describe el proceso de validación a posteriori de SEMS (Smart Energy Management System). A diferencia de las entrevistas exploratorias del apartado 2.2.1, orientadas a identificar problemas y necesidades antes del diseño de la solución, estas entrevistas buscan conocer la experiencia de los participantes después de interactuar con el prototipo o con las funcionalidades disponibles.
+
+La validación se enfoca en la facilidad de uso, la comprensión de la información energética, la utilidad de las alertas preventivas de demanda y la capacidad de la plataforma para apoyar decisiones de ahorro. Se mantienen los dos segmentos objetivo definidos en el informe: responsables de operaciones y mantenimiento de cadenas de retail, y propietarios o administradores de establecimientos independientes.
+
+### 7.3.1. Diseño de Entrevistas
+
+Las entrevistas serán semiestructuradas y utilizarán preguntas abiertas para recoger impresiones, dificultades y sugerencias sin inducir respuestas. Antes de iniciar, se explicará el propósito de la actividad y se solicitará autorización para registrar la sesión. Se procurará que el participante realice las tareas de manera autónoma, mientras el entrevistador observa su comportamiento y registra los comentarios relevantes.
+
+Las preguntas se organizaron en cinco bloques para cada segmento. Las tareas y preguntas específicas se ajustarán a las funciones que estén implementadas o representadas en la versión utilizada durante la sesión.
+Entrevista — Segmento #1: Responsables de operaciones y mantenimiento de cadenas de retail
+
+Bloque A. Perfil y primeras impresiones
+1. ¿Podría comentarnos brevemente cuál es su cargo y cuántos establecimientos tiene bajo su responsabilidad?
+2. Después de interactuar con SEMS, ¿cuál fue su primera impresión de la plataforma?
+3. Al ingresar al panel principal, ¿qué información identificó primero y por qué le llamó la atención?
+Bloque B. Navegación y monitoreo energético
+4. ¿Cómo fue su experiencia al navegar entre las diferentes secciones de SEMS?
+5. ¿Qué tan sencillo o complicado le resultó seleccionar un establecimiento y consultar su información?
+6. Al revisar los indicadores de consumo y demanda eléctrica, ¿qué información pudo interpretar sin ayuda?
+7. ¿Qué le pareció la forma en que se presenta el consumo por zonas o dispositivos de un local?
+8. Después de revisar la factura estimada, ¿cómo interpretó los conceptos de energía en hora punta, fuera de punta y cargo por potencia?
+Bloque C. Alertas y respuesta operativa
+9. Al revisar una alerta de demanda, ¿qué entendió sobre la situación que estaba ocurriendo en el establecimiento?
+10. ¿Cómo interpretó el margen disponible antes de alcanzar la potencia contratada?
+11. Si recibiera esa alerta durante la operación de uno de sus locales, ¿qué haría y a quién comunicaría la situación?
+12. ¿Qué información le faltó o le resultó poco clara para decidir cómo actuar ante una alerta?
+Bloque D. Análisis y utilidad de la solución
+13. Después de explorar la comparación entre locales, ¿qué diferencias pudo identificar y cómo utilizaría esa información?
+14. ¿Qué tan útil le resultó la información presentada en analíticas para localizar zonas o establecimientos con mayor consumo?
+15. Al revisar los reportes, ¿qué información considera útil para justificar acciones o inversiones ante la gerencia?
+Bloque E. Satisfacción, adopción y mejoras
+16. En comparación con los métodos que utiliza actualmente, ¿qué ventajas y limitaciones encontró en SEMS?
+17. ¿Cuál de las funcionalidades que probó le aportaría mayor valor en sus actividades diarias? ¿Por qué?
+18. ¿Qué parte de la plataforma le generó dificultades o considera que debería mejorarse?
+19. Después de esta experiencia, ¿qué tendría que demostrar SEMS para que considere implementarlo en los locales que administra?
+Entrevista — Segmento #2: Propietarios y administradores de establecimientos independientes
+Bloque A. Perfil y primeras impresiones
+1. ¿Podría comentarnos brevemente qué tipo de negocio administra y qué responsabilidades tiene en el local?
+2. Después de interactuar con SEMS, ¿cuál fue su primera impresión de la aplicación?
+3. Al observar la pantalla principal, ¿qué entendió sobre el consumo y el costo eléctrico de su negocio?
+Bloque B. Facilidad de uso y comprensión de la información
+4. ¿Cómo fue su experiencia al buscar las funciones que necesitaba dentro de la aplicación?
+5. ¿Qué tan sencillo o complicado le resultó revisar el consumo eléctrico de su establecimiento?
+6. ¿Qué información pudo comprender a partir de los gráficos e indicadores mostrados?
+7. Al revisar la factura estimada, ¿qué entendió sobre los costos presentados y qué dudas le surgieron?
+8. ¿Qué dificultades encontró al consultar la información por zonas o dispositivos?
+Bloque C. Alertas y recomendaciones de ahorro
+9. Al revisar una alerta de demanda, ¿qué entendió que estaba sucediendo en su local?
+10. Si recibiera esa alerta mientras atiende su negocio, ¿qué haría a continuación?
+11. ¿Qué le parecieron las recomendaciones de ahorro mostradas por SEMS?
+12. Después de revisar una recomendación, ¿cómo decidiría si puede aplicarla sin afectar las actividades del negocio?
+Bloque D. Utilidad de las funcionalidades
+13. ¿Qué información de SEMS considera más útil para controlar el gasto mensual de electricidad?
+14. ¿Qué le pareció poder identificar los equipos o las zonas que consumen más energía?
+15. ¿En qué situaciones de su rutina diaria cree que consultaría la aplicación?
+Bloque E. Satisfacción, adopción y mejoras
+16. En comparación con revisar únicamente su recibo de luz, ¿qué diferencias encontró al utilizar SEMS?
+17. ¿Cuál de las funciones que probó le resultó más valiosa? ¿Por qué?
+18. ¿Qué cambiaría en las pantallas, explicaciones o funciones para que la aplicación sea más fácil de utilizar?
+19. Después de probar SEMS, ¿qué factores influirían en su decisión de continuar utilizándolo o contratar un plan?
+
+### 7.3.2. Registro de Entrevistas
+
+En este apartado se documentarán las sesiones de validación realizadas con representantes de ambos segmentos. Cada registro incluirá los datos generales del participante, la modalidad de la sesión, las tareas realizadas, un enlace a la grabación (cuando exista autorización), evidencias visuales y un resumen de los principales hallazgos.
+
+La información deberá corresponder a entrevistas efectivamente realizadas. Las siguientes fichas son plantillas pendientes de completar con los datos y evidencias obtenidos.
+
+Segmento #1 — Entrevista [N.º]
+
+| Campo | Dato |
+| :-- | :-- |
+| Código o nombre del participante | [Completar] |
+| Cargo | [Completar] |
+| Tipo de cadena / establecimientos | [Completar] |
+| Número de locales a cargo | [Completar] |
+| Fecha y modalidad | [Completar] |
+| Duración | [Completar] |
+| Prototipo o versión evaluada | [Completar] |
+| URL del video | [Agregar enlace, si existe autorización] |
+| Evidencia visual | [Agregar captura de pantalla de la sesión] |
+
+Resumen de la entrevista
+
+Segmento #2 — Entrevista [N.º]
+
+| Campo | Dato |
+| :-- | :-- |
+| Código o nombre del participante | [Completar] |
+| Rol / tipo de establecimiento | [Completar] |
+| Fecha y modalidad | [Completar] |
+| Duración | [Completar] |
+| Prototipo o versión evaluada | [Completar] |
+| URL del video | [Agregar enlace, si existe autorización] |
+| Evidencia visual | [Agregar captura de pantalla de la sesión] |
+
+Resumen de la entrevista
+
+Consolidado de las entrevistas
+
+| Entrevista | Segmento | Tareas completadas | Dificultad principal | Mejora propuesta |
+| :-- | :-- | :-- | :-- | :-- |
+| [S1-01] | Cadenas de retail | [Completar] | [Completar] | [Completar] |
+| [S2-01] | Establecimientos independientes | [Completar] | [Completar] | [Completar] |
+
+### 7.3.3. Evaluaciones según heurísticas
+
+Como complemento de las entrevistas, se propone evaluar las interfaces web y móvil de SEMS utilizando las 10 heurísticas de usabilidad de Jakob Nielsen. El objetivo es identificar problemas de interacción y comunicación que podrían impedir que los usuarios comprendan los datos energéticos o realicen las tareas previstas.
+
+La evaluación deberá realizarse sobre la versión disponible del producto, registrando la pantalla afectada, la evidencia del problema y una propuesta de solución. La siguiente tabla funciona como guía de revisión; no representa resultados de una evaluación ya ejecutada.
+
+| N.º | Heurística | Aspectos que se revisarán en SEMS |
+| :--: | :-- | :-- |
+| 1 | Visibilidad del estado del sistema | Indicadores de carga, estado de medidores, actualización de datos y confirmación de acciones. |
+| 2 | Correspondencia entre el sistema y el mundo real | Claridad de términos como kWh, kW, demanda máxima, potencia contratada y costos en soles. |
+| 3 | Control y libertad del usuario | Posibilidad de cancelar, corregir o retroceder al registrar locales, vincular dispositivos o configurar alertas. |
+| 4 | Consistencia y estándares | Uso uniforme de botones, iconos, etiquetas, colores y rutas de navegación. |
+| 5 | Prevención de errores | Validaciones en formularios, unidades correctas y advertencias ante configuraciones incorrectas. |
+| 6 | Reconocimiento antes que recuerdo | Menús visibles, filtros identificables y contexto del local o periodo seleccionado. |
+| 7 | Flexibilidad y eficiencia de uso | Accesos rápidos a alertas, monitoreo y reportes para usuarios recurrentes. |
+| 8 | Diseño estético y minimalista | Jerarquía visual de indicadores, gráficos y alertas sin sobrecarga de información. |
+| 9 | Ayuda para reconocer, diagnosticar y recuperarse de errores | Mensajes comprensibles cuando falla el inicio de sesión, la vinculación de un medidor o una operación. |
+| 10 | Ayuda y documentación | Explicaciones sobre indicadores energéticos, interpretación de alertas y uso de las funciones principales. |
+
+Escala de severidad propuesta
+
+| Nivel | Descripción |
+| :--: | :-- |
+| 0 | No se identifica un problema de usabilidad. |
+| 1 | Problema cosmético, de baja prioridad. |
+| 2 | Problema menor que dificulta parcialmente la interacción. |
+| 3 | Problema importante que requiere corrección prioritaria. |
+| 4 | Problema crítico que impide completar una tarea o provoca un error grave. |
+
+Registro de hallazgos heurísticos
+
+| ID | Pantalla o flujo | Heurística afectada | Hallazgo y evidencia | Severidad (0–4) | Recomendación | Estado |
+| :-- | :-- | :-- | :-- | :--: | :-- | :-- |
+| [H-01] | [Completar] | [Completar] | [Completar] | [Completar] | [Completar] | Pendiente de evaluación |
+
+Una vez realizada la revisión, los hallazgos se priorizarán por severidad, frecuencia e impacto en las tareas principales. Las mejoras propuestas deberán contrastarse, cuando sea posible, con los resultados de las entrevistas de validación.
+
+## 7.4. Video About-the-Product
+
+En esta sección se incorporará el video de presentación de SEMS (Smart Energy Management System), cuyo propósito será explicar de manera clara el problema que aborda Energix, la propuesta de valor de la solución y sus principales funcionalidades desde la perspectiva de los usuarios objetivo.
 
 # Conclusiones, Bibliografía y Anexos
 
