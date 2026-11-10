@@ -3999,6 +3999,124 @@ El `scope` corresponde al bounded context o al producto afectado (`iam`, `organi
 historial permite identificar qué módulo cambió en cada commit. La descripción se redacta en inglés,
 en modo imperativo y sin punto final (CON04).
 
+### 7.1.3. Source Code Style Guide & Conventions
+
+Para que el código de los cinco productos sea legible y mantenible por cualquier integrante, se
+establecen convenciones generales y, para cada lenguaje, una guía de estilo de referencia junto con
+la herramienta que la verifica cuando es posible.
+
+**Convenciones generales**
+
+- **Idioma:** los nombres de clases, métodos, variables, archivos, rutas y los textos de documentación del código se escriben en inglés (CON04).
+- **Nombres descriptivos:** cada identificador expresa la responsabilidad del elemento y evita abreviaturas ambiguas.
+- **Organización por dominio:** el código se agrupa por bounded context (`iam`, `organizations`, `devices`, `energy`, `alerts`, `analytics`, `subscriptions`, `payments`) en el backend, la Web Application y la Mobile Application.
+- **Comentarios:** se usan para explicar reglas de negocio o decisiones técnicas que no resultan evidentes en el código, no para repetir lo que el código dice.
+- **Seguridad:** ninguna credencial ni secreto se escribe en el código; se leen de variables de entorno (sección 7.1.4).
+
+| Elemento | JavaScript / Vue | Java / Spring Boot | Kotlin / Compose |
+| :-- | :-- | :-- | :-- |
+| Clases e interfaces | `PascalCase` | `PascalCase` | `PascalCase` |
+| Métodos y funciones | `camelCase` | `camelCase` | `camelCase` |
+| Variables y propiedades | `camelCase` | `camelCase` | `camelCase` |
+| Constantes | `UPPER_SNAKE_CASE` | `UPPER_SNAKE_CASE` | `UPPER_SNAKE_CASE` |
+| Componentes de interfaz | `PascalCase.vue` | — | Funciones `@Composable` en `PascalCase` |
+| Paquetes y carpetas | `kebab-case` / minúsculas | minúsculas (`com.sems.alerts`) | minúsculas (`pe.edu.upc.sems.alerts`) |
+| Indentación | 2 espacios | 4 espacios | 4 espacios |
+
+**HTML5 y CSS3 (Landing Page)**
+
+Referencias: *Google HTML/CSS Style Guide* (<https://google.github.io/styleguide/htmlcssguide.html>)
+y *W3C HTML Coding Conventions* (<https://www.w3schools.com/html/html5_syntax.asp>).
+
+- Etiquetas y atributos en minúsculas, valores de atributos entre comillas dobles e indentación de dos espacios.
+- Uso de elementos semánticos (`header`, `nav`, `main`, `section`, `footer`) y de un único `h1` por página.
+- Toda imagen declara su atributo `alt`, y los metadatos SEO definidos en la sección 6.2.4 se mantienen en el `head`.
+- Clases CSS en minúsculas separadas por guiones (`kebab-case`) y colores, tipografías y espaciados declarados como variables CSS según la sección 6.1.
+
+**JavaScript y Vue 3 (Web Application)**
+
+Referencias: *Vue.js Style Guide* (<https://vuejs.org/style-guide/>), en su nivel *Strongly
+Recommended*, y las reglas recomendadas de ESLint para JavaScript.
+
+- La verificación es automática: el proyecto aplica `eslint:recommended` y `plugin:vue/flat/recommended`, y la integración continua ejecuta `npm run lint` en cada cambio.
+- Componentes Vue con nombre de varias palabras en `PascalCase` (`SiteComparisonCard.vue`, `DemandRulesCard.vue`), vistas con el sufijo `View` (`AlertsView.vue`) y *props* declaradas con su tipo.
+- Composables con el prefijo `use` (`usePlan.js`) y *stores* de Pinia en `stores/`, un archivo por responsabilidad (`auth.js`, `lang.js`, `theme.js`).
+- El código se organiza por responsabilidad en `src/`: `views`, `components`, `layouts`, `composables`, `services`, `stores`, `router` y `lib`.
+- Las variables de entorno públicas usan el prefijo `VITE_`; ningún secreto se declara con ese prefijo, porque Vite lo incrusta en el paquete que descarga el navegador.
+
+**Java y Spring Boot (Web Services)**
+
+Referencias: *Google Java Style Guide* (<https://google.github.io/styleguide/javaguide.html>) y las
+convenciones de Domain-Driven Design aplicadas en el Capítulo V.
+
+- Un paquete por bounded context bajo `com.sems` y, dentro de cada uno, las capas `domain`, `application`, `interfaces` e `infrastructure` (Capítulo V).
+- Sufijos según el rol de la clase: `CommandService` y `QueryService` en la capa de aplicación, `Controller` y `Resource` en la de interfaces, `Repository` para los puertos de persistencia y `Acl` para las fachadas entre contextos.
+- Comandos, consultas, eventos de dominio y recursos se modelan como `record` inmutables, y los eventos se nombran en pasado (`ReadingProcessed`, `AlertTriggered`).
+- El dominio no depende de Spring Web ni de JPA; las invariantes se protegen dentro del agregado y se señalan con `AppException`.
+
+El siguiente puerto de salida del bounded context Demand & Alerting muestra estas convenciones: una
+interfaz en `PascalCase` con el sufijo `Repository`, métodos en `camelCase` que expresan la consulta
+y tipos del dominio, sin dependencias de infraestructura.
+
+```java
+package com.sems.alerts.domain.repositories;
+
+public interface DemandRuleRepository {
+
+    DemandRule save(DemandRule rule);
+
+    Optional<DemandRule> findById(UUID demandRuleId);
+
+    List<DemandRule> findActiveBySiteId(UUID siteId);
+
+    List<DemandRule> findByUserId(UUID userId);
+}
+```
+
+**Kotlin y Jetpack Compose (Mobile Application)**
+
+Referencias: *Kotlin Coding Conventions* (<https://kotlinlang.org/docs/coding-conventions.html>),
+*Android Kotlin Style Guide* (<https://developer.android.com/kotlin/style-guide>) y *API Guidelines
+for Jetpack Compose* (<https://github.com/androidx/androidx/blob/androidx-main/compose/docs/compose-api-guidelines.md>).
+El proyecto declara `kotlin.code.style=official` en `gradle.properties`.
+
+- El código vive en `pe.edu.upc.sems` con un paquete por bounded context y, dentro de cada uno, las capas `data` (`remote`, `dto`, `mapper`, `repository`), `domain` (`model`, `repository`) y `presentation`.
+- Cada pantalla se compone de una función `@Composable` con el sufijo `Screen` y un `ViewModel` con el mismo prefijo (`AlertsScreen.kt`, `AlertsViewModel.kt`).
+- Los servicios de Retrofit llevan el sufijo `Service`, los objetos de transferencia el sufijo `Dto` y la implementación del repositorio el sufijo `Impl` (`AlertService`, `AlertDtos`, `AlertRepositoryImpl`).
+- Las dependencias se inyectan con Hilt mediante un módulo por contexto (`AlertsModule.kt`) y las operaciones de red se declaran como funciones `suspend` que devuelven `ApiResult`.
+
+```kotlin
+package pe.edu.upc.sems.alerts.domain.repository
+
+interface AlertRepository {
+    suspend fun listAlerts(userId: String): ApiResult<List<Alert>>
+
+    suspend fun updateStatus(alertId: String, status: AlertStatus, resolvedAt: Instant? = null): ApiResult<Alert>
+}
+```
+
+**Convenciones de la API RESTful**
+
+- Los recursos se nombran con sustantivos en inglés, en plural y en `kebab-case` (`/energy-meters`, `/demand-rules`).
+- Todas las rutas llevan el prefijo versionado `/api/v1/`.
+- Los verbos HTTP corresponden a la operación: `GET` consulta, `POST` crea, `PUT` reemplaza, `PATCH` cambia un estado o un atributo puntual (`/alerts/{id}/status`) y `DELETE` elimina o archiva.
+- Las respuestas usan el código HTTP que corresponde al resultado: `400` para datos inválidos, `401` sin sesión, `404` para un recurso inexistente y `409` para un conflicto de estado, siempre con el cuerpo uniforme `ErrorResponse`.
+- Cada operación se documenta con `@Tag` y `@Operation` para que aparezca en Swagger UI (CON05).
+
+**Convenciones de pruebas**
+
+- Las pruebas se agrupan por bounded context, igual que el código que verifican (`src/test/java/com/sems/alerts`, `app/src/test/java/pe/edu/upc/sems/alerts`).
+- Cada clase de prueba lleva el nombre de lo que verifica y el sufijo `Test` (`DemandRuleTest`, `CommercialTariffTest`, `AlertsViewModelTest`).
+- En la Mobile Application las dependencias externas se sustituyen por dobles de prueba con el prefijo `Fake` (`FakeAlertRepository`).
+- Cada historia contempla su escenario positivo y sus escenarios de rechazo, en correspondencia con los criterios de aceptación de la sección 3.2.
+
+**Gherkin (especificación de comportamiento)**
+
+Referencia: *Gherkin Reference* de Cucumber (<https://cucumber.io/docs/gherkin/reference/>).
+
+- Los criterios de aceptación de las historias de usuario (sección 3.2) se redactan con las palabras clave `Given`, `When`, `Then` y `And`, un escenario por regla de negocio y un título descriptivo por escenario.
+- Cuando se automatizan, los archivos `.feature` se nombran con el identificador de la historia (`US29-demand-warning.feature`) y se escriben en inglés.
+
 ## 7.3. Validation Interviews
 
 En esta sección se describe el proceso de validación a posteriori de SEMS (Smart Energy Management System). A diferencia de las entrevistas exploratorias del apartado 2.2.1, orientadas a identificar problemas y necesidades antes del diseño de la solución, estas entrevistas buscan conocer la experiencia de los participantes después de interactuar con el prototipo o con las funcionalidades disponibles.
