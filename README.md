@@ -4117,6 +4117,90 @@ Referencia: *Gherkin Reference* de Cucumber (<https://cucumber.io/docs/gherkin/r
 - Los criterios de aceptación de las historias de usuario (sección 3.2) se redactan con las palabras clave `Given`, `When`, `Then` y `And`, un escenario por regla de negocio y un título descriptivo por escenario.
 - Cuando se automatizan, los archivos `.feature` se nombran con el identificador de la historia (`US29-demand-warning.feature`) y se escriben en inglés.
 
+### 7.1.4. Software Deployment Configuration
+
+Cada producto se publica en un proveedor distinto, todos de costo cero o mínimo (CON08), según el
+diagrama de despliegue de la sección 4.3.4. La configuración sensible —credenciales, secretos y
+orígenes permitidos— no se guarda en los repositorios: se declara como variables de entorno en cada
+proveedor, a partir de los archivos `.env.example` de referencia (táctica *Defer Binding*).
+
+![Deployment Diagram](assets/c4/deployment.png)
+
+| Entorno | Plataforma | Disparador del despliegue | URL pública |
+| :-- | :-- | :-- | :-- |
+| Desarrollo local | IntelliJ IDEA, VS Code, Android Studio, Docker y PostgreSQL | — | `http://localhost:8080` (API) · `http://localhost:5173` (web) |
+| Producción — Landing Page | GitHub Pages | *Push* a `main` (GitHub Actions) | <https://sems-emergentes.github.io/SEMS-Landing-Page/> |
+| Producción — Web Application | Vercel | *Push* a `main` (integración de Vercel con GitHub) | <https://sems-web-application.vercel.app> |
+| Producción — Web Services | Render (Docker) | *Push* a `main` (integración de Render con GitHub) | <https://sems-backend-kgnm.onrender.com/swagger-ui.html> |
+| Producción — Base de datos | Supabase (PostgreSQL) | Gestionada por el proveedor | — |
+| Producción — Mobile Application | APK de Android generado con Gradle | Compilación de la variante `release` | `<Pendiente: enlace de descarga del APK>` |
+
+**Landing Page — GitHub Pages**
+
+La Landing Page está escrita en HTML, CSS y JavaScript sin paso de compilación, de modo que se
+publica tal como está en el repositorio. El flujo es el siguiente:
+
+1. En el repositorio `SEMS-Landing-Page`, se habilita GitHub Pages en *Settings → Pages* con la fuente **GitHub Actions**.
+2. El workflow `.github/workflows/deploy.yml` se ejecuta en cada *push* a `main` y puede lanzarse a mano con `workflow_dispatch`.
+3. El workflow descarga el código, configura Pages (`actions/configure-pages`), sube el contenido del repositorio como artefacto (`actions/upload-pages-artifact`) y lo publica (`actions/deploy-pages`).
+4. El grupo de concurrencia `pages` impide que dos despliegues se ejecuten a la vez sin cancelar el que está en curso, para que el sitio nunca quede publicado a medias.
+5. El archivo `.nojekyll` evita que GitHub Pages procese el sitio con Jekyll.
+
+**Web Application — Vercel**
+
+1. Se importa el repositorio `SEMS-Web-Application` en Vercel y se define `semswebapp` como *Root Directory*, ya que el proyecto Vue vive en esa carpeta.
+2. Vercel detecta Vite y usa `npm run build` como comando de construcción y `dist` como directorio de salida.
+3. Se declaran las variables de entorno públicas del cliente:
+
+| Variable | Propósito |
+| :-- | :-- |
+| `VITE_API_BASE_URL` | URL base de la SEMS API desplegada en Render. |
+| `VITE_DEMO_MODE` | En `false` (valor por defecto), la aplicación consume el backend real; en `true`, usa datos simulados. |
+| `VITE_GOOGLE_CLIENT_ID` | Identificador del cliente OAuth de Google para el inicio de sesión. |
+
+4. El archivo `vercel.json` redirige toda ruta a `index.html`, para que Vue Router resuelva la navegación y una recarga en una ruta interna no devuelva un error 404.
+5. Cada *push* a `main` genera un despliegue de producción, y cada Pull Request genera un despliegue de vista previa para revisar el cambio antes de fusionarlo.
+
+**Web Services (SEMS API) — Render y Supabase**
+
+1. El `Dockerfile` construye la imagen en dos etapas: la primera compila el proyecto con Maven y JDK 21; la segunda solo contiene el JRE 21 y el archivo `.jar`, y ejecuta el proceso con un usuario sin privilegios.
+2. En Render se crea un *Web Service* de tipo Docker conectado al repositorio `SEMS-Backend`, con despliegue automático desde `main`.
+3. Render inyecta el puerto mediante la variable `PORT`, que la aplicación lee en `server.port=${SERVER_PORT:${PORT:8080}}`.
+4. La base de datos se crea en Supabase y la conexión se configura a través del *session pooler*, porque el *transaction pooler* no admite sentencias preparadas (sección 4.3.4).
+5. Se declaran las variables de entorno del servicio:
+
+| Grupo | Variables |
+| :-- | :-- |
+| Base de datos | `DATABASE_URL`, `DB_USERNAME`, `DB_PASSWORD` |
+| Seguridad | `JWT_SECRET` (mínimo 32 caracteres), `JWT_EXPIRATION_MINUTES`, `JWT_REFRESH_EXPIRATION_DAYS`, `AUTH_REQUIRED`, `REQUIRE_VERIFICATION` |
+| CORS y enlaces | `ALLOWED_ORIGINS`, `FRONTEND_URL` |
+| Google OAuth | `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GOOGLE_REDIRECT_URI` |
+| Correo | `MAIL_HOST`, `MAIL_PORT`, `MAIL_USERNAME`, `MAIL_PASSWORD`, `MAIL_FROM`, `MAIL_ENABLED` |
+
+6. La sonda de salud de Render apunta al endpoint de *liveness* de Spring Boot Actuator (`/actuator/health/liveness`) y no al de *readiness*, para que un corte de la base de datos no provoque reinicios en cadena (ADD-07, QAS05 y QAS06).
+7. `ALLOWED_ORIGINS` debe incluir el dominio de la Web Application en Vercel; si falta, el navegador bloquea las peticiones con un error de CORS que aparenta ser una caída del backend.
+8. La contratación de planes usa un procesador de pagos simulado (`SimulatedCardProcessor`), por lo que el despliegue no requiere credenciales de una pasarela real: `POST /api/v1/subscriptions/purchase` valida la tarjeta de prueba y registra el cobro sin enviar datos de tarjeta a terceros (CON09).
+9. La documentación OpenAPI queda disponible en `/swagger-ui.html` y la especificación en `/v3/api-docs` (CON05, TS06).
+
+**Mobile Application — APK de Android**
+
+1. La aplicación se construye con Gradle Wrapper desde Android Studio o desde la línea de comandos (`./gradlew assembleRelease`).
+2. La URL del backend se fija en `app/build.gradle.kts` como `BuildConfig.API_BASE_URL`: la variante `release` apunta a la SEMS API en Render (`https://sems-backend-kgnm.onrender.com/api/v1/`), y la variante `debug` puede apuntar a un backend local mediante la propiedad `sems.api.baseUrl.debug` de `local.properties`, que no se versiona.
+3. La aplicación referencia el dominio de la Web Application (`sems-web-application.vercel.app`) para los enlaces que se abren desde el teléfono.
+4. El APK resultante se distribuye para su instalación en los dispositivos de prueba. `<Completar: medio de distribución del APK (GitHub Releases, Drive, etc.)>`
+
+**Integración continua**
+
+Antes de llegar a `main`, cada cambio pasa por la integración continua de su repositorio. Los tres
+workflows se ejecutan en cada *push* a `main` y `develop` y en cada Pull Request, y cancelan la
+ejecución anterior de la misma rama cuando llega un *push* nuevo.
+
+| Repositorio | Workflow | Pasos |
+| :-- | :-- | :-- |
+| `SEMS-Backend` | `ci.yml` — *Build and test* | Instala JDK 21 con caché de Maven, ejecuta `./mvnw verify` (compilación y pruebas sobre H2 en modo PostgreSQL) y publica los reportes de Surefire como artefacto. |
+| `SEMS-Web-Application` | `ci.yml` — *Lint and build* | Instala Node.js 20, ejecuta `npm ci`, `npm run lint` y `npm run build` dentro de `semswebapp`. |
+| `SEMS-Mobile-App` | `ci.yml` — *Build and test* | Instala JDK 21, Gradle y los paquetes del Android SDK 36, ejecuta las pruebas unitarias (`testDebugUnitTest`), compila el APK de depuración (`assembleDebug`) y publica los reportes de pruebas. |
+
 ## 7.3. Validation Interviews
 
 En esta sección se describe el proceso de validación a posteriori de SEMS (Smart Energy Management System). A diferencia de las entrevistas exploratorias del apartado 2.2.1, orientadas a identificar problemas y necesidades antes del diseño de la solución, estas entrevistas buscan conocer la experiencia de los participantes después de interactuar con el prototipo o con las funcionalidades disponibles.
