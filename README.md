@@ -3919,6 +3919,86 @@ workflows de GitHub Actions).
 | **Structurizr DSL** | Diagramas C4 de contexto, contenedores, componentes y despliegue (secciones 4.3 y 5.x.5). | Herramienta de modelado | <https://structurizr.com> |
 | **springdoc-openapi (Swagger)** | Generación de la especificación OpenAPI desde el código del backend (CON05, TS06). | Librería | <https://springdoc.org> |
 
+### 7.1.2. Source Code Management
+
+El código fuente de SEMS se gestiona con **Git** y se aloja en la organización
+**SEMS-Emergentes** de **GitHub**. Cada producto vive en un repositorio propio, de modo que su
+historial, su integración continua y su despliegue son independientes:
+
+| Producto | Repositorio |
+| :-- | :-- |
+| Informe del proyecto | <https://github.com/SEMS-Emergentes/SEMS-Report> |
+| Landing Page | <https://github.com/SEMS-Emergentes/SEMS-Landing-Page> |
+| Web Application | <https://github.com/SEMS-Emergentes/SEMS-Web-Application> |
+| Web Services (SEMS API) | <https://github.com/SEMS-Emergentes/SEMS-Backend> |
+| Mobile Application | <https://github.com/SEMS-Emergentes/SEMS-Mobile-App> |
+
+**Flujo de trabajo: GitFlow**
+
+El equipo aplica el modelo **GitFlow** propuesto por Vincent Driessen (*A successful Git branching
+model*), según exige la restricción CON06. Todos los repositorios de producto tienen las ramas
+permanentes `main` y `develop`, y las ramas de trabajo se nombran en minúsculas y con guiones,
+describiendo el cambio:
+
+| Rama | Origen | Destino | Propósito |
+| :-- | :-- | :-- | :-- |
+| `main` | — | — | Rama de producción. Contiene solo código estable; es la que despliegan GitHub Pages, Vercel y Render. |
+| `develop` | `main` | `release/*` | Rama de integración. Reúne las funcionalidades terminadas que formarán parte de la siguiente versión. |
+| `feature/*` | `develop` | `develop` | Desarrollo de una historia de usuario o funcionalidad, por ejemplo `feature/consumo-por-zona-y-comparacion-de-locales`. |
+| `fix/*` | `develop` | `develop` | Corrección de un defecto detectado durante el desarrollo, por ejemplo `fix/pagos-simulados`. |
+| `release/*` | `develop` | `main` y `develop` | Preparación de una versión: ajustes finales, número de versión y documentación, por ejemplo `release/1.1.0`. |
+| `hotfix/*` | `main` | `main` y `develop` | Corrección urgente de un defecto en producción, por ejemplo `hotfix/1.0.1`. |
+
+Toda integración a `develop` y a `main` se realiza mediante un **Pull Request** que debe pasar la
+integración continua del repositorio (sección 7.1.4) antes de fusionarse. El título del Pull Request
+describe el cambio en una frase y su descripción referencia la historia de usuario atendida, por
+ejemplo *US26* y *US39* en `feat(web): show usage by zone and compare sites`.
+
+**Versionado: Semantic Versioning 2.0.0**
+
+Las versiones publicadas siguen **Semantic Versioning** (<https://semver.org>), con el formato
+`MAJOR.MINOR.PATCH`:
+
+- **MAJOR** se incrementa cuando un cambio rompe el contrato del API o de la interfaz con sus consumidores (ej. `1.4.2 → 2.0.0`).
+- **MINOR** se incrementa al incorporar funcionalidad compatible con la versión anterior (ej. `1.1.0 → 1.2.0`).
+- **PATCH** se incrementa al corregir defectos sin cambiar el comportamiento esperado (ej. `1.1.3 → 1.1.4`).
+
+Mientras una versión no está lista para publicarse se le añade un sufijo: `alpha` (inestable, en
+construcción), `beta` (funcional, en revisión) o `rc` (candidata a publicación), por ejemplo
+`1.1.0-rc.1`. Al cerrar una rama `release/*` o `hotfix/*` sobre `main` se crea una etiqueta (*tag*)
+con la versión publicada, por ejemplo `v1.0.0`. La versión actual de la SEMS API y de la Web
+Application es la **1.0.0**, declarada en `pom.xml` y `package.json`, y la de la Mobile Application
+es la **1.0**, declarada como `versionName` en `app/build.gradle.kts`.
+
+**Mensajes de commit: Conventional Commits 1.0.0**
+
+Los mensajes de commit siguen la especificación **Conventional Commits**
+(<https://www.conventionalcommits.org/en/v1.0.0/>), con la estructura:
+
+```
+<type>(<scope>): <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+| Tipo | Uso | Ejemplo real del proyecto |
+| :-- | :-- | :-- |
+| `feat` | Nueva funcionalidad. | `feat(alerts): evaluate the site demand on every reading` |
+| `fix` | Corrección de un defecto. | `fix(energy): price every reading with the site tariff and its time band` |
+| `refactor` | Cambio de estructura sin alterar el comportamiento. | `refactor: rebuild the landing page in HTML5, CSS3 and JavaScript` |
+| `perf` | Mejora de rendimiento. | `perf(web): load readings, devices and plans once per screen` |
+| `test` | Incorporación o corrección de pruebas. | `test: cover the reading cost, the peak window and the generated insights` |
+| `ci` | Cambios en la integración continua. | `ci: build and test the backend on every push and pull request` |
+| `chore` | Tareas de mantenimiento sin efecto en el código de producción. | `chore(res): drop unused strings` |
+| `docs` | Cambios en la documentación. | `docs: add web mock-ups, user flows and complete web wireflows` |
+
+El `scope` corresponde al bounded context o al producto afectado (`iam`, `organizations`, `devices`,
+`energy`, `alerts`, `analytics`, `subscriptions`, `payments`, `shared`, `web`), de modo que el
+historial permite identificar qué módulo cambió en cada commit. La descripción se redacta en inglés,
+en modo imperativo y sin punto final (CON04).
+
 ## 7.3. Validation Interviews
 
 En esta sección se describe el proceso de validación a posteriori de SEMS (Smart Energy Management System). A diferencia de las entrevistas exploratorias del apartado 2.2.1, orientadas a identificar problemas y necesidades antes del diseño de la solución, estas entrevistas buscan conocer la experiencia de los participantes después de interactuar con el prototipo o con las funcionalidades disponibles.
