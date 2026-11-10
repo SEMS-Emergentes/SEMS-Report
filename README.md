@@ -680,7 +680,7 @@ inicia explicando el propósito de la investigación y solicitando consentimient
 | Distrito | Lince |
 | Cargo / tipo de establecimiento | Administrador de cadena de juguerías |
 | Número de locales a cargo | 3 |
-| URL del video | https://acortar.link/rd0LIG |
+| URL del video | [Entrevista 1](https://acortar.link/rd0LIG) |
 | Timing de inicio | 00:00 |
 | Duración | 12:24 |
 | Screenshot | <img src="assets/entrevistas/segmento1-entrevista1.png">|
@@ -739,7 +739,7 @@ Jeanfer supervisa 14 locales de conveniencia (120 a 160 m²) en Lima. En el plan
 | Distrito | San Miguel |
 | Cargo / tipo de establecimiento | Dueño de lavandería |
 | Número de locales a cargo | 1 |
-| URL del video | https://acortar.link/YRmRAy |
+| URL del video | [Entrevista 1](https://acortar.link/YRmRAy) |
 | Timing de inicio | 00:00 |
 | Duración | 10:32 |
 | Screenshot | <img src="assets/entrevistas/segmento2-entrevista1.png"> |
@@ -3902,42 +3902,120 @@ En este apartado se documentarán las sesiones de validación realizadas con rep
 
 La información deberá corresponder a entrevistas efectivamente realizadas. Las siguientes fichas son plantillas pendientes de completar con los datos y evidencias obtenidos.
 
-Segmento #1 — Entrevista [N.º]
+Segmento #1 — Entrevista [N.º 1]
 
 | Campo | Dato |
 | :-- | :-- |
-| Código o nombre del participante | [Completar] |
-| Cargo | [Completar] |
-| Tipo de cadena / establecimientos | [Completar] |
-| Número de locales a cargo | [Completar] |
-| Fecha y modalidad | [Completar] |
-| Duración | [Completar] |
-| Prototipo o versión evaluada | [Completar] |
-| URL del video | [Agregar enlace, si existe autorización] |
-| Evidencia visual | [Agregar captura de pantalla de la sesión] |
+| Código o nombre del participante | Luis Paredes (28 años) |
+| Cargo | Administrador general |
+| Tipo de cadena / establecimientos | Cadena de juguerías de formato pequeño|
+| Número de locales a cargo | 3 (Miraflores, San Isidro y Surco) |
+| Fecha | 10/11/2026  |
+| Duración | 14:40 |
+| Prototipo o versión evaluada | Plataforma web y móvil |
+| URL del video | [Entrevista #1](https://acortar.link/IcXAXQ) |
+| Evidencia visual | <img src="assets/validationInterviews/entrevista1_segmento1.png"> |
 
 Resumen de la entrevista
 
-Segmento #2 — Entrevista [N.º]
+Luis administra tres juguerías y recorrió SEMS, su primera impresión fue positiva, él encontró la plataforma ordenada, con los montos en soles y pensada para quien maneja varios locales. En el panel principal identificó primero el gasto del mes y la proyección del recibo, algo que hoy no conoce hasta que llega la factura, y luego los equipos que más consumen, que asoció con las refrigeradoras de fruta y el aire acondicionado de sus locales. Luis pudo navegar sin ayuda y consultó un local con sus datos, zonas y medidores. Además, interpretó correctamente el consumo diario, la alerta de demanda, el margen antes de la potencia contratada y los conceptos de hora punta, fuera de punta y cargo por potencia, y relacionó la hora punta con el horario nocturno de sus juguerías y el pico de demanda con el arranque de todos los equipos al abrir.
+
+Entre las dificultades, no encontró cómo cambiar de local en el Resumen, no entendió el indicador de ahorro de la quincena en negativo, notó que los medidores marcaban cero mientras el resumen mostraba consumo, y le confundió que el mensaje de las secciones bloqueadas mencionara un plan distinto al del botón. También señaló que la alerta no indica qué equipo está causando el pico. Valoró sobre todo el aviso de demanda y el consumo por equipo, que le habrían permitido detectar antes el aire acondicionado malogrado que tuvo su local de Surco. Como mejora propuso un selector de local en el Resumen, y para implementarlo pidió ver una baja real del recibo en un mes, que el plan aclare cuántos locales y equipos incluye, y corregir los botones de notificaciones desalineados y los planes que aparecen en inglés cuando el idioma seleccionado está en español.
+
+
+Segmento #1 — Entrevista [N.º 2]
 
 | Campo | Dato |
 | :-- | :-- |
-| Código o nombre del participante | [Completar] |
-| Rol / tipo de establecimiento | [Completar] |
-| Fecha y modalidad | [Completar] |
-| Duración | [Completar] |
-| Prototipo o versión evaluada | [Completar] |
-| URL del video | [Agregar enlace, si existe autorización] |
-| Evidencia visual | [Agregar captura de pantalla de la sesión] |
+| Código o nombre del participante | [COMPLETAR] |
+| Cargo | [COMPLETAR] |
+| Tipo de cadena / establecimientos | [COMPLETAR]|
+| Número de locales a cargo | [COMPLETAR] |
+| Fecha | [COMPLETAR]  |
+| Duración | [COMPLETAR] |
+| Prototipo o versión evaluada | [COMPLETAR] |
+| URL del video | [COMPLETAR] |
+| Evidencia visual | [COMPLETAR] |
 
 Resumen de la entrevista
+
+
+Segmento #1 — Entrevista [N.º 3]
+
+| Campo | Dato |
+| :-- | :-- |
+| Código o nombre del participante | [COMPLETAR] |
+| Cargo | [COMPLETAR] |
+| Tipo de cadena / establecimientos | [COMPLETAR]|
+| Número de locales a cargo | [COMPLETAR] |
+| Fecha | [COMPLETAR]  |
+| Duración | [COMPLETAR] |
+| Prototipo o versión evaluada | [COMPLETAR] |
+| URL del video | [COMPLETAR] |
+| Evidencia visual | [COMPLETAR] |
+
+Resumen de la entrevista
+
+
+Segmento #2 — Entrevista [N.º 1]
+
+| Campo | Dato |
+| :-- | :-- |
+| Código o nombre del participante | Omar Castillo (28 años) |
+| Rol / tipo de establecimiento | Propietario y administrador de una panadería y pastelería |
+| Fecha | 10/11/2026 |
+| Duración | 18:30 |
+| Prototipo o versión evaluada | Plataforma web y móvil |
+| URL del video | [Entrevista #1](https://acortar.link/O88Dyh) |
+| Evidencia visual | <img src="assets/validationInterviews/entrevista1_segmento2.png"> |
+
+Resumen de la entrevista
+
+Omar, dueño de una panadería, recorrió SEMS. En la pantalla principal entendió el gasto del mes, la proyección del recibo y los equipos que concentran el gasto, y lo vinculó con su necesidad de saber si su consumo se va en los hornos o en las cámaras de fermentación. Considera la plataforma intuitiva, revisó el consumo diario, las zonas con sus medidores y la tarifa del local, y entendió que la hora punta es más cara y que exceder la potencia contratada genera un recargo. Consideró concreta y útil la recomendación de ahorro, porque indica dónde mirar y cuánto se ahorraría en soles.
+
+Por otro lado, no entendió muy bien el indicador de ahorro de la quincena en negativo, notó que los medidores marcaban cero mientras el resumen mostraba consumo, le confundió que el mensaje de las secciones bloqueadas mencionara un plan que no existe en la sección Suscripción, y observó que los tipos de equipo, la alerta y los planes están en inglés. Destacó como funciones más valiosas el aviso de demanda, porque evitar el pico de los hornos no requiere inversión, junto con el gasto acumulado y la proyección del mes. Además, propuso recibir los avisos urgentes por WhatsApp y explicar el ahorro de la quincena con una frase simple. Para contratar un plan pidió comprobar un ahorro mayor al costo del plan en uno o dos meses y también espera que la interfaz mejore sus errores de diseño como los botones de activar o desactivar.
+
+
+Segmento #2 — Entrevista [N.º 2]
+
+| Campo | Dato |
+| :-- | :-- |
+| Código o nombre del participante | [COMPLETAR] |
+| Rol / tipo de establecimiento | [COMPLETAR] |
+| Fecha | [COMPLETAR] |
+| Duración | [COMPLETAR] |
+| Prototipo o versión evaluada | [COMPLETAR] |
+| URL del video | [COMPLETAR] |
+| Evidencia visual | [COMPLETAR] |
+
+Resumen de la entrevista
+
+
+Segmento #2 — Entrevista [N.º 3]
+
+| Campo | Dato |
+| :-- | :-- |
+| Código o nombre del participante | [COMPLETAR] |
+| Rol / tipo de establecimiento | [COMPLETAR] |
+| Fecha | [COMPLETAR] |
+| Duración | [COMPLETAR] |
+| Prototipo o versión evaluada | [COMPLETAR] |
+| URL del video | [COMPLETAR] |
+| Evidencia visual | [COMPLETAR] |
+
+Resumen de la entrevista
+
 
 Consolidado de las entrevistas
 
 | Entrevista | Segmento | Tareas completadas | Dificultad principal | Mejora propuesta |
 | :-- | :-- | :-- | :-- | :-- |
-| [S1-01] | Cadenas de retail | [Completar] | [Completar] | [Completar] |
-| [S2-01] | Establecimientos independientes | [Completar] | [Completar] | [Completar] |
+| [S1-01] | Cadenas de retail | Revisó el Resumen, navegó entre secciones, consultó un local con sus zonas y medidores, interpretó la tarifa, revisó la alerta de demanda y su margen, y revisó la suscripción. No pudo evaluar la comparación entre locales ni el reporte PDF (bloqueados en el plan gratuito). | No poder cambiar de local en el Resumen, ya que se muestra todo junto; además, la alerta no indica qué equipo causa el pico. | Agregar un selector de local en el Resumen para ver cada local por separado o los tres juntos. |
+| [S1-02] | Cadenas de retail | [Completar] | [Completar] | [Completar] |
+| [S1-03] | Cadenas de retail | [Completar] | [Completar] | [Completar] |
+| [S2-01] | Establecimientos independientes | Revisó el Resumen, el consumo diario y por dispositivo, las zonas y medidores, la tarifa del local, la alerta de demanda, la recomendación de ahorro y la suscripción. No pudo usar la analítica avanzada (bloqueada en el plan gratuito). | No entender el indicador de ahorro de la quincena (monto y porcentaje en negativo). | Enviar los avisos urgentes por WhatsApp y explicar el ahorro con una frase simple. |
+| [S2-02] | Establecimientos independientes | [Completar] | [Completar] | [Completar] |
+| [S2-03] | Establecimientos independientes | [Completar] | [Completar] | [Completar] |
 
 ### 7.3.3. Evaluaciones según heurísticas
 
