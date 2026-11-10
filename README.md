@@ -4201,6 +4201,27 @@ ejecución anterior de la misma rama cuando llega un *push* nuevo.
 | `SEMS-Web-Application` | `ci.yml` — *Lint and build* | Instala Node.js 20, ejecuta `npm ci`, `npm run lint` y `npm run build` dentro de `semswebapp`. |
 | `SEMS-Mobile-App` | `ci.yml` — *Build and test* | Instala JDK 21, Gradle y los paquetes del Android SDK 36, ejecuta las pruebas unitarias (`testDebugUnitTest`), compila el APK de depuración (`assembleDebug`) y publica los reportes de pruebas. |
 
+## 7.2. Solution Implementation
+
+La implementación de SEMS se organiza en *sprints* que toman las historias del Product Backlog
+(sección 3.4) en el orden de prioridad establecido: primero el Landing Page y la identidad y el
+acceso, después la jerarquía de organización, local, zona y medidor, luego el núcleo de monitoreo
+de demanda y alertas, y finalmente la analítica de facturación y las suscripciones.
+
+Cada sprint entrega incrementos en los productos que componen la solución, construidos sobre la
+arquitectura definida en los Capítulos IV y V y publicados según la configuración de la sección 7.1.4:
+
+| Producto | Tecnología | Alcance implementado | Repositorio |
+| :-- | :-- | :-- | :-- |
+| Landing Page | HTML5, CSS3, JavaScript | Propuesta de valor, explicación del cargo por potencia, planes, navegación entre secciones y términos y condiciones. | [SEMS-Landing-Page](https://github.com/SEMS-Emergentes/SEMS-Landing-Page) |
+| Web Application | Vue 3, PrimeVue, Pinia | Autenticación, gestión de organizaciones, miembros, locales, zonas, medidores y equipos, reglas y alertas de demanda, consumo por zona, comparación entre locales, tarifa vigente, analítica, reportes y contratación de planes con pago simulado. | [SEMS-Web-Application](https://github.com/SEMS-Emergentes/SEMS-Web-Application) |
+| Web Services (SEMS API) | Spring Boot 3.3, Java 21, PostgreSQL | Monolito modular con los ocho bounded contexts del Capítulo V, autenticación JWT y OAuth 2.0, evaluación de demanda en cada lectura, umbrales de consumo diario, cálculo tarifario por franja horaria, analítica, notificaciones por correo y cobro simulado de planes. | [SEMS-Backend](https://github.com/SEMS-Emergentes/SEMS-Backend) |
+| Mobile Application | Kotlin, Jetpack Compose, Hilt, Retrofit | Autenticación, panel principal, locales y medidores (con lectura de códigos QR), consumo por equipo, alertas, analítica, reportes, ajustes de idioma y contratación de planes con pago simulado. | [SEMS-Mobile-App](https://github.com/SEMS-Emergentes/SEMS-Mobile-App) |
+
+El detalle de cada sprint —su planificación, el Sprint Backlog, las evidencias de desarrollo,
+ejecución y despliegue, la documentación de los servicios y los insights de colaboración del
+equipo— se presenta en las subsecciones siguientes.
+
 ## 7.3. Validation Interviews
 
 En esta sección se describe el proceso de validación a posteriori de SEMS (Smart Energy Management System). A diferencia de las entrevistas exploratorias del apartado 2.2.1, orientadas a identificar problemas y necesidades antes del diseño de la solución, estas entrevistas buscan conocer la experiencia de los participantes después de interactuar con el prototipo o con las funcionalidades disponibles.
