@@ -3833,6 +3833,92 @@ En esta sección se presentan los diagramas de flujo de usuario de la aplicació
 (User Flow 4: Suscripción y pago)
 <img src="assets/UserFlow4.png" alt="User Flow 4: Suscripción y pago" style="width: 100vw;">
 
+# Capítulo VII: Product Implementation, Validation & Deployment
+
+En este capítulo se documenta cómo se construyen, se publican y se validan los productos digitales
+de SEMS. Se parte de la configuración que comparte el equipo —herramientas, repositorios,
+convenciones de código y de despliegue—, se continúa con la implementación de la solución y se
+cierra con las entrevistas de validación y el video del producto.
+
+## 7.1. Software Configuration Management
+
+La gestión de la configuración del software asegura que los cinco integrantes trabajen sobre las
+mismas herramientas, el mismo flujo de ramas y las mismas reglas de estilo, y que cada versión
+publicada de un producto pueda rastrearse hasta el código que la originó. Las decisiones de esta
+sección responden a las restricciones CON05 y CON06 del enunciado y a las de contexto CON07 y CON08
+(sección 4.1.2.3).
+
+### 7.1.1. Software Development Environment Configuration
+
+El entorno de desarrollo de SEMS cubre todo el ciclo del proyecto: coordinación, diseño,
+implementación, pruebas, despliegue y documentación. Las versiones indicadas son las que fijan los
+archivos de configuración de cada repositorio (`pom.xml`, `package.json`, `libs.versions.toml` y los
+workflows de GitHub Actions).
+
+**Project Management**
+
+| Herramienta | Propósito en SEMS | Modalidad | Ruta de acceso |
+| :-- | :-- | :-- | :-- |
+| **Trello** | Gestión del Product Backlog y seguimiento de las historias de usuario (sección 3.4). | SaaS | <https://trello.com/invite/b/6aaac224d7a3b1afe10b2749/ATTI05ee1a3e87011bfcb2c3615049c53aeeBACF4B19/product-backlog-sems> |
+| **GitHub** | Alojamiento de los repositorios de la organización, revisión mediante Pull Requests e integración continua con GitHub Actions. | SaaS | <https://github.com/SEMS-Emergentes> |
+| **Microsoft Teams / SharePoint** | Reuniones del equipo y almacenamiento de los videos de exposición (Anexo A). | SaaS | <https://upcedupe-my.sharepoint.com> |
+
+**Requirements Management y Product UX/UI Design**
+
+| Herramienta | Propósito en SEMS | Modalidad | Ruta de acceso |
+| :-- | :-- | :-- | :-- |
+| **UXPressia** | Elaboración de los User Personas, Empathy Maps e Impact Maps (secciones 2.3 y 3.3). | SaaS | <https://uxpressia.com> |
+| **Miro / LucidChart** | Elaboración de los As-Is y To-Be Scenario Maps y del EventStorming (secciones 2.3.4, 3.1 y 4.2.1). | SaaS | <https://miro.com> · <https://www.lucidchart.com> |
+| **Figma** | Wireframes, mock-ups, wireflows y user flows de la Landing Page y de las aplicaciones (Capítulo VI). `<Confirmar con el equipo la herramienta y el enlace del proyecto.>` | SaaS | <https://www.figma.com> |
+
+**Software Development**
+
+| Herramienta | Propósito en SEMS | Modalidad | Ruta de acceso |
+| :-- | :-- | :-- | :-- |
+| **Git** | Control de versiones local. | Software local | <https://git-scm.com> |
+| **IntelliJ IDEA** | IDE para el desarrollo de la SEMS API. | Software local | <https://www.jetbrains.com/idea/> |
+| **Visual Studio Code / WebStorm** | Editores para la Landing Page y la Web Application. | Software local | <https://code.visualstudio.com> · <https://www.jetbrains.com/webstorm/> |
+| **Android Studio** | IDE para la Mobile Application. | Software local | <https://developer.android.com/studio> |
+| **HTML5, CSS3 y JavaScript** | Lenguajes del Landing Page, sin paso de compilación (CON02). | Lenguajes | <https://developer.mozilla.org> |
+| **Vue 3.5, Vite 7, PrimeVue 4, Pinia 2 y Vue Router 4** | Framework, empaquetador, componentes con preset Material, manejo de estado y enrutamiento de la Web Application (CON03). | Frameworks | <https://vuejs.org> · <https://primevue.org> |
+| **Node.js 20 y npm** | Plataforma de ejecución y gestor de paquetes de la Web Application. | Runtime | <https://nodejs.org> |
+| **Java 21 (Eclipse Temurin) y Maven 3.9** | Plataforma y herramienta de construcción del backend; el repositorio incluye Maven Wrapper (`mvnw`). | Runtime y build | <https://adoptium.net> · <https://maven.apache.org> |
+| **Spring Boot 3.3.4** | Framework de la SEMS API: Web, Security, Data JPA, Validation, Actuator y Mail. | Framework | <https://spring.io/projects/spring-boot> |
+| **Kotlin 2.3 y Jetpack Compose (Material 3)** | Lenguaje y toolkit de interfaz de la Mobile Application (Android, `minSdk` 29, `targetSdk` 36). | Lenguaje y framework | <https://kotlinlang.org> · <https://developer.android.com/compose> |
+| **Hilt, Retrofit 3 y OkHttp 5** | Inyección de dependencias y consumo de la SEMS API desde la Mobile Application. | Librerías | <https://dagger.dev/hilt/> · <https://square.github.io/retrofit/> |
+| **Gradle (AGP 8.13)** | Construcción de la Mobile Application mediante Gradle Wrapper (`gradlew`). | Build | <https://gradle.org> |
+| **PostgreSQL** | Motor de base de datos de la solución. | Base de datos | <https://www.postgresql.org> |
+| **Docker** | Empaquetado de la SEMS API como imagen para su despliegue. | Contenedores | <https://www.docker.com> |
+| **Postman / Swagger UI** | Prueba manual de los endpoints de la API. | SaaS / Web | <https://www.postman.com> · <https://sems-backend-kgnm.onrender.com/swagger-ui.html> |
+
+**Software Testing**
+
+| Herramienta | Propósito en SEMS | Modalidad | Ruta de acceso |
+| :-- | :-- | :-- | :-- |
+| **JUnit 5, Spring Boot Test y Spring Security Test** | Pruebas unitarias, de integración y de autorización de la SEMS API (QAS03, QAS04). | Framework de pruebas | <https://junit.org/junit5/> |
+| **H2 (modo PostgreSQL)** | Base de datos en memoria para ejecutar las pruebas del backend sin un servidor externo. | Base de datos de pruebas | <https://www.h2database.com> |
+| **JaCoCo** | Medición de la cobertura de pruebas del backend. | Plugin de Maven | <https://www.jacoco.org> |
+| **JUnit 4** | Pruebas unitarias de la Mobile Application (repositorios, ViewModels y DTOs). | Framework de pruebas | <https://junit.org/junit4/> |
+| **ESLint 9** | Análisis estático de la Web Application con las reglas recomendadas de JavaScript y de Vue. | Linter | <https://eslint.org> |
+| **GitHub Actions** | Ejecución automática de la compilación, las pruebas y el linter en cada *push* y *Pull Request*. | SaaS | <https://github.com/features/actions> |
+
+**Software Deployment**
+
+| Herramienta | Propósito en SEMS | Modalidad | Ruta de acceso |
+| :-- | :-- | :-- | :-- |
+| **GitHub Pages** | Hosting estático de la Landing Page. | SaaS | <https://pages.github.com> |
+| **Vercel** | Hosting de la Web Application. | SaaS | <https://vercel.com> |
+| **Render** | Ejecución de la SEMS API como contenedor Docker. | PaaS | <https://render.com> |
+| **Supabase** | Base de datos PostgreSQL gestionada. | DBaaS | <https://supabase.com> |
+
+**Software Documentation**
+
+| Herramienta | Propósito en SEMS | Modalidad | Ruta de acceso |
+| :-- | :-- | :-- | :-- |
+| **GitHub (Markdown)** | Redacción colaborativa del presente informe y de los README de cada repositorio. | SaaS | <https://github.com/SEMS-Emergentes/SEMS-Report> |
+| **Structurizr DSL** | Diagramas C4 de contexto, contenedores, componentes y despliegue (secciones 4.3 y 5.x.5). | Herramienta de modelado | <https://structurizr.com> |
+| **springdoc-openapi (Swagger)** | Generación de la especificación OpenAPI desde el código del backend (CON05, TS06). | Librería | <https://springdoc.org> |
+
 ## 7.3. Validation Interviews
 
 En esta sección se describe el proceso de validación a posteriori de SEMS (Smart Energy Management System). A diferencia de las entrevistas exploratorias del apartado 2.2.1, orientadas a identificar problemas y necesidades antes del diseño de la solución, estas entrevistas buscan conocer la experiencia de los participantes después de interactuar con el prototipo o con las funcionalidades disponibles.
