@@ -72,6 +72,7 @@
 | 1.22 (TB1) | 01/10/2026 | Goñe Araccata, Esther Abigail | Integración de<br>Capítulo V: Tactical-Level Software Design<br>Capítulo VI: Solution UX Design |
 | 1.23 (TB1) | 01/10/2026 | Goñe Araccata, Esther Abigail | Desarrollo de<br>Sección 6.2.2. Labeling Systems. |
 | 1.24 (TB1) | 01/10/2026 | Goñe Araccata, Esther Abigail | Desarrollo de<br>Sección 6.2.3. Searching Systems. |
+| 1.25 (TB2) | 10/11/2026 | Goñe Araccata, Esther Abigail | Desarrollo de<br>Capítulo VII: Product Implementation, Validation & Deployment<br>Sección 7.1. Software Configuration Management<br>Sección 7.2. Solution Implementation. |
 
 ---
 
@@ -154,6 +155,13 @@
   - [6.4. Applications UX/UI Design](README.md#64-applications-uxui-design)
     - [6.4.1. Applications Wireframes](README.md#641-applications-wireframes)
     - [6.4.2. Applications Wireflow Diagrams](README.md#642-applications-wireflow-diagrams)
+- [Capítulo VII: Product Implementation, Validation & Deployment](README.md#capítulo-vii-product-implementation-validation--deployment)
+  - [7.1. Software Configuration Management](README.md#71-software-configuration-management)
+    - [7.1.1. Software Development Environment Configuration](README.md#711-software-development-environment-configuration)
+    - [7.1.2. Source Code Management](README.md#712-source-code-management)
+    - [7.1.3. Source Code Style Guide & Conventions](README.md#713-source-code-style-guide--conventions)
+    - [7.1.4. Software Deployment Configuration](README.md#714-software-deployment-configuration)
+  - [7.2. Solution Implementation](README.md#72-solution-implementation)
 - [Conclusiones, Bibliografía y Anexos](chapters/99-conclusiones.md)
 
 
