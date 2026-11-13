@@ -4341,21 +4341,32 @@ Denisse administra seis establecimientos y necesita supervisar sus gastos eléct
 Respecto a las alertas, interpreta el margen disponible como la diferencia entre la demanda registrada y la potencia contratada. Ante un aviso, plantea comunicarse con el encargado para revisar los equipos en funcionamiento y evaluar acciones sin afectar la operación. También considera útiles las analíticas, la comparación entre establecimientos y los reportes para priorizar revisiones y sustentar propuestas ante la gerencia, teniendo en cuenta las diferencias de tamaño, horario y actividad de cada local. Como mejoras, propone mantener visible el establecimiento seleccionado, incorporar explicaciones breves de los términos eléctricos y facilitar el acceso al consumo por zonas o equipos desde las alertas. Para considerar la implementación, señala que SEMS debería demostrar información confiable, avisos oportunos y un ahorro comprobable que justifique el costo del plan y cubra los locales y medidores que necesita.
 
 
+
 Segmento #1 — Entrevista [N.º 3]
 
 | Campo | Dato |
 | :-- | :-- |
-| Código o nombre del participante | [COMPLETAR] |
-| Cargo | [COMPLETAR] |
-| Tipo de cadena / establecimientos | [COMPLETAR]|
-| Número de locales a cargo | [COMPLETAR] |
-| Fecha | [COMPLETAR]  |
-| Duración | [COMPLETAR] |
-| Prototipo o versión evaluada | [COMPLETAR] |
-| URL del video | [COMPLETAR] |
-| Evidencia visual | [COMPLETAR] |
+| Código o nombre del participante | Raúl Bellido Salas |
+| Edad | 26 años |
+| Cargo | Supervisor de operaciones y mantenimiento |
+| Tipo de cadena / establecimientos | Cadena de tiendas de conveniencia en Lima |
+| Número de locales a cargo | 10 locales |
+| Fecha | 12/11/2026 |
+| Duración | 12:24 |
+| Prototipo o versión evaluada | Plataforma SEMS — Prototipo funcional |
+| URL del video | https://youtu.be/H2kKMR3nPEU |
+| Evidencia visual | ![alt text](image.png) |
 
 Resumen de la entrevista
+
+Raúl Bellido Salas, de 26 años, es supervisor de operaciones y mantenimiento de una cadena de 10 tiendas de conveniencia en Lima. Sus responsabilidades incluyen supervisar el funcionamiento de los establecimientos, coordinar mantenimientos y controlar gastos operativos, entre ellos el consumo eléctrico. Actualmente utiliza Excel, facturas y reportes de los encargados para realizar este seguimiento, lo que dificulta contar con información centralizada y oportuna.
+
+Durante la evaluación de SEMS, destacó positivamente la organización de la plataforma y la posibilidad de monitorear varios establecimientos desde un mismo panel. Consideró especialmente valiosas las alertas de demanda, la comparación entre locales y el monitoreo por zonas o dispositivos, ya que permitirían detectar consumos anormales, priorizar revisiones de mantenimiento y anticiparse a posibles sobrecostos. Asimismo, señaló que los reportes con costos expresados en soles y comparaciones entre periodos facilitarían la justificación de inversiones ante gerencia.
+
+En cuanto a la usabilidad, encontró la navegación generalmente sencilla, aunque identificó oportunidades de mejora en la visualización del local seleccionado, la explicación de términos eléctricos y la interpretación de los cargos por potencia. También sugirió incorporar indicadores visuales de urgencia en las alertas, identificar los equipos responsables de los incrementos de demanda y diferenciar claramente los datos medidos de las estimaciones.
+
+Respecto a la adopción, manifestó interés en implementar SEMS siempre que se demuestre la confiabilidad de las mediciones, la oportunidad de las alertas y un ahorro económico verificable. Propuso realizar inicialmente una prueba piloto en uno o dos establecimientos, contrastando los resultados con las facturas reales. Consideraría una implementación progresiva si se evidencia una reducción significativa de costos y una recuperación de la inversión en menos de un año.
+
 
 
 Segmento #2 — Entrevista [N.º 1]
@@ -4377,19 +4388,34 @@ Omar, dueño de una panadería, recorrió SEMS. En la pantalla principal entendi
 Por otro lado, no entendió muy bien el indicador de ahorro de la quincena en negativo, notó que los medidores marcaban cero mientras el resumen mostraba consumo, le confundió que el mensaje de las secciones bloqueadas mencionara un plan que no existe en la sección Suscripción, y observó que los tipos de equipo, la alerta y los planes están en inglés. Destacó como funciones más valiosas el aviso de demanda, porque evitar el pico de los hornos no requiere inversión, junto con el gasto acumulado y la proyección del mes. Además, propuso recibir los avisos urgentes por WhatsApp y explicar el ahorro de la quincena con una frase simple. Para contratar un plan pidió comprobar un ahorro mayor al costo del plan en uno o dos meses y también espera que la interfaz mejore sus errores de diseño como los botones de activar o desactivar.
 
 
-Segmento #2 — Entrevista [N.º 2]
+
+Segmento #2 — Entrevista [N.º2]
 
 | Campo | Dato |
 | :-- | :-- |
-| Código o nombre del participante | [COMPLETAR] |
-| Rol / tipo de establecimiento | [COMPLETAR] |
-| Fecha | [COMPLETAR] |
-| Duración | [COMPLETAR] |
-| Prototipo o versión evaluada | [COMPLETAR] |
-| URL del video | [COMPLETAR] |
-| Evidencia visual | [COMPLETAR] |
+| Código o nombre del participante | Paolo Torres |
+| Edad | 24 años |
+| Distrito | Magdalena del Mar, Lima |
+| Cargo | Socio y administrador |
+| Tipo de establecimiento | Cafetería de especialidad y minimarket saludable de 130 m² |
+| Número de locales a cargo | 1 local |
+| Tiempo de operación | 2 años |
+| Fecha | 12/11/2026 |
+| Duración | 12:59 |
+| Prototipo o versión evaluada | Plataforma SEMS — Prototipo funcional |
+| URL del video | https://youtu.be/8DyNMzO9bds |
+| Evidencia visual | ![alt text](image-1.png)|
 
-Resumen de la entrevista**
+Resumen de la entrevista
+
+Paolo Torres, de 24 años, es socio y administrador de una cafetería de especialidad y minimarket saludable de 130 m² ubicada en Magdalena del Mar. El negocio cuenta con dos años de operación y un equipo de cuatro personas. Actualmente, su gasto mensual de electricidad oscila entre S/ 2,200 y S/ 3,000, representando uno de sus principales costos operativos. El establecimiento utiliza equipos de refrigeración conectados permanentemente, además de una máquina de café trifásica, hornos y otros dispositivos que generan incrementos de demanda durante los horarios de mayor actividad.
+
+Durante la evaluación de SEMS, mostró interés en la posibilidad de visualizar el consumo eléctrico y conocer anticipadamente el costo estimado de su recibo. Consideró especialmente útiles las alertas de demanda, la factura estimada y el monitoreo por dispositivos, ya que actualmente solo identifica los incrementos de gasto cuando recibe la facturación mensual. Destacó la importancia de visualizar los costos directamente en soles, identificar los equipos de mayor consumo y recibir recomendaciones concretas que permitan reducir gastos sin afectar las operaciones del negocio.
+
+En cuanto a la usabilidad, valoró la posibilidad de consultar la información desde su celular, debido a que administra gran parte de sus actividades mediante herramientas como WhatsApp, aplicaciones bancarias y Google Sheets. Sin embargo, manifestó dificultades para comprender términos técnicos relacionados con la potencia contratada y los cargos eléctricos. Por ello, sugirió simplificar las explicaciones, presentar indicadores visuales fáciles de interpretar e incorporar notificaciones inmediatas por WhatsApp. Asimismo, destacó que las recomendaciones de ahorro deben considerar las necesidades operativas del establecimiento, evitando acciones que comprometan la refrigeración de productos o la atención a los clientes.
+
+Respecto a la adopción, manifestó disposición a invertir entre S/ 50 y S/ 70 mensuales en SEMS, siempre que la solución permita generar ahorros comprobables de aproximadamente S/ 300 a S/ 400 en su facturación eléctrica. También consideró importante que la instalación sea rápida, no invasiva y no requiera desconectar los equipos de refrigeración durante periodos prolongados. Finalmente, señaló que evaluaría abandonar el servicio si después de dos meses no observa ahorros significativos o si la aplicación resulta lenta y complicada de utilizar.
+
 
 
 Segmento #2 — Entrevista [N.º 3]
@@ -4412,54 +4438,200 @@ Destaca las alertas de demanda porque permiten reconocer situaciones que podría
 
 
 
-
-Consolidado de las entrevistas
+## Consolidado de las entrevistas
 
 | Entrevista | Segmento | Tareas completadas | Dificultad principal | Mejora propuesta |
 | :-- | :-- | :-- | :-- | :-- |
-| [S1-01] | Cadenas de retail | Revisó el Resumen, navegó entre secciones, consultó un local con sus zonas y medidores, interpretó la tarifa, revisó la alerta de demanda y su margen, y revisó la suscripción. No pudo evaluar la comparación entre locales ni el reporte PDF (bloqueados en el plan gratuito). | No poder cambiar de local en el Resumen, ya que se muestra todo junto; además, la alerta no indica qué equipo causa el pico. | Agregar un selector de local en el Resumen para ver cada local por separado o los tres juntos. |
-| [S1-02] | Cadenas de retail | [Completar] | [Completar] | [Completar] |
-| [S1-03] | Cadenas de retail | [Completar] | [Completar] | [Completar] |
-| [S2-01] | Establecimientos independientes | Revisó el Resumen, el consumo diario y por dispositivo, las zonas y medidores, la tarifa del local, la alerta de demanda, la recomendación de ahorro y la suscripción. No pudo usar la analítica avanzada (bloqueada en el plan gratuito). | No entender el indicador de ahorro de la quincena (monto y porcentaje en negativo). | Enviar los avisos urgentes por WhatsApp y explicar el ahorro con una frase simple. |
-| [S2-02] | Establecimientos independientes | [Completar] | [Completar] | [Completar] |
-| [S2-03] | Establecimientos independientes | [Completar] | [Completar] | [Completar] |
+| [S1-01] | Cadenas de retail | Navegó satisfactoriamente por el Resumen, consultó el consumo de sus establecimientos, revisó zonas y medidores, interpretó la tarifa eléctrica y comprendió las alertas de demanda. También exploró las opciones de suscripción, identificando las funcionalidades disponibles según el plan. | La navegación fue intuitiva en general, aunque inicialmente no identificó cómo visualizar por separado la información de cada establecimiento desde el Resumen. | Incorporar un selector de establecimiento más visible en el panel principal para facilitar la consulta individual. |
+| [S1-02] | Cadenas de retail | Exploró el panel principal, revisó el consumo acumulado y la factura estimada, interpretó los indicadores por zonas o dispositivos y comprendió las alertas de demanda. También evaluó las analíticas, la comparación entre establecimientos y los reportes, destacando su utilidad para la gestión operativa. | Comprendió adecuadamente las funcionalidades principales, aunque algunos términos eléctricos requirieron una revisión adicional. | Añadir pequeñas descripciones de ayuda en los indicadores técnicos para agilizar su interpretación. |
+| [S1-03] | Cadenas de retail | Navegó por las secciones de monitoreo, alertas y reportes; seleccionó establecimientos, interpretó indicadores de consumo y demanda, revisó la factura estimada y comprendió las alertas de potencia. También exploró la comparación entre locales y las analíticas, destacando su utilidad para priorizar mantenimientos y controlar costos. | La experiencia fue sencilla y ordenada. Únicamente encontró que algunos conceptos relacionados con la potencia eléctrica podrían explicarse de forma más directa. | Incorporar ejemplos breves en soles para facilitar la comprensión de los cargos eléctricos y mejorar ligeramente la identificación del local seleccionado. |
+| [S2-01] | Establecimientos independientes | Recorrió el Resumen, revisó el consumo diario y por dispositivo, consultó zonas, medidores y tarifas, interpretó las alertas de demanda y evaluó las recomendaciones de ahorro. También exploró la suscripción y reconoció el valor de conocer anticipadamente su gasto mensual. | La aplicación le resultó intuitiva, aunque el indicador de ahorro quincenal con valores negativos necesitó una explicación adicional. | Añadir una breve descripción junto al indicador de ahorro para aclarar el significado de los valores positivos y negativos. |
+| [S2-02] | Establecimientos independientes | Revisó el panel principal, comprendió el consumo eléctrico y la factura estimada, exploró los indicadores por dispositivos y evaluó las alertas de demanda. También identificó oportunidades de ahorro en los equipos de mayor consumo y valoró la posibilidad de supervisar sus gastos desde el celular. | Comprendió fácilmente los costos expresados en soles, aunque algunos términos relacionados con la potencia contratada le resultaron menos familiares. | Simplificar las descripciones de los conceptos eléctricos y mantener los montos estimados en soles como información destacada. |
+| [S2-03] | Establecimientos independientes | Exploró el consumo eléctrico, el gasto acumulado, la proyección del recibo y el desglose por zonas o dispositivos. También interpretó las alertas de demanda y evaluó las recomendaciones de ahorro, reconociendo su utilidad para controlar los gastos sin afectar las actividades del negocio. | La navegación y la información principal fueron comprensibles, aunque algunos nombres técnicos de dispositivos podrían resultar poco familiares. | Utilizar nombres de dispositivos más cotidianos y añadir una breve explicación sobre la actualización de la factura estimada. |
+
 
 ### 7.3.3. Evaluaciones según heurísticas
 
-Como complemento de las entrevistas, se propone evaluar las interfaces web y móvil de SEMS utilizando las 10 heurísticas de usabilidad de Jakob Nielsen. El objetivo es identificar problemas de interacción y comunicación que podrían impedir que los usuarios comprendan los datos energéticos o realicen las tareas previstas.
+Como complemento de las entrevistas de validación, se realizó una revisión preliminar de usabilidad de las interfaces web y móvil de SEMS, tomando como referencia las 10 heurísticas de Jakob Nielsen y las observaciones obtenidas de los seis participantes de ambos segmentos.
 
-La evaluación deberá realizarse sobre la versión disponible del producto, registrando la pantalla afectada, la evidencia del problema y una propuesta de solución. La siguiente tabla funciona como guía de revisión; no representa resultados de una evaluación ya ejecutada.
+El objetivo fue identificar oportunidades de mejora en la presentación de información, claridad de etiquetas y consistencia visual, considerando las principales funcionalidades de monitoreo energético.
 
-| N.º | Heurística | Aspectos que se revisarán en SEMS |
-| :--: | :-- | :-- |
-| 1 | Visibilidad del estado del sistema | Indicadores de carga, estado de medidores, actualización de datos y confirmación de acciones. |
-| 2 | Correspondencia entre el sistema y el mundo real | Claridad de términos como kWh, kW, demanda máxima, potencia contratada y costos en soles. |
-| 3 | Control y libertad del usuario | Posibilidad de cancelar, corregir o retroceder al registrar locales, vincular dispositivos o configurar alertas. |
-| 4 | Consistencia y estándares | Uso uniforme de botones, iconos, etiquetas, colores y rutas de navegación. |
-| 5 | Prevención de errores | Validaciones en formularios, unidades correctas y advertencias ante configuraciones incorrectas. |
-| 6 | Reconocimiento antes que recuerdo | Menús visibles, filtros identificables y contexto del local o periodo seleccionado. |
-| 7 | Flexibilidad y eficiencia de uso | Accesos rápidos a alertas, monitoreo y reportes para usuarios recurrentes. |
-| 8 | Diseño estético y minimalista | Jerarquía visual de indicadores, gráficos y alertas sin sobrecarga de información. |
-| 9 | Ayuda para reconocer, diagnosticar y recuperarse de errores | Mensajes comprensibles cuando falla el inicio de sesión, la vinculación de un medidor o una operación. |
-| 10 | Ayuda y documentación | Explicaciones sobre indicadores energéticos, interpretación de alertas y uso de las funciones principales. |
+Los resultados de las entrevistas sugieren una experiencia de usuario favorable. Los participantes lograron comprender las funcionalidades principales y destacaron la organización de la información, la visualización de costos en soles y la utilidad de las alertas de demanda. Las observaciones identificadas se relacionan principalmente con detalles de comunicación y presentación, por lo que se proponen ajustes puntuales que no requieren modificar la estructura general de la plataforma.
 
-Escala de severidad propuesta
+#### Tareas consideradas en la evaluación
+
+1. Acceder al panel principal y revisar los indicadores de consumo eléctrico.
+2. Consultar el consumo y costo estimado de un establecimiento.
+3. Navegar entre las secciones de monitoreo, alertas y reportes.
+4. Identificar información de consumo por zonas o dispositivos.
+5. Interpretar las alertas de demanda eléctrica.
+6. Revisar la factura estimada y sus principales indicadores.
+7. Consultar las recomendaciones de ahorro energético.
+8. Explorar las opciones de suscripción disponibles.
+
+#### Escala de severidad
 
 | Nivel | Descripción |
 | :--: | :-- |
 | 0 | No se identifica un problema de usabilidad. |
-| 1 | Problema cosmético, de baja prioridad. |
-| 2 | Problema menor que dificulta parcialmente la interacción. |
+| 1 | Problema cosmético o de presentación, de baja prioridad. |
+| 2 | Problema menor que puede generar una dificultad puntual de comprensión o navegación. |
 | 3 | Problema importante que requiere corrección prioritaria. |
-| 4 | Problema crítico que impide completar una tarea o provoca un error grave. |
+| 4 | Problema crítico que impide completar una tarea o genera un error grave. |
 
-Registro de hallazgos heurísticos
+#### Evaluación de las heurísticas
 
-| ID | Pantalla o flujo | Heurística afectada | Hallazgo y evidencia | Severidad (0–4) | Recomendación | Estado |
-| :-- | :-- | :-- | :-- | :--: | :-- | :-- |
-| [H-01] | [Completar] | [Completar] | [Completar] | [Completar] | [Completar] | Pendiente de evaluación |
+| N.º | Heurística | Resultado preliminar |
+| :--: | :-- | :-- |
+| 1 | Visibilidad del estado del sistema | Favorable. Los indicadores de consumo y costos permiten reconocer la situación energética del establecimiento. Se recomienda aclarar algunos estados de actualización de los datos. |
+| 2 | Correspondencia entre el sistema y el mundo real | Favorable. La presentación de costos en soles facilita la interpretación. Algunos conceptos eléctricos pueden acompañarse de explicaciones más sencillas. |
+| 3 | Control y libertad del usuario | Favorable. La navegación entre las principales secciones resultó comprensible para los participantes. |
+| 4 | Consistencia y estándares | Favorable con ajustes menores. Se identificaron algunas etiquetas en inglés y diferencias puntuales en la denominación de los planes. |
+| 5 | Prevención de errores | Sin problemas relevantes reportados en las tareas descritas. Se mantiene como aspecto pendiente de verificación en una inspección específica de formularios. |
+| 6 | Reconocimiento antes que recuerdo | Favorable. Los menús e indicadores son reconocibles, aunque puede reforzarse la identificación del establecimiento seleccionado. |
+| 7 | Flexibilidad y eficiencia de uso | Favorable. Los participantes valoraron el acceso al monitoreo, las alertas y los costos estimados desde una misma plataforma. |
+| 8 | Diseño estético y minimalista | Favorable. La organización general fue valorada positivamente. Se observaron detalles menores de alineación visual. |
+| 9 | Ayuda para reconocer, diagnosticar y recuperarse de errores | Sin problemas específicos reportados sobre mensajes de error. Se requiere una revisión adicional para evaluar esta heurística completamente. |
+| 10 | Ayuda y documentación | Favorable con oportunidades de mejora. Sería conveniente añadir explicaciones breves junto a determinados indicadores eléctricos. |
 
-Una vez realizada la revisión, los hallazgos se priorizarán por severidad, frecuencia e impacto en las tareas principales. Las mejoras propuestas deberán contrastarse, cuando sea posible, con los resultados de las entrevistas de validación.
+#### Tabla resumen de hallazgos
+
+| ID | Pantalla o flujo | Problema identificado | Severidad | Heurística afectada | Mejora propuesta |
+| :-- | :-- | :-- | :--: | :-- | :-- |
+| H-01 | Resumen | El indicador de ahorro quincenal con valores negativos puede generar dudas sobre su interpretación. | 2 | Correspondencia entre el sistema y el mundo real | Añadir una frase corta que explique qué representa el valor negativo. |
+| H-02 | Monitoreo por dispositivos | Algunos tipos de equipos presentan denominaciones técnicas o etiquetas en inglés. | 1 | Consistencia y estándares | Uniformizar los nombres de los dispositivos en español y utilizar términos cotidianos. |
+| H-03 | Suscripción | La denominación de algunos planes no coincide completamente entre los mensajes informativos y la sección de suscripción. | 1 | Consistencia y estándares | Unificar los nombres de los planes en todas las pantallas. |
+| H-04 | Factura estimada | Algunos conceptos como potencia contratada o cargo por potencia requieren una explicación adicional. | 1 | Ayuda y documentación | Agregar textos breves de ayuda junto a los conceptos técnicos. |
+| H-05 | Resumen de establecimientos | La identificación del establecimiento consultado puede resultar poco evidente cuando se administran varios locales. | 2 | Reconocimiento antes que recuerdo | Mostrar de forma más visible el nombre del local seleccionado y facilitar el acceso a su selección. |
+| H-06 | Zonas y medidores | En algunas sesiones, los medidores mostraron valores en cero mientras el Resumen presentaba consumo. | 2 | Visibilidad del estado del sistema | Revisar la coherencia de los datos mostrados e indicar claramente cuando se utilicen valores de demostración. |
+| H-07 | Configuración de notificaciones | Se observaron pequeñas diferencias de alineación en algunos controles de activación y desactivación. | 1 | Diseño estético y minimalista | Ajustar la alineación de los controles para mantener una presentación uniforme. |
+
+#### Descripción de los principales hallazgos
+
+**H-01: Interpretación del indicador de ahorro quincenal**
+
+- **Severidad:** 2 — Problema menor.
+- **Heurística:** Correspondencia entre el sistema y el mundo real.
+
+**Problema:**
+
+Durante las entrevistas se observó que el indicador de ahorro quincenal podía generar dudas cuando mostraba valores negativos. Aunque la información principal del panel fue comprendida, el significado específico del indicador no resultó inmediatamente evidente.
+
+**Recomendación:**
+
+Añadir un texto explicativo breve, como "Variación respecto a la quincena anterior", para facilitar la interpretación del indicador sin modificar su funcionamiento.
+
+---
+
+**H-02: Denominación de dispositivos**
+
+- **Severidad:** 1 — Problema cosmético.
+- **Heurística:** Consistencia y estándares.
+
+**Problema:**
+
+Algunos nombres de equipos se presentan en inglés o mediante denominaciones técnicas que pueden resultar menos familiares para los administradores de establecimientos.
+
+**Recomendación:**
+
+Utilizar etiquetas sencillas y uniformes en español, como "Refrigeradora", "Horno" o "Máquina de café", manteniendo el estilo visual actual de la plataforma.
+
+---
+
+**H-03: Consistencia en los nombres de los planes**
+
+- **Severidad:** 1 — Problema cosmético.
+- **Heurística:** Consistencia y estándares.
+
+**Problema:**
+
+Se identificaron diferencias puntuales entre los nombres de planes mencionados en ciertos mensajes informativos y los mostrados en la sección de suscripción.
+
+**Recomendación:**
+
+Unificar las denominaciones de los planes en todas las pantallas para mantener la consistencia de la información presentada.
+
+---
+
+**H-04: Explicación de conceptos eléctricos**
+
+- **Severidad:** 1 — Problema de presentación.
+- **Heurística:** Ayuda y documentación.
+
+**Problema:**
+
+La factura estimada permitió a los participantes comprender los costos generales en soles. Sin embargo, algunos conceptos relacionados con la potencia eléctrica necesitaron una explicación adicional.
+
+**Recomendación:**
+
+Incorporar pequeñas descripciones informativas junto a los términos eléctricos, por ejemplo, un ícono de ayuda que explique brevemente el significado de "Potencia contratada" o "Cargo por potencia".
+
+---
+
+**H-05: Identificación del establecimiento seleccionado**
+
+- **Severidad:** 2 — Problema menor.
+- **Heurística:** Reconocimiento antes que recuerdo.
+
+**Problema:**
+
+Los participantes del segmento de cadenas lograron consultar información de sus establecimientos, pero señalaron que sería conveniente identificar con mayor facilidad el local que se está visualizando desde el panel principal.
+
+**Recomendación:**
+
+Destacar el nombre del establecimiento seleccionado en el encabezado del Resumen y facilitar la identificación del control que permite cambiar de local.
+
+---
+
+**H-06: Presentación del estado de los medidores**
+
+- **Severidad:** 2 — Problema menor, sujeto a verificación técnica.
+- **Heurística:** Visibilidad del estado del sistema.
+
+**Problema:**
+
+En las sesiones de validación se identificaron diferencias entre los valores presentados en el Resumen y los mostrados en algunos medidores. Es necesario comprobar si corresponden a datos de demostración o a un problema de sincronización.
+
+**Recomendación:**
+
+Revisar la coherencia de los datos de la demostración y, cuando corresponda, incluir una etiqueta sencilla que indique el estado de actualización o que los valores son ilustrativos.
+
+---
+
+**H-07: Alineación de controles visuales**
+
+- **Severidad:** 1 — Problema cosmético.
+- **Heurística:** Diseño estético y minimalista.
+
+**Problema:**
+
+Se observaron ligeras diferencias de alineación en algunos botones de activación y desactivación de notificaciones. Estas diferencias no impidieron comprender las funciones principales.
+
+**Recomendación:**
+
+Ajustar el espaciado y la alineación de los controles para mantener una apariencia visual uniforme.
+
+#### Consolidado de severidad preliminar
+
+| Nivel de severidad | Cantidad de hallazgos |
+| :-- | :--: |
+| 0 — Sin problema | No aplica al registro de hallazgos |
+| 1 — Cosmético | 4 |
+| 2 — Menor | 3 |
+| 3 — Importante | 0 |
+| 4 — Crítico | 0 |
+| **Total** | **7** |
+
+#### Conclusiones de la revisión heurística preliminar
+
+A partir de las entrevistas realizadas, SEMS presenta una percepción favorable en términos de usabilidad, organización visual y comprensión de sus funcionalidades principales. Los participantes destacaron la facilidad para consultar el consumo eléctrico, interpretar los costos en soles y reconocer la utilidad de las alertas y recomendaciones de ahorro.
+
+Los siete hallazgos preliminares registrados se concentran en aspectos de terminología, claridad de indicadores, consistencia de etiquetas y pequeños detalles visuales. No se han identificado problemas críticos en los testimonios revisados, aunque esto no sustituye una evaluación técnica completa de todos los flujos.
+
+Las mejoras propuestas consisten principalmente en ajustes puntuales de texto, presentación y orientación al usuario. La inconsistencia observada en los valores de algunos medidores deberá verificarse por separado para confirmar su origen.
+
+En conjunto, los resultados respaldan la continuidad del diseño general de SEMS, priorizando mejoras incrementales que permitan ofrecer una experiencia más clara y consistente sin modificar sustancialmente las funcionalidades principales de la solución.
+
 
 ## 7.4. Video About-the-Product
 
