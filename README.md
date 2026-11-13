@@ -4324,17 +4324,21 @@ Segmento #1 — Entrevista [N.º 2]
 
 | Campo | Dato |
 | :-- | :-- |
-| Código o nombre del participante | [COMPLETAR] |
-| Cargo | [COMPLETAR] |
-| Tipo de cadena / establecimientos | [COMPLETAR]|
-| Número de locales a cargo | [COMPLETAR] |
-| Fecha | [COMPLETAR]  |
-| Duración | [COMPLETAR] |
-| Prototipo o versión evaluada | [COMPLETAR] |
-| URL del video | [COMPLETAR] |
-| Evidencia visual | [COMPLETAR] |
+| Código o nombre del participante | Denisse Ortega (25 años) |
+| Cargo | Administradora de establecimientos |
+| Tipo de cadena / establecimientos | Establecimientos comerciales |
+| Número de locales a cargo | 6 |
+| Fecha | 12/11/2026 |
+| Duración | 10:00 |
+| Prototipo o versión evaluada | Aplicación web y móvil de SEMS |
+| URL del video |[https://sl1nk.com/5tpz14d](https://sl1nk.com/5tpz14d)|
+| Evidencia visual | <img src="https://res.cloudinary.com/df8xwy4xb/image/upload/v1794533550/Denisse_presents_the_SEMS_dashboard_in_Meet_e6vsua.png"> |
 
 Resumen de la entrevista
+
+Denisse administra seis establecimientos y necesita supervisar sus gastos eléctricos sin depender únicamente de los recibos mensuales y de las consultas a los encargados. En el guion, valora que SEMS centralice el consumo, los costos estimados y las alertas en una aplicación accesible desde el celular. Destaca el gasto acumulado y la proyección del recibo como información útil para identificar incrementos durante el mes. Asimismo, considera que el desglose por zonas o dispositivos facilita investigar dónde se concentra el consumo y coordinar revisiones con los responsables de cada local.
+
+Respecto a las alertas, interpreta el margen disponible como la diferencia entre la demanda registrada y la potencia contratada. Ante un aviso, plantea comunicarse con el encargado para revisar los equipos en funcionamiento y evaluar acciones sin afectar la operación. También considera útiles las analíticas, la comparación entre establecimientos y los reportes para priorizar revisiones y sustentar propuestas ante la gerencia, teniendo en cuenta las diferencias de tamaño, horario y actividad de cada local. Como mejoras, propone mantener visible el establecimiento seleccionado, incorporar explicaciones breves de los términos eléctricos y facilitar el acceso al consumo por zonas o equipos desde las alertas. Para considerar la implementación, señala que SEMS debería demostrar información confiable, avisos oportunos y un ahorro comprobable que justifique el costo del plan y cubra los locales y medidores que necesita.
 
 
 Segmento #1 — Entrevista [N.º 3]
@@ -4385,22 +4389,28 @@ Segmento #2 — Entrevista [N.º 2]
 | URL del video | [COMPLETAR] |
 | Evidencia visual | [COMPLETAR] |
 
-Resumen de la entrevista
+Resumen de la entrevista**
 
 
 Segmento #2 — Entrevista [N.º 3]
 
 | Campo | Dato |
 | :-- | :-- |
-| Código o nombre del participante | [COMPLETAR] |
-| Rol / tipo de establecimiento | [COMPLETAR] |
-| Fecha | [COMPLETAR] |
-| Duración | [COMPLETAR] |
-| Prototipo o versión evaluada | [COMPLETAR] |
-| URL del video | [COMPLETAR] |
-| Evidencia visual | [COMPLETAR] |
+| Código o nombre del participante | Kylie Pizarro (25 años) |
+| Rol / tipo de establecimiento | Responsable de un establecimiento comercial independiente |
+| Fecha | 12/11/2026 |
+| Duración | 14:30 |
+| Prototipo o versión evaluada | Aplicación web y móvil de SEMS |
+| URL del video |[https://sl1nk.com/5tpz14d](https://sl1nk.com/5tpz14d)|
+| Evidencia visual | <img src="https://res.cloudinary.com/df8xwy4xb/image/upload/v1794533451/kylie_entrevista_sems_ejscr7.png"> |
 
 Resumen de la entrevista
+
+Kylie está a cargo de un establecimiento comercial y busca comprender su consumo eléctrico para identificar gastos innecesarios sin afectar el funcionamiento del negocio. En el guion, considera práctica la aplicación móvil de SEMS porque permite consultar el consumo, el gasto acumulado y la proyección del recibo desde el celular. Valora que la información se presente en soles y reconoce que la proyección es una estimación que puede variar según el uso de los equipos durante el resto del mes. También considera útil el desglose por zonas o dispositivos para orientar la búsqueda de las causas de un incremento.
+
+Destaca las alertas de demanda porque permiten reconocer situaciones que podrían pasar desapercibidas durante la atención del negocio. Ante un aviso, plantea revisar los equipos en funcionamiento y evaluar si alguna actividad puede posponerse sin perjudicar la atención ni la conservación de productos. Asimismo, valora las recomendaciones de ahorro como una orientación para decidir qué cambios aplicar y consultar posteriormente si produjeron una reducción del consumo. Como mejoras, propone incluir explicaciones cortas sobre los términos técnicos, utilizar nombres cotidianos para identificar los dispositivos y destacar los avisos importantes con orientaciones claras sobre qué revisar. También desea conocer qué datos utiliza la proyección del recibo y cuándo se actualiza. Para continuar utilizando SEMS o contratar un plan, considera fundamentales la facilidad de uso, la confiabilidad de la información, una implementación que no interrumpa el negocio y un ahorro comprobable que justifique el costo del servicio.
+
+
 
 
 Consolidado de las entrevistas
