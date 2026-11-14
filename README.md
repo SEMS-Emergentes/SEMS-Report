@@ -28,12 +28,12 @@
 | Nombre completo | Código | Rol |
 | :-- | :-- | :-- |
 | Encalada Salazar, Alexis | U20211G491 | **Team Leader** |
-| Goñe, Abigail | U202318049 | Integrante |
+| Goñe Araccata, Esther Abigail | U202318049 | Integrante |
 | Gómez Flores, Daniela Araceli | U202311184 | Integrante |
 | Solis Santa Cruz, Giancarlo | U202318615 | Integrante |
 | Sulca Silva, Melisa Geraldine | U202224602 | Integrante |
 
-**Septiembre 2026**
+**Noviembre 2026**
 
 **Ciclo Académico:** 202620
 
@@ -73,8 +73,9 @@
 | 1.23 (TB1) | 01/10/2026 | Goñe Araccata, Esther Abigail | Desarrollo de<br>Sección 6.2.2. Labeling Systems. |
 | 1.24 (TB1) | 01/10/2026 | Goñe Araccata, Esther Abigail | Desarrollo de<br>Sección 6.2.3. Searching Systems. |
 | 1.25 (TB2) | 10/11/2026 | Goñe Araccata, Esther Abigail | Desarrollo de<br>Capítulo VII: Product Implementation, Validation & Deployment<br>Sección 7.1. Software Configuration Management<br>Sección 7.2. Solution Implementation. |
-| 1.26 (TB2) | 12/11/2026 | Solis Santa Cruz, Giancarlo Rafael | Desarrollo de<br>Capítulo VII: Entrevistas de validacio(1 por cada segembeto), desarrollo de Heuristicas y apoyo en el desarrollo del mobile |
+| 1.26 (TB2) | 12/11/2026 | Solis Santa Cruz, Giancarlo Rafael | Desarrollo de<br>Capítulo VII: entrevistas de validación (una por cada segmento), evaluación heurística y apoyo en el desarrollo de la aplicación móvil. |
 | 1.27 (TB2) | 14/11/2026 | Encalada Salazar, Alexis | Desarrollo de<br>Project Report Collaboration Insights<br>Sección 6.2.1. Organization Systems<br>Secciones 6.4.3.1 y 6.4.4.1 de la aplicación móvil<br>Sección 7.2.1. Sprint 1<br>Sección 7.4. Video About-the-Product<br>Publicación del APK (7.1.4) y Anexo B. |
+| 1.28 (TB2) | 14/11/2026 | Encalada Salazar, Alexis | Revisión de<br>Índice, portada y Student Outcome<br>Diagramas de la sección 4.2.2. Candidate Context Discovery<br>Bibliografía<br>Conclusiones y recomendaciones. |
 
 ---
 
@@ -110,66 +111,73 @@ colaboración en los repositorios de producto se detalla en la sección 7.2.1.9.
 
 ## Contenido
 
-- [Student Outcome](chapters/00-student-outcome.md)
-- [Capítulo I: Introducción](chapters/01-introduccion.md)
-  - [1.1. Startup Profile](chapters/01-introduccion.md#11-startup-profile)
-    - [1.1.1. Descripción de la Startup](chapters/01-introduccion.md#111-descripción-de-la-startup)
-    - [1.1.2. Perfiles de integrantes del equipo](chapters/01-introduccion.md#112-perfiles-de-integrantes-del-equipo)
-  - [1.2. Solution Profile](chapters/01-introduccion.md#12-solution-profile)
-    - [1.2.1. Antecedentes y problemática](chapters/01-introduccion.md#121-antecedentes-y-problemática)
-    - [1.2.2. Lean UX Process](chapters/01-introduccion.md#122-lean-ux-process)
-      - [1.2.2.1. Lean UX Problem Statements](chapters/01-introduccion.md#1221-lean-ux-problem-statements)
-      - [1.2.2.2. Lean UX Assumptions](chapters/01-introduccion.md#1222-lean-ux-assumptions)
-      - [1.2.2.3. Lean UX Hypothesis Statements](chapters/01-introduccion.md#1223-lean-ux-hypothesis-statements)
-      - [1.2.2.4. Lean UX Canvas](chapters/01-introduccion.md#1224-lean-ux-canvas)
-  - [1.3. Segmentos objetivo](chapters/01-introduccion.md#13-segmentos-objetivo)
-- [Capítulo II: Requirements Elicitation & Analysis](chapters/02-requirements-elicitation.md)
-  - [2.1. Competidores](chapters/02-requirements-elicitation.md#21-competidores)
-    - [2.1.1. Análisis competitivo](chapters/02-requirements-elicitation.md#211-análisis-competitivo)
-    - [2.1.2. Estrategias y tácticas frente a competidores](chapters/02-requirements-elicitation.md#212-estrategias-y-tácticas-frente-a-competidores)
-  - [2.2. Entrevistas](chapters/02-requirements-elicitation.md#22-entrevistas)
-    - [2.2.1. Diseño de entrevistas](chapters/02-requirements-elicitation.md#221-diseño-de-entrevistas)
-    - [2.2.2. Registro de entrevistas](chapters/02-requirements-elicitation.md#222-registro-de-entrevistas)
-    - [2.2.3. Análisis de entrevistas](chapters/02-requirements-elicitation.md#223-análisis-de-entrevistas)
-  - [2.3. Needfinding](chapters/02-requirements-elicitation.md#23-needfinding)
-    - [2.3.1. User Personas](chapters/02-requirements-elicitation.md#231-user-personas)
-    - [2.3.2. User Task Matrix](chapters/02-requirements-elicitation.md#232-user-task-matrix)
-    - [2.3.3. Empathy Mapping](chapters/02-requirements-elicitation.md#233-empathy-mapping)
-    - [2.3.4. As-is Scenario Mapping](chapters/02-requirements-elicitation.md#234-as-is-scenario-mapping)
-  - [2.4. Ubiquitous Language](chapters/02-requirements-elicitation.md#24-ubiquitous-language)
-- [Capítulo III: Requirements Specification](chapters/03-requirements-specification.md)
-  - [3.1. To-Be Scenario Mapping](chapters/03-requirements-specification.md#31-to-be-scenario-mapping)
-  - [3.2. User Stories](chapters/03-requirements-specification.md#32-user-stories)
-  - [3.3. Impact Mapping](chapters/03-requirements-specification.md#33-impact-mapping)
-  - [3.4. Product Backlog](chapters/03-requirements-specification.md#34-product-backlog)
-- [Capítulo IV: Strategic-Level Software Design](chapters/04-strategic-design.md)
-  - [4.1. Strategic-Level Attribute-Driven Design](chapters/04-strategic-design.md#41-strategic-level-attribute-driven-design)
-    - [4.1.1. Design Purpose](chapters/04-strategic-design.md#411-design-purpose)
-    - [4.1.2. Attribute-Driven Design Inputs](chapters/04-strategic-design.md#412-attribute-driven-design-inputs)
-      - [4.1.2.1. Primary Functionality](chapters/04-strategic-design.md#4121-primary-functionality)
-      - [4.1.2.2. Quality Attribute Scenarios](chapters/04-strategic-design.md#4122-quality-attribute-scenarios)
-      - [4.1.2.3. Constraints](chapters/04-strategic-design.md#4123-constraints)
-    - [4.1.3. Architectural Drivers Backlog](chapters/04-strategic-design.md#413-architectural-drivers-backlog)
-    - [4.1.4. Architectural Design Decisions](chapters/04-strategic-design.md#414-architectural-design-decisions)
-    - [4.1.5. Quality Attribute Scenario Refinements](chapters/04-strategic-design.md#415-quality-attribute-scenario-refinements)
-  - [4.2. Strategic-Level Domain-Driven Design](chapters/04-strategic-design.md#42-strategic-level-domain-driven-design)
-    - [4.2.1. EventStorming](chapters/04-strategic-design.md#421-eventstorming)
-    - [4.2.2. Candidate Context Discovery](chapters/04-strategic-design.md#422-candidate-context-discovery)
-    - [4.2.3. Domain Message Flows Modeling](chapters/04-strategic-design.md#423-domain-message-flows-modeling)
-    - [4.2.4. Bounded Context Canvases](chapters/04-strategic-design.md#424-bounded-context-canvases)
-    - [4.2.5. Context Mapping](chapters/04-strategic-design.md#425-context-mapping)
-  - [4.3. Software Architecture](chapters/04-strategic-design.md#43-software-architecture)
-    - [4.3.1. Software Architecture System Landscape Diagram](chapters/04-strategic-design.md#431-software-architecture-system-landscape-diagram)
-    - [4.3.2. Software Architecture Context Level Diagrams](chapters/04-strategic-design.md#432-software-architecture-context-level-diagrams)
-    - [4.3.3. Software Architecture Container Level Diagrams](chapters/04-strategic-design.md#433-software-architecture-container-level-diagrams)
-    - [4.3.4. Software Architecture Deployment Diagrams](chapters/04-strategic-design.md#434-software-architecture-deployment-diagrams)
+- [Student Outcome](README.md#student-outcome)
+- [Capítulo I: Introducción](README.md#capítulo-i-introducción)
+  - [1.1. Startup Profile](README.md#11-startup-profile)
+    - [1.1.1. Descripción de la Startup](README.md#111-descripción-de-la-startup)
+    - [1.1.2. Perfiles de integrantes del equipo](README.md#112-perfiles-de-integrantes-del-equipo)
+  - [1.2. Solution Profile](README.md#12-solution-profile)
+    - [1.2.1. Antecedentes y problemática](README.md#121-antecedentes-y-problemática)
+    - [1.2.2. Lean UX Process](README.md#122-lean-ux-process)
+      - [1.2.2.1. Lean UX Problem Statements](README.md#1221-lean-ux-problem-statements)
+      - [1.2.2.2. Lean UX Assumptions](README.md#1222-lean-ux-assumptions)
+      - [1.2.2.3. Lean UX Hypothesis Statements](README.md#1223-lean-ux-hypothesis-statements)
+      - [1.2.2.4. Lean UX Canvas](README.md#1224-lean-ux-canvas)
+  - [1.3. Segmentos objetivo](README.md#13-segmentos-objetivo)
+- [Capítulo II: Requirements Elicitation & Analysis](README.md#capítulo-ii-requirements-elicitation--analysis)
+  - [2.1. Competidores](README.md#21-competidores)
+    - [2.1.1. Análisis competitivo](README.md#211-análisis-competitivo)
+    - [2.1.2. Estrategias y tácticas frente a competidores](README.md#212-estrategias-y-tácticas-frente-a-competidores)
+  - [2.2. Entrevistas](README.md#22-entrevistas)
+    - [2.2.1. Diseño de entrevistas](README.md#221-diseño-de-entrevistas)
+    - [2.2.2. Registro de entrevistas](README.md#222-registro-de-entrevistas)
+    - [2.2.3. Análisis de entrevistas](README.md#223-análisis-de-entrevistas)
+  - [2.3. Needfinding](README.md#23-needfinding)
+    - [2.3.1. User Personas](README.md#231-user-personas)
+    - [2.3.2. User Task Matrix](README.md#232-user-task-matrix)
+    - [2.3.3. Empathy Mapping](README.md#233-empathy-mapping)
+    - [2.3.4. As-is Scenario Mapping](README.md#234-as-is-scenario-mapping)
+  - [2.4. Ubiquitous Language](README.md#24-ubiquitous-language)
+- [Capítulo III: Requirements Specification](README.md#capítulo-iii-requirements-specification)
+  - [3.1. To-Be Scenario Mapping](README.md#31-to-be-scenario-mapping)
+  - [3.2. User Stories](README.md#32-user-stories)
+  - [3.3. Impact Mapping](README.md#33-impact-mapping)
+  - [3.4. Product Backlog](README.md#34-product-backlog)
+- [Capítulo IV: Strategic-Level Software Design](README.md#capítulo-iv-strategic-level-software-design)
+  - [4.1. Strategic-Level Attribute-Driven Design](README.md#41-strategic-level-attribute-driven-design)
+    - [4.1.1. Design Purpose](README.md#411-design-purpose)
+    - [4.1.2. Attribute-Driven Design Inputs](README.md#412-attribute-driven-design-inputs)
+      - [4.1.2.1. Primary Functionality](README.md#4121-primary-functionality)
+      - [4.1.2.2. Quality Attribute Scenarios](README.md#4122-quality-attribute-scenarios)
+      - [4.1.2.3. Constraints](README.md#4123-constraints)
+    - [4.1.3. Architectural Drivers Backlog](README.md#413-architectural-drivers-backlog)
+    - [4.1.4. Architectural Design Decisions](README.md#414-architectural-design-decisions)
+    - [4.1.5. Quality Attribute Scenario Refinements](README.md#415-quality-attribute-scenario-refinements)
+  - [4.2. Strategic-Level Domain-Driven Design](README.md#42-strategic-level-domain-driven-design)
+    - [4.2.1. EventStorming](README.md#421-eventstorming)
+    - [4.2.2. Candidate Context Discovery](README.md#422-candidate-context-discovery)
+    - [4.2.3. Domain Message Flows Modeling](README.md#423-domain-message-flows-modeling)
+    - [4.2.4. Bounded Context Canvases](README.md#424-bounded-context-canvases)
+    - [4.2.5. Context Mapping](README.md#425-context-mapping)
+  - [4.3. Software Architecture](README.md#43-software-architecture)
+    - [4.3.1. Software Architecture System Landscape Diagram](README.md#431-software-architecture-system-landscape-diagram)
+    - [4.3.2. Software Architecture Context Level Diagrams](README.md#432-software-architecture-context-level-diagrams)
+    - [4.3.3. Software Architecture Container Level Diagrams](README.md#433-software-architecture-container-level-diagrams)
+    - [4.3.4. Software Architecture Deployment Diagrams](README.md#434-software-architecture-deployment-diagrams)
 - [Capítulo V: Tactical-Level Software Design](README.md#capítulo-v-tactical-level-software-design)
-  - [5.1. Tactical-Level Domain-Driven Design](README.md#51-tactical-level-domain-driven-design)
-  - [5.2. Tactical-Level Attribute-Driven Design](README.md#52-tactical-level-attribute-driven-design)
+  - [5.1. Bounded Context: Energy Monitoring](README.md#51-bounded-context-energy-monitoring)
+  - [5.2. Bounded Context: Demand & Alerting](README.md#52-bounded-context-demand--alerting)
+  - [5.3. Bounded Context: Organizations](README.md#53-bounded-context-organizations)
+  - [5.4. Bounded Context: Device Management](README.md#54-bounded-context-device-management)
+  - [5.5. Bounded Context: Analytics](README.md#55-bounded-context-analytics)
+  - [5.6. Bounded Context: Identity & Access Management](README.md#56-bounded-context-identity--access-management)
+  - [5.7. Bounded Context: Subscriptions](README.md#57-bounded-context-subscriptions)
+  - [5.8. Bounded Context: Payments](README.md#58-bounded-context-payments)
 - [Capítulo VI: Solution UX Design](README.md#capítulo-vi-solution-ux-design)
   - [6.1. Style Guidelines](README.md#61-style-guidelines)
     - [6.1.1. General Style Guidelines](README.md#611-general-style-guidelines)
     - [6.1.2. Web, Mobile & Devices Style Guidelines](README.md#612-web-mobile--devices-style-guidelines)
+    - [6.1.3. Mobile Style Guidelines](README.md#613-mobile-style-guidelines)
   - [6.2. Information Architecture](README.md#62-information-architecture)
     - [6.2.1. Organization Systems](README.md#621-organization-systems)
     - [6.2.2. Labeling Systems](README.md#622-labeling-systems)
@@ -203,12 +211,12 @@ colaboración en los repositorios de producto se detalla en la sección 7.2.1.9.
       - [7.2.1.9. Team Collaboration Insights during Sprint](README.md#7219-team-collaboration-insights-during-sprint)
   - [7.3. Validation Interviews](README.md#73-validation-interviews)
   - [7.4. Video About-the-Product](README.md#74-video-about-the-product)
-- [Conclusiones, Bibliografía y Anexos](chapters/99-conclusiones.md)
+- [Conclusiones, Bibliografía y Anexos](README.md#conclusiones-bibliografía-y-anexos)
 
 
 # Student Outcome
 
-El curso 1ASI0728 contribuye al logro de la **Competencia ABET 3 — Trabajo Multidisciplinario**:
+El curso 1ASI0728 contribuye al logro de la **Competencia ABET 3 — Comunicación**:
 *capacidad de comunicarse efectivamente con un rango de audiencias*.
 
 | **Criterio específico** | **Acciones realizadas** | **Conclusiones** |
@@ -5273,7 +5281,25 @@ proyección de factura— cuya respuesta condiciona la estructura del código. R
 explícita antes de implementar evitó que quedaran decididas por accidente en la primera clase que
 alguien escribiera.
 
+**Sobre la implementación del Sprint 1**
+
+El Sprint 1 cerró las 21 historias planificadas (100 story points) y dejó desplegados los tres
+productos de software conectados a la misma API. Construir primero el backend y la web sobre el
+modelo de dominio ya acordado permitió que la aplicación móvil se desarrollara en menos de dos
+semanas consumiendo un contrato estable y documentado con OpenAPI. Integrar la CI en los tres
+repositorios —154 pruebas en el backend y 310 en la aplicación móvil— hizo visibles los errores
+antes de llegar a `main` y convirtió la publicación del APK en un paso automático.
+
+**Sobre la validación con usuarios**
+
+Las seis entrevistas de validación confirmaron que ambos segmentos entienden el consumo, los costos
+en soles y el valor de las alertas preventivas de demanda. Los siete hallazgos de la evaluación
+heurística son de terminología, claridad de indicadores y consistencia de etiquetas, sin problemas
+críticos, lo que respalda la continuidad del diseño y orienta el siguiente sprint hacia mejoras de
+redacción y orientación antes que hacia cambios de funcionalidad.
+
 **Recomendaciones**
+
 
 - Ejecutar las entrevistas de campo antes de dar por cerrados los arquetipos: los artefactos de
   *Needfinding* solo tienen valor si cada característica puede rastrearse hasta un dato recogido.
@@ -5283,6 +5309,12 @@ alguien escribiera.
   el enunciado, y reservar el español para el informe.
 - Vigilar en revisión de código que ningún módulo acceda a las tablas de otro: en un monolito
   modular la frontera depende de la disciplina del equipo y no del despliegue.
+- Priorizar en el siguiente sprint los hallazgos de la evaluación heurística (sección 7.3.3) y
+  verificar el origen de la inconsistencia observada en los valores de algunos medidores.
+- Repartir el desarrollo del backend y de la aplicación web entre más integrantes: en el Sprint 1
+  ambos recayeron en una sola persona, lo que concentra el conocimiento y el riesgo.
+- Mantener activo el plan de Render durante las evaluaciones o programar una petición de
+  calentamiento, porque el arranque en frío del backend demora más de un minuto.
 
 ## Bibliografía
 
@@ -5299,6 +5331,17 @@ alguien escribiera.
 - Organismo Supervisor de la Inversión en Energía y Minería. (s. f.). *Anexo B: Opciones tarifarias y condiciones de aplicación de las tarifas a usuario final*. OSINERGMIN. https://www.osinergmin.gob.pe/Resoluciones/pdf/ANEXO_B_Resolucion_1908.pdf
 - Organismo Supervisor de la Inversión en Energía y Minería. (s. f.). *Pliegos tarifarios aplicables al cliente final*. OSINERGMIN. https://www.osinergmin.gob.pe/seccion/institucional/regulacion-tarifaria/pliegos-tarifarios/electricidad/pliegos-tarifiarios-cliente-final
 - Ministerio de Energía y Minas. (2025). *Anuario estadístico de electricidad 2024. Capítulo 5: Distribución de energía eléctrica* [cuadro 5.3.3.1, venta mensual de energía eléctrica por sector económico]. MINEM. https://www.gob.pe/institucion/minem/informes-publicaciones/7324144-anuario-estadistico-de-electricidad-2024
+- Conventional Commits. (s. f.). *Conventional Commits 1.0.0*. https://www.conventionalcommits.org/en/v1.0.0/
+- Cucumber. (s. f.). *Gherkin reference*. https://cucumber.io/docs/gherkin/reference/
+- Driessen, V. (2010). *A successful Git branching model*. https://nvie.com/posts/a-successful-git-branching-model/
+- Google. (s. f.). *Firebase App Distribution*. Firebase. https://firebase.google.com/docs/app-distribution
+- Google. (s. f.). *Jetpack Compose*. Android Developers. https://developer.android.com/compose
+- Google. (s. f.). *Material Design 3*. https://m3.material.io
+- Nielsen, J. (1994). *10 usability heuristics for user interface design*. Nielsen Norman Group. https://www.nngroup.com/articles/ten-usability-heuristics/
+- OpenAPI Initiative. (2021). *OpenAPI Specification v3.1.0*. https://spec.openapis.org/oas/v3.1.0
+- Schwaber, K., & Sutherland, J. (2020). *The Scrum guide*. https://scrumguides.org
+- Spring. (s. f.). *Spring Boot reference documentation*. https://docs.spring.io/spring-boot/
+- Vue.js. (s. f.). *Vue.js guide*. https://vuejs.org/guide/
 
 ## Anexos
 
