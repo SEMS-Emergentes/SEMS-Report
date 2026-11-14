@@ -73,6 +73,7 @@
 | 1.23 (TB1) | 01/10/2026 | Goñe Araccata, Esther Abigail | Desarrollo de<br>Sección 6.2.2. Labeling Systems. |
 | 1.24 (TB1) | 01/10/2026 | Goñe Araccata, Esther Abigail | Desarrollo de<br>Sección 6.2.3. Searching Systems. |
 | 1.25 (TB2) | 10/11/2026 | Goñe Araccata, Esther Abigail | Desarrollo de<br>Capítulo VII: Product Implementation, Validation & Deployment<br>Sección 7.1. Software Configuration Management<br>Sección 7.2. Solution Implementation. |
+| 1.26 (TB2) | 12/11/2026 | Solis Santa Cruz, Giancarlo Rafael | Desarrollo de<br>Capítulo VII: Entrevistas de validacio(1 por cada segembeto), desarrollo de Heuristicas y apoyo en el desarrollo del mobile |
 
 ---
 
