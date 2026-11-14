@@ -74,12 +74,37 @@
 | 1.24 (TB1) | 01/10/2026 | Goñe Araccata, Esther Abigail | Desarrollo de<br>Sección 6.2.3. Searching Systems. |
 | 1.25 (TB2) | 10/11/2026 | Goñe Araccata, Esther Abigail | Desarrollo de<br>Capítulo VII: Product Implementation, Validation & Deployment<br>Sección 7.1. Software Configuration Management<br>Sección 7.2. Solution Implementation. |
 | 1.26 (TB2) | 12/11/2026 | Solis Santa Cruz, Giancarlo Rafael | Desarrollo de<br>Capítulo VII: Entrevistas de validacio(1 por cada segembeto), desarrollo de Heuristicas y apoyo en el desarrollo del mobile |
+| 1.27 (TB2) | 14/11/2026 | Encalada Salazar, Alexis | Desarrollo de<br>Project Report Collaboration Insights<br>Sección 6.2.1. Organization Systems<br>Secciones 6.4.3.1 y 6.4.4.1 de la aplicación móvil<br>Sección 7.2.1. Sprint 1<br>Sección 7.4. Video About-the-Product<br>Publicación del APK (7.1.4) y Anexo B. |
 
 ---
 
 ## Project Report Collaboration Insights
 
 **Repositorio del informe:** <https://github.com/SEMS-Emergentes/SEMS-Report>
+
+El informe se redacta en un único repositorio de GitHub en el que cada integrante trabaja sobre la
+sección que lidera y publica sus cambios mediante *commits* propios. Las capturas siguientes provienen
+de la sección *Insights → Contributors* del repositorio (rama `main`, sin *commits* de *merge*) y
+muestran la distribución del trabajo durante el ciclo.
+
+*Figura (Contributors del repositorio SEMS-Report — commits a lo largo del ciclo)*
+<img src="assets/sprint1/insights-report-1.png" alt="Contributors de SEMS-Report — commits por semana" style="width: 100vw;">
+
+*Figura (Contributors del repositorio SEMS-Report — aporte por integrante)*
+<img src="assets/sprint1/insights-report-2.png" alt="Contributors de SEMS-Report — aporte por integrante" style="width: 100vw;">
+
+| Integrante | Usuario de GitHub | Commits | Líneas añadidas / eliminadas | Aporte principal al informe |
+| :-- | :-- | :-- | :-- | :-- |
+| Encalada Salazar, Alexis | `Alexiz248` | 37 | 3 140 / 208 | Estructura del informe, Capítulos I, III y IV, Context Mapping, conclusiones, bibliografía, anexos e integración de las entregas. |
+| Goñe Araccata, Esther Abigail | `abigoe02` | 17 | 1 067 / 95 | Portada, registro de entrevistas, User Personas, Empathy Mapping, Impact Mapping, Product Backlog, diagramas C4, Capítulos V, VI y VII (7.1). |
+| Sulca Silva, Melisa Geraldine | `MSS02204` | 9 | 249 / 35 | Revisión de User Personas, Empathy Mapping y del registro de entrevistas. |
+| Solis Santa Cruz, Giancarlo Rafael | `LucidVoid10` | 8 | 553 / 112 | User Task Matrix, As-is Scenario Mapping, análisis de entrevistas, entrevistas de validación y evaluación heurística (7.3). |
+| Gómez Flores, Daniela Araceli | `DanieGF1` | 7 | 242 / 82 | Revisión del registro de entrevistas, perfiles del equipo y registro de versiones. |
+
+El repositorio concentra dos picos de actividad: la primera semana de septiembre (estructura e
+investigación de usuarios para la AV1) y la primera semana de octubre (diseño estratégico y táctico
+para la TB1). En noviembre la actividad vuelve a crecer con la redacción del Capítulo VII. La
+colaboración en los repositorios de producto se detalla en la sección 7.2.1.9.
 
 ---
 
@@ -146,6 +171,7 @@
     - [6.1.1. General Style Guidelines](README.md#611-general-style-guidelines)
     - [6.1.2. Web, Mobile & Devices Style Guidelines](README.md#612-web-mobile--devices-style-guidelines)
   - [6.2. Information Architecture](README.md#62-information-architecture)
+    - [6.2.1. Organization Systems](README.md#621-organization-systems)
     - [6.2.2. Labeling Systems](README.md#622-labeling-systems)
     - [6.2.3. Searching Systems](README.md#623-searching-systems)
     - [6.2.4. SEO Tags and Meta Tags](README.md#624-seo-tags-and-meta-tags)
@@ -156,6 +182,8 @@
   - [6.4. Applications UX/UI Design](README.md#64-applications-uxui-design)
     - [6.4.1. Applications Wireframes](README.md#641-applications-wireframes)
     - [6.4.2. Applications Wireflow Diagrams](README.md#642-applications-wireflow-diagrams)
+    - [6.4.3. Applications Mock-ups](README.md#643-applications-mock-ups)
+    - [6.4.4. Applications User Flow Diagrams](README.md#644-applications-user-flow-diagrams)
 - [Capítulo VII: Product Implementation, Validation & Deployment](README.md#capítulo-vii-product-implementation-validation--deployment)
   - [7.1. Software Configuration Management](README.md#71-software-configuration-management)
     - [7.1.1. Software Development Environment Configuration](README.md#711-software-development-environment-configuration)
@@ -163,6 +191,18 @@
     - [7.1.3. Source Code Style Guide & Conventions](README.md#713-source-code-style-guide--conventions)
     - [7.1.4. Software Deployment Configuration](README.md#714-software-deployment-configuration)
   - [7.2. Solution Implementation](README.md#72-solution-implementation)
+    - [7.2.1. Sprint 1](README.md#721-sprint-1)
+      - [7.2.1.1. Sprint Planning 1](README.md#7211-sprint-planning-1)
+      - [7.2.1.2. Aspect Leaders and Collaborators](README.md#7212-aspect-leaders-and-collaborators)
+      - [7.2.1.3. Sprint Backlog 1](README.md#7213-sprint-backlog-1)
+      - [7.2.1.4. Development Evidence for Sprint Review](README.md#7214-development-evidence-for-sprint-review)
+      - [7.2.1.5. Testing Suite Evidence for Sprint Review](README.md#7215-testing-suite-evidence-for-sprint-review)
+      - [7.2.1.6. Execution Evidence for Sprint Review](README.md#7216-execution-evidence-for-sprint-review)
+      - [7.2.1.7. Services Documentation Evidence for Sprint Review](README.md#7217-services-documentation-evidence-for-sprint-review)
+      - [7.2.1.8. Software Deployment Evidence for Sprint Review](README.md#7218-software-deployment-evidence-for-sprint-review)
+      - [7.2.1.9. Team Collaboration Insights during Sprint](README.md#7219-team-collaboration-insights-during-sprint)
+  - [7.3. Validation Interviews](README.md#73-validation-interviews)
+  - [7.4. Video About-the-Product](README.md#74-video-about-the-product)
 - [Conclusiones, Bibliografía y Anexos](chapters/99-conclusiones.md)
 
 
@@ -3311,6 +3351,32 @@ Acciones rápidas como la creación de nuevos locales o el reporte de incidencia
 
 ## 6.2. Information Architecture
 
+### 6.2.1. Organization Systems
+
+El sistema de organización define cómo se agrupa y se ordena el contenido de SEMS para que cada
+segmento encuentre la información en el lugar que espera. Se combinan cuatro esquemas, cada uno
+aplicado donde responde a una pregunta concreta del usuario:
+
+| Esquema | Dónde se aplica | Criterio de agrupación u orden | Razón |
+| :-- | :-- | :-- | :-- |
+| **Jerárquico** (*top-down*) | Web Application y Mobile Application | Organization → Site → Zone → Meter. Toda vista de trabajo se ubica dentro de una organización y un local activos. | Es el modelo mental del responsable de una cadena y coincide con el modelo de dominio del Capítulo V: el consumo y la tarifa siempre pertenecen a un local. |
+| **Secuencial** | Landing Page y flujos de alta | Problema → cómo funciona → características → para quién es → planes → preguntas → registro. En la aplicación: registro → verificación → primer local → zonas → medidores. | El visitante necesita entender el cargo por potencia antes de evaluar los planes, y el sistema no puede medir sin un local y un medidor registrados. |
+| **Por tema / función** | Navegación global de ambas aplicaciones | Módulos Dashboard, Energy Monitoring, Alerts, Analytics, Reports, Meters, Organization, Subscription y Settings. | Cada módulo responde a una tarea distinta (ver, investigar, atender, decidir, informar, configurar) y corresponde a un *bounded context* o a la combinación de varios. |
+| **Por audiencia** | Landing Page | Bloques diferenciados para cadenas de retail y para establecimientos independientes. | Los dos segmentos objetivo tienen escalas y motivaciones distintas (sección 1.3). |
+| **Cronológico** | Alerts, lecturas, Reports e historial de pagos | Del más reciente al más antiguo; los reportes se agrupan por periodo de facturación. | La vigencia de la información es lo que determina si exige acción. |
+| **Por severidad y estado** | Alerts | Activas → reconocidas → resueltas; dentro de cada estado, de mayor a menor severidad. | Lo urgente debe aparecer primero sin que el usuario tenga que filtrar. |
+
+**Organización visual de las vistas.** Cada pantalla sigue el mismo orden de lectura: primero el
+indicador que responde a la pregunta principal (gasto del mes, demanda frente a potencia contratada,
+consumo actual), luego el detalle que lo explica (gráfico diario, desglose por zona o por equipo) y al
+final las acciones. En la aplicación móvil el contenido se presenta en una sola columna de tarjetas;
+en la aplicación web se aprovecha el ancho con una cuadrícula de tarjetas y tablas.
+
+**Organización por rol.** El contenido visible depende del papel del usuario dentro de la
+organización: el administrador accede a Organization, a los vínculos de acceso y a Subscription; el
+supervisor trabaja dentro del alcance de su local. Las opciones fuera del alcance de un rol no se
+muestran, de modo que la estructura de navegación de cada usuario contiene solo lo que puede usar.
+
 ### 6.2.2. Labeling Systems
 
 El sistema de etiquetado de SEMS utiliza una nomenclatura única para representar las entidades,
@@ -3777,6 +3843,41 @@ Flujos alternativos: si el enlace caducó o ya no es válido, el sistema lo devu
 
 ### 6.4.3. Applications Mock-ups
 
+#### 6.4.3.1 Mobile Applications Mock-ups
+
+En esta sección se presentan los mock-ups de alta fidelidad de la aplicación móvil de SEMS para
+Android, construidos en Figma a partir de los wireframes de la sección 6.4.1.1 y aplicando los
+lineamientos de Material Design 3 de la sección 6.1.3.2. Las pantallas se agrupan por módulo y se
+identifican con el mismo código (M00–M30) que usan los archivos de diseño del repositorio
+`SEMS-Mobile-App` (`docs/design`).
+
+(Mock-up — Autenticación y acceso: inicio de sesión, error de credenciales, creación de cuenta, cuenta verificada, recuperación y restablecimiento de contraseña)
+<img src="assets/mobile-mockups/Mock-mobile-auth.png" alt="Mock-ups móviles de autenticación y acceso" style="width: 100vw;">
+
+(Mock-up — Inicio y navegación: Dashboard y menú lateral)
+<img src="assets/mobile-mockups/Mock-mobile-inicio.png" alt="Mock-ups móviles de inicio y navegación" style="width: 100vw;">
+
+(Mock-up — Monitoreo de energía y detalle de consumo por equipo)
+<img src="assets/mobile-mockups/Mock-mobile-monitoreo.png" alt="Mock-ups móviles de monitoreo" style="width: 100vw;">
+
+(Mock-up — Mis Dispositivos: equipos, medidores y vinculación de medidores con QR)
+<img src="assets/mobile-mockups/Mock-mobile-dispositivos.png" alt="Mock-ups móviles de dispositivos y medidores" style="width: 100vw;">
+
+(Mock-up — Alertas activas, reconocidas y resueltas)
+<img src="assets/mobile-mockups/Mock-mobile-alertas.png" alt="Mock-ups móviles de alertas" style="width: 100vw;">
+
+(Mock-up — Analítica: recomendaciones de IA, recomendación aplicada y top consumidores)
+<img src="assets/mobile-mockups/Mock-mobile-analitica.png" alt="Mock-ups móviles de analítica" style="width: 100vw;">
+
+(Mock-up — Reportes PDF: selección de periodo y vista previa)
+<img src="assets/mobile-mockups/Mock-mobile-reportes.png" alt="Mock-ups móviles de reportes" style="width: 100vw;">
+
+(Mock-up — Mi Organización, Mis locales y detalle del local)
+<img src="assets/mobile-mockups/Mock-mobile-organizacion.png" alt="Mock-ups móviles de organización y locales" style="width: 100vw;">
+
+(Mock-up — Suscripción y configuración del perfil)
+<img src="assets/mobile-mockups/Mock-mobile-suscripcion.png" alt="Mock-ups móviles de suscripción y configuración" style="width: 100vw;">
+
 #### 6.4.3.2 Web Applications Mock-ups
 En esta sección se presentan los mock-ups de alta fidelidad de la aplicación web de SEMS, construidos a partir de los wireframes y aplicando los Style Guidelines definidos (tipografía, colores, iconografía y espaciado).
 
@@ -3826,6 +3927,49 @@ En esta sección se presentan los mock-ups de alta fidelidad de la aplicación w
 <img src="assets/MockNotFound.png" alt="Mock-up de Página No Encontrada (404)" style="width: 100vw;">
 
 ### 6.4.4. Applications User Flow Diagrams
+
+#### 6.4.4.1 Mobile Applications User Flow Diagrams
+
+En esta sección se presentan los diagramas de flujo de usuario de la aplicación móvil de SEMS. Cada
+flujo parte del objetivo de un User Persona (sección 2.3.1), recorre las pantallas de la sección
+6.4.3.1 y muestra las decisiones y los caminos alternativos hasta el resultado. Los flujos 1 a 4
+corresponden al Segmento #1 (responsables de operaciones de cadenas de retail) y los flujos 5 a 8 al
+Segmento #2 (propietarios de establecimientos independientes).
+
+| Flujo | Segmento | User Goal | Camino alternativo |
+| :-- | :-- | :-- | :-- |
+| User Flow 1 · Vincular un medidor con QR | #1 | Como supervisor, quiero vincular un medidor escaneando su QR, para que empiece a enviar lecturas a la zona correcta. | Si el serial no es válido, lo ingresa manualmente; si no confirma, vuelve a "Vincular". |
+| User Flow 2 · Atender una alerta de demanda | #1 | Como responsable de operaciones, quiero atender un aviso de demanda desde el teléfono, para reducir carga antes del recargo. | Si no debe actuar, la alerta queda en Activas; si la demanda no baja, escala al técnico. |
+| User Flow 3 · Meta de consumo y tarifa del local | #1 | Como responsable, quiero fijar la meta mensual y revisar la tarifa del local, para que las proyecciones usen datos reales. | Si el valor no es válido, se muestra el error en el campo; si no cambia la tarifa, termina con la meta actualizada. |
+| User Flow 4 · Generar reporte PDF | #1 | Como responsable de operaciones, quiero generar el reporte mensual en PDF, para presentarlo a la gerencia. | Si no hay datos en el periodo, la aplicación sugiere otro periodo. |
+| User Flow 5 · Inicio de sesión y recuperación | #2 | Como propietario, quiero ingresar a la aplicación o recuperar mi contraseña, para no perder el acceso a mi negocio. | Con credenciales incorrectas, recupera la contraseña mediante el enlace enviado al correo. |
+| User Flow 6 · Resumen rápido del consumo | #2 | Como propietario, quiero ver en segundos cuánto llevo gastado, para decidir si debo revisar algo más. | Si no necesita detalle, termina la consulta en el Dashboard. |
+| User Flow 7 · Aplicar recomendación de IA | #2 | Como propietario, quiero aplicar una recomendación de ahorro, para bajar mi factura sin afectar la operación. | Si no le conviene el ahorro, deja la recomendación pendiente. |
+| User Flow 8 · Registro y verificación de cuenta | #2 | Como propietario, quiero crear mi cuenta y registrar mi primer local, para empezar a medir. | Si el RUC no tiene 11 dígitos, se muestra el error y no se crea la cuenta. |
+
+(User Flow 1: Vincular un medidor con QR)
+<img src="assets/mobile-userflows/uf1.png" alt="User Flow 1 móvil: Vincular un medidor con QR" style="width: 50vw;">
+
+(User Flow 2: Atender una alerta de demanda)
+<img src="assets/mobile-userflows/uf2.png" alt="User Flow 2 móvil: Atender una alerta de demanda" style="width: 50vw;">
+
+(User Flow 3: Meta de consumo y tarifa del local)
+<img src="assets/mobile-userflows/uf3.png" alt="User Flow 3 móvil: Meta de consumo y tarifa del local" style="width: 50vw;">
+
+(User Flow 4: Generar reporte PDF)
+<img src="assets/mobile-userflows/uf4.png" alt="User Flow 4 móvil: Generar reporte PDF" style="width: 50vw;">
+
+(User Flow 5: Inicio de sesión y recuperación)
+<img src="assets/mobile-userflows/uf5.png" alt="User Flow 5 móvil: Inicio de sesión y recuperación" style="width: 50vw;">
+
+(User Flow 6: Resumen rápido del consumo)
+<img src="assets/mobile-userflows/uf6.png" alt="User Flow 6 móvil: Resumen rápido del consumo" style="width: 50vw;">
+
+(User Flow 7: Aplicar recomendación de IA)
+<img src="assets/mobile-userflows/uf7.png" alt="User Flow 7 móvil: Aplicar recomendación de IA" style="width: 50vw;">
+
+(User Flow 8: Registro y verificación de cuenta)
+<img src="assets/mobile-userflows/uf8.png" alt="User Flow 8 móvil: Registro y verificación de cuenta" style="width: 50vw;">
 
 #### 6.4.4.2 Web Applications User Flow Diagrams
 En esta sección se presentan los diagramas de flujo de usuario de la aplicación web de SEMS, que muestran los caminos, decisiones y resultados de las tareas principales del producto.
@@ -4142,7 +4286,7 @@ proveedor, a partir de los archivos `.env.example` de referencia (táctica *Defe
 | Producción — Web Application | Vercel | *Push* a `main` (integración de Vercel con GitHub) | <https://sems-web-application.vercel.app> |
 | Producción — Web Services | Render (Docker) | *Push* a `main` (integración de Render con GitHub) | <https://sems-backend-kgnm.onrender.com/swagger-ui.html> |
 | Producción — Base de datos | Supabase (PostgreSQL) | Gestionada por el proveedor | — |
-| Producción — Mobile Application | APK de Android generado con Gradle | Compilación de la variante `release` | `<Pendiente: enlace de descarga del APK>` |
+| Producción — Mobile Application | GitHub Releases + Firebase App Distribution | *Push* a `develop` (workflow `apk.yml` de GitHub Actions) | <https://appdistribution.firebase.dev/i/7606c1a1bf74bc9f> · descarga directa: <https://github.com/SEMS-Emergentes/SEMS-Mobile-App/releases/latest/download/sems.apk> |
 
 **Landing Page — GitHub Pages**
 
@@ -4196,7 +4340,8 @@ publica tal como está en el repositorio. El flujo es el siguiente:
 1. La aplicación se construye con Gradle Wrapper desde Android Studio o desde la línea de comandos (`./gradlew assembleRelease`).
 2. La URL del backend se fija en `app/build.gradle.kts` como `BuildConfig.API_BASE_URL`: la variante `release` apunta a la SEMS API en Render (`https://sems-backend-kgnm.onrender.com/api/v1/`), y la variante `debug` puede apuntar a un backend local mediante la propiedad `sems.api.baseUrl.debug` de `local.properties`, que no se versiona.
 3. La aplicación referencia el dominio de la Web Application (`sems-web-application.vercel.app`) para los enlaces que se abren desde el teléfono.
-4. El APK resultante se distribuye para su instalación en los dispositivos de prueba. `<Completar: medio de distribución del APK (GitHub Releases, Drive, etc.)>`
+4. En cada *push* a `develop`, el workflow `APK` (`.github/workflows/apk.yml`) ejecuta `./gradlew assembleDebug` en GitHub Actions y publica el APK como *release* `apk-latest` del repositorio (<https://github.com/SEMS-Emergentes/SEMS-Mobile-App/releases/latest/download/sems.apk>).
+5. El APK se distribuye a los evaluadores mediante Firebase App Distribution (proyecto `SEMS`, app Android `pe.edu.upc.sems`); el vínculo de invitación es <https://appdistribution.firebase.dev/i/7606c1a1bf74bc9f>.
 
 **Integración continua**
 
@@ -4209,6 +4354,7 @@ ejecución anterior de la misma rama cuando llega un *push* nuevo.
 | `SEMS-Backend` | `ci.yml` — *Build and test* | Instala JDK 21 con caché de Maven, ejecuta `./mvnw verify` (compilación y pruebas sobre H2 en modo PostgreSQL) y publica los reportes de Surefire como artefacto. |
 | `SEMS-Web-Application` | `ci.yml` — *Lint and build* | Instala Node.js 20, ejecuta `npm ci`, `npm run lint` y `npm run build` dentro de `semswebapp`. |
 | `SEMS-Mobile-App` | `ci.yml` — *Build and test* | Instala JDK 21, Gradle y los paquetes del Android SDK 36, ejecuta las pruebas unitarias (`testDebugUnitTest`), compila el APK de depuración (`assembleDebug`) y publica los reportes de pruebas. |
+| `SEMS-Mobile-App` | `apk.yml` — *Build and publish APK* | Se ejecuta en cada *push* a `develop`: instala JDK 21 y el Android SDK 36, compila el APK (`assembleDebug`) y lo publica como *release* `apk-latest`. |
 
 ## 7.2. Solution Implementation
 
@@ -4230,6 +4376,460 @@ arquitectura definida en los Capítulos IV y V y publicados según la configurac
 El detalle de cada sprint —su planificación, el Sprint Backlog, las evidencias de desarrollo,
 ejecución y despliegue, la documentación de los servicios y los insights de colaboración del
 equipo— se presenta en las subsecciones siguientes.
+
+### 7.2.1. Sprint 1
+
+#### 7.2.1.1. Sprint Planning 1
+
+El Sprint 1 es el primer sprint de implementación de SEMS. Toma las historias del Product Backlog (sección 3.4) que permiten recorrer el flujo principal del producto —registrarse, configurar la organización, sus locales, zonas y medidores, consultar el consumo y recibir avisos de demanda— en los tres productos de software: Web Services, Web Application y Mobile Application.
+
+| Sprint # | Sprint 1 |
+| :-- | :-- |
+| **Sprint Planning Background** |  |
+| Date | 19/10/2026 |
+| Location | Microsoft Teams (reunión virtual) |
+| Prepared By | Encalada Salazar, Alexis |
+| Attendees (to planning meeting) | Encalada Salazar, Alexis · Goñe Araccata, Esther Abigail · Gómez Flores, Daniela Araceli · Solis Santa Cruz, Giancarlo Rafael · Sulca Silva, Melisa Geraldine |
+| Sprint 0 Review Summary | Primer sprint de implementación: no existe un sprint previo. Se parte de la arquitectura de monolito modular (Capítulos IV y V), del diseño UX validado en la TB1 (Capítulo VI) y de la base del backend, la web y el Landing Page publicada en septiembre. |
+| Sprint 0 Retrospective Summary | No aplica por ser el primer sprint. Como acuerdo de inicio, el equipo trabaja con ramas por funcionalidad, Pull Requests revisados antes de integrar y Conventional Commits (sección 7.1.2). |
+| **Sprint Goal & User Stories** |  |
+| Sprint 1 Goal | **Nuestro enfoque está en** que el responsable de un local pueda registrarse, configurar su organización, locales, zonas y medidores, ver su consumo y recibir y atender avisos de demanda desde la web y desde la app móvil. **Creemos que esto entrega** el valor central de SEMS —avisar antes de que un pico de demanda dispare el cargo por potencia— **a** los responsables de operaciones de cadenas de retail y a los propietarios de establecimientos independientes. **Esto se confirmará cuando** un usuario vincule un medidor, vea su consumo y reciba y resuelva una alerta de demanda en las aplicaciones desplegadas. |
+| Sprint 1 Velocity | 100 story points |
+| Sum of Story Points | 100 story points (21 historias de usuario, 37 tareas, 143 horas estimadas) |
+
+#### 7.2.1.2. Aspect Leaders and Collaborators
+
+Cada aspecto del sprint tiene un líder (**L**), responsable de su avance y de la integración, y colaboradores (**C**) que aportan funcionalidades o revisión.
+
+| Team Member (Last Name, First Name) | GitHub Username | Web Services (Backend) | Web Application | Mobile — IAM y Organizations | Mobile — Monitoreo, Alertas y Analítica | Mobile — Medidores | Validación con usuarios | Documentación del informe |
+| :-- | :-- | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| Encalada Salazar, Alexis | `Alexiz248` | L | L | C | C | C | — | C |
+| Goñe Araccata, Esther Abigail | `abigoe02` | — | — | — | — | — | C | L |
+| Gómez Flores, Daniela Araceli | `DanieGF1` | — | — | — | L | C | — | C |
+| Solis Santa Cruz, Giancarlo Rafael | `LucidVoid10` | — | — | — | — | L | L | C |
+| Sulca Silva, Melisa Geraldine | `MSS02204` | — | — | L | — | — | — | C |
+
+#### 7.2.1.3. Sprint Backlog 1
+
+El Sprint Backlog 1 agrupa 21 historias de usuario (100 story points) y 37 tareas. El tablero se gestiona en Trello, la misma herramienta del Product Backlog, con las columnas *To-do*, *In-Process*, *To-Review* y *Done*; al cierre del sprint todas las tarjetas se encuentran en *Done*.
+
+**URL del Sprint Backlog 1:** <https://trello.com/b/Tc47h3bQ/sprint-backlog-1-sems>
+
+*Figura (Tablero del Sprint Backlog 1 en Trello al cierre del sprint)*
+<img src="assets/sprint1/sprint-backlog-trello.png" alt="Sprint Backlog 1 en Trello" style="width: 100vw;">
+
+| Sprint # | User Story Id | User Story Title | Work-Item / Task Id | Work-Item / Task Title | Description | Estimation (Hours) | Assigned To (Member) | Status (To-do / In-Process / To-Review / Done) |
+| :-- | :-- | :-- | :-- | :-- | :-- | :-: | :-- | :-- |
+| 1 | US06 | Registro de cuenta | T01 | Registro y verificación de cuenta (backend) | Endpoints de registro y verificación por correo en el módulo IAM, con validación de datos y respuesta 400 ante cuerpos inválidos. | 4 | Encalada Salazar, Alexis | Done |
+| 1 | US06 | Registro de cuenta | T02 | Registro y verificación en la app móvil | Pantallas de creación de cuenta y verificación con mensajes de error por campo. | 5 | Sulca Silva, Melisa Geraldine | Done |
+| 1 | US07 | Inicio de sesión | T03 | Sesión con refresh token en la web | Renovación de la sesión con el refresh token y revocación al cerrar sesión. | 3 | Encalada Salazar, Alexis | Done |
+| 1 | US07 | Inicio de sesión | T04 | Login y sesión en la app móvil | Pantalla de login, interceptor JWT, renovación del token ante 401 y persistencia de la sesión con DataStore. | 6 | Sulca Silva, Melisa Geraldine | Done |
+| 1 | US08 | Recuperación de contraseña | T05 | Recuperación de contraseña en la app móvil | Pantallas de solicitud de enlace, enlace enviado y nueva contraseña; el enlace se abre una sola vez. | 4 | Sulca Silva, Melisa Geraldine | Done |
+| 1 | US10 | Asignación de acceso a una persona | T06 | Acceso a la organización por correo (backend) | La membresía se otorga indicando el correo de la persona en lugar de su identificador interno. | 4 | Encalada Salazar, Alexis | Done |
+| 1 | US10 | Asignación de acceso a una persona | T07 | Miembros de la organización en la web | Vista de quién tiene acceso a la organización y con qué papel. | 3 | Encalada Salazar, Alexis | Done |
+| 1 | US10 | Asignación de acceso a una persona | T08 | Miembros por local en la app móvil | Pantalla de miembros de los locales, visible en solo lectura para todos los roles. | 3 | Sulca Silva, Melisa Geraldine | Done |
+| 1 | US13 | Registro de un local | T09 | Ciclo de vida del local (backend) | Archivado definitivo del local en cascada a sus zonas, medidores y equipos; listado de locales según el alcance de la membresía. | 4 | Encalada Salazar, Alexis | Done |
+| 1 | US13 | Registro de un local | T10 | Pantalla de locales en la web | Alta, listado y detalle de locales alineados al mock-up del informe. | 4 | Encalada Salazar, Alexis | Done |
+| 1 | US13 | Registro de un local | T11 | Locales en la app móvil | Mis locales, detalle del local, selector de local y guía de primeros pasos. | 6 | Sulca Silva, Melisa Geraldine | Done |
+| 1 | US42 | Límite de locales según el plan | T12 | Límite de locales del plan (backend) | El alta de un local se rechaza cuando la organización alcanzó el límite de su plan. | 2 | Encalada Salazar, Alexis | Done |
+| 1 | US19 | Registro de un medidor en un local | T13 | Medidores por local y zona (backend) | Vinculación de medidores a un local y una zona, desvinculación real y claves foráneas dentro del módulo. | 4 | Encalada Salazar, Alexis | Done |
+| 1 | US19 | Registro de un medidor en un local | T14 | Medidores por local y zona en la web | Registro y listado de medidores por local y zona, y emisión de la clave de envío del medidor. | 3 | Encalada Salazar, Alexis | Done |
+| 1 | US19 | Registro de un medidor en un local | T15 | Vinculación con QR en la app móvil | Lectura opcional del código QR con la cámara para obtener el serial del medidor. | 5 | Gómez Flores, Daniela Araceli | Done |
+| 1 | US19 | Registro de un medidor en un local | T16 | Medidores y monitoreo en la app móvil | Listado de medidores y monitoreo con historial de lecturas. | 5 | Solis Santa Cruz, Giancarlo Rafael | Done |
+| 1 | US18 | Registro de zonas de un local | T17 | Edición de zonas en la web | Edición de zonas del local y mensajes de error de zona. | 2 | Encalada Salazar, Alexis | Done |
+| 1 | US24 | Consulta del consumo actual | T18 | Consumo actual en la web | Consumo actual del local a partir de la última lectura del medidor. | 2 | Encalada Salazar, Alexis | Done |
+| 1 | US24 | Consulta del consumo actual | T19 | Dashboard en la app móvil | Dashboard con alertas pendientes y cifras de consumo del día. | 4 | Gómez Flores, Daniela Araceli | Done |
+| 1 | US24 | Consulta del consumo actual | T20 | Ingesta automática de lecturas (backend) | Los medidores envían sus lecturas con una credencial propia; un lote reintentado no se registra dos veces. | 5 | Encalada Salazar, Alexis | Done |
+| 1 | US25 | Consulta del histórico de consumo | T21 | Histórico en la app móvil | Lecturas por rango de fechas y detalle de consumo por equipo. | 4 | Gómez Flores, Daniela Araceli | Done |
+| 1 | US26 | Consumo desglosado por zona | T22 | Desglose por zona y comparación (backend) | Servicios de consumo por zona y comparación entre locales expuestos a través de la ACL de organizaciones. | 4 | Encalada Salazar, Alexis | Done |
+| 1 | US39 | Comparación entre locales | T23 | Consumo por zona y comparación en la web | Vistas de consumo por zona y de comparación entre los locales de la organización. | 4 | Encalada Salazar, Alexis | Done |
+| 1 | US27 | Consulta de la tarifa vigente | T24 | Tarifa del local en la web | Muestra la tarifa del local y lo que cuesta el cargo por potencia. | 3 | Encalada Salazar, Alexis | Done |
+| 1 | US27 | Consulta de la tarifa vigente | T25 | Precio por lectura (backend) | Cada lectura se valoriza con la tarifa del local y su franja horaria (punta / fuera de punta). | 3 | Encalada Salazar, Alexis | Done |
+| 1 | US29 | Aviso de demanda con margen | T26 | Evaluación de demanda en cada lectura (backend) | La demanda del local se evalúa en cada lectura y se aplica la ventana de silencio también a las evaluaciones manuales. | 5 | Encalada Salazar, Alexis | Done |
+| 1 | US29 | Aviso de demanda con margen | T27 | Pantalla de aviso de demanda en la web | Pantalla de avisos de demanda con el margen restante frente a la potencia contratada. | 3 | Encalada Salazar, Alexis | Done |
+| 1 | US33 | Consulta y resolución de alertas | T28 | Alertas en la app móvil | Gestión de alertas activas, reconocidas y resueltas con badge de notificación. | 5 | Gómez Flores, Daniela Araceli | Done |
+| 1 | US33 | Consulta y resolución de alertas | T29 | Alertas por inactividad (backend y web) | Aviso de los equipos que dejan de reportar, con reglas de inactividad activas por defecto. | 4 | Encalada Salazar, Alexis | Done |
+| 1 | US32 | Umbrales de consumo por dispositivo | T30 | Umbral diario por equipo (backend) | El umbral se compara contra el consumo del día y los textos de alerta se presentan en español. | 3 | Encalada Salazar, Alexis | Done |
+| 1 | US34 | Preferencias de notificación | T31 | Preferencia de correo (backend y web) | Se respeta la preferencia de correo, activada por defecto, y los correos se redactan en español. | 2 | Encalada Salazar, Alexis | Done |
+| 1 | US34 | Preferencias de notificación | T32 | Perfil y notificaciones en la app móvil | Edición del perfil, preferencias de notificación y selección de idioma. | 4 | Gómez Flores, Daniela Araceli | Done |
+| 1 | US35 | Proyección de factura del periodo | T33 | Proyección y recomendaciones desde el consumo medido (backend) | Proyección de factura y recomendaciones de ahorro calculadas a partir de las lecturas reales y la tarifa del local. | 4 | Encalada Salazar, Alexis | Done |
+| 1 | US35 | Proyección de factura del periodo | T35 | Reportes PDF en la app móvil | Generación y vista previa del reporte energético mensual en PDF. | 4 | Gómez Flores, Daniela Araceli | Done |
+| 1 | US37 | Recomendaciones de ahorro | T34 | Analítica en la app móvil | Módulo de analítica con recomendaciones, proyección de factura y ranking de consumo. | 6 | Gómez Flores, Daniela Araceli | Done |
+| 1 | US38 | Detección de anomalías de consumo | T37 | Anomalías desde el consumo medido (backend) | Detección de consumos atípicos a partir de las lecturas registradas, con validación del mes y del orden del periodo. | 3 | Encalada Salazar, Alexis | Done |
+| 1 | US41 | Contratación de un plan | T36 | Contratación con pago simulado | Compra de planes con un procesador de tarjeta simulado en el backend, la web y la app móvil. | 4 | Encalada Salazar, Alexis | Done |
+
+
+#### 7.2.1.4. Development Evidence for Sprint Review
+
+Durante el Sprint 1 se implementaron las historias del Sprint Backlog en los repositorios de producto de la organización `SEMS-Emergentes`. El trabajo de cada funcionalidad se desarrolla en una rama `feature/*` o `fix/*`, se integra a `develop` mediante Pull Request y pasa a `main` en cada liberación, según el flujo de la sección 7.1.2.
+
+| Repositorio | Producto | Commits en el sprint | Principales incrementos |
+| :-- | :-- | :-: | :-- |
+| [SEMS-Backend](https://github.com/SEMS-Emergentes/SEMS-Backend) | Web Services (Spring Boot 3.3, Java 21) | 45 | Autorización por propietario, membresías por correo, medidores por local y zona, ingesta de lecturas con credencial del medidor, precio por franja horaria, evaluación de demanda en cada lectura, umbrales diarios, inactividad de equipos, analítica sobre el consumo medido, límite de locales y pago simulado. |
+| [SEMS-Web-Application](https://github.com/SEMS-Emergentes/SEMS-Web-Application) | Web Application (Vue 3, PrimeVue, Pinia) | 45 | Locales y miembros, medidores por local y zona, avisos de demanda, tarifa del local, consumo por zona y comparación entre locales, consumo actual, inactividad de equipos, sesión con refresh token y pago simulado. |
+| [SEMS-Mobile-App](https://github.com/SEMS-Emergentes/SEMS-Mobile-App) | Mobile Application (Kotlin, Jetpack Compose) | 49 | Proyecto base con Material 3, sesión con JWT, IAM completo, organizaciones y locales, dispositivos, QR de medidores, monitoreo, alertas, analítica, reportes PDF, configuración, idioma, CI y publicación del APK. |
+
+La tabla siguiente lista los *commits* del sprint (19/10/2026 – 14/11/2026), sin *commits* de *merge*:
+
+| Repository | Branch | Commit Id | Commit Message | Commit Message Body | Committed on (Date) |
+| :-- | :-- | :-- | :-- | :-- | :-- |
+| SEMS-Backend | `main` | `4644ee5` | fix(notifications): honor the email preference and write emails in Spanish | — | 10/11/2026 19:24 |
+| SEMS-Backend | `main` | `3268872` | fix(analytics): add the missing accents to insight texts | — | 10/11/2026 19:06 |
+| SEMS-Backend | `main` | `af9bcd8` | fix(alerts): check thresholds against the day's consumption and word alerts in Spanish | — | 10/11/2026 19:03 |
+| SEMS-Backend | `develop` | `00ce0f7` | fix(subscriptions): charge paid plans through a simulated payment | — | 10/11/2026 15:01 |
+| SEMS-Backend | `develop` | `e6550b0` | fix(alerts): create inactivity rules active unless the request says otherwise | — | 10/11/2026 13:54 |
+| SEMS-Backend | `develop` | `3b36759` | fix(security): refuse to start with the example JWT secret published in the repository | — | 10/11/2026 13:53 |
+| SEMS-Backend | `develop` | `198d0ce` | fix(energy): take one meter at a time so a retried batch cannot enter twice | — | 09/11/2026 21:17 |
+| SEMS-Backend | `develop` | `d4b1124` | fix(energy): stop dropping the readings a meter reports for several devices at once | — | 09/11/2026 17:02 |
+| SEMS-Backend | `develop` | `983c608` | feat(energy): tell when a meter credential was issued | — | 08/11/2026 15:49 |
+| SEMS-Backend | `develop` | `431a661` | feat(alerts): warn about the devices that stopped reporting | — | 06/11/2026 20:38 |
+| SEMS-Backend | `develop` | `4a3446c` | feat(energy): let meters send their own readings with their own credential | — | 06/11/2026 20:31 |
+| SEMS-Backend | `develop` | `3011c19` | docs(core): drop the periodic tasks the application never had | — | 05/11/2026 21:01 |
+| SEMS-Backend | `develop` | `541addf` | fix(alerts): apply the demand silence window to manual evaluations too | — | 04/11/2026 16:35 |
+| SEMS-Backend | `develop` | `9c6a3a3` | fix(energy): build the per-device consumption from the period's readings | — | 04/11/2026 16:35 |
+| SEMS-Backend | `develop` | `47413f8` | fix(alerts): drop the duplicated contracted power lookup that broke the build | — | 28/10/2026 02:52 |
+| SEMS-Backend | `develop` | `eed2c7d` | test: cover the reading cost, the peak window and the generated insights | — | 28/10/2026 01:43 |
+| SEMS-Backend | `develop` | `78d5a0b` | feat(analytics): derive anomalies, recommendations and the bill forecast from measured usage | — | 28/10/2026 01:43 |
+| SEMS-Backend | `develop` | `f74e9a0` | feat(alerts): evaluate the site demand on every reading | — | 28/10/2026 01:43 |
+| SEMS-Backend | `develop` | `9bd427d` | fix(shared): name the JSON field, not the Java field, in validation errors | — | 28/10/2026 01:43 |
+| SEMS-Backend | `develop` | `d8320df` | fix(energy): price every reading with the site tariff and its time band | — | 28/10/2026 01:43 |
+| SEMS-Backend | `develop` | `6ec1266` | ci: build and test the backend on every push and pull request | — | 27/10/2026 21:22 |
+| SEMS-Backend | `develop` | `22e6256` | feat(energy): split a site's usage by zone and compare sites (US26, US39) | — | 27/10/2026 21:22 |
+| SEMS-Backend | `develop` | `c94f55b` | feat(organizations): expose site and zone summaries through the ACL | — | 27/10/2026 21:22 |
+| SEMS-Backend | `develop` | `a5142ac` | feat(iam): store the user's name and segment and let them be updated | — | 26/10/2026 03:05 |
+| SEMS-Backend | `develop` | `3a99b4b` | test: cover the coherence and data validity fixes | — | 26/10/2026 02:56 |
+| SEMS-Backend | `develop` | `481639e` | fix(organizations): list only the sites the membership reaches | — | 26/10/2026 02:56 |
+| SEMS-Backend | `develop` | `69b0dae` | fix(iam): trim the email on login and answer 400 when a value exceeds its column | — | 26/10/2026 02:56 |
+| SEMS-Backend | `develop` | `f7e9b79` | fix(subscriptions): allow a single active subscription per user | — | 26/10/2026 02:56 |
+| SEMS-Backend | `develop` | `9ac8e43` | fix(analytics): validate the prediction month and the period order | — | 26/10/2026 02:56 |
+| SEMS-Backend | `develop` | `da86032` | fix(alerts): take the contracted power from the site instead of storing a second copy | — | 26/10/2026 02:56 |
+| SEMS-Backend | `develop` | `da19d61` | fix(devices): answer 404 for a missing site, 409 for an archived one, and make removal idempotent | — | 26/10/2026 02:56 |
+| SEMS-Backend | `develop` | `6242bf5` | fix(energy): reject negative or future-dated readings and split the site error into 404 and 409 | — | 26/10/2026 02:56 |
+| SEMS-Backend | `develop` | `56563ea` | fix(organizations): make archiving a site final and cascade it to its zones, meters and devices | — | 26/10/2026 02:56 |
+| SEMS-Backend | `develop` | `efc5507` | fix(alerts): validate the alert status and normalise it on write | The status was free text: whatever arrived was stored. An invented value went straight into the database and then matched no filter, so the alert became invisib… | 25/10/2026 23:50 |
+| SEMS-Backend | `develop` | `10c5a30` | fix(iam): answer 400 when the request body cannot be read | Third of the same family, and the one still missing after the 404 for an unknown route and the 405 for the wrong verb. A field sent with the wrong type, or a pa… | 25/10/2026 22:10 |
+| SEMS-Backend | `develop` | `bdb9732` | feat(iam): let an organization and an account be closed | Neither could be. A customer who wanted to leave had no way out, and test data could not be withdrawn without going into the database by hand. For a system hold… | 25/10/2026 23:36 |
+| SEMS-Backend | `develop` | `a4e6329` | feat(organizations): enforce the plan's site limit | SITES_LIMIT existed only as text on the plan record. Nothing read it, so a Starter customer could open as many sites as they liked. That is a revenue hole and n… | 25/10/2026 18:12 |
+| SEMS-Backend | `develop` | `bd8da07` | feat(energy): attach meters to a site and a zone | A meter hung off a user and kept its whereabouts as free text. For a supermarket that is not enough: one site has dozens of meters spread across cold rooms, the… | 25/10/2026 18:12 |
+| SEMS-Backend | `develop` | `fec75bd` | Deja de convertir en 500 lo que tiene su propio estado | Tres cosas que salieron al sondear produccion despues del arreglo de autorizacion, y la tercera es la que importa. Hay dos @RestControllerAdvice en la aplicacio… | 25/10/2026 15:49 |
+| SEMS-Backend | `develop` | `7e7d022` | Reconcilia el catalogo de planes en vez de todo o nada | El seeder se saltaba la carga entera si ya habia cualquier plan. Eso dejo produccion sirviendo el catalogo del segmento anterior -Free, Plus y Pro- mientras la … | 25/10/2026 02:28 |
+| SEMS-Backend | `develop` | `97205a6` | Rechaza lo que antes se aceptaba en silencio | Cuatro sitios donde la API respondia algo creible a una peticion que no lo era. Los cuatro son peores que un error, porque el dato equivocado no se distingue de… | 25/10/2026 02:28 |
+| SEMS-Backend | `develop` | `b61e588` | Comprueba de quien es el recurso antes de servirlo | La configuracion de seguridad terminaba en anyRequest().authenticated() y ahi se detenia. Autenticaba, pero no autorizaba: cualquier cuenta con una sesion valid… | 25/10/2026 02:28 |
+| SEMS-Backend | `develop` | `82ce0d4` | Deja de inventar una alerta para los avisos que no vienen de una | NotificationService guardaba un UUID de ceros cuando el aviso no nacia de una alerta. De las cinco llamadas a sendEmail solo una lleva alerta real: la bienvenid… | 25/10/2026 01:40 |
+| SEMS-Backend | `develop` | `6b4df89` | Da acceso a la organizacion por correo en lugar de por identificador | Conceder acceso a alguien exigia su identificador, un UUID, y no habia forma de conseguirlo desde la aplicacion: no existe busqueda por correo y listar usuarios… | 25/10/2026 01:18 |
+| SEMS-Backend | `develop` | `5f18396` | Desvincula medidores de verdad y declara las claves foraneas intramodulo | Son dos cosas, las dos en la frontera entre lo que la interfaz prometia y lo que la base de datos garantizaba. DESVINCULAR UN MEDIDOR La web tenia un boton de d… | 24/10/2026 19:34 |
+| SEMS-Web-Application | `main` | `db2da9b` | fix(alerts): keep only the email toggle, on by default | — | 10/11/2026 19:24 |
+| SEMS-Web-Application | `main` | `cc2a222` | fix(devices): take the per-site device limit from the subscribed plan | — | 10/11/2026 19:13 |
+| SEMS-Web-Application | `main` | `a7e0ab7` | fix(ui): name meters by serial, label device types, show demand alerts and the ranking | — | 10/11/2026 19:07 |
+| SEMS-Web-Application | `develop` | `5a04f50` | chore(demo): drop the unused demo summary | — | 10/11/2026 15:20 |
+| SEMS-Web-Application | `develop` | `6da454d` | feat(sites): edit zones and report zone errors | — | 10/11/2026 15:18 |
+| SEMS-Web-Application | `develop` | `eaa5c80` | feat(subscription): pay plans with a simulated card instead of Stripe | — | 10/11/2026 15:01 |
+| SEMS-Web-Application | `develop` | `be132e7` | fix(deps): patch vulnerable transitive dependencies | — | 10/11/2026 14:04 |
+| SEMS-Web-Application | `develop` | `25d430a` | fix(ui): correct meter, toggle, plan and inactivity texts | — | 10/11/2026 14:02 |
+| SEMS-Web-Application | `develop` | `6bdfbe1` | fix(energy): load every reading of the period instead of the last two hundred | — | 10/11/2026 13:56 |
+| SEMS-Web-Application | `develop` | `8e85d7f` | fix(billing): show a charged payment as paid and drop the unused card charge helper | — | 09/11/2026 21:14 |
+| SEMS-Web-Application | `develop` | `6c4ad26` | chore(services): remove the three helpers no screen calls | — | 09/11/2026 17:04 |
+| SEMS-Web-Application | `develop` | `d8ff013` | fix(auth): keep the session alive with the refresh token and revoke it on logout | — | 09/11/2026 16:56 |
+| SEMS-Web-Application | `develop` | `c788953` | fix(analytics): read the applied and resolved state from the field the backend sends | — | 09/11/2026 16:49 |
+| SEMS-Web-Application | `develop` | `8e4bee5` | feat(alerts): watch devices that stop reporting from the alerts screen | — | 08/11/2026 15:51 |
+| SEMS-Web-Application | `develop` | `8ec126d` | feat(energy): issue and copy the meter's sending key from the app | — | 08/11/2026 15:51 |
+| SEMS-Web-Application | `develop` | `9b7ba97` | fix(web): serve the raw readings from the demo data as well | — | 06/11/2026 20:41 |
+| SEMS-Web-Application | `develop` | `56c7867` | fix(energy): send the grid frequency the backend requires | — | 06/11/2026 20:41 |
+| SEMS-Web-Application | `develop` | `4b72221` | fix(web): turn demo mode on only when it is explicitly asked for | — | 05/11/2026 21:00 |
+| SEMS-Web-Application | `develop` | `47b6811` | docs(web): name Spring Boot as the backend the app consumes | — | 05/11/2026 20:59 |
+| SEMS-Web-Application | `develop` | `b1a0311` | fix(demo): give the demo devices the site their meter belongs to | — | 05/11/2026 20:58 |
+| SEMS-Web-Application | `develop` | `be91ce7` | feat(energy): record readings by hand from the monitoring screen | — | 05/11/2026 20:58 |
+| SEMS-Web-Application | `develop` | `ddbceb2` | feat(web): show the site's current usage from the meter's latest reading | — | 04/11/2026 16:40 |
+| SEMS-Web-Application | `develop` | `8c2d493` | perf(web): load readings, devices and plans once per screen | — | 28/10/2026 01:44 |
+| SEMS-Web-Application | `develop` | `b12e594` | refactor(establishment): retire the browser-side profile and keep the usage goals | — | 28/10/2026 01:44 |
+| SEMS-Web-Application | `develop` | `005a03e` | fix(energy): take the cost from the reading and drop the flat price override | — | 28/10/2026 01:44 |
+| SEMS-Web-Application | `develop` | `d17d17d` | ci: lint and build the web app on every push and pull request | — | 27/10/2026 21:31 |
+| SEMS-Web-Application | `develop` | `77f108b` | feat(web): show usage by zone and compare sites (US26, US39) | — | 27/10/2026 21:31 |
+| SEMS-Web-Application | `develop` | `cd612d9` | fix(energy): keep meter readings without a device out of the per-device split | — | 27/10/2026 21:31 |
+| SEMS-Web-Application | `develop` | `97ffea6` | feat(energy): add the zone breakdown and site comparison services | — | 27/10/2026 21:31 |
+| SEMS-Web-Application | `develop` | `2a02828` | fix(plan): derive the tier from the Starter, Business and Enterprise plan names | — | 27/10/2026 21:31 |
+| SEMS-Web-Application | `develop` | `86da81c` | feat(dashboard): add empty states and a getting started checklist | — | 26/10/2026 03:16 |
+| SEMS-Web-Application | `develop` | `65c0f93` | fix(dashboard): compute savings and the forecast from real readings | — | 26/10/2026 03:16 |
+| SEMS-Web-Application | `develop` | `3cec85d` | perf(dashboard): fetch the raw readings and the device list once per load | — | 26/10/2026 03:16 |
+| SEMS-Web-Application | `develop` | `8831b80` | feat(profile): read and save the user's name and segment from the backend | — | 26/10/2026 03:16 |
+| SEMS-Web-Application | `develop` | `ece0004` | fix(payments): show the actual receipt instead of the payment | The invoice history listed payments and labelled each one "Pago PEN". The receipt number and its PDF never reached the screen, and the download button next to e… | 25/10/2026 18:29 |
+| SEMS-Web-Application | `develop` | `5251b43` | feat(energy): show the site tariff and what the power charge costs | Both endpoints answered correctly and nothing displayed them. The card shows the site's tariff from the schedule — peak and off-peak energy, the power charge an… | 25/10/2026 18:29 |
+| SEMS-Web-Application | `develop` | `ce973f0` | feat(energy): register and list meters by site and zone | The backlog asked for a meter to be registered naming its site and zone, listed per site and per zone, and moved between zones. None of it was possible: the met… | 25/10/2026 18:29 |
+| SEMS-Web-Application | `develop` | `1aed2fe` | feat(alerts): add the demand warning screen | The backend had demand rules complete — rules per site, an evaluation endpoint and nine domain tests — and the web never called any of it. The feature that sets… | 25/10/2026 18:29 |
+| SEMS-Web-Application | `develop` | `d9803b8` | Anade quien tiene acceso a la organizacion | El backend expone desde hace tiempo los endpoints de membresias, pero no tenian interfaz. Son los que permiten a un responsable de cadena delegar la operacion d… | 25/10/2026 01:20 |
+| SEMS-Web-Application | `develop` | `f5171bd` | Ajusta la pantalla de locales al mock-up del informe | La pantalla funcionaba, pero no se parecia al mock-up de Mis Locales que el informe publica en 6.4.3.2. Ahora sigue su estructura. Los locales pasan a una fila … | 24/10/2026 23:56 |
+| SEMS-Web-Application | `develop` | `9aeb873` | Anade la pantalla de locales y arregla el alta de dispositivos | El modulo de organizaciones del backend no tenia interfaz: la web no hacia una sola llamada a /organizations, /sites, /zones ni /demand-rules, diecisiete endpoi… | 24/10/2026 23:48 |
+| SEMS-Web-Application | `develop` | `dc18944` | Usa el endpoint de desvincular medidor | El backend ya expone DELETE /api/v1/energy-meters/{meterId}, que desvincula el medidor de la cuenta sin borrar su historico y lo saca de la lista del usuario. L… | 24/10/2026 19:34 |
+| SEMS-Web-Application | `develop` | `17a76bc` | Corrige las dos llamadas que no coincidian con el backend | Cruce las treinta y ocho llamadas que hace la web contra los ciento dieciseis endpoints que expone el backend. Treinta y seis coincidian; dos no, y las dos esta… | 24/10/2026 19:08 |
+| SEMS-Web-Application | `develop` | `41ce445` | Reemplaza los segmentos residenciales por los dos segmentos objetivo | El selector de segmento en Ajustes seguia ofreciendo "Propietario de vivienda" y "Estudiante / Inquilino", que describen al usuario residencial del que el proye… | 24/10/2026 18:31 |
+| SEMS-Web-Application | `develop` | `0091929` | Corrige el rol por defecto y adapta la app al segmento de establecimientos | El alta de usuarios estaba rota: la web mandaba el rol RESIDENT, que el backend dejo de reconocer al cambiar de segmento residencial a establecimientos comercia… | 24/10/2026 18:07 |
+| SEMS-Mobile-App | `develop` | `1feca1c` | ci: build the APK and publish it as a GitHub release on every push to develop | This workflow compiles the APK of the application and publishes it as a GitHub Release on each push to the develop branch. | 14/11/2026 10:54 |
+| SEMS-Mobile-App | `develop` | `353bcdb` | chore(res): drop unused strings | — | 10/11/2026 15:21 |
+| SEMS-Mobile-App | `develop` | `cf075d6` | chore(energy): drop the unused meter deactivation call | — | 10/11/2026 15:19 |
+| SEMS-Mobile-App | `develop` | `8b79a42` | feat(subscription): pay plans with a simulated card instead of Stripe | — | 10/11/2026 15:14 |
+| SEMS-Mobile-App | `develop` | `6603eba` | ci: find sdkmanager where the runner image keeps it | — | 09/11/2026 17:07 |
+| SEMS-Mobile-App | `develop` | `7fb91bd` | chore: drop the unused placeholder screen and correct the drawer role comment | — | 09/11/2026 16:50 |
+| SEMS-Mobile-App | `develop` | `5532b3c` | ci: build the app and run the unit tests on every change | — | 09/11/2026 16:47 |
+| SEMS-Mobile-App | `develop` | `f6f6012` | fix: let the unit test suite run and pass on a clean checkout | — | 09/11/2026 16:47 |
+| SEMS-Mobile-App | `develop` | `59216eb` | feat(language): implement language selection and localization support | — | 08/11/2026 14:31 |
+| SEMS-Mobile-App | `develop` | `13a98ac` | feat(settings): add user profile editing and notification preferences management | — | 08/11/2026 13:23 |
+| SEMS-Mobile-App | `develop` | `c6b2b18` | feat(reports): refactor snackbar message handling in report preview and analytics screens | — | 08/11/2026 12:30 |
+| SEMS-Mobile-App | `develop` | `8e3c6bf` | feat(reports): implement PDF report generation and preview functionality | — | 06/11/2026 14:12 |
+| SEMS-Mobile-App | `develop` | `dc7dd38` | feat(analytics): implement analytics module with recommendations, bill predictions, and consumption rankings | — | 06/11/2026 13:13 |
+| SEMS-Mobile-App | `develop` | `6262a05` | feat(devices): add functionality to calculate today's energy consumption from readings per device | — | 06/11/2026 12:29 |
+| SEMS-Mobile-App | `develop` | `402db58` | feat(dashboard): enhance dashboard with pending alerts and detailed consumption figures | — | 05/11/2026 14:15 |
+| SEMS-Mobile-App | `develop` | `6146c4f` | feat(consumption): add device readings in range functionality and enhance consumption detail screen | — | 05/11/2026 13:22 |
+| SEMS-Mobile-App | `develop` | `0bcdb20` | feat(alerts): implement alerts management with active, acknowledged, and resolved states, including badge notifications | — | 05/11/2026 11:57 |
+| SEMS-Mobile-App | `develop` | `fab6057` | feat: add optional camera feature for QR code scanning in meter management | — | 05/11/2026 10:49 |
+| SEMS-Mobile-App | `develop` | `2ed5e70` | feat:completa medidores y monitoreo con historial de lecturas | — | 04/11/2026 15:16 |
+| SEMS-Mobile-App | `develop` | `50117f6` | feat(devices): implement device management features including listing, creating, updating, and deleting devices | — | 03/11/2026 21:30 |
+| SEMS-Mobile-App | `develop` | `dc8f621` | fix(shared): close vector tag in five icons so autoMirrored applies | — | 03/11/2026 20:00 |
+| SEMS-Mobile-App | `develop` | `3ad6ccc` | chore: clean up code comments | — | 02/11/2026 14:23 |
+| SEMS-Mobile-App | `develop` | `f9279dc` | feat(organizations): add site selector | The main screens show the active site under the title, so the user always knows which site they are in. The choice lives in the session: with several sites it o… | 02/11/2026 14:12 |
+| SEMS-Mobile-App | `develop` | `dcb3b34` | feat(organizations): show members to every role, read only | As in the web app, every member sees "Quien tiene acceso": the backend lets any active membership list the members. Granting and removing access stays with ORG_… | 02/11/2026 14:06 |
+| SEMS-Mobile-App | `develop` | `7fdc27f` | fix(organizations): show getting started only when a step is known to be missing | Logout clears the session, so right after login the membership is not cached yet and the card read it as "no company": it showed 0/2 for an instant on Resumen u… | 02/11/2026 14:04 |
+| SEMS-Mobile-App | `develop` | `f643ff7` | fix(organizations): show a single retry button on loading errors | Sites and site detail added their own "Reintentar" below the error banner, so a timeout showed two. Loading errors now offer one retry inside the banner for eve… | 02/11/2026 13:58 |
+| SEMS-Mobile-App | `develop` | `45762e7` | feat(organizations): add members to sites screen | - "Quien tiene acceso" card inside Locales (web: MembersCard.vue), only for ORG_ADMIN: email, role and scope (site or whole organization) of each member. - "Dar… | 02/11/2026 13:43 |
+| SEMS-Mobile-App | `develop` | `fb0219a` | fix(organizations): show the plan's site limit instead of a duplicated code | The backend also answers 409 when the plan does not allow more sites ("the Starter plan includes 1 site(s)... upgrade the plan to add more"), and the site form … | 02/11/2026 13:32 |
+| SEMS-Mobile-App | `develop` | `d94d441` | feat(organizations): add sites and site detail | - Sites screen (M27): organization card and the user's sites, with the active site badge; getting started when there is no company yet. - Site detail (M28): sup… | 02/11/2026 13:08 |
+| SEMS-Mobile-App | `develop` | `8f8c2e9` | feat(organizations): add getting started | - Add the "Primeros pasos" card on Resumen, as in the web app: register the company, then add the first site; it disappears once both are done - Add the "Regist… | 02/11/2026 08:33 |
+| SEMS-Mobile-App | `develop` | `79ee077` | refactor(shared): move form feedback components to the design system | Move the error banner, the submit button with the "Conectando..." state and the slow-request notice from iam to shared, so the organizations forms can use them … | 02/11/2026 07:48 |
+| SEMS-Mobile-App | `develop` | `caf19d2` | feat(organizations): load membership into session and drawer | - Cache the user's organization and membership role in the session (SessionMembership); refresh them after login and at startup, keeping the cached values on ne… | 02/11/2026 04:12 |
+| SEMS-Mobile-App | `develop` | `6f4c5d4` | feat(organizations): add data layer | - Add the organizations domain (organization with the user's membership, sites, zones, members) and its enums, with fallbacks for unknown backend values - Add O… | 02/11/2026 04:07 |
+| SEMS-Mobile-App | `develop` | `f89289b` | docs: add organizations design references | Add the Figma v2 mock-ups of the navigation drawer (M06), organization (M23), sites (M27) and site detail (M28). | 02/11/2026 04:03 |
+| SEMS-Mobile-App | `develop` | `8be422b` | fix(iam): open the reset password link only once | After opening the app with a reset-password link, logging in and logging out showed M30 instead of the login. The link stayed in Activity.intent and each new Na… | 02/11/2026 03:45 |
+| SEMS-Mobile-App | `develop` | `240c82a` | feat(iam): add password recovery screens | - Add the forgot password screen (M03), the link sent screen (M04) with a 60 s resend countdown, and the new password screen (M30) - M30 takes the reset link pa… | 02/11/2026 03:04 |
+| SEMS-Mobile-App | `develop` | `1206577` | feat(iam): add sign-up and account verification fallback | - Add the sign-up screen (M02) without the RUC field, which belongs to the company setup; the backend returns a session, so the user enters directly - Use the w… | 02/11/2026 02:29 |
+| SEMS-Mobile-App | `develop` | `cf5690f` | fix(shared): align navigation with the web app | - Use the web app's section names: Resumen (bottom bar and title), Dispositivos, Reportes, Suscripcion, Locales and Configuracion; rename HomeRoute to Dashboard… | 02/11/2026 02:06 |
+| SEMS-Mobile-App | `develop` | `6c1b0d8` | feat(iam): add retry action to the server waking up banner | When the login times out because Render is still waking up, the banner now shows a visible "Reintentar" button that resubmits the form. | 02/11/2026 02:00 |
+| SEMS-Mobile-App | `develop` | `5b76c01` | feat(iam): add login screen and backend logout | - Add AuthService (POST /auth/login, /auth/logout), DTOs, mapper and AuthRepository; login stores the session and logout revokes the refresh token on a best-eff… | 02/11/2026 01:29 |
+| SEMS-Mobile-App | `develop` | `0191d93` | fix(shared): stop logging auth request bodies in debug | The debug HTTP log printed full bodies, so login passwords and refresh tokens ended up in logcat. Requests to /auth/ endpoints are now logged without bodies; ot… | 02/11/2026 01:29 |
+| SEMS-Mobile-App | `develop` | `08c1591` | docs: add mobile design references | Add the Figma v2 mock-ups of the access screens (M00-M04, M29, M30) as PNG references for the iam implementation. | 02/11/2026 01:07 |
+| SEMS-Mobile-App | `develop` | `5b5b263` | feat(shared): add app navigation with bottom bar and drawer | - Add type-safe routes and two graphs, each with its own NavHost: access (login placeholder) and main. The session decides which one is shown, so login, logout … | 01/11/2026 23:15 |
+| SEMS-Mobile-App | `develop` | `da27731` | feat(shared): add JWT interceptor and token refresh on 401 | - AuthInterceptor adds the Bearer token to every request except /auth/ endpoints, whose 401 means wrong credentials - TokenAuthenticator refreshes the JWT once … | 01/11/2026 22:37 |
+| SEMS-Mobile-App | `develop` | `5da62d7` | feat(shared): add session persistence with DataStore | - Add the Session model (JWT pair, logged-in user and selected site) and the SessionManager interface, exposing the session as a Flow - Implement DataStoreSessi… | 01/11/2026 21:29 |
+| SEMS-Mobile-App | `develop` | `b65b217` | feat(shared): add network base with Retrofit, OkHttp and API error model | - Expose the SEMS API URL as BuildConfig.API_BASE_URL. Debug and release use Render by default; debug can point to a local backend through sems.api.baseUrl.debu… | 01/11/2026 21:07 |
+| SEMS-Mobile-App | `develop` | `eeb8930` | chore: ignore machine-specific Android Studio files | Stop tracking .idea files that Android Studio rewrites per machine or user (deploymentTargetSelector.xml, deviceManager.xml, vcs.xml) and the Kotlin compiler ca… | 01/11/2026 20:49 |
+| SEMS-Mobile-App | `develop` | `60ef39d` | chore: configure dependencies and SEMS Material 3 theme | - Add Hilt, Navigation Compose, Retrofit + OkHttp, Kotlinx Serialization and DataStore, using the latest stable versions compatible with AGP 8.13 - Upgrade Kotl… | 01/11/2026 20:43 |
+| SEMS-Mobile-App | `develop` | `5db4358` | chore: initial project setup | — | 01/11/2026 19:51 |
+
+#### 7.2.1.5. Testing Suite Evidence for Sprint Review
+
+La calidad del incremento se verifica en tres niveles: pruebas unitarias y de integración en el backend, pruebas unitarias en la aplicación móvil y pruebas de aceptación escritas en Gherkin a partir de los criterios de aceptación de las historias del sprint (sección 3.2). Las pruebas automatizadas se ejecutan en cada *push* y Pull Request mediante GitHub Actions (sección 7.1.4).
+
+**Pruebas del backend (JUnit 5 + Spring Boot Test, base H2 en modo PostgreSQL)** — 154 pruebas en 26 clases:
+
+| Módulo | Clases de prueba | Pruebas | Qué verifican |
+| :-- | :-- | :-: | :-- |
+| Energy Monitoring | `CommercialTariffTest`, `EnergyContractTest`, `IngestaDeMedidorTest`, `MedidoresPorLocalTest`, `DesgloseDeConsumoTest`, `ConsumoPorDispositivoTest` | 41 | Cálculo tarifario por franja, ingesta de lecturas con credencial, medidores por local y zona, desglose por zona y consumo por equipo. |
+| Demand & Alerting | `DemandRuleTest`, `AlertDomainTest`, `UmbralDiarioTest`, `InactividadDeEquipoTest`, `AvisoDeDemandaDuplicadoTest`, `PreferenciaDeCorreoTest` | 29 | Aviso con margen y exceso de potencia, ventana de silencio, umbral diario, inactividad de equipos y preferencia de correo. |
+| Identity & Access Management | `AuthTokenServiceTest`, `SecretoJwtTest`, `PerfilDelUsuarioTest`, `BajaDeCuentaYOrganizacionTest` | 18 | Emisión de tokens, rechazo del secreto JWT de ejemplo, perfil del usuario y baja de cuenta y organización. |
+| Organizations | `OrganizationDomainTest`, `CupoDeLocalesTest` | 16 | Reglas del agregado y límite de locales del plan. |
+| Security | `AutorizacionPorPropietarioTest`, `AutorizacionDesactivadaTest` | 14 | Acceso solo a los recursos propios y protección por defecto de los endpoints (TS02). |
+| Subscriptions | `SubscriptionContractTest`, `CompraDePlanTest` | 11 | Una sola suscripción activa por usuario y compra de planes con pago simulado. |
+| Coherencia de datos | `CoherenciaYDatosValidosTest` | 10 | Lecturas negativas o futuras, estados HTTP 404/409 y validación de entradas. |
+| Payments | `PaymentDomainTest` | 7 | Estados del pago y comprobantes. |
+| Analytics | `HallazgosYPrecioTest` | 5 | Costo de la lectura, ventana de punta y hallazgos generados. |
+| Aplicación | `ApplicationContextTest` | 3 | Arranque del contexto de Spring con toda la configuración. |
+
+**Pruebas de la aplicación móvil (JUnit, `testDebugUnitTest`)** — 310 pruebas en 45 archivos:
+
+| Paquete | Archivos | Pruebas |
+| :-- | :-: | :-: |
+| `organizations` | 7 | 63 |
+| `iam` | 6 | 44 |
+| `shared` | 7 | 41 |
+| `energy` | 8 | 29 |
+| `devices` | 5 | 28 |
+| `reports` | 1 | 22 |
+| `analytics` | 2 | 20 |
+| `settings` | 1 | 18 |
+| `alerts` | 3 | 17 |
+| `subscriptions` | 2 | 15 |
+| `dashboard` | 1 | 12 |
+| `(ejemplo)` | 1 | 1 |
+
+**Aplicación web.** El workflow de CI ejecuta `npm run lint` (ESLint) y `npm run build` (Vite) en cada cambio, de modo que no se integra código con errores de análisis estático o de compilación.
+
+**Pruebas de aceptación (Gherkin).** Los criterios de aceptación de las historias del sprint se escribieron como archivos `.feature` en la carpeta [`tests/features`](tests/features) de este repositorio:
+
+| Archivo | User Story | Escenarios |
+| :-- | :-- | :-: |
+| [`US06-registro-de-cuenta.feature`](tests/features/US06-registro-de-cuenta.feature) | US06 · Registro de cuenta | 3 |
+| [`US07-inicio-de-sesion.feature`](tests/features/US07-inicio-de-sesion.feature) | US07 · Inicio de sesión | 3 |
+| [`US13-registro-de-local.feature`](tests/features/US13-registro-de-local.feature) | US13 · Registro de un local | 4 |
+| [`US19-registro-de-medidor.feature`](tests/features/US19-registro-de-medidor.feature) | US19 · Registro de un medidor en un local | 4 |
+| [`US26-consumo-por-zona.feature`](tests/features/US26-consumo-por-zona.feature) | US26 · Consumo desglosado por zona | 3 |
+| [`US29-aviso-de-demanda.feature`](tests/features/US29-aviso-de-demanda.feature) | US29 · Aviso de demanda con margen | 4 |
+| [`US33-consulta-y-resolucion-de-alertas.feature`](tests/features/US33-consulta-y-resolucion-de-alertas.feature) | US33 · Consulta y resolución de alertas | 3 |
+| [`US41-contratacion-de-plan.feature`](tests/features/US41-contratacion-de-plan.feature) | US41 · Contratación de un plan | 3 |
+
+```gherkin
+# US29 · Aviso de demanda con margen (EP06)
+Feature: US29 - Aviso de demanda con margen
+  Como responsable, deseo recibir un aviso cuando la demanda de mi local se acerca a la potencia contratada, para reducir carga antes del recargo.
+
+  Scenario: Demanda en el umbral de aviso
+    Given existe una regla de demanda activa con umbral de aviso
+    When la demanda registrada alcanza o supera el umbral sin superar la potencia contratada
+    Then se genera una alerta de severidad warning
+    And la alerta indica cuántos kW de margen quedan
+
+  Scenario: Demanda igual a la potencia contratada
+    Given existe una regla de demanda activa
+    When la demanda registrada es igual a la potencia contratada
+    Then se genera una alerta de severidad warning y no de exceso
+
+  Scenario: Umbral no configurado
+    Given el local no tiene reglas de demanda activas
+    When se registra una demanda
+    Then no se genera ninguna alerta de demanda
+
+  Scenario: Servidor de correo no disponible
+    Given el canal de notificación por correo no está disponible
+    When se genera una alerta de demanda
+    Then la alerta queda registrada
+    And el intento fallido de envío queda en el registro de notificaciones
+```
+
+*Figura (Ejecuciones de CI del backend: compilación y pruebas en cada push y Pull Request)*
+<img src="assets/sprint1/ci-backend.png" alt="GitHub Actions del backend" style="width: 100vw;">
+
+*Figura (Ejecuciones de CI de la aplicación móvil: pruebas unitarias, compilación y publicación del APK)*
+<img src="assets/sprint1/ci-mobile.png" alt="GitHub Actions de la aplicación móvil" style="width: 100vw;">
+
+| Repository | Branch | Commit Id | Commit Message | Committed on (Date) |
+| :-- | :-- | :-- | :-- | :-- |
+| SEMS-Backend | `develop` | `3a99b4b` | test: cover the coherence and data validity fixes | 26/10/2026 |
+| SEMS-Backend | `develop` | `6ec1266` | ci: build and test the backend on every push and pull request | 27/10/2026 |
+| SEMS-Backend | `develop` | `eed2c7d` | test: cover the reading cost, the peak window and the generated insights | 28/10/2026 |
+| SEMS-Web-Application | `develop` | `d17d17d` | ci: lint and build the web app on every push and pull request | 27/10/2026 |
+| SEMS-Mobile-App | `develop` | `f6f6012` | fix: let the unit test suite run and pass on a clean checkout | 09/11/2026 |
+| SEMS-Mobile-App | `develop` | `5532b3c` | ci: build the app and run the unit tests on every change | 09/11/2026 |
+| SEMS-Mobile-App | `develop` | `1feca1c` | ci: build the APK and publish it as a GitHub release on every push to develop | 14/11/2026 |
+
+#### 7.2.1.6. Execution Evidence for Sprint Review
+
+Al cierre del sprint los tres productos de software y el Landing Page se encuentran desplegados y conectados entre sí: la Web Application y la Mobile Application consumen la SEMS API publicada en Render. El incremento permite recorrer de punta a punta el flujo del objetivo del sprint:
+
+1. **Registro y acceso:** creación y verificación de cuenta, inicio de sesión, recuperación de contraseña y cierre de sesión (web y móvil).
+2. **Configuración del negocio:** organización, locales con su potencia contratada y categoría tarifaria, zonas, miembros y medidores vinculados por local y zona (en la app móvil, también por QR).
+3. **Monitoreo:** consumo actual del local, consumo por equipo y por zona, histórico de lecturas y comparación entre locales, valorizados con la tarifa de la franja horaria.
+4. **Alertas:** avisos de demanda con margen frente a la potencia contratada, umbrales diarios, equipos sin señal y ciclo activa → reconocida → resuelta.
+5. **Analítica y suscripción:** proyección de factura, recomendaciones, anomalías, reportes PDF y contratación de planes con pago simulado.
+
+El recorrido completo de las aplicaciones en funcionamiento se muestra en el video About-the-Product de la sección 7.4 (<https://youtu.be/q1-lDRiuSXQ>).
+
+*Figura (Landing Page en producción — GitHub Pages)*
+<img src="assets/sprint1/deploy-landing.png" alt="Landing Page en producción" style="width: 100vw;">
+
+*Figura (Web Application en producción — inicio de sesión en Vercel)*
+<img src="assets/sprint1/deploy-webapp-login.png" alt="Web Application en producción" style="width: 100vw;">
+
+*Figura (SEMS API en producción — documentación OpenAPI en Render)*
+<img src="assets/sprint1/deploy-swagger.png" alt="SEMS API en producción" style="width: 100vw;">
+
+#### 7.2.1.7. Services Documentation Evidence for Sprint Review
+
+Los Web Services se documentan con OpenAPI 3 a través de SpringDoc: cada controlador declara `@Tag` y cada operación `@Operation`, y la especificación se publica junto con la API (TS06, CON05).
+
+- **Swagger UI:** <https://sems-backend-kgnm.onrender.com/swagger-ui.html>
+- **Especificación OpenAPI (JSON):** <https://sems-backend-kgnm.onrender.com/v3/api-docs>
+
+La tabla resume los endpoints principales trabajados en el sprint. Todos, salvo los de autenticación, el *webhook* y `/health`, exigen el token JWT en la cabecera `Authorization: Bearer <token>`.
+
+| Bounded Context | Verbo | Endpoint | Acción | Parámetros / cuerpo | Retorna |
+| :-- | :-: | :-- | :-- | :-- | :-- |
+| IAM | `POST` | `/api/v1/auth/register` | Registra una cuenta y envía el correo de verificación | Body: correo, contraseña, rol, nombre completo | Usuario creado |
+| IAM | `POST` | `/api/v1/auth/verify` | Verifica la cuenta con el token del correo | Body: token | Cuenta verificada |
+| IAM | `POST` | `/api/v1/auth/login` | Inicia sesión | Body: correo, contraseña | Access y refresh token |
+| IAM | `POST` | `/api/v1/auth/refresh` | Renueva la sesión | Body: refresh token | Nuevo access token |
+| IAM | `POST` | `/api/v1/auth/logout` | Cierra la sesión y revoca el refresh token | Body: refresh token | Confirmación |
+| IAM | `POST` | `/api/v1/auth/forgot-password` | Envía el enlace de recuperación | Body: correo | Confirmación |
+| IAM | `POST` | `/api/v1/auth/reset-password` | Define una nueva contraseña | Body: token, contraseña | Confirmación |
+| IAM | `GET / PUT` | `/api/v1/users/me` | Consulta o actualiza el perfil (nombre y segmento) | Body (PUT): nombre, segmento | Perfil |
+| Organizations | `POST` | `/api/v1/organizations` | Registra una organización; su creador queda como administrador | Body: razón social, nombre comercial, RUC, tipo de negocio | Organización |
+| Organizations | `POST` | `/api/v1/organizations/{organizationId}/sites` | Registra un local respetando el límite del plan | Body: código, nombre, dirección, potencia contratada, categoría tarifaria | Local (rechazo si se supera el límite del plan) |
+| Organizations | `GET` | `/api/v1/organizations/{organizationId}/sites` | Lista los locales activos a los que alcanza la membresía | Path: organizationId | Locales |
+| Organizations | `POST` | `/api/v1/organizations/{organizationId}/members` | Otorga acceso a una persona por correo | Body: correo, rol, local (opcional) | Membresía |
+| Organizations | `DELETE` | `/api/v1/sites/{siteId}` | Archiva un local en cascada | Path: siteId | Confirmación |
+| Organizations | `POST / PUT` | `/api/v1/sites/{siteId}/zones · /api/v1/zones/{zoneId}` | Crea o actualiza una zona del local | Body: nombre, tipo de zona, opera fuera de horario | Zona |
+| Energy Monitoring | `POST` | `/api/v1/energy-meters` | Registra un medidor en un local y una zona | Body: userId, siteId, zoneId, serial y modelo | Medidor |
+| Energy Monitoring | `POST` | `/api/v1/energy-meters/{meterId}/credential` | Emite o rota la credencial de envío del medidor | Path: meterId | Clave de envío |
+| Energy Monitoring | `POST` | `/api/v1/ingest/readings` | Registra un lote de lecturas enviado por un medidor autenticado | Header: `X-Meter-Key` · Body: hasta 500 lecturas | Lecturas aceptadas |
+| Energy Monitoring | `GET` | `/api/v1/energy-readings/range` | Lecturas de un usuario en un rango de fechas | Query: userId, from, to | Lecturas |
+| Energy Monitoring | `GET` | `/api/v1/sites/{siteId}/zone-consumption` | Consumo del local desglosado por zona | Query: periodo | Consumo por zona |
+| Energy Monitoring | `GET` | `/api/v1/organizations/{organizationId}/site-consumption` | Consumo de cada local para comparación | Query: periodo | Consumo por local |
+| Energy Monitoring | `POST` | `/api/v1/energy/bill-estimate` | Estima la factura con la tarifa comercial | Body: categoría tarifaria, potencia contratada, kWh en punta y fuera de punta | Desglose de factura |
+| Demand & Alerting | `POST` | `/api/v1/demand-rules` | Crea una regla de vigilancia de demanda | Body: siteId, % de aviso | Regla |
+| Demand & Alerting | `POST` | `/api/v1/sites/{siteId}/demand-evaluations` | Evalúa una demanda medida y genera las alertas | Body: demanda (kW) | Alertas generadas |
+| Demand & Alerting | `POST` | `/api/v1/thresholds` | Crea un umbral de consumo diario por equipo | Body: deviceId, kWh | Umbral |
+| Demand & Alerting | `POST` | `/api/v1/inactivity-rules` | Crea una regla de inactividad de equipos | Body: deviceId, minutos | Regla |
+| Demand & Alerting | `PATCH` | `/api/v1/alerts/{id}/status` | Reconoce o resuelve una alerta | Body: estado | Alerta |
+| Demand & Alerting | `POST` | `/api/v1/notification-preferences` | Guarda la preferencia de notificación | Body: canal, severidad mínima | Preferencia |
+| Analytics | `POST` | `/api/v1/analytics/bill-predictions/forecast` | Proyecta la factura del local con la tarifa comercial | Body: siteId, mes | Proyección |
+| Analytics | `GET` | `/api/v1/analytics/recommendations/user/{userId}` | Recomendaciones de ahorro del usuario | Path: userId | Recomendaciones |
+| Analytics | `PATCH` | `/api/v1/analytics/recommendations/{recommendationId}/apply` | Marca una recomendación como aplicada | Path: recommendationId | Confirmación |
+| Analytics | `GET` | `/api/v1/analytics/anomalies/user/{userId}` | Anomalías detectadas | Path: userId | Anomalías |
+| Subscriptions | `GET` | `/api/v1/subscription-plans` | Lista los planes disponibles | — | Planes |
+| Subscriptions | `POST` | `/api/v1/subscriptions/purchase` | Compra un plan; cobra con el procesador simulado si es de pago | Body: planId, tarjeta de prueba | Suscripción activa |
+| Payments | `GET` | `/api/v1/payments/user/{userId}` | Pagos del usuario | Path: userId | Pagos |
+| Payments | `GET` | `/api/v1/invoices/payment/{paymentId}` | Comprobante de un pago | Path: paymentId | Comprobante |
+| Plataforma | `GET` | `/health` | Estado del servicio para el proveedor de hosting (TS07) | — | Estado `UP` |
+
+*Figura (Swagger UI de la SEMS API)*
+<img src="assets/sprint1/deploy-swagger.png" alt="Swagger UI de la SEMS API" style="width: 100vw;">
+
+#### 7.2.1.8. Software Deployment Evidence for Sprint Review
+
+Cada producto se despliega en un proveedor distinto, según la configuración de la sección 7.1.4. Durante el sprint se completó la publicación de la aplicación móvil: un workflow de GitHub Actions compila el APK en cada *push* a `develop` y lo publica como *release*, y el APK se distribuye a los evaluadores mediante Firebase App Distribution.
+
+| Producto | Plataforma | URL | Evidencia |
+| :-- | :-- | :-- | :-- |
+| Landing Page | GitHub Pages | <https://sems-emergentes.github.io/SEMS-Landing-Page/> | Publicación automática desde `main`. |
+| Web Application | Vercel | <https://sems-web-application.vercel.app> | Despliegue automático en cada *push* a `main`. |
+| Web Services | Render (Docker) + Supabase (PostgreSQL) | <https://sems-backend-kgnm.onrender.com/swagger-ui.html> | Despliegue automático en cada *push* a `main`. |
+| Mobile Application | GitHub Releases + Firebase App Distribution | Descarga directa: <https://github.com/SEMS-Emergentes/SEMS-Mobile-App/releases/latest/download/sems.apk> · Evaluadores: <https://appdistribution.firebase.dev/i/7606c1a1bf74bc9f> | Workflow `apk.yml`: compila `assembleDebug` y publica la *release* `apk-latest`. |
+
+**Pasos del despliegue de la aplicación móvil**
+
+1. Cada *push* a `develop` ejecuta el workflow `APK` (`.github/workflows/apk.yml`) en GitHub Actions.
+2. El workflow instala JDK 21, Gradle y los paquetes `platforms;android-36` y `build-tools;36.0.0` del Android SDK y ejecuta `./gradlew assembleDebug`. La URL de la API se toma de `BuildConfig.API_BASE_URL`, que apunta a la SEMS API en Render.
+3. El APK resultante se publica como *release* `apk-latest` del repositorio `SEMS-Mobile-App`, reemplazando la anterior.
+4. El APK se carga en Firebase App Distribution (proyecto `SEMS`, app Android `pe.edu.upc.sems`); el vínculo de invitación permite que cada evaluador se registre y reciba la versión más reciente en su teléfono.
+
+*Figura (Release del APK generada por GitHub Actions)*
+<img src="assets/sprint1/deploy-apk-release.png" alt="Release del APK en GitHub" style="width: 100vw;">
+
+*Figura (Firebase App Distribution — vínculo de invitación de la aplicación SEMS)*
+<img src="assets/sprint1/deploy-firebase-appdist.png" alt="Firebase App Distribution" style="width: 100vw;">
+
+*Figura (Ejecuciones de CI de la aplicación web)*
+<img src="assets/sprint1/ci-webapp.png" alt="GitHub Actions de la aplicación web" style="width: 100vw;">
+
+#### 7.2.1.9. Team Collaboration Insights during Sprint
+
+Las capturas de *Insights → Contributors* de GitHub muestran la actividad en la rama `main` de cada repositorio. Como el desarrollo de la aplicación móvil se integra en `develop` (en `main` solo existe el README), el gráfico consolidado se elaboró a partir del historial de todas las ramas de los cuatro repositorios.
+
+*Figura (Commits por integrante y repositorio durante el Sprint 1)*
+<img src="assets/sprint1/insights-commits-por-integrante.png" alt="Commits por integrante y repositorio" style="width: 100vw;">
+
+| Integrante | SEMS-Backend | SEMS-Web-Application | SEMS-Mobile-App | SEMS-Report | Total de commits | Líneas añadidas / eliminadas |
+| :-- | :-: | :-: | :-: | :-: | :-: | :-: |
+| Encalada Salazar, Alexis | 45 | 45 | 8 | 3 | 101 | 17 258 / 2 919 |
+| Sulca Silva, Melisa Geraldine | 0 | 0 | 28 | 1 | 29 | 14 408 / 941 |
+| Gómez Flores, Daniela Araceli | 0 | 0 | 12 | 1 | 13 | 12 383 / 1 133 |
+| Goñe Araccata, Esther Abigail | 0 | 0 | 0 | 6 | 6 | 397 / 0 |
+| Solis Santa Cruz, Giancarlo Rafael | 0 | 0 | 1 | 3 | 4 | 2 849 / 167 |
+
+*Figura (Contributors del repositorio SEMS-Backend)*
+<img src="assets/sprint1/insights-backend.png" alt="Contributors de SEMS-Backend" style="width: 100vw;">
+
+*Figura (Contributors del repositorio SEMS-Web-Application)*
+<img src="assets/sprint1/insights-webapp.png" alt="Contributors de SEMS-Web-Application" style="width: 100vw;">
+
+**Análisis.** El backend y la aplicación web concentraron su actividad entre la tercera semana de octubre y la segunda de noviembre, con el pico en la semana del 26 de octubre, cuando se integraron las correcciones de coherencia de datos y las funcionalidades de demanda, tarifa y analítica. La aplicación móvil se construyó entre el 1 y el 10 de noviembre sobre la API ya estable: Melisa Sulca lideró la base del proyecto, IAM y organizaciones; Daniela Gómez, dispositivos, alertas, analítica, reportes y configuración; y Giancarlo Solis, medidores y monitoreo. El liderazgo técnico del backend y de la web recayó en Alexis Encalada, que además integró la CI de los tres repositorios y la publicación del APK. Abigail Goñe y Giancarlo Solis condujeron la documentación del Capítulo VII y la validación con usuarios (sección 7.3).
+
 
 ## 7.3. Validation Interviews
 
@@ -4298,7 +4898,6 @@ Bloque E. Satisfacción, adopción y mejoras
 
 En este apartado se documentarán las sesiones de validación realizadas con representantes de ambos segmentos. Cada registro incluirá los datos generales del participante, la modalidad de la sesión, las tareas realizadas, un enlace a la grabación (cuando exista autorización), evidencias visuales y un resumen de los principales hallazgos.
 
-La información deberá corresponder a entrevistas efectivamente realizadas. Las siguientes fichas son plantillas pendientes de completar con los datos y evidencias obtenidos.
 
 Segmento #1 — Entrevista [N.º 1]
 
@@ -4636,7 +5235,13 @@ En conjunto, los resultados respaldan la continuidad del diseño general de SEMS
 
 ## 7.4. Video About-the-Product
 
-En esta sección se incorporará el video de presentación de SEMS (Smart Energy Management System), cuyo propósito será explicar de manera clara el problema que aborda Energix, la propuesta de valor de la solución y sus principales funcionalidades desde la perspectiva de los usuarios objetivo.
+El video About-the-Product presenta SEMS (Smart Energy Management System), la solución de Energix: explica el problema del cargo por potencia en los establecimientos comerciales, la propuesta de valor de la solución y sus principales funcionalidades desde la perspectiva de los dos segmentos objetivo.
+
+| Video | URL | Plataforma |
+| :-- | :-- | :-- |
+| About-the-Product — SEMS | <https://youtu.be/q1-lDRiuSXQ> | YouTube |
+
+[![Video About-the-Product de SEMS](https://img.youtube.com/vi/q1-lDRiuSXQ/hqdefault.jpg)](https://youtu.be/q1-lDRiuSXQ)
 
 # Conclusiones, Bibliografía y Anexos
 
@@ -4715,5 +5320,10 @@ alguien escribiera.
 | Landing Page desplegado | <https://sems-emergentes.github.io/SEMS-Landing-Page/> |
 | Web Application desplegada | <https://sems-web-application.vercel.app> |
 | Documentación OpenAPI del backend | <https://sems-backend-kgnm.onrender.com/swagger-ui.html> |
+| Repositorio de la Mobile Application | <https://github.com/SEMS-Emergentes/SEMS-Mobile-App> |
+| Descarga del APK (GitHub Releases) | <https://github.com/SEMS-Emergentes/SEMS-Mobile-App/releases/latest/download/sems.apk> |
+| Mobile Application en Firebase App Distribution | <https://appdistribution.firebase.dev/i/7606c1a1bf74bc9f> |
+| Sprint Backlog 1 (Trello) | <https://trello.com/b/Tc47h3bQ/sprint-backlog-1-sems> |
+| Video About-the-Product | <https://youtu.be/q1-lDRiuSXQ> |
 
 
