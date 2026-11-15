@@ -4939,7 +4939,7 @@ Segmento #1 — Entrevista [N.º 2]
 | Fecha | 12/11/2026 |
 | Duración | 10:00 |
 | Prototipo o versión evaluada | Aplicación web y móvil de SEMS |
-| URL del video |[https://sl1nk.com/5tpz14d](https://sl1nk.com/5tpz14d)|
+| URL del video |[https://lix.li/1lOBzY](https://lix.li/1lOBzY)|
 | Evidencia visual | <img src="https://res.cloudinary.com/df8xwy4xb/image/upload/v1794533550/Denisse_presents_the_SEMS_dashboard_in_Meet_e6vsua.png"> |
 
 Resumen de la entrevista
@@ -5035,7 +5035,7 @@ Segmento #2 — Entrevista [N.º 3]
 | Fecha | 12/11/2026 |
 | Duración | 14:30 |
 | Prototipo o versión evaluada | Aplicación web y móvil de SEMS |
-| URL del video |[https://sl1nk.com/5tpz14d](https://sl1nk.com/5tpz14d)|
+| URL del video |[https://lix.li/SXMJ6](https://lix.li/SXMJ6)|
 | Evidencia visual | <img src="https://res.cloudinary.com/df8xwy4xb/image/upload/v1794533451/kylie_entrevista_sems_ejscr7.png"> |
 
 Resumen de la entrevista
