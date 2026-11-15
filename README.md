@@ -4726,7 +4726,7 @@ Al cierre del sprint los tres productos de software y el Landing Page se encuent
 4. **Alertas:** avisos de demanda con margen frente a la potencia contratada, umbrales diarios, equipos sin señal y ciclo activa → reconocida → resuelta.
 5. **Analítica y suscripción:** proyección de factura, recomendaciones, anomalías, reportes PDF y contratación de planes con pago simulado.
 
-El recorrido completo de las aplicaciones en funcionamiento se muestra en el video About-the-Product de la sección 7.4 (<https://youtu.be/Sf04ynkvEDQ>).
+El recorrido completo de las aplicaciones en funcionamiento se muestra en el video About-the-Product de la sección 7.4 (<https://youtu.be/fRiR1J3zPMw>).
 
 *Figura (Landing Page en producción — GitHub Pages)*
 <img src="assets/sprint1/deploy-landing.png" alt="Landing Page en producción" style="width: 100vw;">
@@ -5247,10 +5247,9 @@ El video About-the-Product presenta SEMS (Smart Energy Management System), la so
 
 | Video | URL | Plataforma |
 | :-- | :-- | :-- |
-| About-the-Product — SEMS (con narración) | <https://youtu.be/Sf04ynkvEDQ> | YouTube |
-| About-the-Product — SEMS (solo música) | <https://youtu.be/fRiR1J3zPMw> | YouTube |
+| About-the-Product — SEMS | <https://youtu.be/fRiR1J3zPMw> | YouTube |
 
-[![Video About-the-Product de SEMS](https://img.youtube.com/vi/Sf04ynkvEDQ/hqdefault.jpg)](https://youtu.be/Sf04ynkvEDQ)
+[![Video About-the-Product de SEMS](https://img.youtube.com/vi/fRiR1J3zPMw/hqdefault.jpg)](https://youtu.be/fRiR1J3zPMw)
 
 # Conclusiones, Bibliografía y Anexos
 
@@ -5368,7 +5367,6 @@ redacción y orientación antes que hacia cambios de funcionalidad.
 | Descarga del APK (GitHub Releases) | <https://github.com/SEMS-Emergentes/SEMS-Mobile-App/releases/latest/download/sems.apk> |
 | Mobile Application en Firebase App Distribution | <https://appdistribution.firebase.dev/i/7606c1a1bf74bc9f> |
 | Sprint Backlog 1 (Trello) | <https://trello.com/b/Tc47h3bQ/sprint-backlog-1-sems> |
-| Video About-the-Product (con narración) | <https://youtu.be/Sf04ynkvEDQ> |
-| Video About-the-Product (solo música) | <https://youtu.be/fRiR1J3zPMw> |
+| Video About-the-Product | <https://youtu.be/fRiR1J3zPMw> |
 
 
