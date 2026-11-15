@@ -5351,6 +5351,8 @@ redacción y orientación antes que hacia cambios de funcionalidad.
 | Entrega | URL del video | Duración |
 | :-- | :-- | :-- |
 | Primer Hito | <https://upcedupe-my.sharepoint.com/:v:/g/personal/u20211g491_upc_edu_pe/IQDbU0RFA9H-QbkGfbfblYkVAa5583zaljIfZBcBkXGH-5c?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=2c9JBJ> | 9:18|
+| TB2 — TF 1ASI0728 202602 VIDEO | <https://youtu.be/wTp7IgfRqcA> | 10:58 |
+| About-the-Team — SEMS About the Team | <https://youtu.be/PaWbmEKbiR4> | 5:58 |
 
 **Anexo B. Enlaces de los productos y repositorios**
 
@@ -5368,5 +5370,7 @@ redacción y orientación antes que hacia cambios de funcionalidad.
 | Mobile Application en Firebase App Distribution | <https://appdistribution.firebase.dev/i/7606c1a1bf74bc9f> |
 | Sprint Backlog 1 (Trello) | <https://trello.com/b/Tc47h3bQ/sprint-backlog-1-sems> |
 | Video About-the-Product | <https://youtu.be/fRiR1J3zPMw> |
+| Video About-the-Team | <https://youtu.be/PaWbmEKbiR4> |
+| Video de exposición TB2 | <https://youtu.be/wTp7IgfRqcA> |
 
 
