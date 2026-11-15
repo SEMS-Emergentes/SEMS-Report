@@ -267,7 +267,7 @@ capaz de acompañar tanto a un local independiente como a una cadena con decenas
 
 **Logo de la Startup**
 
-<img width="120" height="120" alt="image" src="https://github.com/user-attachments/assets/602d94b3-1bde-405d-90bb-ba29efc9f7e7" /><div align="center">
+<p align="center"><img width="120" height="120" alt="Logo de Energix" src="https://github.com/user-attachments/assets/602d94b3-1bde-405d-90bb-ba29efc9f7e7" /></p>
 
 ### 1.1.2. Perfiles de integrantes del equipo
 
