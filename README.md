@@ -76,6 +76,7 @@
 | 1.26 (TB2) | 12/11/2026 | Solis Santa Cruz, Giancarlo Rafael | Desarrollo de<br>Capítulo VII: entrevistas de validación (una por cada segmento), evaluación heurística y apoyo en el desarrollo de la aplicación móvil. |
 | 1.27 (TB2) | 14/11/2026 | Encalada Salazar, Alexis | Desarrollo de<br>Project Report Collaboration Insights<br>Sección 6.2.1. Organization Systems<br>Secciones 6.4.3.1 y 6.4.4.1 de la aplicación móvil<br>Sección 7.2.1. Sprint 1<br>Sección 7.4. Video About-the-Product<br>Publicación del APK (7.1.4) y Anexo B. |
 | 1.28 (TB2) | 14/11/2026 | Encalada Salazar, Alexis | Revisión de<br>Índice, portada y Student Outcome<br>Diagramas de la sección 4.2.2. Candidate Context Discovery<br>Bibliografía<br>Conclusiones y recomendaciones. |
+| 1.29 (TB2) | 14/11/2026 | Encalada Salazar, Alexis | Revisión de<br>Enlaces y textos pendientes del informe<br>Índice de la sección 7.3 y de Conclusiones, Bibliografía y Anexos<br>Anexos A y B: videos de exposición y About-the-Team. |
 
 ---
 
@@ -210,8 +211,14 @@ colaboración en los repositorios de producto se detalla en la sección 7.2.1.9.
       - [7.2.1.8. Software Deployment Evidence for Sprint Review](README.md#7218-software-deployment-evidence-for-sprint-review)
       - [7.2.1.9. Team Collaboration Insights during Sprint](README.md#7219-team-collaboration-insights-during-sprint)
   - [7.3. Validation Interviews](README.md#73-validation-interviews)
+    - [7.3.1. Diseño de Entrevistas](README.md#731-diseño-de-entrevistas)
+    - [7.3.2. Registro de Entrevistas](README.md#732-registro-de-entrevistas)
+    - [7.3.3. Evaluaciones según heurísticas](README.md#733-evaluaciones-según-heurísticas)
   - [7.4. Video About-the-Product](README.md#74-video-about-the-product)
 - [Conclusiones, Bibliografía y Anexos](README.md#conclusiones-bibliografía-y-anexos)
+  - [Conclusiones y recomendaciones](README.md#conclusiones-y-recomendaciones)
+  - [Bibliografía](README.md#bibliografía)
+  - [Anexos](README.md#anexos)
 
 
 # Student Outcome
@@ -351,7 +358,7 @@ similares.
 | **When** (Cuándo) | De forma continua durante la operación del local. El pico de demanda se produce típicamente en el arranque de la jornada y en las horas de mayor afluencia, que además coinciden con la hora punta del sistema (18:00–23:00 de todos los días, salvo que la distribuidora haya concedido la exclusión de domingos a solicitud del cliente). |
 | **Why** (Por qué) | Porque la medición disponible es agregada y diferida: un único medidor por suministro y una única lectura mensual. No existe visibilidad por zona, ni distinción por franja horaria, ni ninguna alerta que llegue mientras el problema todavía se puede corregir. |
 | **How** (Cómo) | Mediante medición por zona dentro de cada local, cálculo de la factura estimada con la tarifa comercial correspondiente al suministro, y alertas de demanda que se disparan al aproximarse a la potencia contratada, antes de superarla. |
-| **How Much** (Cuánto) | El cargo por potencia puede representar cerca de la mitad del costo variable de un recibo comercial. Evitar un único pico mensual de exceso, o desplazar parte del consumo fuera de hora punta, produce ahorros directos y recurrentes. `<Sustentar con el cálculo del caso de estudio del equipo y con el pliego tarifario vigente.>` |
+| **How Much** (Cuánto) | El cargo por potencia puede representar cerca de la mitad del costo variable de un recibo comercial. Evitar un único pico mensual de exceso, o desplazar parte del consumo fuera de hora punta, produce ahorros directos y recurrentes. Así se desprende de la estructura de las opciones tarifarias con cargo por potencia definidas por OSINERGMIN (s. f.). |
 
 ### 1.2.2. Lean UX Process
 
@@ -4030,7 +4037,7 @@ workflows de GitHub Actions).
 | :-- | :-- | :-- | :-- |
 | **UXPressia** | Elaboración de los User Personas, Empathy Maps e Impact Maps (secciones 2.3 y 3.3). | SaaS | <https://uxpressia.com> |
 | **Miro / LucidChart** | Elaboración de los As-Is y To-Be Scenario Maps y del EventStorming (secciones 2.3.4, 3.1 y 4.2.1). | SaaS | <https://miro.com> · <https://www.lucidchart.com> |
-| **Figma** | Wireframes, mock-ups, wireflows y user flows de la Landing Page y de las aplicaciones (Capítulo VI). `<Confirmar con el equipo la herramienta y el enlace del proyecto.>` | SaaS | <https://www.figma.com> |
+| **Figma** | Wireframes, mock-ups, wireflows y user flows de la Landing Page y de las aplicaciones (Capítulo VI). | SaaS | <https://www.figma.com/design/qFwrraI1Y10IwxQYw8Xegg> |
 
 **Software Development**
 
@@ -4904,10 +4911,10 @@ Bloque E. Satisfacción, adopción y mejoras
 
 ### 7.3.2. Registro de Entrevistas
 
-En este apartado se documentarán las sesiones de validación realizadas con representantes de ambos segmentos. Cada registro incluirá los datos generales del participante, la modalidad de la sesión, las tareas realizadas, un enlace a la grabación (cuando exista autorización), evidencias visuales y un resumen de los principales hallazgos.
+En este apartado se documentan las sesiones de validación realizadas con representantes de ambos segmentos. Cada registro incluye los datos generales del participante, la modalidad de la sesión, las tareas realizadas, un enlace a la grabación (cuando exista autorización), evidencias visuales y un resumen de los principales hallazgos.
 
 
-Segmento #1 — Entrevista [N.º 1]
+Segmento #1 — Entrevista N.º 1
 
 | Campo | Dato |
 | :-- | :-- |
@@ -4928,7 +4935,7 @@ Luis administra tres juguerías y recorrió SEMS, su primera impresión fue posi
 Entre las dificultades, no encontró cómo cambiar de local en el Resumen, no entendió el indicador de ahorro de la quincena en negativo, notó que los medidores marcaban cero mientras el resumen mostraba consumo, y le confundió que el mensaje de las secciones bloqueadas mencionara un plan distinto al del botón. También señaló que la alerta no indica qué equipo está causando el pico. Valoró sobre todo el aviso de demanda y el consumo por equipo, que le habrían permitido detectar antes el aire acondicionado malogrado que tuvo su local de Surco. Como mejora propuso un selector de local en el Resumen, y para implementarlo pidió ver una baja real del recibo en un mes, que el plan aclare cuántos locales y equipos incluye, y corregir los botones de notificaciones desalineados y los planes que aparecen en inglés cuando el idioma seleccionado está en español.
 
 
-Segmento #1 — Entrevista [N.º 2]
+Segmento #1 — Entrevista N.º 2
 
 | Campo | Dato |
 | :-- | :-- |
@@ -4950,7 +4957,7 @@ Respecto a las alertas, interpreta el margen disponible como la diferencia entre
 
 
 
-Segmento #1 — Entrevista [N.º 3]
+Segmento #1 — Entrevista N.º 3
 
 | Campo | Dato |
 | :-- | :-- |
@@ -4977,7 +4984,7 @@ Respecto a la adopción, manifestó interés en implementar SEMS siempre que se 
 
 
 
-Segmento #2 — Entrevista [N.º 1]
+Segmento #2 — Entrevista N.º 1
 
 | Campo | Dato |
 | :-- | :-- |
@@ -4997,7 +5004,7 @@ Por otro lado, no entendió muy bien el indicador de ahorro de la quincena en ne
 
 
 
-Segmento #2 — Entrevista [N.º2]
+Segmento #2 — Entrevista N.º 2
 
 | Campo | Dato |
 | :-- | :-- |
@@ -5026,7 +5033,7 @@ Respecto a la adopción, manifestó disposición a invertir entre S/ 50 y S/ 70 
 
 
 
-Segmento #2 — Entrevista [N.º 3]
+Segmento #2 — Entrevista N.º 3
 
 | Campo | Dato |
 | :-- | :-- |
@@ -5046,7 +5053,7 @@ Destaca las alertas de demanda porque permiten reconocer situaciones que podría
 
 
 
-## Consolidado de las entrevistas
+#### Consolidado de las entrevistas
 
 | Entrevista | Segmento | Tareas completadas | Dificultad principal | Mejora propuesta |
 | :-- | :-- | :-- | :-- | :-- |
