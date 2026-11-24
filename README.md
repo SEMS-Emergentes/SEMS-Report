@@ -75,6 +75,7 @@
 | 1.25 (TB2) | 10/11/2026 | Goñe Araccata, Esther Abigail | Desarrollo de<br>Capítulo VII: Product Implementation, Validation & Deployment<br>Sección 7.1. Software Configuration Management<br>Sección 7.2. Solution Implementation. |
 | 1.26 (TB2) | 12/11/2026 | Solis Santa Cruz, Giancarlo Rafael | Desarrollo de<br>Capítulo VII: entrevistas de validación (una por cada segmento), evaluación heurística y apoyo en el desarrollo de la aplicación móvil. |
 | 1.27 (TB2) | 14/11/2026 | Encalada Salazar, Alexis | Desarrollo de<br>Project Report Collaboration Insights<br>Sección 6.2.1. Organization Systems<br>Secciones 6.4.3.1 y 6.4.4.1 de la aplicación móvil<br>Sección 7.2.1. Sprint 1<br>Sección 7.4. Video About-the-Product<br>Publicación del APK (7.1.4) y Anexo B. |
+| 1.28 (TF) | 24/11/2026 | Encalada Salazar, Alexis | Desarrollo de<br>Secciones 3.2 y 3.4: historias US45 a US50<br>Sección 7.2.2.1. Sprint Planning 2<br>Sección 7.2.2.2. Sprint Backlog 2<br>Sección 7.2.2.4. Pruebas de aceptación del Sprint 2 |
 | 1.28 (TB2) | 14/11/2026 | Encalada Salazar, Alexis | Revisión de<br>Índice, portada y Student Outcome<br>Diagramas de la sección 4.2.2. Candidate Context Discovery<br>Bibliografía<br>Conclusiones y recomendaciones. |
 | 1.29 (TB2) | 14/11/2026 | Encalada Salazar, Alexis | Revisión de<br>Enlaces y textos pendientes del informe<br>Índice de la sección 7.3 y de Conclusiones, Bibliografía y Anexos<br>Anexos A y B: videos de exposición y About-the-Team. |
 
@@ -210,6 +211,10 @@ colaboración en los repositorios de producto se detalla en la sección 7.2.1.9.
       - [7.2.1.7. Services Documentation Evidence for Sprint Review](README.md#7217-services-documentation-evidence-for-sprint-review)
       - [7.2.1.8. Software Deployment Evidence for Sprint Review](README.md#7218-software-deployment-evidence-for-sprint-review)
       - [7.2.1.9. Team Collaboration Insights during Sprint](README.md#7219-team-collaboration-insights-during-sprint)
+    - [7.2.2. Sprint 2](README.md#722-sprint-2)
+      - [7.2.2.1. Sprint Planning 2](README.md#7221-sprint-planning-2)
+      - [7.2.2.2. Sprint Backlog 2](README.md#7222-sprint-backlog-2)
+      - [7.2.2.4. Testing Suite Evidence for Sprint Review](README.md#7224-testing-suite-evidence-for-sprint-review)
   - [7.3. Validation Interviews](README.md#73-validation-interviews)
     - [7.3.1. Diseño de Entrevistas](README.md#731-diseño-de-entrevistas)
     - [7.3.2. Registro de Entrevistas](README.md#732-registro-de-entrevistas)
@@ -1105,6 +1110,12 @@ Se incluyen tres tipos de historia:
 | **US42** | Límite de locales según el plan | Como administrador, deseo que el sistema respete el límite de locales de mi plan, para conocer cuándo necesito ampliarlo. | **Escenario 1:** límite del plan alcanzado.<br>**Given** la organización alcanzó el límite de locales de su plan,<br>**When** intenta registrar un local adicional,<br>**Then** la operación se rechaza indicando el límite del plan vigente.<br><br>**Escenario 2:** dentro del límite.<br>**Given** la organización tiene menos locales que el límite de su plan,<br>**When** registra un local adicional,<br>**Then** el local se registra correctamente.<br><br>**Escenario 3:** local archivado.<br>**Given** la organización está en el límite y archiva un local,<br>**When** registra un local nuevo,<br>**Then** el local se registra, porque los archivados no cuentan para el límite. | EP08 |
 | **US43** | Registro de método de pago | Como administrador, deseo registrar un método de pago, para automatizar la renovación de la suscripción. | **Escenario 1:** registro correcto.<br>**Given** el administrador proporciona los datos de la tarjeta en el formulario de la pasarela,<br>**When** confirma el registro,<br>**Then** el método de pago queda asociado a la organización<br>**And** los datos de la tarjeta no son almacenados por la aplicación.<br><br>**Escenario 2:** método por defecto.<br>**Given** el administrador tiene dos métodos de pago,<br>**When** marca uno como predeterminado,<br>**Then** ese método queda como predeterminado y el anterior deja de serlo.<br><br>**Escenario 3:** tarjeta rechazada.<br>**Given** la pasarela rechaza la tarjeta,<br>**When** el administrador confirma el registro,<br>**Then** el método de pago no se registra y se informa el rechazo. | EP08 |
 | **US44** | Consulta de comprobantes | Como administrador, deseo consultar mis comprobantes de pago, para llevar el control contable de la suscripción. | **Escenario 1:** pagos registrados.<br>**Given** existen pagos registrados para la organización,<br>**When** el administrador consulta los comprobantes,<br>**Then** se listan con su fecha, importe y estado.<br><br>**Escenario 2:** pago sin comprobante.<br>**Given** un pago aún no ha sido confirmado por la pasarela,<br>**When** el administrador consulta su comprobante,<br>**Then** se informa que el comprobante todavía no fue emitido. | EP08 |
+| **US45** | Continuidad desde la Landing Page | Como visitante, deseo que el segmento y el plan que elijo en la Landing Page me acompañen al registrarme en la aplicación, para no tener que repetir mi elección. | **Escenario 1:** segmento elegido.<br>**Given** el visitante eligió el segmento de cadenas en la Landing Page,<br>**When** abre el formulario de registro de la aplicación web,<br>**Then** el segmento de cadenas aparece seleccionado.<br><br>**Escenario 2:** plan elegido.<br>**Given** el visitante eligió el plan Business en la Landing Page,<br>**When** completa su registro,<br>**Then** la aplicación abre Suscripción con el plan Business destacado.<br><br>**Escenario 3:** sin elección previa.<br>**Given** el visitante llega al registro sin segmento ni plan,<br>**When** abre el formulario de registro,<br>**Then** el formulario se muestra sin opciones preseleccionadas. | EP01 |
+| **US46** | Descarga de la app móvil desde la Landing Page | Como visitante, deseo descargar la aplicación móvil desde la Landing Page, para supervisar mis locales desde el celular. | **Escenario 1:** descarga desde la Landing Page.<br>**Given** el visitante está en la Landing Page,<br>**When** selecciona la opción de descargar la aplicación móvil,<br>**Then** obtiene el instalador de la última versión publicada.<br><br>**Escenario 2:** acceso desde la aplicación web.<br>**Given** el usuario inició sesión en la aplicación web,<br>**When** busca la aplicación móvil,<br>**Then** encuentra el enlace de descarga de la última versión. | EP01 |
+| **US47** | Explicación de indicadores energéticos | Como responsable, deseo una explicación breve de los indicadores que no domino, como el ahorro de la quincena o el cargo por potencia, para interpretarlos sin ayuda técnica. | **Escenario 1:** ahorro negativo.<br>**Given** el consumo de la quincena actual superó al de la anterior,<br>**When** el responsable consulta el ahorro de la quincena,<br>**Then** el indicador explica que un valor negativo significa que gastó más que la quincena anterior.<br><br>**Escenario 2:** concepto eléctrico.<br>**Given** el responsable ve la potencia contratada o el cargo por potencia,<br>**When** consulta la ayuda del indicador,<br>**Then** se muestra una explicación breve del concepto en lenguaje cotidiano. | EP07 |
+| **US48** | Identificación del local consultado | Como responsable de varios locales, deseo ver y cambiar desde el resumen el local que estoy consultando, para no confundir las cifras de un local con las de otro. | **Escenario 1:** local visible.<br>**Given** el responsable administra más de un local,<br>**When** abre el resumen,<br>**Then** el nombre del local consultado se muestra en el encabezado.<br><br>**Escenario 2:** cambio de local.<br>**Given** el responsable está viendo el resumen de un local,<br>**When** elige otro local en el selector,<br>**Then** las cifras del resumen corresponden al local elegido.<br><br>**Escenario 3:** primer ingreso.<br>**Given** el responsable acaba de iniciar sesión,<br>**When** llega al resumen,<br>**Then** se muestra el resumen de su primer local sin pedirle que lo seleccione. | EP03 |
+| **US49** | Terminología consistente en español | Como usuario, deseo que los planes, los tipos de equipo y las alertas usen los mismos nombres en español en todas las pantallas, para no dudar de lo que estoy viendo. | **Escenario 1:** nombre del plan.<br>**Given** una sección está bloqueada por el plan actual,<br>**When** el usuario lee el mensaje de la sección,<br>**Then** el plan mencionado es uno de los planes que muestra Suscripción.<br><br>**Escenario 2:** tipos de equipo.<br>**Given** el idioma de la aplicación es español,<br>**When** el usuario consulta sus equipos,<br>**Then** los tipos de equipo se muestran en español.<br><br>**Escenario 3:** tipo de alerta.<br>**Given** se generó una alerta de demanda,<br>**When** el usuario la consulta en la aplicación móvil,<br>**Then** la alerta se identifica como de demanda y no como de umbral. | EP05 |
+| **US50** | Coherencia de los datos de medidores | Como supervisor, deseo que los medidores muestren la misma lectura que usa el resumen, para confiar en las cifras que reviso. | **Escenario 1:** lectura del medidor.<br>**Given** un medidor envió lecturas en el periodo,<br>**When** el supervisor consulta el medidor,<br>**Then** se muestra su última lectura y su potencia, coherentes con el resumen.<br><br>**Escenario 2:** equipos con lecturas.<br>**Given** el local tiene equipos con lecturas atribuidas,<br>**When** el supervisor abre el monitoreo en la aplicación móvil,<br>**Then** se listan los equipos con su consumo sin mostrar un error. | EP04 |
 | **TS01** | API de autenticación | Como developer, deseo un endpoint de autenticación que emita tokens, para proteger el acceso a los recursos del API. | **Escenario 1:** credenciales válidas.<br>**Given** una petición `POST /api/v1/auth/login` con credenciales válidas,<br>**When** el servicio procesa la petición,<br>**Then** responde `200 OK` con un token de sesión y un token de refresco.<br><br>**Escenario 2:** credenciales inválidas.<br>**Given** una petición con contraseña incorrecta,<br>**When** el servicio procesa la petición,<br>**Then** responde `401 Unauthorized` sin indicar si el correo existe.<br><br>**Escenario 3:** cuerpo incompleto.<br>**Given** una petición sin el campo de contraseña,<br>**When** el servicio procesa la petición,<br>**Then** responde `400 Bad Request` indicando el campo requerido. | EP09 |
 | **TS02** | Protección por defecto de los endpoints | Como developer, deseo que todo endpoint exija sesión salvo los explícitamente públicos, para que un descuido no deje un recurso abierto. | **Escenario 1:** sin token.<br>**Given** una petición a un endpoint protegido sin cabecera de autorización,<br>**When** el servicio la procesa,<br>**Then** responde `401 Unauthorized`.<br><br>**Escenario 2:** token inválido.<br>**Given** una petición con un token mal formado o vencido,<br>**When** el servicio la procesa,<br>**Then** responde `401 Unauthorized`.<br><br>**Escenario 3:** endpoint público.<br>**Given** una petición sin token a `/api/v1/auth/login` o al webhook de pagos,<br>**When** el servicio la procesa,<br>**Then** la petición alcanza el controlador sin exigir sesión. | EP09 |
 | **TS03** | API de organizaciones y locales | Como developer, deseo endpoints para gestionar organizaciones, locales y zonas, para que las aplicaciones cliente construyan la jerarquía del negocio. | **Escenario 1:** alta correcta.<br>**Given** una petición `POST /api/v1/organizations` con cuerpo válido y token,<br>**When** el servicio la procesa,<br>**Then** responde `201 Created` con el recurso creado.<br><br>**Escenario 2:** recurso inexistente.<br>**Given** una petición `GET /api/v1/organizations/{id}` con un identificador no registrado,<br>**When** el servicio la procesa,<br>**Then** responde `404 Not Found`.<br><br>**Escenario 3:** identificador mal formado.<br>**Given** una petición con un identificador que no es un UUID,<br>**When** el servicio la procesa,<br>**Then** responde `400 Bad Request`.<br><br>**Escenario 4:** RUC duplicado.<br>**Given** una petición `POST /api/v1/organizations` con un RUC ya registrado,<br>**When** el servicio la procesa,<br>**Then** responde `409 Conflict`. | EP09 |
@@ -1213,6 +1224,12 @@ La priorización del Product Backlog está determinada por la entrega de valor e
 | 51 | US05 | Selección de idioma en el Landing Page | Como visitante, deseo cambiar el idioma del Landing Page, para leer el contenido en el idioma que domino. | 3 |
 | 52 | TS07 | Endpoints de salud del servicio | Como developer, deseo endpoints de salud diferenciados, para que el proveedor de hosting distinga un proceso caído de una base de datos inaccesible. | 2 |
 | 53 | TS09 | Configuración de CORS | Como developer, deseo restringir los orígenes que pueden consumir el API desde un navegador, para impedir el uso desde sitios no autorizados. | 2 |
+| 54 | US45 | Continuidad desde la Landing Page | Como visitante, deseo que el segmento y el plan que elijo en la Landing Page me acompañen al registrarme en la aplicación, para no tener que repetir mi elección. | 5 |
+| 55 | US46 | Descarga de la app móvil desde la Landing Page | Como visitante, deseo descargar la aplicación móvil desde la Landing Page, para supervisar mis locales desde el celular. | 3 |
+| 56 | US47 | Explicación de indicadores energéticos | Como responsable, deseo una explicación breve de los indicadores que no domino, como el ahorro de la quincena o el cargo por potencia, para interpretarlos sin ayuda técnica. | 3 |
+| 57 | US48 | Identificación del local consultado | Como responsable de varios locales, deseo ver y cambiar desde el resumen el local que estoy consultando, para no confundir las cifras de un local con las de otro. | 5 |
+| 58 | US49 | Terminología consistente en español | Como usuario, deseo que los planes, los tipos de equipo y las alertas usen los mismos nombres en español en todas las pantallas, para no dudar de lo que estoy viendo. | 3 |
+| 59 | US50 | Coherencia de los datos de medidores | Como supervisor, deseo que los medidores muestren la misma lectura que usa el resumen, para confiar en las cifras que reviso. | 5 |
 
 # Capítulo IV: Strategic-Level Software Design
 
@@ -4846,6 +4863,66 @@ Las capturas de *Insights → Contributors* de GitHub muestran la actividad en l
 **Análisis.** El backend y la aplicación web concentraron su actividad entre la tercera semana de octubre y la segunda de noviembre, con el pico en la semana del 26 de octubre, cuando se integraron las correcciones de coherencia de datos y las funcionalidades de demanda, tarifa y analítica. La aplicación móvil se construyó entre el 1 y el 10 de noviembre sobre la API ya estable: Melisa Sulca lideró la base del proyecto, IAM y organizaciones; Daniela Gómez, dispositivos, alertas, analítica, reportes y configuración; y Giancarlo Solis, medidores y monitoreo. El liderazgo técnico del backend y de la web recayó en Alexis Encalada, que además integró la CI de los tres repositorios y la publicación del APK. Abigail Goñe y Giancarlo Solis condujeron la documentación del Capítulo VII y la validación con usuarios (sección 7.3).
 
 
+### 7.2.2. Sprint 2
+
+#### 7.2.2.1. Sprint Planning 2
+
+El Sprint 2 cierra la implementación de SEMS. Toma lo que las entrevistas de validación y la evaluación heurística (sección 7.3) mostraron que los usuarios no entendían, y une la Landing Page con la aplicación web y la aplicación móvil, de modo que un visitante pase de conocer SEMS a usarlo sin salir del recorrido.
+
+| Sprint # | Sprint 2 |
+| :-- | :-- |
+| **Sprint Planning Background** |  |
+| Date | 24/11/2026 |
+| Time | 21:00 |
+| Location | Microsoft Teams (reunión virtual) |
+| Prepared By | Encalada Salazar, Alexis |
+| Attendees (to planning meeting) | Encalada Salazar, Alexis · Goñe Araccata, Esther Abigail · Gómez Flores, Daniela Araceli · Solis Santa Cruz, Giancarlo Rafael · Sulca Silva, Melisa Geraldine |
+| Sprint 2 Period | 24/11/2026 al 30/11/2026 |
+| Sprint 1 Review Summary | El Sprint 1 cerró las 21 historias planificadas (100 story points, 37 tareas). Quedaron desplegados y conectados a la misma API la Landing Page en GitHub Pages, la aplicación web en Vercel, el backend en Render y la app móvil publicada como APK en GitHub Releases y Firebase App Distribution, con 154 pruebas automatizadas en el backend y 310 en la app móvil. Las seis entrevistas de validación confirmaron que ambos segmentos entienden el consumo, los costos en soles y las alertas de demanda; la evaluación heurística registró siete hallazgos de severidad 1 y 2, sin problemas críticos. |
+| Sprint 1 Retrospective Summary | Funcionó construir el backend y la web sobre el modelo de dominio acordado: la app móvil consumió un contrato estable y documentado. Por mejorar: el desarrollo del backend y la web recayó en una sola persona, la Landing Page quedó desconectada de la app móvil y algunos textos de la interfaz llegaron a la validación en inglés. Acuerdos: repartir el trabajo por producto —aplicación web con Abigail Goñe y Daniela Gómez, app móvil con Melisa Sulca y Giancarlo Solis—, nombrar la tarea del Sprint Backlog en cada commit e integrar a `develop` solo mediante Pull Request. |
+| **Sprint Goal & User Stories** |  |
+| Sprint 2 Goal | **Nuestro enfoque está en** que un visitante llegue desde la Landing Page a la aplicación web o a la app móvil sin repetir lo que eligió, y que los indicadores, los nombres y los datos de medidores se entiendan y coincidan en todas las pantallas. **Creemos que esto entrega** un recorrido completo y comprensible **a** los responsables de operaciones de cadenas de retail y a los propietarios de establecimientos independientes. **Esto se confirmará cuando** un visitante elija un plan en la Landing Page, se registre y lo encuentre seleccionado, descargue la app móvil y no encuentre ninguno de los hallazgos de la sección 7.3.3 en las aplicaciones desplegadas. |
+| Sprint 2 Velocity | 24 story points |
+| Sum of Story Points | 24 story points (6 historias de usuario, 16 tareas, 49 horas estimadas) |
+
+#### 7.2.2.2. Sprint Backlog 2
+
+El Sprint Backlog 2 agrupa las historias US45 a US50, que se incorporaron al Product Backlog (secciones 3.2 y 3.4) a partir de los hallazgos de la validación y de la integración pendiente entre los productos. El resto de historias del Product Backlog ya se encontraba implementado al cierre del Sprint 1. El tablero se gestiona en Trello con las mismas columnas del Sprint 1: *To-do*, *In-Process*, *To-Review* y *Done*.
+
+**URL del Sprint Backlog 2:** <https://trello.com/b/doIU3e8f/sprint-backlog-2-sems>
+
+| Sprint # | User Story Id | User Story Title | Work-Item / Task Id | Work-Item / Task Title | Description | Estimation (Hours) | Assigned To (Member) | Status (To-do / In-Process / To-Review / Done) |
+| :-- | :-- | :-- | :-- | :-- | :-- | :-: | :-- | :-- |
+| 2 | US45 | Continuidad desde la Landing Page | T38 | Segmento y plan en el registro web | El registro de la aplicación web lee el segmento y el plan que el visitante eligió en la Landing Page y los deja preseleccionados. | 4 | Goñe Araccata, Esther Abigail | To-do |
+| 2 | US45 | Continuidad desde la Landing Page | T39 | Plan elegido en Suscripción | Tras el registro, la aplicación web abre Suscripción con el plan elegido en la Landing Page destacado. | 3 | Gómez Flores, Daniela Araceli | To-do |
+| 2 | US45 | Continuidad desde la Landing Page | T40 | Iniciar sesión desde la Landing Page | Enlace «Iniciar sesión» en la navegación de la Landing Page hacia la aplicación web. | 1 | Goñe Araccata, Esther Abigail | To-do |
+| 2 | US45 | Continuidad desde la Landing Page | T41 | Enlaces de la web hacia la Landing Page | La aplicación web enlaza la Landing Page y sus términos y condiciones. | 2 | Gómez Flores, Daniela Araceli | To-do |
+| 2 | US46 | Descarga de la app móvil desde la Landing Page | T42 | Descarga de la app en la Landing Page | Sección de la Landing Page con la descarga del APK publicado en GitHub Releases y el acceso por Firebase App Distribution. | 4 | Sulca Silva, Melisa Geraldine | To-do |
+| 2 | US46 | Descarga de la app móvil desde la Landing Page | T43 | Enlaces desde la app móvil | La configuración de la app móvil enlaza la Landing Page y la aplicación web. | 2 | Solis Santa Cruz, Giancarlo Rafael | To-do |
+| 2 | US46 | Descarga de la app móvil desde la Landing Page | T44 | Descarga de la app desde la web | La aplicación web muestra el enlace de descarga de la última versión de la app móvil. | 1 | Gómez Flores, Daniela Araceli | To-do |
+| 2 | US47 | Explicación de indicadores energéticos | T45 | Ayudas de indicadores en la web | Explicación breve del ahorro quincenal negativo, la potencia contratada y el cargo por potencia en la web (H-01, H-04). | 4 | Gómez Flores, Daniela Araceli | To-do |
+| 2 | US47 | Explicación de indicadores energéticos | T46 | Ayudas de indicadores en la app móvil | Explicación breve del ahorro quincenal negativo, la potencia contratada y el cargo por potencia en la app móvil (H-01, H-04). | 4 | Sulca Silva, Melisa Geraldine | To-do |
+| 2 | US48 | Identificación del local consultado | T47 | Selector de local en el Resumen web | El Resumen de la web muestra el local consultado y permite cambiarlo (H-05). | 5 | Goñe Araccata, Esther Abigail | To-do |
+| 2 | US48 | Identificación del local consultado | T48 | Resumen móvil tras iniciar sesión | Al iniciar sesión, el Resumen de la app móvil carga el primer local sin pedir que se seleccione. | 4 | Sulca Silva, Melisa Geraldine | To-do |
+| 2 | US49 | Terminología consistente en español | T49 | Nombre de plan unificado en la web | Los mensajes de secciones bloqueadas nombran los mismos planes que Suscripción (H-03). | 2 | Goñe Araccata, Esther Abigail | To-do |
+| 2 | US49 | Terminología consistente en español | T50 | Etiquetas en español en la app móvil | Tipos de equipo, planes y etiquetas de la app móvil en español (H-02, H-03). | 3 | Solis Santa Cruz, Giancarlo Rafael | To-do |
+| 2 | US49 | Terminología consistente en español | T51 | Alertas de demanda en la app móvil | Las alertas de demanda se identifican como «Demanda» y no como «Umbral». | 2 | Solis Santa Cruz, Giancarlo Rafael | To-do |
+| 2 | US50 | Coherencia de los datos de medidores | T52 | Última lectura de los medidores en la web | Cada medidor muestra su última lectura y potencia, coherentes con el Resumen (H-06). | 4 | Gómez Flores, Daniela Araceli | To-do |
+| 2 | US50 | Coherencia de los datos de medidores | T53 | Equipos con lecturas en el Monitoreo móvil | El Monitoreo de la app móvil lista los equipos con lecturas atribuidas sin mostrar un error. | 4 | Solis Santa Cruz, Giancarlo Rafael | To-do |
+
+#### 7.2.2.4. Testing Suite Evidence for Sprint Review
+
+**Pruebas de aceptación (Gherkin).** Los criterios de aceptación de las historias del Sprint 2 se escribieron como archivos `.feature` en la carpeta [`tests/features`](tests/features) de este repositorio, con el mismo formato del Sprint 1:
+
+| Archivo | User Story | Escenarios |
+| :-- | :-- | :-: |
+| [`US45-continuidad-desde-la-landing.feature`](tests/features/US45-continuidad-desde-la-landing.feature) | US45 · Continuidad desde la Landing Page | 3 |
+| [`US46-descarga-de-la-app-movil.feature`](tests/features/US46-descarga-de-la-app-movil.feature) | US46 · Descarga de la app móvil desde la Landing Page | 2 |
+| [`US47-explicacion-de-indicadores.feature`](tests/features/US47-explicacion-de-indicadores.feature) | US47 · Explicación de indicadores energéticos | 2 |
+| [`US48-identificacion-del-local.feature`](tests/features/US48-identificacion-del-local.feature) | US48 · Identificación del local consultado | 3 |
+| [`US49-terminologia-consistente.feature`](tests/features/US49-terminologia-consistente.feature) | US49 · Terminología consistente en español | 3 |
+| [`US50-coherencia-de-medidores.feature`](tests/features/US50-coherencia-de-medidores.feature) | US50 · Coherencia de los datos de medidores | 2 |
+
 ## 7.3. Validation Interviews
 
 En esta sección se describe el proceso de validación a posteriori de SEMS (Smart Energy Management System). A diferencia de las entrevistas exploratorias del apartado 2.2.1, orientadas a identificar problemas y necesidades antes del diseño de la solución, estas entrevistas buscan conocer la experiencia de los participantes después de interactuar con el prototipo o con las funcionalidades disponibles.
@@ -5325,29 +5402,29 @@ redacción y orientación antes que hacia cambios de funcionalidad.
 
 ## Bibliografía
 
-> Referencias en formato APA. Se amplía en cada entrega.
+> Referencias en formato APA (7.ª edición), ordenadas alfabéticamente.
 
 - Bass, L., Clements, P., & Kazman, R. (2021). *Software architecture in practice* (4th ed.). Addison-Wesley.
-- Cervantes, H., & Kazman, R. (2016). *Designing software architectures: A practical approach*. Addison-Wesley.
-- Evans, E. (2003). *Domain-driven design: Tackling complexity in the heart of software*. Addison-Wesley.
-- Vernon, V. (2013). *Implementing domain-driven design*. Addison-Wesley.
 - Brandolini, A. (2021). *Introducing EventStorming*. Leanpub.
-- Tune, N. (2022). *Architecture modernization: Socio-technical alignment of software, strategy, and structure*. Manning.
 - Brown, S. (2023). *The C4 model for visualising software architecture*. https://c4model.com
-- Gothelf, J., & Seiden, J. (2021). *Lean UX: Designing great products with agile teams* (3rd ed.). O'Reilly Media.
-- Organismo Supervisor de la Inversión en Energía y Minería. (s. f.). *Anexo B: Opciones tarifarias y condiciones de aplicación de las tarifas a usuario final*. OSINERGMIN. https://www.osinergmin.gob.pe/Resoluciones/pdf/ANEXO_B_Resolucion_1908.pdf
-- Organismo Supervisor de la Inversión en Energía y Minería. (s. f.). *Pliegos tarifarios aplicables al cliente final*. OSINERGMIN. https://www.osinergmin.gob.pe/seccion/institucional/regulacion-tarifaria/pliegos-tarifarios/electricidad/pliegos-tarifiarios-cliente-final
-- Ministerio de Energía y Minas. (2025). *Anuario estadístico de electricidad 2024. Capítulo 5: Distribución de energía eléctrica* [cuadro 5.3.3.1, venta mensual de energía eléctrica por sector económico]. MINEM. https://www.gob.pe/institucion/minem/informes-publicaciones/7324144-anuario-estadistico-de-electricidad-2024
+- Cervantes, H., & Kazman, R. (2016). *Designing software architectures: A practical approach*. Addison-Wesley.
 - Conventional Commits. (s. f.). *Conventional Commits 1.0.0*. https://www.conventionalcommits.org/en/v1.0.0/
 - Cucumber. (s. f.). *Gherkin reference*. https://cucumber.io/docs/gherkin/reference/
 - Driessen, V. (2010). *A successful Git branching model*. https://nvie.com/posts/a-successful-git-branching-model/
+- Evans, E. (2003). *Domain-driven design: Tackling complexity in the heart of software*. Addison-Wesley.
 - Google. (s. f.). *Firebase App Distribution*. Firebase. https://firebase.google.com/docs/app-distribution
 - Google. (s. f.). *Jetpack Compose*. Android Developers. https://developer.android.com/compose
 - Google. (s. f.). *Material Design 3*. https://m3.material.io
+- Gothelf, J., & Seiden, J. (2021). *Lean UX: Designing great products with agile teams* (3rd ed.). O'Reilly Media.
+- Ministerio de Energía y Minas. (2025). *Anuario estadístico de electricidad 2024. Capítulo 5: Distribución de energía eléctrica* [cuadro 5.3.3.1, venta mensual de energía eléctrica por sector económico]. MINEM. https://www.gob.pe/institucion/minem/informes-publicaciones/7324144-anuario-estadistico-de-electricidad-2024
 - Nielsen, J. (1994). *10 usability heuristics for user interface design*. Nielsen Norman Group. https://www.nngroup.com/articles/ten-usability-heuristics/
 - OpenAPI Initiative. (2021). *OpenAPI Specification v3.1.0*. https://spec.openapis.org/oas/v3.1.0
+- Organismo Supervisor de la Inversión en Energía y Minería. (s. f.). *Anexo B: Opciones tarifarias y condiciones de aplicación de las tarifas a usuario final*. OSINERGMIN. https://www.osinergmin.gob.pe/Resoluciones/pdf/ANEXO_B_Resolucion_1908.pdf
+- Organismo Supervisor de la Inversión en Energía y Minería. (s. f.). *Pliegos tarifarios aplicables al cliente final*. OSINERGMIN. https://www.osinergmin.gob.pe/seccion/institucional/regulacion-tarifaria/pliegos-tarifarios/electricidad/pliegos-tarifiarios-cliente-final
 - Schwaber, K., & Sutherland, J. (2020). *The Scrum guide*. https://scrumguides.org
 - Spring. (s. f.). *Spring Boot reference documentation*. https://docs.spring.io/spring-boot/
+- Tune, N. (2022). *Architecture modernization: Socio-technical alignment of software, strategy, and structure*. Manning.
+- Vernon, V. (2013). *Implementing domain-driven design*. Addison-Wesley.
 - Vue.js. (s. f.). *Vue.js guide*. https://vuejs.org/guide/
 
 ## Anexos
@@ -5358,7 +5435,7 @@ redacción y orientación antes que hacia cambios de funcionalidad.
 | Entrega | URL del video | Duración |
 | :-- | :-- | :-- |
 | Primer Hito | <https://upcedupe-my.sharepoint.com/:v:/g/personal/u20211g491_upc_edu_pe/IQDbU0RFA9H-QbkGfbfblYkVAa5583zaljIfZBcBkXGH-5c?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=2c9JBJ> | 9:18|
-| TB2 — TF 1ASI0728 202602 VIDEO | <https://youtu.be/wTp7IgfRqcA> | 10:58 |
+| TB2 — TF 1ASI0728 202620 VIDEO | <https://youtu.be/wTp7IgfRqcA> | 10:58 |
 | About-the-Team — SEMS About the Team | <https://youtu.be/PaWbmEKbiR4> | 5:58 |
 
 **Anexo B. Enlaces de los productos y repositorios**
@@ -5376,6 +5453,7 @@ redacción y orientación antes que hacia cambios de funcionalidad.
 | Descarga del APK (GitHub Releases) | <https://github.com/SEMS-Emergentes/SEMS-Mobile-App/releases/latest/download/sems.apk> |
 | Mobile Application en Firebase App Distribution | <https://appdistribution.firebase.dev/i/7606c1a1bf74bc9f> |
 | Sprint Backlog 1 (Trello) | <https://trello.com/b/Tc47h3bQ/sprint-backlog-1-sems> |
+| Sprint Backlog 2 (Trello) | <https://trello.com/b/doIU3e8f/sprint-backlog-2-sems> |
 | Video About-the-Product | <https://youtu.be/fRiR1J3zPMw> |
 | Video About-the-Team | <https://youtu.be/PaWbmEKbiR4> |
 | Video de exposición TB2 | <https://youtu.be/wTp7IgfRqcA> |
