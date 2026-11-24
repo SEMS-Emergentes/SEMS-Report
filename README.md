@@ -5402,29 +5402,29 @@ redacción y orientación antes que hacia cambios de funcionalidad.
 
 ## Bibliografía
 
-> Referencias en formato APA. Se amplía en cada entrega.
+> Referencias en formato APA (7.ª edición), ordenadas alfabéticamente.
 
 - Bass, L., Clements, P., & Kazman, R. (2021). *Software architecture in practice* (4th ed.). Addison-Wesley.
-- Cervantes, H., & Kazman, R. (2016). *Designing software architectures: A practical approach*. Addison-Wesley.
-- Evans, E. (2003). *Domain-driven design: Tackling complexity in the heart of software*. Addison-Wesley.
-- Vernon, V. (2013). *Implementing domain-driven design*. Addison-Wesley.
 - Brandolini, A. (2021). *Introducing EventStorming*. Leanpub.
-- Tune, N. (2022). *Architecture modernization: Socio-technical alignment of software, strategy, and structure*. Manning.
 - Brown, S. (2023). *The C4 model for visualising software architecture*. https://c4model.com
-- Gothelf, J., & Seiden, J. (2021). *Lean UX: Designing great products with agile teams* (3rd ed.). O'Reilly Media.
-- Organismo Supervisor de la Inversión en Energía y Minería. (s. f.). *Anexo B: Opciones tarifarias y condiciones de aplicación de las tarifas a usuario final*. OSINERGMIN. https://www.osinergmin.gob.pe/Resoluciones/pdf/ANEXO_B_Resolucion_1908.pdf
-- Organismo Supervisor de la Inversión en Energía y Minería. (s. f.). *Pliegos tarifarios aplicables al cliente final*. OSINERGMIN. https://www.osinergmin.gob.pe/seccion/institucional/regulacion-tarifaria/pliegos-tarifarios/electricidad/pliegos-tarifiarios-cliente-final
-- Ministerio de Energía y Minas. (2025). *Anuario estadístico de electricidad 2024. Capítulo 5: Distribución de energía eléctrica* [cuadro 5.3.3.1, venta mensual de energía eléctrica por sector económico]. MINEM. https://www.gob.pe/institucion/minem/informes-publicaciones/7324144-anuario-estadistico-de-electricidad-2024
+- Cervantes, H., & Kazman, R. (2016). *Designing software architectures: A practical approach*. Addison-Wesley.
 - Conventional Commits. (s. f.). *Conventional Commits 1.0.0*. https://www.conventionalcommits.org/en/v1.0.0/
 - Cucumber. (s. f.). *Gherkin reference*. https://cucumber.io/docs/gherkin/reference/
 - Driessen, V. (2010). *A successful Git branching model*. https://nvie.com/posts/a-successful-git-branching-model/
+- Evans, E. (2003). *Domain-driven design: Tackling complexity in the heart of software*. Addison-Wesley.
 - Google. (s. f.). *Firebase App Distribution*. Firebase. https://firebase.google.com/docs/app-distribution
 - Google. (s. f.). *Jetpack Compose*. Android Developers. https://developer.android.com/compose
 - Google. (s. f.). *Material Design 3*. https://m3.material.io
+- Gothelf, J., & Seiden, J. (2021). *Lean UX: Designing great products with agile teams* (3rd ed.). O'Reilly Media.
+- Ministerio de Energía y Minas. (2025). *Anuario estadístico de electricidad 2024. Capítulo 5: Distribución de energía eléctrica* [cuadro 5.3.3.1, venta mensual de energía eléctrica por sector económico]. MINEM. https://www.gob.pe/institucion/minem/informes-publicaciones/7324144-anuario-estadistico-de-electricidad-2024
 - Nielsen, J. (1994). *10 usability heuristics for user interface design*. Nielsen Norman Group. https://www.nngroup.com/articles/ten-usability-heuristics/
 - OpenAPI Initiative. (2021). *OpenAPI Specification v3.1.0*. https://spec.openapis.org/oas/v3.1.0
+- Organismo Supervisor de la Inversión en Energía y Minería. (s. f.). *Anexo B: Opciones tarifarias y condiciones de aplicación de las tarifas a usuario final*. OSINERGMIN. https://www.osinergmin.gob.pe/Resoluciones/pdf/ANEXO_B_Resolucion_1908.pdf
+- Organismo Supervisor de la Inversión en Energía y Minería. (s. f.). *Pliegos tarifarios aplicables al cliente final*. OSINERGMIN. https://www.osinergmin.gob.pe/seccion/institucional/regulacion-tarifaria/pliegos-tarifarios/electricidad/pliegos-tarifiarios-cliente-final
 - Schwaber, K., & Sutherland, J. (2020). *The Scrum guide*. https://scrumguides.org
 - Spring. (s. f.). *Spring Boot reference documentation*. https://docs.spring.io/spring-boot/
+- Tune, N. (2022). *Architecture modernization: Socio-technical alignment of software, strategy, and structure*. Manning.
+- Vernon, V. (2013). *Implementing domain-driven design*. Addison-Wesley.
 - Vue.js. (s. f.). *Vue.js guide*. https://vuejs.org/guide/
 
 ## Anexos
@@ -5435,7 +5435,7 @@ redacción y orientación antes que hacia cambios de funcionalidad.
 | Entrega | URL del video | Duración |
 | :-- | :-- | :-- |
 | Primer Hito | <https://upcedupe-my.sharepoint.com/:v:/g/personal/u20211g491_upc_edu_pe/IQDbU0RFA9H-QbkGfbfblYkVAa5583zaljIfZBcBkXGH-5c?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=2c9JBJ> | 9:18|
-| TB2 — TF 1ASI0728 202602 VIDEO | <https://youtu.be/wTp7IgfRqcA> | 10:58 |
+| TB2 — TF 1ASI0728 202620 VIDEO | <https://youtu.be/wTp7IgfRqcA> | 10:58 |
 | About-the-Team — SEMS About the Team | <https://youtu.be/PaWbmEKbiR4> | 5:58 |
 
 **Anexo B. Enlaces de los productos y repositorios**
@@ -5453,6 +5453,7 @@ redacción y orientación antes que hacia cambios de funcionalidad.
 | Descarga del APK (GitHub Releases) | <https://github.com/SEMS-Emergentes/SEMS-Mobile-App/releases/latest/download/sems.apk> |
 | Mobile Application en Firebase App Distribution | <https://appdistribution.firebase.dev/i/7606c1a1bf74bc9f> |
 | Sprint Backlog 1 (Trello) | <https://trello.com/b/Tc47h3bQ/sprint-backlog-1-sems> |
+| Sprint Backlog 2 (Trello) | <https://trello.com/b/doIU3e8f/sprint-backlog-2-sems> |
 | Video About-the-Product | <https://youtu.be/fRiR1J3zPMw> |
 | Video About-the-Team | <https://youtu.be/PaWbmEKbiR4> |
 | Video de exposición TB2 | <https://youtu.be/wTp7IgfRqcA> |
